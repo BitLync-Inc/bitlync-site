@@ -209,7 +209,6 @@ main{display:block}
     <nav class="main" id="mainNav">
       <a href="#home" data-nav="home" class="on">Home</a>
       <a href="#product" data-nav="product">Product</a>
-      <a href="#roadmap" data-nav="roadmap">Roadmap</a>
       <a href="#integrations" data-nav="integrations">Integrations</a>
       <a href="#msps" data-nav="msps">For MSPs</a>
       <a href="#partners" data-nav="partners">Partners</a>
@@ -644,6 +643,27 @@ main{display:block}
   </div>
 </section>
 
+<section class="dark tight">
+  <style>
+    .road-strip{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));max-width:960px;margin:0 auto}
+    .road-item{background:#22242B;border:1px solid #3A3D46;border-radius:var(--r-lg);padding:18px 18px 16px}
+    .road-item b{display:block;font-family:var(--disp);font-weight:600;font-size:14.5px;letter-spacing:-.01em;margin:8px 0 4px;color:#fff}
+    .road-item p{margin:0;font-size:13px;color:#B9B9B4}
+    .dark .tag.road{background:#2A2C34;color:#8B8B86}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:24px">
+      <h2>On the roadmap</h2>
+    </div>
+    <div class="road-strip">
+      <div class="road-item"><span class="tag road">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="tight" style="padding-top:8px">
   <div class="wrap center">
     <h2 style="font-family:var(--disp);font-weight:600;max-width:20ch;margin:0 auto">Start in the sandbox. Add MSP keys when you are ready.</h2>
@@ -659,41 +679,6 @@ main{display:block}
     </div>
   </div>
 </section>
-
-</div>
-
-<!-- ============================================================ ROADMAP -->
-<div class="page" id="page-roadmap">
-
-<section style="padding-bottom:24px">
-  <div class="wrap center">
-    <p class="eyebrow">Coming — not live yet</p>
-    <h1 style="font-size:clamp(30px,4.4vw,48px)">On the roadmap</h1>
-    <p class="sub">Plainly labeled. None of this is live.</p>
-  </div>
-</section>
-
-<section class="tight" style="padding-top:0">
-  <style>
-    .road-strip{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));max-width:960px;margin:0 auto}
-    .road-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 18px 16px}
-    .road-item b{display:block;font-family:var(--disp);font-weight:600;font-size:14.5px;letter-spacing:-.01em;margin:8px 0 4px}
-    .road-item p{margin:0;font-size:13px;color:var(--muted)}
-  </style>
-  <div class="wrap">
-    <div class="center" style="margin-bottom:24px">
-      <p class="eyebrow">Coming — not live yet</p>
-      <h2>On the roadmap, plainly labeled</h2>
-    </div>
-    <div class="road-strip">
-      <div class="road-item"><span class="tag road">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></div>
-      <div class="road-item"><span class="tag road">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></div>
-      <div class="road-item"><span class="tag road">Coming</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></div>
-      <div class="road-item"><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></div>
-    </div>
-  </div>
-</section>
-
 
 </div>
 
@@ -995,7 +980,7 @@ main{display:block}
 <script>
 (function(){
   document.documentElement.classList.remove('no-js');
-  var pages=['home','product','roadmap','integrations','msps','partners'];
+  var pages=['home','product','integrations','msps','partners'];
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
   function show(id){
