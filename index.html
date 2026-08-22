@@ -129,9 +129,15 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-s
 }
 .steps{display:grid;gap:0;border-top:1px solid var(--line)}
 .step-card{background:transparent;border:none;border-bottom:1px solid var(--line);
-  border-radius:0;padding:28px 0;display:grid;gap:8px 28px}
-@media(min-width:820px){
-  .step-card{grid-template-columns:8rem 1fr;align-items:baseline}
+  border-radius:0;padding:28px 0;display:grid;gap:14px 22px;align-items:center;
+  grid-template-columns:48px 1fr;opacity:0;transform:translateY(12px);
+  transition:opacity .55s ease,transform .55s ease}
+.step-card.in{opacity:1;transform:none}
+.step-mark{width:48px;height:48px}
+.step-card .num{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;margin:0 0 6px}
+.step-card p{margin:0;font-size:17px;line-height:1.4;max-width:36ch}
+@media (prefers-reduced-motion: reduce){
+  .step-card{opacity:1;transform:none;transition:none}
 }
 .road-strip{grid-template-columns:1fr}
 @media(min-width:820px){
@@ -356,26 +362,49 @@ main{display:block}
 </section>
 
 <section class="tight" style="padding-top:0">
-  <style>
-    .step-card{position:relative}
-    .step-card .num{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);
-      text-transform:uppercase;font-weight:600;margin:0 0 8px}
-  </style>
   <div class="wrap steps">
     <div class="step-card">
-      <p class="num">01 — Your product integrates once</p>
-      <h3>One schema, every vendor</h3>
-      <p style="margin:0;font-size:14.5px;color:var(--muted)">Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
+      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round">
+          <path d="M6 10h14"/><path d="M6 18h14"/><path d="M6 26h14"/><path d="M6 34h14"/>
+          <path d="M20 10c8 0 12 14 18 14"/><path d="M20 18c7 0 11 8 18 8"/>
+          <path d="M20 26c7 0 11-8 18-8"/><path d="M20 34c8 0 12-14 18-14"/>
+        </g>
+        <circle cx="40" cy="24" r="4" fill="#0C6B70"/>
+      </svg>
+      <div>
+        <p class="num">01</p>
+        <p>Write once against one schema. Tickets, companies, contacts, agreements.</p>
+      </div>
     </div>
     <div class="step-card">
-      <p class="num">02 — Customers connect themselves</p>
-      <h3>Self-serve, guided, validated</h3>
-      <p style="margin:0;font-size:14.5px;color:var(--muted)">The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
+      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="14" cy="24" r="6"/>
+          <path d="M20 24h16"/>
+          <path d="M30 24v5"/><path d="M34 24v4"/>
+          <rect x="36" y="16" width="8" height="16" rx="1.5" stroke="#17181C"/>
+          <path d="M36 24h-0.5" stroke="#17181C"/>
+        </g>
+      </svg>
+      <div>
+        <p class="num">02</p>
+        <p>The MSP pastes their own keys. You never hold them.</p>
+      </div>
     </div>
     <div class="step-card">
-      <p class="num">03 — Act through the stack</p>
-      <h3>Read and write, safely</h3>
-      <p style="margin:0;font-size:14.5px;color:var(--muted)">Open a ticket or update a device through the API. Writes that already support it take <code style="font-family:var(--mono);font-size:12.5px">dry_run</code> and an <code style="font-family:var(--mono);font-size:12.5px">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
+      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="#17181C" stroke-width="1.6" stroke-linejoin="round">
+          <rect x="8" y="10" width="20" height="26" rx="2"/>
+          <path d="M12 16h12" stroke="#0C6B70"/><path d="M12 21h12" stroke="#0C6B70"/><path d="M12 26h8" stroke="#0C6B70"/>
+        </g>
+        <path d="M32 24h10" fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M38 19l6 5-6 5" fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <p class="num">03</p>
+        <p>Read and write through that same API.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -414,7 +443,7 @@ main{display:block}
 }</pre>
     </div>
     <div class="dx-notes">
-      <div class="dx-note"><b>Writes are governed</b>Every write takes <span style="font-family:var(--mono)">dry_run</span> to preview and an <span style="font-family:var(--mono)">idempotency_key</span> to make retries safe.</div>
+      <div class="dx-note"><b>Writes</b>Where the API has them, writes take <span style="font-family:var(--mono)">dry_run</span> and an <span style="font-family:var(--mono)">idempotency_key</span>. Creating a leftover PSA company in the ISV is not shipped yet.</div>
       <div class="dx-note"><b>Escape hatch, always</b>The normalized shape is the default; the vendor's raw payload rides along under <span style="font-family:var(--mono)">.raw</span> when you need it.</div>
       <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. OpenAPI, curl, Python and TypeScript clients. First call the same day.</div>
     </div>
@@ -788,6 +817,24 @@ main{display:block}
       menuBtn.focus();
     }
   });
+  var stepIO=null;
+  function revealSteps(){
+    var cards=document.querySelectorAll('.step-card');
+    if(!cards.length)return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+      cards.forEach(function(c){c.classList.add('in')});
+      return;
+    }
+    if(stepIO)stepIO.disconnect();
+    stepIO=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');stepIO.unobserve(en.target);}
+      });
+    },{threshold:0.28,rootMargin:'0px 0px -10% 0px'});
+    cards.forEach(function(c){stepIO.observe(c)});
+  }
+  var _show=show;
+  show=function(id){ _show(id); revealSteps(); };
   show(location.hash.replace('#','')||'home');
 })();
 </script>
