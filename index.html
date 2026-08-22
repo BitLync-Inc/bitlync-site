@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bitlync — One API for the entire MSP stack</title>
+<meta name="description" content="Bitlync is the integration layer for the MSP software stack. Integrate once, trust the data — one governed sync per MSP serves every product, so your reads never spend the vendor's shared rate budget." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17181C; --ink2:#3A3B40; --paper:#FBFBF8; --card:#FFFFFF; --panel:#F5F5F0;
+  --line:#DEDDD5; --muted:#6B6B65;
+  --accent:#0C6B70; --accent2:#0E7C82; --accent-lt:#5CC0C6; --accent-soft:#E4EFEF;
+  --ok:#3E7C5A; --ok-soft:#E8F1EB; --warn:#A9702C; --warn-soft:#F6EEDF;
+  --bad:#B24A4A; --bad-soft:#F1E4E4;
+  --disp:'IBM Plex Sans',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --r:8px; --r-lg:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer}
+img,svg{max-width:100%}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px;font-weight:600}
+h1{font-family:var(--disp);font-weight:700;letter-spacing:-.025em;line-height:1.06;
+  font-size:clamp(34px,5.2vw,56px);margin:0 0 18px}
+h2{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-height:1.12;
+  font-size:clamp(24px,3.4vw,36px);margin:0 0 12px}
+h3{font-family:var(--disp);font-weight:600;letter-spacing:-.015em;font-size:19px;margin:0 0 8px}
+.sub{color:var(--muted);font-size:clamp(15.5px,1.6vw,17.5px);max-width:62ch;margin:0 0 26px}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
+section{padding:72px 0}
+.tight{padding:52px 0}
+
+/* ————— top nav ————— */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:22px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);
+  font-weight:700;font-size:19px;letter-spacing:-.02em}
+.brand .mark{width:34px;height:34px;flex:none;border-radius:8px}
+nav.main{display:flex;gap:28px;flex:1;justify-content:center}
+nav.main a{padding:6px 1px;font-size:14px;color:var(--ink2);font-weight:500;
+  border-bottom:2px solid transparent;transition:color .12s}
+nav.main a:hover{color:var(--ink)}
+nav.main a.on{color:var(--ink);font-weight:600;border-bottom-color:var(--accent)}
+.pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:5px 10px;background:var(--card);white-space:nowrap}
+.btn{display:inline-block;border-radius:9px;padding:11px 20px;font-weight:600;font-size:14.5px;
+  border:1px solid var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{box-shadow:0 6px 18px rgba(23,24,28,.18)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.teal{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sm{padding:9px 16px;font-size:13.5px}
+.nav-cta{white-space:nowrap}
+.menu-btn{display:none;border:1px solid var(--line);background:var(--card);border-radius:8px;
+  padding:8px 12px;font-size:14px}
+@media(max-width:840px){
+  nav.main{position:fixed;inset:66px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);
+    flex-direction:column;padding:12px 22px 18px;display:none}
+  nav.main.open{display:flex;gap:2px}
+  nav.main a{padding:12px 2px;border-bottom-color:transparent}
+  nav.main a.on{border-bottom-color:var(--accent)}
+  .menu-btn{display:block;margin-left:auto}
+  .nav-cta,.bar .pill{display:none}
+}
+
+/* ————— page routing ————— */
+.page{display:none}
+.page.on{display:block}
+.no-js .page{display:block}
+
+/* ————— shared components ————— */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px}
+.grid{display:grid;gap:16px}
+@media(min-width:820px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:4px;padding:3px 7px;font-weight:600;white-space:nowrap}
+.tag.built{background:var(--ok-soft);color:var(--ok)}
+.tag.next{background:var(--accent-soft);color:var(--accent)}
+.tag.road{background:#EDEDE8;color:var(--muted)}
+.tag.read{background:var(--accent-soft);color:var(--accent)}
+.tag.write{background:var(--warn-soft);color:var(--warn)}
+.tag.never{background:var(--bad-soft);color:var(--bad)}
+.disclaim{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:10px 0 0;text-align:center}
+
+/* dark band */
+.dark{background:var(--ink);color:#EDEDEA}
+.dark .eyebrow{color:#5CC0C6}
+.dark h2{color:#fff}
+.dark .sub{color:#B9B9B4}
+
+/* CTA band */
+.cta-band{background:var(--accent);color:#fff;border-radius:var(--r-lg);padding:52px 30px;text-align:center}
+.cta-band h2{color:#fff}
+.cta-band p{color:#D6ECED;max-width:52ch;margin:0 auto 24px}
+.cta-band .btn{background:#fff;border-color:#fff;color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+.foot .mono{font-family:var(--mono);font-size:11.5px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home" data-nav="home">
+      <svg class="mark" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="0" y="0" width="34" height="34" rx="8" fill="#0C6B70"/>
+        <svg x="5" y="5" width="24" height="24" viewBox="220 30 275 320" fill="none">
+          <g stroke="#fff" stroke-width="13" stroke-linecap="round" fill="none">
+            <path d="M234 40 C304 40 380 190 470 190"/>
+            <path d="M234 90 C304 90 380 190 470 190"/>
+            <path d="M234 140 C304 140 380 190 470 190"/>
+            <path d="M234 190 C304 190 380 190 470 190"/>
+            <path d="M234 240 C304 240 380 190 470 190"/>
+            <path d="M234 290 C304 290 380 190 470 190"/>
+            <path d="M234 340 C304 340 380 190 470 190"/>
+          </g><circle cx="470" cy="190" r="26" fill="#fff"/>
+        </svg>
+      </svg>
+      Bitlync
+    </a>
+    <nav class="main" id="mainNav">
+      <a href="#home" data-nav="home" class="on">Home</a>
+      <a href="#product" data-nav="product">Product</a>
+      <a href="#integrations" data-nav="integrations">Integrations</a>
+      <a href="#msps" data-nav="msps">For MSPs</a>
+      <a href="#partners" data-nav="partners">Partners</a>
+    </nav>
+    <span class="pill">Private beta</span>
+    <a class="btn primary sm nav-cta" href="#partners" data-nav="partners">Request early access</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">Menu</button>
+  </div>
+</header>
+
+<!-- ============================================================ HOME -->
+<main>
+<div class="page on" id="page-home">
+
+<section class="hero" style="padding-top:64px">
+  <style>
+    .hero-grid{display:grid;gap:40px;align-items:center}
+    @media(min-width:900px){.hero-grid{grid-template-columns:1.05fr 1fr}}
+    .hero .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .tagline{font-family:var(--disp);font-weight:600;font-size:clamp(17px,2vw,20px);
+      color:var(--accent);letter-spacing:-.01em;margin:0 0 12px}
+    /* the signature: many shapes -> one shape */
+    .conduit{background:var(--ink);border-radius:var(--r-lg);padding:26px 20px;position:relative;overflow:hidden}
+    .conduit svg{display:block;width:100%;height:auto}
+    .conduit .cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+      color:#8B8B86;text-align:center;margin:14px 0 0}
+    .flowline{stroke-dasharray:5 7;animation:flow 2.6s linear infinite}
+    @keyframes flow{to{stroke-dashoffset:-24}}
+  </style>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">The integration layer for the MSP stack</p>
+      <h1>One API for the entire MSP&nbsp;stack.</h1>
+      <p class="tagline">Integrate once. Trust the data.</p>
+      <p class="sub">Your product plugs into Bitlync once and reaches every PSA, RMM, distributor, and documentation tool your MSP customers run — reads served from our store, writes governed all the way down.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#product" data-nav="product">See how it works</a>
+      </div>
+    </div>
+    <div class="conduit" aria-label="Diagram: many vendor systems flow through Bitlync into one canonical shape that your product consumes">
+      <svg viewBox="0 0 460 320" role="img">
+        <defs>
+          <linearGradient id="pipe" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#2E5E62"/><stop offset="1" stop-color="#0E7C82"/>
+          </linearGradient>
+        </defs>
+        <!-- category nodes -->
+        <g font-family="IBM Plex Mono,monospace" font-size="11" fill="#C9C9C4">
+          <rect x="14" y="14"  width="118" height="30" rx="6"  fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="56"  width="118" height="30" rx="15" fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="98"  width="118" height="30" rx="2"  fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="140" width="118" height="30" rx="10" fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="182" width="118" height="30" rx="4"  fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="224" width="118" height="30" rx="13" fill="#22242B" stroke="#3A3D46"/>
+          <rect x="14" y="266" width="118" height="30" rx="8"  fill="#22242B" stroke="#3A3D46"/>
+          <text x="28" y="33">PSA</text>
+          <text x="28" y="75">RMM</text>
+          <text x="28" y="117">Commerce</text>
+          <text x="28" y="159">Productivity</text>
+          <text x="28" y="201">Documentation</text>
+          <text x="28" y="243">GRC/vCIO</text>
+          <text x="28" y="285">Quoting/CPQ</text>
+          <!-- uniform port glyphs — all circles -->
+          <circle cx="122" cy="29"  r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="71"  r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="113" r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="155" r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="197" r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="239" r="4" fill="#5CC0C6"/>
+          <circle cx="122" cy="281" r="4" fill="#5CC0C6"/>
+        </g>
+        <!-- converging pipes -->
+        <g stroke="url(#pipe)" stroke-width="2" fill="none">
+          <path class="flowline" d="M132 29  C 200 29,  210 146, 268 151"/>
+          <path class="flowline" d="M132 71  C 198 71,  212 148, 268 153"/>
+          <path class="flowline" d="M132 113 C 196 113, 214 151, 268 155"/>
+          <path class="flowline" d="M132 155 C 196 155, 214 157, 268 157"/>
+          <path class="flowline" d="M132 197 C 196 197, 214 163, 268 159"/>
+          <path class="flowline" d="M132 239 C 198 239, 212 166, 268 161"/>
+          <path class="flowline" d="M132 281 C 200 281, 210 170, 268 163"/>
+        </g>
+        <!-- the hub — the logo, completed -->
+        <g>
+          <circle cx="314" cy="157" r="38" fill="#0C6B70"/>
+          <text x="314" y="161" text-anchor="middle" font-family="IBM Plex Sans,sans-serif"
+                font-size="13" font-weight="700" fill="#fff" letter-spacing="-0.02em">Bitlync</text>
+        </g>
+        <!-- one line out -->
+        <g>
+          <path class="flowline" d="M360 158 H 396" stroke="#5CC0C6" stroke-width="2.6" fill="none"/>
+          <path d="M396 150 l14 8 -14 8 z" fill="#5CC0C6"/>
+          <text x="430" y="152" text-anchor="middle" font-family="IBM Plex Sans,sans-serif"
+                font-size="11.5" font-weight="700" letter-spacing="0.02em" fill="#EDEDEA">YOUR</text>
+          <text x="430" y="168" text-anchor="middle" font-family="IBM Plex Sans,sans-serif"
+                font-size="11.5" font-weight="700" letter-spacing="0.02em" fill="#EDEDEA">PRODUCT</text>
+        </g>
+      </svg>
+      <p class="cap">many systems → one canonical shape → your product integrates once</p>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:24px">
+  <style>
+    .budget-grid{display:grid;gap:16px;max-width:920px;margin:0 auto}
+    @media(min-width:820px){.budget-grid{grid-template-columns:1fr 1fr}}
+    .budget-card{border-radius:var(--r-lg);padding:26px}
+    .budget-card.problem{background:var(--ink);color:#EDEDEA}
+    .budget-card.problem h3{color:#fff}
+    .budget-card.problem p{color:#B9B9B4}
+    .budget-card.answer{background:var(--accent-soft);border:1px solid var(--accent)}
+    .budget-card .big{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3.4vw,34px);
+      letter-spacing:-.02em;margin:0 0 4px}
+    .budget-card.problem .big{color:#5CC0C6}
+    .budget-card.answer .big{color:var(--accent)}
+    .budget-card small{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+      display:block;margin-bottom:14px}
+    .budget-card.problem small{color:#8B8B86}
+    .budget-card.answer small{color:var(--accent)}
+    .budget-card p{font-size:14.5px;margin:0}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <p class="eyebrow">Read once, serve many</p>
+      <h2>Your reads never spend the vendor's budget</h2>
+    </div>
+    <div class="budget-grid">
+      <div class="budget-card problem">
+        <p class="big">10,000/hr</p>
+        <small>Autotask's rate budget — shared per tenant</small>
+        <h3>The shared-budget problem</h3>
+        <p>Every product an MSP runs polls the same vendor API and draws down the same shared budget. One noisy poller, and every integration on the tenant slows — including yours.</p>
+      </div>
+      <div class="budget-card answer">
+        <p class="big">×0</p>
+        <small>Vendor budget spent by your reads</small>
+        <h3>One governed sync serves everyone</h3>
+        <p>Bitlync syncs each MSP's stack once, then serves every product's reads from its own store. Your reads never touch the vendor's rate budget — no matter how many products share the tenant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark tight">
+  <style>
+    .reality{display:grid;gap:8px;max-width:680px;margin:0 auto;text-align:center}
+    .reality p{margin:0;font-size:clamp(16px,2vw,19px);color:#B9B9B4}
+    .reality p.punch{font-family:var(--disp);font-weight:600;color:#fff;font-size:clamp(19px,2.6vw,25px);margin-top:14px}
+    .reality-kicker{font-family:var(--disp);font-weight:700;letter-spacing:-.01em;color:#5CC0C6;
+      text-align:center;font-size:clamp(20px,2.8vw,28px);margin:0 0 24px}
+    .burden{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:34px auto 0;max-width:760px}
+    .b-tiles{display:grid;grid-template-columns:repeat(6,26px);gap:5px}
+    .b-tiles i{width:26px;height:26px;border-radius:5px;background:#22242B;border:1px solid #3A3D46}
+    .b-side{text-align:left}
+    .b-side .n{font-family:var(--disp);font-weight:700;font-size:22px;color:#fff;letter-spacing:-.02em}
+    .b-side small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;
+      text-transform:uppercase;color:#8B8B86;margin-top:3px;line-height:1.7}
+    .b-arrow{font-size:22px;color:#5CC0C6}
+    .b-one{width:58px;height:58px;border-radius:12px;background:var(--accent);display:grid;place-items:center;flex:none}
+    .b-one svg{width:30px;height:30px}
+    @media(max-width:560px){.burden{gap:12px}.b-tiles{grid-template-columns:repeat(4,24px)}.b-tiles i{width:24px;height:24px}}
+  </style>
+  <div class="wrap">
+    <p class="reality-kicker">The reality today</p>
+    <div class="reality">
+      <p>Every PSA speaks its own dialect.</p>
+      <p>Every RMM has its own quirks.</p>
+      <p>Every vendor changes its API without warning.</p>
+      <p style="color:#EDEDEA;font-weight:500">And every one is yours to build, watch, and support — forever. It compounds with every integration your product ships.</p>
+      <p class="punch">We collapse it to one — and we operate it.</p>
+    </div>
+    <div class="burden" role="img" aria-label="Twelve integrations of build, changelog, and support burden collapse into one integration operated by Bitlync">
+      <div class="b-tiles">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="b-side">
+        <span class="n">×12</span>
+        <small>builds · changelogs<br>support queues</small>
+      </div>
+      <span class="b-arrow">→</span>
+      <div class="b-one">
+        <svg viewBox="220 30 275 320" fill="none" aria-hidden="true"><g stroke="#fff" stroke-width="13" stroke-linecap="round" fill="none">
+          <path d="M234 40 C304 40 380 190 470 190"/><path d="M234 90 C304 90 380 190 470 190"/>
+          <path d="M234 140 C304 140 380 190 470 190"/><path d="M234 190 C304 190 380 190 470 190"/>
+          <path d="M234 240 C304 240 380 190 470 190"/><path d="M234 290 C304 290 380 190 470 190"/>
+          <path d="M234 340 C304 340 380 190 470 190"/></g><circle cx="470" cy="190" r="26" fill="#fff"/></svg>
+      </div>
+      <div class="b-side">
+        <span class="n">×1</span>
+        <small>one integration<br>we operate it</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid g3">
+      <div class="card">
+        <p class="eyebrow">Product-led, not project-led</p>
+        <h3>No 90-day engagement</h3>
+        <p class="sub" style="margin:0;font-size:14.5px">Self-serve sandbox keys — your engineers hit the API the same day, and see normalized data before the week is out.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Broader than PSA</p>
+        <h3>One layer, not one tier</h3>
+        <p class="sub" style="margin:0;font-size:14.5px">PSA, RMM, documentation, commerce, and GRC — reads and governed writes — under one schema. <a href="#integrations" data-nav="integrations" style="color:var(--accent);font-weight:600">Coverage map →</a></p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Everything included</p>
+        <h3>Not just an endpoint</h3>
+        <p class="sub" style="margin:0;font-size:14.5px">Caching, retries, validation, credential vault — every layer you'd otherwise build and maintain per vendor, bundled with every connection. <a href="#product" data-nav="product" style="color:var(--accent);font-weight:600">What's included →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .persona-card{display:flex;flex-direction:column}
+    .persona-card p.why{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+    .persona-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+    .persona-chips span{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.02em;
+      color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:5px 10px;white-space:nowrap}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <p class="eyebrow">Who it's for</p>
+      <h2>Built for the whole team</h2>
+      <p class="sub" style="margin-bottom:0">One integration layer, three problems it takes off your plate.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card persona-card">
+        <p class="eyebrow">For Product</p>
+        <h3>Integrations become roadmap, not backlog.</h3>
+        <p class="why">Every MSP tool your customers ask for is one canonical model away — so &ldquo;do we integrate with Syncro?&rdquo; becomes a prioritization question, not a quarter of engineering. Coverage grows without your team growing.</p>
+        <div class="persona-chips">
+          <span>8 systems live today</span>
+          <span>One schema, every category</span>
+          <span>Depth is free at the margin</span>
+        </div>
+      </div>
+      <div class="card persona-card">
+        <p class="eyebrow">For Engineering</p>
+        <h3>One call. Safe writes. No rate-limit babysitting.</h3>
+        <p class="why">Write once against one schema; reads come from a synced store so you never spend an MSP&rsquo;s shared API budget, and every write is dry-run-able and idempotent. You inherit the retries, the backoff, and the pager.</p>
+        <div class="persona-chips">
+          <span>REST + MCP, zero drift</span>
+          <span>dry_run + idempotency on every write</span>
+          <span>Sandbox the same day</span>
+        </div>
+      </div>
+      <div class="card persona-card">
+        <p class="eyebrow">For Go-To-Market</p>
+        <h3>Never lose a deal to &ldquo;do you integrate with&hellip;&rdquo;</h3>
+        <p class="why">Every prospect runs a different stack — with Bitlync the answer is yes on day one, and the MSP connects in clicks instead of a services project. Integrations stop gating your pipeline and start driving retention.</p>
+        <div class="persona-chips">
+          <span>Yes to every stack</span>
+          <span>Self-serve MSP connect</span>
+          <span>Fewer integration tickets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <style>
+    .logo-strip{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+    .vlogo{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);
+      border-radius:var(--r);padding:13px 15px}
+    .vlogo i{width:34px;height:34px;flex:none;border-radius:8px;display:grid;place-items:center;
+      font-family:var(--mono);font-size:11px;font-weight:600;font-style:normal;color:#fff;background:var(--ink)}
+    .vlogo b{display:block;font-size:14px;line-height:1.2}
+    .vlogo span{font-size:11.5px;color:var(--muted)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <h2>Live today across the systems your customers already run</h2>
+      <p class="sub" style="margin-bottom:0"><a href="#integrations" data-nav="integrations" style="color:var(--accent);font-weight:600">See the full coverage map →</a></p>
+    </div>
+    <div class="logo-strip">
+      <div class="vlogo"><i>CW</i><div><b>ConnectWise</b><span>PSA</span></div></div>
+      <div class="vlogo"><i>H</i><div><b>HaloPSA</b><span>PSA</span></div></div>
+      <div class="vlogo"><i>AT</i><div><b>Autotask</b><span>PSA</span></div></div>
+      <div class="vlogo"><i>NJ</i><div><b>NinjaOne</b><span>RMM</span></div></div>
+      <div class="vlogo"><i>DR</i><div><b>Datto RMM</b><span>RMM</span></div></div>
+      <div class="vlogo"><i>SP</i><div><b>ScalePad</b><span>GRC</span></div></div>
+      <div class="vlogo"><i>P8</i><div><b>Pax8</b><span>Commerce</span></div></div>
+      <div class="vlogo"><i>IG</i><div><b>IT Glue</b><span>Documentation</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to stop building integrations by hand?</h2>
+      <p>Connect your product once and let us carry the vendor surface. Early access is open now.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ============================================================ PRODUCT -->
+<div class="page" id="page-product">
+
+<section style="padding-bottom:44px">
+  <div class="wrap center">
+    <p class="eyebrow">The product</p>
+    <h1 style="font-size:clamp(30px,4.4vw,48px)">How Bitlync works</h1>
+    <p class="sub">One canonical model underneath, two very different experiences on top — boring plumbing for your product, a real connect experience for the MSP.</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .step-card{position:relative}
+    .step-card .num{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);
+      text-transform:uppercase;font-weight:600;margin:0 0 8px}
+  </style>
+  <div class="wrap grid g3">
+    <div class="card step-card">
+      <p class="num">01 — Your product integrates once</p>
+      <h3>One schema, every vendor</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">Write against a canonical model — tickets, companies, devices — and every PSA, RMM, and distributor resolves underneath it. No per-vendor branches in your codebase.</p>
+    </div>
+    <div class="card step-card">
+      <p class="num">02 — Customers connect themselves</p>
+      <h3>Self-serve, guided, validated</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">Your MSP customers connect their own stack in a few clicks — no engineering time from you, no docs page they have to wire up by hand.</p>
+    </div>
+    <div class="card step-card">
+      <p class="num">03 — Act through the stack</p>
+      <h3>Read and write, safely</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">Open a ticket from an alert, update a device, provision a new company — every write takes <code style="font-family:var(--mono);font-size:12.5px">dry_run</code> and an <code style="font-family:var(--mono);font-size:12.5px">idempotency_key</code>, so it's previewable first and safe to retry.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .inc-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+    .inc{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 18px}
+    .inc b{display:block;font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:-.01em;margin:0 0 5px}
+    .inc p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Everything that comes with an integration</p>
+      <h2>Every layer you'd otherwise build, bundled</h2>
+      <p class="sub" style="margin:0 auto">These aren't add-ons. Every layer you'd otherwise build and maintain per vendor comes bundled with every connection.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc"><b>Caching</b><p>Reads are served from our synced store — fast, and free of the vendor's rate budget. Every response tells you where it came from and when it was synced.</p></div>
+      <div class="inc"><b>Rate-limit handling</b><p>We pace every call against each vendor's real limits so your product never trips them by accident.</p></div>
+      <div class="inc"><b>Retries</b><p>Transient vendor failures are retried with backoff. You see one clean result, not a flaky upstream.</p></div>
+      <div class="inc"><b>Honest delivery status</b><p>De-duped + retried — never a silent drop. An acknowledged write can’t double-write; a throttled one gets a real Retry-After.</p></div>
+      <div class="inc"><b>De-duplication</b><p>Idempotency keys on every write mean a retry can never double-create a ticket or a company.</p></div>
+      <div class="inc"><b>Validation</b><p>Payloads are checked against each vendor's rules before they leave — errors surface in your request, not in an MSP's PSA.</p></div>
+      <div class="inc"><b>Credential vault</b><p>MSP credentials live in a per-tenant encrypted vault on our infrastructure. Your product never sees or stores a key.</p></div>
+      <div class="inc"><b>Health + incidents</b><p>Live status per connection, vendor health monitored around the clock, incidents surfaced to you before a partner calls.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <style>
+    .code-shell{background:#101116;border:1px solid #2A2C34;border-radius:var(--r-lg);overflow:hidden;max-width:760px;margin:0 auto}
+    .code-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid #2A2C34}
+    .code-head .dot{width:9px;height:9px;border-radius:50%;background:#3A3D46}
+    .code-head span{font-family:var(--mono);font-size:11.5px;color:#8B8B86;margin-left:6px}
+    pre{margin:0;padding:20px 22px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.7;color:#D9D9D4}
+    .c-com{color:#6F7A6F}.c-kw{color:#5CC0C6}.c-str{color:#D9B47C}
+    .dx-notes{display:grid;gap:12px;max-width:760px;margin:18px auto 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .dx-note{background:#22242B;border:1px solid #3A3D46;border-radius:var(--r);padding:14px 16px;font-size:13px;color:#B9B9B4}
+    .dx-note b{display:block;color:#fff;font-family:var(--disp);font-size:13.5px;margin-bottom:3px;letter-spacing:-.01em}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Developer experience</p>
+      <h2>One call. Trusted data.</h2>
+    </div>
+    <div class="code-shell">
+      <div class="code-head"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>one read — any PSA underneath</span></div>
+<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
+<span class="c-com">X-API-Key: blk_live_••••••••</span>
+
+<span class="c-kw">200 OK</span>
+{
+  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
+  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
+  <span class="c-str">"data"</span>: [{
+    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
+    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
+    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
+    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
+  }]
+}</pre>
+    </div>
+    <div class="dx-notes">
+      <div class="dx-note"><b>Writes are governed</b>Every write takes <span style="font-family:var(--mono)">dry_run</span> to preview and an <span style="font-family:var(--mono)">idempotency_key</span> to make retries safe.</div>
+      <div class="dx-note"><b>Escape hatch, always</b>The normalized shape is the default; the vendor's raw payload rides along under <span style="font-family:var(--mono)">.raw</span> when you need it.</div>
+      <div class="dx-note"><b>Same-day sandbox</b>Self-serve sandbox keys — your engineers make their first call the day they sign up.</div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <style>
+    .rate-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));max-width:860px;margin:0 auto}
+    .rate{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 20px;text-align:center}
+    .rate .n{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.8vw,28px);letter-spacing:-.02em;color:var(--accent);margin:0 0 4px}
+    .rate p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <p class="eyebrow">Rate limits as a feature</p>
+      <h2>A ceiling that grows with your customers</h2>
+    </div>
+    <div class="rate-grid">
+      <div class="rate"><p class="n">600 req/min</p><p>× the number of MSPs you have connected. More customers, more headroom.</p></div>
+      <div class="rate"><p class="n">No daily cap</p><p>No hidden quota that resets at midnight. The per-minute rate is the whole story.</p></div>
+      <div class="rate"><p class="n">Honest 429s</p><p>Hit the limit and you get a real <span style="font-family:var(--mono);font-size:12px">429</span> with <span style="font-family:var(--mono);font-size:12px">Retry-After</span> — never a silent throttle.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <style>
+    .mcp-grid{display:grid;gap:16px;max-width:920px;margin:0 auto}
+    @media(min-width:860px){.mcp-grid{grid-template-columns:1fr 1fr}}
+    .mcp-card{background:#22242B;border:1px solid #3A3D46;border-radius:var(--r-lg);padding:24px 22px}
+    .mcp-card b{display:block;font-family:var(--disp);font-size:16px;color:#fff;margin:0 0 6px;letter-spacing:-.01em}
+    .mcp-card p{margin:0;font-size:13.5px;color:#B9B9B4}
+    .mcp-card.bad{border-color:#5A3A3A}
+    .mcp-card.bad small{color:#C98B8B}
+    .mcp-card.good{border-color:#2E5E62}
+    .mcp-card small{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+      display:block;margin-bottom:10px;color:#5CC0C6}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Agent-ready</p>
+      <h2>The governed MCP layer for the MSP stack</h2>
+      <p class="sub" style="margin:0 auto">REST and MCP sit behind the same service and the same canonical model — zero drift between what your app reads and what your agents read.</p>
+    </div>
+    <div class="mcp-grid">
+      <div class="mcp-card bad">
+        <small>Raw MCP servers</small>
+        <b>Agents pointed straight at vendor APIs</b>
+        <p>Every tool call is a live vendor request — spending the MSP's shared tenant rate budget, unpaced and unaudited. An eager agent can slow every product on the tenant.</p>
+      </div>
+      <div class="mcp-card good">
+        <small>Bitlync MCP</small>
+        <b>Sync-backed and governed</b>
+        <p>Agent reads come from the same synced store as the API — zero vendor budget spent. Writes carry the same dry-run preview, idempotency, and audit trail as every other write.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <style>
+    .tix{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;max-width:860px;margin:0 auto}
+    .tix-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line);
+      font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .tix table{width:100%;border-collapse:collapse;font-size:13.5px}
+    .tix th{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+      text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);font-weight:600}
+    .tix td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+    .tix tr:last-child td{border-bottom:none}
+    .src{font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:600}
+    @media(max-width:700px){.tix .hide-m{display:none}}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">One normalized read</p>
+      <h2>Three PSAs. One shape.</h2>
+    </div>
+    <div class="tix">
+      <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+      <table>
+        <thead><tr><th>source</th><th>status</th><th class="hide-m">priority</th><th>summary</th><th class="hide-m">company</th></tr></thead>
+        <tbody>
+          <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td class="hide-m"><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td><td class="hide-m">Acme Dental Group</td></tr>
+          <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td class="hide-m"><span class="tag write">high</span></td><td>VPN drops every few minutes</td><td class="hide-m">Northwind Accounting</td></tr>
+          <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td class="hide-m"><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td><td class="hide-m">Halcyon Health Partners</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .connect-trio .card{background:var(--panel)}
+    .connect-trio h3{font-size:16.5px}
+    .mini-probe{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:11px 13px;
+      font-family:var(--mono);font-size:11.5px;margin-top:12px}
+    .mini-probe .row{display:flex;gap:8px;align-items:center;margin:4px 0}
+    .p-ok{color:var(--ok)}.p-bad{color:var(--bad)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">The connect experience</p>
+      <h2>Connection is the product, not the paperwork</h2>
+      <p class="sub" style="margin:0 auto">The industry default is a docs page and two empty API-key fields. We replaced it.</p>
+    </div>
+    <div class="grid g3 connect-trio">
+      <div class="card">
+        <h3>Guided, in-flow</h3>
+        <p style="margin:0;font-size:14px;color:var(--muted)">Step-by-step credential guides with the exact portal path and permission checklist — beside the fields, never a link out.</p>
+      </div>
+      <div class="card">
+        <h3>Validated before it ships</h3>
+        <p style="margin:0 0 2px;font-size:14px;color:var(--muted)">Every key is tested against every scope it needs — misconfigurations are caught and fixed in the flow, not discovered as a mystery ticket weeks later.</p>
+        <div class="mini-probe" aria-label="Example validation probe output">
+          <div class="row p-ok">✓ authentication</div>
+          <div class="row p-bad">✕ missing: Service Desk — Add</div>
+          <div class="row" style="color:var(--muted)">→ fix shown · re-test in place</div>
+          <div class="row p-ok">✓ all 6 scopes verified</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Hosted, credential-isolated</h3>
+        <p style="margin:0;font-size:14px;color:var(--muted)">Credentials are entered on Bitlync infrastructure and never touch your frontend — the MSP owns the credential, and your product never touches it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .ops-grid{display:grid;gap:16px;max-width:920px;margin:0 auto}
+    @media(min-width:860px){.ops-grid{grid-template-columns:1.15fr 1fr}}
+    .ops{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+    .ops-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 16px;
+      border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .ops-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);
+      font-size:13.5px;flex-wrap:wrap}
+    .ops-row:last-child{border-bottom:none}
+    .ops-row b{font-weight:600}
+    .ops-row .grow{flex:1;min-width:130px}
+    .st{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px}
+    .st i{width:7px;height:7px;border-radius:50%;flex:none}
+    .st.ok{color:var(--ok)}.st.ok i{background:var(--ok)}
+    .st.deg{color:var(--warn)}.st.deg i{background:var(--warn)}
+    .audit-link{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:600;white-space:nowrap}
+    .ops small{font-size:11.5px;color:var(--muted);display:block}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Operated, not just hosted</p>
+      <h2>If a partner calls, you already know</h2>
+      <p class="sub" style="margin:0 auto">Every MSP connection has a live status and a full audit log. Every vendor API is watched — changes and outages surface as vendor health, not mystery tickets.</p>
+    </div>
+    <div class="ops-grid">
+      <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
+        <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+        <div class="ops-row">
+          <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
+          <span class="st ok"><i></i>healthy</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+        <div class="ops-row">
+          <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
+          <span class="st ok"><i></i>healthy</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+        <div class="ops-row">
+          <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
+          <span class="st deg"><i></i>degraded</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+      </div>
+      <div class="ops" aria-label="Mockup: vendor API health board">
+        <div class="ops-head"><span>vendor health</span><span>monitored 24/7</span></div>
+        <div class="ops-row"><div class="grow"><b>ConnectWise</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row">
+          <div class="grow"><b>Autotask</b><small>vendor API change detected · mitigation deployed</small></div>
+          <span class="st deg"><i></i>degraded</span>
+        </div>
+        <div class="ops-row"><div class="grow"><b>HaloPSA</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row"><div class="grow"><b>NinjaOne</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row"><div class="grow"><b>Datto RMM</b></div><span class="st ok"><i></i>operational</span></div>
+      </div>
+    </div>
+    <p class="disclaim">Mockup — simulated data, not a live product</p>
+  </div>
+</section>
+
+<section class="tight">
+  <style>
+    .duality{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+    @media(min-width:820px){.duality{grid-template-columns:1fr 1fr}}
+    .duo{padding:34px 30px}
+    .duo.isv{background:var(--ink);color:#EDEDEA}
+    .duo.isv .eyebrow{color:#5CC0C6}
+    .duo.isv h3{color:#fff}
+    .duo.isv p{color:#B9B9B4}
+    .duo.msp{background:var(--card)}
+    .duo p{font-size:14.5px;margin:0}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <h2>Same engine, two faces</h2>
+      <p class="sub" style="margin:0 auto">The duality is the product.</p>
+    </div>
+    <div class="duality">
+      <div class="duo isv">
+        <p class="eyebrow">For your product</p>
+        <h3>Boring, reliable plumbing</h3>
+        <p>Write once against one schema, never touch a vendor's API again, and inherit a security posture built credential-isolated from day one.</p>
+      </div>
+      <div class="duo msp">
+        <p class="eyebrow">For the MSP</p>
+        <h3>A real connect experience</h3>
+        <p>Click to connect your stack, see exactly what's granted, and when something breaks, an assistant grounded in your real setup handles it. <a href="#msps" data-nav="msps" style="color:var(--accent);font-weight:600">More for MSPs →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .road-strip{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));max-width:960px;margin:0 auto}
+    .road-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 18px 16px}
+    .road-item b{display:block;font-family:var(--disp);font-weight:600;font-size:14.5px;letter-spacing:-.01em;margin:8px 0 4px}
+    .road-item p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:24px">
+      <p class="eyebrow">Coming — not live yet</p>
+      <h2>On the roadmap, plainly labeled</h2>
+    </div>
+    <div class="road-strip">
+      <div class="road-item"><span class="tag road">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change — instead of polling us.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation — the same device, recognized everywhere.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Vendor-initiated migrations</b><p>When an MSP changes tools, your integration follows them — without your product lifting a finger.</p></div>
+      <div class="road-item"><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. No SSO tax — security features will never be a paid gate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:8px">
+  <div class="wrap center">
+    <h2 style="font-family:var(--disp);font-weight:600;max-width:20ch;margin:0 auto">We think integrations should be a product you turn on, not a project you wait on.</h2>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>See it against your own stack</h2>
+      <p>Sandbox keys are self-serve — your engineers can make their first call the same day.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ============================================================ INTEGRATIONS -->
+<div class="page" id="page-integrations">
+
+<section style="padding-bottom:38px">
+  <div class="wrap center">
+    <p class="eyebrow">Coverage</p>
+    <h1 style="font-size:clamp(30px,4.4vw,48px)">Every system your customers run</h1>
+    <p class="sub">One canonical layer across PSA, RMM, documentation, commerce, and GRC — read and write. Live items are in production today; everything else is sequenced by partner demand, not guessed.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span class="tag built" style="font-size:11px;padding:5px 10px">Live — in production today</span>
+      <span class="tag next" style="font-size:11px;padding:5px 10px">Next — in active development</span>
+      <span class="tag road" style="font-size:11px;padding:5px 10px">Roadmap</span>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .cat-grid{display:grid;gap:16px}
+    @media(min-width:860px){.cat-grid{grid-template-columns:1fr 1fr}}
+    .cat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 22px 14px}
+    .cat .eyebrow{margin-bottom:2px}
+    .cat h3{margin:0 0 4px}
+    .cat .sub2{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+    .vrow{display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+    .vrow b{font-weight:600}
+    .vrow small{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
+  </style>
+  <div class="wrap cat-grid">
+
+    <div class="cat">
+      <h3 style="margin-top:2px">PSA</h3>
+      <p class="sub2">Tickets · Companies · Contacts · Boards · Agreements</p>
+      <div class="vrow"><b>ConnectWise</b><span class="tag built">Live</span></div>
+      <div class="vrow"><b>HaloPSA</b><span class="tag built">Live</span></div>
+      <div class="vrow"><b>Autotask</b><span class="tag built">Live</span></div>
+      <div class="vrow"><b>Syncro</b><span class="tag next">Next</span></div>
+      <div class="vrow"><b>SuperOps</b><span class="tag next">Next</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">RMM</h3>
+      <p class="sub2">Devices · Alerts · Installed apps · AI-footprint discovery</p>
+      <div class="vrow"><div><b>NinjaOne</b><small>incl. installed-app &amp; AI-footprint discovery</small></div><span class="tag built">Live</span></div>
+      <div class="vrow"><div><b>Datto RMM</b><small>incl. installed-app &amp; AI-footprint discovery</small></div><span class="tag built">Live</span></div>
+      <div class="vrow"><b>N-able</b><span class="tag next">Next</span></div>
+      <div class="vrow"><b>ImmyBot</b><span class="tag next">Next</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">Commerce</h3>
+      <p class="sub2">Cost · Price · Recommend-and-quote</p>
+      <div class="vrow"><div><b>Pax8</b><small>cost, price, recommend-and-quote</small></div><span class="tag built">Live</span></div>
+      <div class="vrow"><b>More distributors</b><span class="tag road">Roadmap</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">GRC/vCIO</h3>
+      <p class="sub2">Assessments · Lifecycle · Planning · QBR</p>
+      <div class="vrow"><b>ScalePad</b><span class="tag built">Live</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">Documentation</h3>
+      <p class="sub2">Assets · Configs · Runbooks · Knowledge</p>
+      <div class="vrow"><b>IT Glue</b><span class="tag built">Live</span></div>
+      <div class="vrow"><b>Hudu</b><span class="tag built">Live</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">Productivity</h3>
+      <p class="sub2">Identity · Licensing · Posture · Usage</p>
+      <div class="vrow"><div><b>Microsoft 365</b><small>deep coverage</small></div><span class="tag next">Next</span></div>
+    </div>
+
+    <div class="cat">
+      <h3 style="margin-top:2px">Quoting/CPQ</h3>
+      <p class="sub2">Quotes — create &amp; read</p>
+      <div class="vrow"><b>CPQ platforms</b><span class="tag road">Roadmap</span></div>
+    </div>
+
+    <div class="cat" style="display:flex;flex-direction:column;justify-content:center;background:var(--panel)">
+      <p class="eyebrow">The self-serve connect experience</p>
+      <h3 style="margin-bottom:8px">Your customers click, we validate</h3>
+      <p style="font-size:14px;color:var(--muted);margin:0 0 16px">Every system above lands in the same guided connect flow — scoped, tested, and revocable by the MSP. And every connection ships with the full bundle: caching, retries, validation, vault, health. <a href="#msps" data-nav="msps" style="color:var(--accent);font-weight:600">See the MSP side →</a></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag built">connected ✓</span>
+        <span class="tag next">connect ›</span>
+        <span class="tag read">read</span>
+        <span class="tag write">write</span>
+        <span class="tag never">never</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Don't see your stack?</h2>
+      <p>Partner demand decides what we build next — tell us what's missing.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ============================================================ FOR MSPS -->
+<div class="page" id="page-msps">
+
+<section style="padding-bottom:38px">
+  <style>
+    .secured-badge{display:inline-flex;align-items:center;gap:11px;border:1px solid var(--accent);
+      background:var(--accent-soft);border-radius:10px;padding:13px 18px;margin:0 0 26px}
+    .secured-badge .lock{width:34px;height:34px;flex:none;border-radius:9px;background:var(--accent);
+      display:grid;place-items:center}
+    .secured-badge .lock svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2}
+    .secured-badge b{font-family:var(--disp);font-size:15.5px;letter-spacing:-.01em}
+    .secured-badge span{display:block;font-size:12px;color:var(--muted)}
+  </style>
+  <div class="wrap center">
+    <p class="eyebrow">For MSPs</p>
+    <h1 style="font-size:clamp(30px,4.4vw,48px)">Saw “Secured by Bitlync”<br>in a connect screen?</h1>
+    <p class="sub">One of your software vendors uses Bitlync to connect to your stack. Here's exactly what that means — what we are, what we can touch, and how you stay in control.</p>
+    <div class="secured-badge" role="img" aria-label="Secured by Bitlync badge, as shown in vendor connect flows">
+      <i class="lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></i>
+      <div><b>Secured by Bitlync</b><span>your credentials are held here — your vendor never sees them</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <div class="wrap grid g2">
+    <div class="card">
+      <p class="eyebrow">Grants, not shared credentials</p>
+      <h3>You own the connection. Vendors get grants.</h3>
+      <p style="font-size:14.5px;color:var(--muted);margin:0">You connect your PSA or RMM to Bitlync once — that connection is yours. Each vendor then receives a separate, scoped grant against it. Your credential is entered on our infrastructure, held in an isolated per-tenant vault, and the vendor never touches it. Revoke a grant and that vendor is gone; your connection stays yours.</p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">What a vendor can touch</p>
+      <h3>You see the scope before you connect</h3>
+      <p style="font-size:14.5px;color:var(--muted);margin:0 0 14px">Every grant is shown in plain language — including what the vendor can <em>never</em> do:</p>
+      <div style="display:grid;gap:8px;font-size:13.5px">
+        <div style="display:flex;gap:9px;align-items:flex-start"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
+        <div style="display:flex;gap:9px;align-items:flex-start"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
+        <div style="display:flex;gap:9px;align-items:flex-start"><span class="tag never">Never</span><span>delete records · read financials · change your configuration</span></div>
+      </div>
+      <p class="disclaim" style="text-align:left">Example grant — every vendor's scope is shown at connect time</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <style>
+    .posture{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+    .pos{background:#22242B;border:1px solid #3A3D46;border-radius:var(--r-lg);padding:20px 18px}
+    .pos .ico{width:36px;height:36px;border-radius:9px;background:#17181C;border:1px solid #3A3D46;
+      display:grid;place-items:center;margin:0 0 12px}
+    .pos .ico svg{width:17px;height:17px;fill:none;stroke:#5CC0C6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .pos b{display:block;font-family:var(--disp);font-size:15px;color:#fff;margin:0 0 5px;letter-spacing:-.01em}
+    .pos p{margin:0;font-size:13px;color:#B9B9B4}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:30px">
+      <p class="eyebrow">Our data posture</p>
+      <h2>Plainly stated</h2>
+    </div>
+    <div class="posture">
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8c0-2.8 3.1-5 7-5s7 2.2 7 5M5 16c0 2.8 3.1 5 7 5s7-2.2 7-5"/></svg></i><b>Synced once per tenant</b><p>One governed sync serves every vendor you've granted. Five tools never mean five pollers spending your shared API rate budget.</p></div>
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></i><b>Encrypted per-tenant</b><p>AES-256-GCM envelope encryption with per-tenant keys. Your tenant is isolated from every other.</p></div>
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></i><b>Owned by you</b><p>Every grant is revocable in one click. Your data is deletable on request.</p></div>
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 16V9M12 16V5M17 16v-6"/></svg></i><b>Audited, append-only</b><p>Every read and write by every vendor lands in an append-only log — it can't be edited, and you can see it.</p></div>
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></i><b>Support that can't touch your data</b><p>The support assistant is read-only by construction — it has no write tool. It can diagnose your setup; it cannot change it.</p></div>
+      <div class="pos"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></i><b>Never resold</b><p>Your operational data is not a product. Not aggregated, not sold. Ever.</p></div>
+    </div>
+    <p class="disclaim" style="margin-top:22px">Architected to SOC 2 controls — certification is on the roadmap</p>
+  </div>
+</section>
+
+<section>
+  <style>
+    .portal-mock{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);overflow:hidden;max-width:720px;margin:0 auto}
+    .pm-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line);
+      font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .pm-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+    .pm-row:last-child{border-bottom:none}
+    .pm-row i{width:32px;height:32px;flex:none;border-radius:8px;background:var(--ink);color:#fff;
+      display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-style:normal;font-weight:600}
+    .pm-row .meta{flex:1;min-width:160px}
+    .pm-row b{display:block;font-size:14px}
+    .pm-row small{font-size:11.5px;color:var(--muted)}
+    .health{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ok)}
+    .health i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+    .revoke{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:6px 12px;
+      font-size:12.5px;color:var(--bad);font-weight:600}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Your portal</p>
+      <h2>See it. Scope it. Revoke it.</h2>
+      <p class="sub" style="margin:0 auto">Every connection you make comes with a portal account — think of it like the permissions page for your accounts, not another app to manage.</p>
+    </div>
+    <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
+      <div class="pm-head">your connections</div>
+      <div class="pm-row">
+        <i>CW</i>
+        <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
+        <span class="health"><i></i>healthy · synced 4 min ago</span>
+        <button class="revoke" type="button">Revoke</button>
+      </div>
+      <div class="pm-row">
+        <i>NJ</i>
+        <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
+        <span class="health"><i></i>healthy · synced 11 min ago</span>
+        <button class="revoke" type="button">Revoke</button>
+      </div>
+    </div>
+    <p class="disclaim">Mockup — simulated data, not a live product</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <div class="wrap center">
+    <p class="sub" style="margin:0 auto;max-width:56ch">Questions about a connect screen you've seen, or about how your data is handled? <a href="#partners" data-nav="partners" style="color:var(--accent);font-weight:600">Get in touch</a> — a person answers.</p>
+  </div>
+</section>
+
+</div>
+
+<!-- ============================================================ PARTNERS -->
+<div class="page" id="page-partners">
+
+<section style="padding-bottom:30px">
+  <div class="wrap center">
+    <p class="eyebrow">Early access</p>
+    <h1 style="font-size:clamp(30px,4.6vw,50px)">Build this with us</h1>
+    <p class="sub" style="margin:0 auto">We're taking on a small number of paid design partners before general availability — software providers who are missing real integrations today and want a direct hand in what gets built first.</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <div class="wrap grid g3">
+    <div class="card center">
+      <p class="eyebrow">How it starts</p>
+      <h3>A conversation, not a form</h3>
+      <p style="margin:0;font-size:14px;color:var(--muted)">It's an invitation: a short conversation and an NDA.</p>
+    </div>
+    <div class="card center">
+      <p class="eyebrow">What you get</p>
+      <h3>Founding pricing, locked</h3>
+      <p style="margin:0;font-size:14px;color:var(--muted)">Founding terms locked in for the partners who join early.</p>
+    </div>
+    <div class="card center">
+      <p class="eyebrow">What we ask</p>
+      <h3>A real integration need</h3>
+      <p style="margin:0;font-size:14px;color:var(--muted)">Candid feedback as we build, and a real gap we can solve together.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tight" id="contact-form">
+  <style>
+    .form-band{background:var(--accent);color:#fff;border-radius:var(--r-lg);padding:44px 30px 34px;text-align:center}
+    .form-band h2{color:#fff}
+    .form-band p{color:#D6ECED;max-width:52ch;margin:0 auto 26px}
+    .form-shell{background:#fff;border-radius:var(--r-lg);padding:8px;max-width:640px;margin:0 auto;
+      box-shadow:0 10px 40px rgba(12,107,112,.22)}
+    .form-shell iframe{width:100%;border:none;display:block;border-radius:10px;min-height:640px}
+  </style>
+  <div class="wrap">
+    <div class="form-band">
+      <p class="eyebrow" style="color:#BEE3E4">Request early access</p>
+      <h2>Build this with us</h2>
+      <p>Tell us what you build and where the integration gaps are — we'll follow up to set up a conversation.</p>
+      <div class="form-shell">
+        <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
+                loading="lazy" title="Bitlync — Request Early Access"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Bitlync — private beta</span>
+    <span class="mono">bitlync.com</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  var pages=['home','product','integrations','msps','partners'];
+  var nav=document.getElementById('mainNav');
+  var menuBtn=document.getElementById('menuBtn');
+  function show(id){
+    if(pages.indexOf(id)<0)id='home';
+    pages.forEach(function(p){
+      document.getElementById('page-'+p).classList.toggle('on',p===id);
+    });
+    document.querySelectorAll('nav.main a').forEach(function(a){
+      a.classList.toggle('on',a.getAttribute('data-nav')===id);
+    });
+    nav.classList.remove('open');
+    window.scrollTo({top:0,behavior:'auto'});
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-nav]');
+    if(!t)return;
+    e.preventDefault();
+    var id=t.getAttribute('data-nav');
+    history.pushState(null,'','#'+id);
+    show(id);
+  });
+  window.addEventListener('popstate',function(){show(location.hash.replace('#',''))});
+  if(menuBtn)menuBtn.addEventListener('click',function(){nav.classList.toggle('open')});
+  show(location.hash.replace('#','')||'home');
+})();
+</script>
+<script async src="https://tally.so/widgets/embed.js"></script>
+<script>
+  function loadTally(){
+    if(typeof Tally!=='undefined'){Tally.loadEmbeds();return;}
+    document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(f){f.src=f.dataset.tallySrc;});
+  }
+  if(document.readyState!=='loading')loadTally();
+  else document.addEventListener('DOMContentLoaded',loadTally);
+</script>
+</body>
+</html>
