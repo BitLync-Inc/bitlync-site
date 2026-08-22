@@ -19,9 +19,9 @@
   --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 body.docs{background:var(--void);color:var(--dtext)}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
@@ -59,72 +59,133 @@ body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 .hero h1 em{font-style:italic;color:var(--ink)}
 .lede{font-size:18px;color:var(--mute);max-width:38rem;margin:0 0 28px}
 body.docs .lede{color:var(--dmute)}
-.stage-visual{margin-top:48px;border:1px solid var(--hair);border-radius:18px;background:var(--card);overflow:hidden}
-.stage-visual svg{display:block;width:100%;height:auto}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.conduit{margin-top:48px;background:#17181C;border-radius:18px;padding:26px 20px 18px;overflow:hidden}
+.conduit svg{display:block;width:100%;height:auto}
+.conduit .cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:#8B8B86;text-align:center;margin:14px 0 0}
 .flow{stroke-dasharray:6 10;animation:dash 2.8s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-48}}
-.term{border-top:1px solid var(--dline);padding:18px 20px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:#C9CBBF;background:var(--void)}
-.term .k{color:var(--acid)}.term .s{color:#E8D48A}.term .c{color:#6E7364}
+.term{border:1px solid #2A2C34;border-radius:14px;padding:18px 20px;font-family:var(--mono);
+  font-size:12.5px;line-height:1.7;color:#C9CBBF;background:#101116}
+.term .k{color:#EDECE6}.term .s{color:#C8B48A}.term .c{color:#6E7364}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 .kicker{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 10px}
 body.docs .kicker{color:var(--acid)}
 h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,52px);letter-spacing:-.02em;line-height:1.05;margin:0 0 14px}
+h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 8px;letter-spacing:-.015em}
 .sub{color:var(--mute);max-width:40rem}
 body.docs .sub{color:var(--dmute)}
-section.pad{padding:88px 0}
-.split{display:grid;gap:48px}
-@media(min-width:900px){.split{grid-template-columns:1fr 1.05fr;align-items:start}}
+section.pad{padding:72px 0}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px 20px}
+.grid{display:grid;gap:14px}
+@media(min-width:900px){.g3{grid-template-columns:1fr 1fr 1fr}.g2{grid-template-columns:1fr 1fr}}
+.step .num{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute);margin:0 0 8px}
+.step p{margin:0;font-size:14.5px;color:var(--mute)}
+.inc-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:28px}
+.inc{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
+.inc b{display:block;font-size:15px;font-weight:600;margin:0 0 5px}
+.inc p{margin:0;font-size:13.5px;color:var(--mute)}
+.code-well{background:#101116;border:1px solid #2A2C34;border-radius:14px;overflow:hidden;margin-top:22px}
+.code-well .hd{padding:11px 16px;border-bottom:1px solid #2A2C34;font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+.code-well pre{margin:0;padding:18px 20px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:#D9D9D4;overflow:auto}
+.dx{display:grid;gap:12px;margin-top:16px}
+@media(min-width:800px){.dx{grid-template-columns:1fr 1fr}}
+.dx article{border:1px solid var(--hair);border-radius:12px;padding:14px 16px;background:var(--card)}
+.dx b{display:block;margin-bottom:4px}
+.dx p{margin:0;color:var(--mute);font-size:14px}
+.mcp{display:grid;gap:14px;margin-top:22px}
+@media(min-width:800px){.mcp{grid-template-columns:1fr 1fr}}
+.mcp article{background:#17181C;color:#C9C9C4;border:1px solid #2A2C34;border-radius:14px;padding:22px}
+.mcp small{font-family:var(--mono);font-size:11px;color:#8B8B86;display:block;margin-bottom:8px}
+.mcp b{display:block;color:#EDECE6;font-size:16px;margin:0 0 6px}
+.mcp p{margin:0;font-size:14px}
+.tix{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:auto;margin-top:22px}
+.tix .hd{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.tix table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+.tix th{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:left;padding:10px 14px;border-bottom:1px solid var(--hair);font-weight:500}
+.tix td{padding:11px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+.tix tr:last-child td{border-bottom:none}
+.src{font-family:var(--mono);font-size:11.5px}
+.st-word{font-family:var(--mono);font-size:11px;border:1px solid var(--hair);border-radius:999px;padding:2px 7px;color:var(--ink)}
+.disclaim{font-family:var(--mono);font-size:11.5px;color:var(--mute);margin:10px 0 0;text-align:center}
+.probe{border:1px solid var(--hair);border-radius:10px;background:var(--paper);padding:11px 13px;
+  font-family:var(--mono);font-size:11.5px;margin-top:12px}
+.probe .ok{color:var(--ink)}.probe .bad{color:var(--mute)}
+.ops-grid{display:grid;gap:14px;margin-top:22px}
+@media(min-width:860px){.ops-grid{grid-template-columns:1.15fr 1fr}}
+.ops{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
+.ops-head{display:flex;justify-content:space-between;gap:8px;padding:11px 16px;border-bottom:1px solid var(--hair);
+  font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.ops-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--hair);font-size:13.5px;flex-wrap:wrap}
+.ops-row:last-child{border-bottom:none}
+.ops-row .grow{flex:1;min-width:130px}
+.ops-row small{display:block;font-size:11.5px;color:var(--mute)}
+.dot{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ink)}
+.dot i{width:7px;height:7px;border-radius:50%;background:var(--ink);flex:none}
+.dot.deg{color:var(--mute)}.dot.deg i{background:var(--mute)}
+.dark-band{background:#17181C;color:#EDEDEA}
+.dark-band h2{color:#fff}
+.dark-band .sub{color:#B9B9B4}
+.dark-band .kicker{color:#8B8B86}
+.road{display:grid;gap:12px}
+@media(min-width:800px){.road{grid-template-columns:1fr 1fr}}
+.road article{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:18px}
+.road b{display:block;font-size:16px;color:#fff;margin:6px 0}
+.road p{margin:0;color:#B9B9B4;font-size:14px}
+.tag{font-family:var(--mono);font-size:11px;color:#8B8B86}
 .grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:32px}
-@media(max-width:720px){.grid9{grid-template-columns:1fr}}
+@media(max-width:720px){.grid9{grid-template-columns:repeat(3,1fr)}.cell{padding:12px 8px}.cell b{font-size:13px}.cell .cat{font-size:11px;margin:4px 0 8px}}
 .cell{background:var(--card);padding:18px 16px}
 .cell b{display:block;font-size:15px;font-weight:600}
 .cell .cat{display:block;color:var(--mute);font-size:12.5px;margin:6px 0 10px}
-.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;background:var(--acid);color:#111;padding:2px 7px;border-radius:999px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);padding:2px 7px;border-radius:999px}
 .quiet{color:var(--mute);font-size:15px;max-width:36rem;margin:18px 0 0}
 body.docs .quiet{color:var(--dmute)}
-.rail{position:relative}
-.sticky{position:sticky;top:88px}
-.stage-list{display:block}
-.stage{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:36px 0;border-top:1px solid var(--hair);
-  opacity:.3;cursor:pointer;transition:opacity .35s ease}
-.stage.on{opacity:1}
-.stage .n{font-family:var(--mono);font-size:13px;margin:0 0 10px;display:inline-flex;align-items:center;justify-content:center;
-  width:42px;height:42px;border:1px solid var(--hair);border-radius:50%;color:var(--ink)}
-.stage.on .n{border-color:var(--ink);background:var(--ink);color:var(--paper)}
-.stage p.body{margin:0;font-size:22px;max-width:28rem}
-.viz-frame{min-height:320px;border:1px solid var(--hair);border-radius:16px;background:var(--card);display:grid;place-items:center;padding:24px;color:var(--ink)}
-.value{display:grid;gap:22px 56px;margin-top:56px;border-top:1px solid var(--hair);padding-top:28px}
-@media(min-width:800px){.value{grid-template-columns:1.3fr 1fr}}
-.value p{margin:0;color:var(--mute)}.value p strong{color:var(--ink);font-weight:600}
-.road{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
-@media(min-width:800px){.road{grid-template-columns:1fr 1fr}}
-.road article{background:var(--card);padding:22px}
-.road b{display:block;font-size:16px;margin:6px 0 6px}
-.road p{margin:0;color:var(--mute);font-size:14px}
-.tag{font-family:var(--mono);font-size:11px;color:var(--mute)}
 .cat-block{margin:56px 0 0}
 .cat-block h3{font-family:var(--serif);font-size:28px;margin:0 0 10px}
 .row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--hair);font-size:15px}
 .next{color:var(--mute);font-family:var(--mono);font-size:11px}
 .secured{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--ink);padding:12px 16px;border-radius:12px;margin:18px 0 28px}
-.posture{display:grid;gap:18px}
-@media(min-width:800px){.posture{grid-template-columns:1fr 1fr}}
-.posture article{border-top:1px solid var(--hair);padding-top:14px}
-.posture b{display:block;margin-bottom:6px}
+.grant{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:8px 0}
+.gchip{font-family:var(--mono);font-size:11px;border:1px solid var(--ink);border-radius:999px;padding:2px 7px;flex:none}
+.posture{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.pos{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:20px 18px}
+.pos b{display:block;color:#fff;margin:0 0 5px}
+.pos p{margin:0;font-size:13.5px;color:#B9B9B4}
+.portal{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden;max-width:720px;margin:22px auto 0}
+.pm-head{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.pm-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--hair);flex-wrap:wrap}
+.pm-row:last-child{border-bottom:none}
+.pm-row i{width:32px;height:32px;flex:none;border-radius:8px;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-style:normal;font-weight:600}
+.pm-row .meta{flex:1;min-width:160px}
+.pm-row b{display:block;font-size:14px}
+.pm-row small{font-size:11.5px;color:var(--mute)}
+.revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--ink);font-weight:600}
 .form-band{border:1px solid var(--hair);border-radius:18px;padding:8px;background:var(--card)}
 .form-band iframe{width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-/* docs */
 .docs-shell{display:grid;gap:36px;padding:36px 0 80px}
 @media(min-width:900px){.docs-shell{grid-template-columns:220px 1fr;align-items:start}}
 .docs-tree{position:sticky;top:80px;font-size:14px}
 .docs-tree p{font-family:var(--mono);font-size:11px;color:var(--acid);margin:0 0 12px}
 .docs-tree a{display:block;padding:7px 0;color:var(--dmute)}
 .docs-tree a.on,.docs-tree a:hover{color:var(--dtext)}
+@media(max-width:899px){
+  .docs-shell{grid-template-columns:1fr;overflow-x:clip}
+  .docs-tree{position:static;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;
+    padding:0 0 16px;margin:0 0 8px;border-bottom:1px solid var(--dline)}
+  .docs-tree p{width:100%;margin:0 0 4px}
+  .docs-tree a{display:inline-block;padding:6px 0}
+  .docs-body{overflow-x:clip;min-width:0}
+}
 .dpanel{display:none}.dpanel.on{display:block}
 .docs-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,68px);
   line-height:.98;letter-spacing:-.03em;margin:0 0 16px}
@@ -152,12 +213,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .coming{font-family:var(--mono);font-size:11px;color:var(--acid);border:1px solid var(--acid);border-radius:999px;padding:3px 8px}
 .uc{border-top:1px solid var(--dline);padding:22px 0}
 .uc h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
-.arch{margin:28px 0;border:1px solid var(--dline);border-radius:16px;background:var(--panel);padding:12px}
+.arch{margin:28px 0;border:1px solid var(--dline);border-radius:16px;background:#101214;padding:16px 14px 10px;overflow-x:clip}
 .arch svg{display:block;width:100%;height:auto}
+.arch .cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dmute);text-align:center;margin:10px 0 4px}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .hero{padding:48px 0 32px}
+  section.pad{padding:48px 0}
+  .hero h1{font-size:clamp(40px,12vw,72px)}
+}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
-  .stage{min-height:auto;opacity:1;padding:28px 0}
 }
 </style>
 </head>
@@ -172,7 +239,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#integrations" data-nav="integrations">Integrations</a>
       <a href="#docs" data-nav="docs">Docs</a>
       <a href="#msps" data-nav="msps">For MSPs</a>
-      <a href="#partners" data-nav="partners">Partners</a>
     </nav>
     <a class="btn nav-cta" href="#partners" data-nav="partners">Request early access</a>
     <button class="menu" id="menuBtn" type="button" aria-expanded="false">Menu</button>
@@ -186,90 +252,218 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="kicker">One API for ISVs</p>
       <h1>Write once.<br><em>Connect to many.</em></h1>
       <p class="lede">Your product talks to Bitlync. MSPs paste their own PSA and RMM keys. Docs and a sandbox are how you start. Connectors are in the product today, against a seeded sandbox.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-      <a class="btn ghost" href="#product" data-nav="product" style="margin-left:10px">See how it works</a>
-      <a class="btn ghost" href="#docs" data-nav="docs" style="margin-left:10px">Docs</a>
-      <div class="stage-visual reveal">
-        <svg viewBox="0 0 1100 340" role="img" aria-label="Many systems fold into Bitlync, then one shape reaches your product">
-          <g font-family="JetBrains Mono,monospace" font-size="13" fill="#6B6A64">
-            <text x="40" y="48">PSA</text><text x="40" y="92">RMM</text><text x="40" y="136">Commerce</text>
-            <text x="40" y="180">Docs</text><text x="40" y="224">GRC</text><text x="40" y="268">Productivity</text><text x="40" y="312">Quoting</text>
+      <div class="btn-row">
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#product" data-nav="product">See how it works</a>
+        <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+      </div>
+      <div class="conduit reveal" aria-label="Many systems fold into Bitlync, then one shape reaches your product">
+        <svg viewBox="0 0 720 340" role="img">
+          <g font-family="JetBrains Mono,monospace" font-size="12" fill="#C9C9C4">
+            <rect x="16" y="14" width="128" height="30" rx="6" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="56" width="128" height="30" rx="15" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="98" width="128" height="30" rx="2" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="140" width="128" height="30" rx="10" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="182" width="128" height="30" rx="4" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="224" width="128" height="30" rx="13" fill="#22242B" stroke="#3A3D46"/>
+            <rect x="16" y="266" width="128" height="30" rx="8" fill="#22242B" stroke="#3A3D46"/>
+            <text x="30" y="33">PSA</text>
+            <text x="30" y="75">RMM</text>
+            <text x="30" y="117">Commerce</text>
+            <text x="30" y="159">Docs</text>
+            <text x="30" y="201">GRC</text>
+            <text x="30" y="243">Productivity</text>
+            <text x="30" y="285">Quoting</text>
           </g>
-          <g fill="none" stroke="#17181C" stroke-width="1.25" opacity=".85">
-            <path class="flow" d="M120 44 C 320 44, 420 168, 620 170"/>
-            <path class="flow" d="M120 88 C 300 88, 430 168, 620 172"/>
-            <path class="flow" d="M120 132 C 290 132, 440 170, 620 174"/>
-            <path class="flow" d="M120 176 C 290 176, 440 174, 620 176"/>
-            <path class="flow" d="M120 220 C 300 220, 430 178, 620 178"/>
-            <path class="flow" d="M120 264 C 320 264, 420 182, 620 180"/>
-            <path class="flow" d="M120 308 C 340 308, 410 186, 620 182"/>
+          <g fill="none" stroke="#9AA09A" stroke-width="1.5">
+            <path class="flow" d="M144 29 C 250 29, 300 160, 368 170"/>
+            <path class="flow" d="M144 71 C 248 71, 304 162, 368 170"/>
+            <path class="flow" d="M144 113 C 246 113, 308 166, 368 170"/>
+            <path class="flow" d="M144 155 C 246 155, 310 170, 368 170"/>
+            <path class="flow" d="M144 197 C 246 197, 308 174, 368 170"/>
+            <path class="flow" d="M144 239 C 248 239, 304 178, 368 170"/>
+            <path class="flow" d="M144 281 C 250 281, 300 180, 368 170"/>
           </g>
-          <circle cx="680" cy="176" r="3.2" fill="#17181C"/>
-          <text x="680" y="206" text-anchor="middle" font-family="Instrument Serif,serif" font-size="18" fill="#17181C">bitlync</text>
-          <path class="flow" d="M694 176 H 820" stroke="#17181C" fill="none" stroke-width="1.4"/>
-          <rect x="832" y="158" width="200" height="36" rx="8" fill="none" stroke="#17181C"/>
-          <text x="932" y="181" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="13" fill="#17181C">Your product</text>
+          <circle cx="412" cy="170" r="42" fill="#101214" stroke="#EDECE6" stroke-width="1.5"/>
+          <text x="412" y="176" text-anchor="middle" font-family="Instrument Serif,serif" font-size="18" font-style="italic" fill="#EDECE6">bitlync</text>
+          <path class="flow" d="M454 170 H 530" stroke="#9AA09A" fill="none" stroke-width="1.5"/>
+          <rect x="534" y="155" width="168" height="30" rx="6" fill="#22242B" stroke="#3A3D46"/>
+          <text x="618" y="175" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="#C9C9C4">Your product</text>
         </svg>
-        <div class="term" id="term">
-          <div><span class="k">GET</span> /tenants/{msp}/tickets</div>
-          <div class="c">X-API-Key: blk_live_••••••••</div>
-          <div id="termOut"></div>
-        </div>
+        <p class="cap">many systems → one shape → your product writes once</p>
       </div>
     </div>
   </section>
 </div>
 
 <div class="page" id="page-product">
-  <section class="pad">
+  <section class="pad" style="padding-bottom:28px">
     <div class="wrap">
-      <p class="kicker">How it works</p>
-      <h2>One call. Same shape every time.</h2>
-      <p class="sub">One model underneath. Tickets, companies, contacts, agreements. The MSP connects their own tools.</p>
+      <p class="kicker">How Bitlync works</p>
+      <h2>One model. The MSP connects their tools.</h2>
+      <p class="sub">One model underneath. Your product uses one API. The MSP connects their own tools.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap split rail">
-      <div class="stage-list">
-        <div class="stage on" data-i="0" id="beat-01"><p class="n">01</p><p class="body">Write once against one schema. Tickets, companies, contacts, agreements.</p></div>
-        <div class="stage" data-i="1" id="beat-02"><p class="n">02</p><p class="body">The MSP pastes their own keys. You never hold them.</p></div>
-        <div class="stage" data-i="2" id="beat-03"><p class="n">03</p><p class="body">Read and write through that same API.</p></div>
-      </div>
-      <div class="sticky">
-        <div class="viz-frame" id="stageViz" aria-hidden="true"></div>
-      </div>
+    <div class="wrap grid g3">
+      <article class="card step">
+        <p class="num">01 — Your product integrates once</p>
+        <h3>One schema, every vendor</h3>
+        <p>Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
+      </article>
+      <article class="card step">
+        <p class="num">02 — Customers connect themselves</p>
+        <h3>Self-serve, guided, validated</h3>
+        <p>The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
+      </article>
+      <article class="card step">
+        <p class="num">03 — Act through the stack</p>
+        <h3>Read and write, safely</h3>
+        <p>Open a ticket or update a device through the API. Writes that already support it take <code class="inline">dry_run</code> and an <code class="inline">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
+      </article>
     </div>
-    <div class="wrap value">
-      <p><strong>See a connection problem before a partner calls.</strong> Status and an audit log sit on every MSP connection.</p>
-      <p>The MSP pastes keys into a vault. The ISV never holds them.</p>
-      <p>Caching, retries, and validation ship with every connection. Not add-ons.</p>
-      <p>One sync per MSP, so several products do not burn the same PSA budget. Honest 429 with Retry-After.</p>
-      <p>REST and MCP use the same model.</p>
-      <p>Connect is guided and validated in the flow. Not a docs page and two empty fields.</p>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Everything that comes with an integration</p>
+      <h2>Every layer you'd otherwise build, bundled</h2>
+      <p class="sub">These are not add-ons. Caching, retries, validation, and the vault ship with every connection.</p>
+      <div class="inc-grid">
+        <div class="inc"><b>Caching</b><p>Reads come from our synced store. They are fast and do not spend the vendor rate budget. Each response says where it came from and when it was synced.</p></div>
+        <div class="inc"><b>Rate-limit handling</b><p>We pace every call against each vendor's real limits so your product never trips them by accident.</p></div>
+        <div class="inc"><b>Retries</b><p>Transient vendor failures are retried with backoff. You see one clean result, not a flaky upstream.</p></div>
+        <div class="inc"><b>Honest delivery status</b><p>Deduped and retried. No silent drop. An acknowledged write cannot double-write. A throttled one returns a real Retry-After.</p></div>
+        <div class="inc"><b>De-duplication</b><p>Idempotency keys on writes that support them mean a retry does not double-create a ticket.</p></div>
+        <div class="inc"><b>Validation</b><p>Payloads are checked against each vendor’s rules before they leave. Errors show up in your request, not in an MSP’s PSA.</p></div>
+        <div class="inc"><b>Credential vault</b><p>The MSP pastes their own PSA or RMM keys. Those credentials sit in a per-tenant vault. Your product never holds them.</p></div>
+        <div class="inc"><b>Customer map</b><p>A sure match maps automatically. A leftover PSA company is an ask to create in the ISV. Ambiguous stays unmatched. No silent create. The create hop itself is not shipped yet.</p></div>
+        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held in quarantine until someone releases them.</p></div>
+        <div class="inc"><b>Health + incidents</b><p>Connection status and an audit log are in the product. The vendor-health board on this page is a mockup.</p></div>
+      </div>
     </div>
   </section>
   <section class="pad">
     <div class="wrap">
-      <p class="kicker">The read</p>
-      <h2>Same status word. Every PSA.</h2>
-      <div class="stage-visual">
-        <div class="term">
-          <div><span class="k">200</span> {</div>
-          <div>  <span class="s">"served_from"</span>: <span class="s">"store"</span>, <span class="c">// from store</span></div>
-          <div>  <span class="s">"status"</span>: <span class="s">"in_progress"</span>, <span class="c">// same status word</span></div>
-          <div>  <span class="s">"raw"</span>: { … } <span class="c">// vendor payload</span></div>
+      <p class="kicker">Developer experience</p>
+      <h2>One call. Same shape every time.</h2>
+      <div class="code-well">
+        <div class="hd">GET /tenants/{msp}/tickets</div>
+        <div class="term" style="border:0;border-radius:0;background:transparent">
+          <div><span class="k">GET</span> /tenants/{msp}/tickets</div>
+          <div class="c">X-API-Key: blk_live_••••••••</div>
+          <div style="margin-top:10px"><span class="k">200 OK</span></div>
+          <div>{</div>
+          <div>  <span class="s">"served_from"</span>: <span class="s">"store"</span>,            <span class="c">// read from our synced store</span></div>
+          <div>  <span class="s">"last_synced_at"</span>: <span class="s">"2026-07-11T14:03:22Z"</span>,</div>
+          <div>  <span class="s">"data"</span>: [{</div>
+          <div>    <span class="s">"id"</span>: <span class="s">"tkt_8f31"</span>,</div>
+          <div>    <span class="s">"status"</span>: <span class="s">"in_progress"</span>,       <span class="c">// normalized across every PSA</span></div>
+          <div>    <span class="s">"summary"</span>: <span class="s">"VPN drops every few minutes"</span>,</div>
+          <div>    <span class="s">"raw"</span>: { … }                    <span class="c">// the vendor's original payload</span></div>
+          <div>  }]</div>
           <div>}</div>
-          <div class="c" style="margin-top:12px">Where the API has them, writes take dry_run and an idempotency_key. Creating a leftover PSA company in the ISV is not shipped yet.</div>
         </div>
       </div>
+      <div class="dx">
+        <article><b>Writes are governed</b><p>Every write takes <code class="inline">dry_run</code> to preview and an <code class="inline">idempotency_key</code> to make retries safe.</p></article>
+        <article><b>Escape hatch, always</b><p>The normalized shape is the default; the vendor's raw payload rides along under <code class="inline">.raw</code> when you need it.</p></article>
+      </div>
     </div>
   </section>
-  <section class="pad">
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Also over MCP</p>
+      <h2>The same model over MCP</h2>
+      <p class="sub">REST and MCP use the same service and the same model. What your app reads is what your agents read.</p>
+      <div class="mcp">
+        <article>
+          <small>Raw MCP servers</small>
+          <b>Agents pointed straight at vendor APIs</b>
+          <p>Every tool call is a live vendor request. It spends the MSP’s shared rate budget, unpaced and unaudited. An agent that polls hard can slow every product on that tenant.</p>
+        </article>
+        <article>
+          <small>Bitlync MCP</small>
+          <b>Sync-backed and governed</b>
+          <p>Agent reads come from the same synced store as the API. Zero vendor budget spent. Writes use the same dry-run, idempotency, and audit trail.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">One normalized read</p>
+      <h2>Same status. Every PSA.</h2>
+      <div class="tix">
+        <div class="hd">normalized tickets — 3 sources, 1 shape</div>
+        <table>
+          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th><th>company</th></tr></thead>
+          <tbody>
+            <tr><td class="src">connectwise</td><td><span class="st-word">waiting</span></td><td>critical</td><td>Server room UPS reporting battery fault</td><td>Acme Dental Group</td></tr>
+            <tr><td class="src">autotask</td><td><span class="st-word">in progress</span></td><td>high</td><td>VPN drops every few minutes</td><td>Northwind Accounting</td></tr>
+            <tr><td class="src">halopsa</td><td><span class="st-word">waiting</span></td><td>critical</td><td>Phishing report — possible compromise</td><td>Halcyon Health Partners</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">The connect experience</p>
+      <h2>MSPs connect themselves. You do not send a docs page and two empty fields.</h2>
+      <p class="sub">Docs and a sandbox are for ISVs. MSPs connect their own keys in a guided flow.</p>
+      <div class="grid g3" style="margin-top:22px">
+        <article class="card">
+          <h3>Guided, in-flow</h3>
+          <p class="quiet" style="margin:0">Step-by-step credential guides sit beside the fields. Portal path and permissions are in the flow, not a link out.</p>
+        </article>
+        <article class="card">
+          <h3>Validated before it ships</h3>
+          <p class="quiet" style="margin:0">Each key is tested against the scopes it needs. Bad setup is caught in the flow, not weeks later as a mystery ticket.</p>
+          <div class="probe" aria-label="Example validation probe output">
+            <div class="ok">✓ authentication</div>
+            <div class="bad">✕ missing: Service Desk — Add</div>
+            <div class="bad">→ fix shown · re-test in place</div>
+            <div class="ok">✓ all 6 scopes verified</div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Hosted, credential-isolated</h3>
+          <p class="quiet" style="margin:0">Credentials are entered on Bitlync. They do not touch your frontend. The MSP owns the credential.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Operated, not just hosted</p>
+      <h2>See a connection problem before a partner calls.</h2>
+      <p class="sub">Every MSP connection has a status and an audit log. Vendor API changes and outages show up as vendor health.</p>
+      <div class="ops-grid">
+        <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
+          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+          <div class="ops-row"><div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div><span class="dot"><i></i>healthy</span></div>
+          <div class="ops-row"><div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div><span class="dot"><i></i>healthy</span></div>
+          <div class="ops-row"><div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div><span class="dot deg"><i></i>degraded</span></div>
+        </div>
+        <div class="ops" aria-label="Mockup: vendor API health board">
+          <div class="ops-head"><span>vendor health</span><span>monitored 24/7</span></div>
+          <div class="ops-row"><div class="grow"><b>ConnectWise</b></div><span class="dot"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>Autotask</b><small>vendor API change detected · mitigation deployed</small></div><span class="dot deg"><i></i>degraded</span></div>
+          <div class="ops-row"><div class="grow"><b>HaloPSA</b></div><span class="dot"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>NinjaOne</b></div><span class="dot"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>Datto RMM</b></div><span class="dot"><i></i>operational</span></div>
+        </div>
+      </div>
+      <p class="disclaim">Mockup — simulated data, not a live product</p>
+    </div>
+  </section>
+  <section class="dark-band pad">
     <div class="wrap">
       <h2>On the roadmap</h2>
-      <div class="road">
-        <article><span class="tag">Coming</span><b>Event push</b><p>Webhooks when tickets, devices, or companies change. You do not have to poll us.</p></article>
-        <article><span class="tag">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation.</p></article>
+      <div class="road" style="margin-top:22px">
+        <article><span class="tag">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></article>
+        <article><span class="tag">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></article>
         <article><span class="tag">Coming</span><b>Direct-to-Bitlync cutover.</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></article>
         <article><span class="tag">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></article>
       </div>
@@ -289,7 +483,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="cell"><b>NinjaOne</b><span class="cat">RMM</span><span class="chip">Live</span></div>
         <div class="cell"><b>Datto RMM</b><span class="cat">RMM</span><span class="chip">Live</span></div>
         <div class="cell"><b>ScalePad</b><span class="cat">GRC</span><span class="chip">Live</span></div>
-        <div class="cell"><b>Pax8</b><span class="cat">Commerce · cost and price lookup</span><span class="chip">Live</span></div>
+        <div class="cell"><b>Pax8</b><span class="cat">Commerce</span><span class="chip">Live</span></div>
         <div class="cell"><b>IT Glue</b><span class="cat">Documentation</span><span class="chip">Live</span></div>
         <div class="cell"><b>Hudu</b><span class="cat">Documentation</span><span class="chip">Live</span></div>
       </div>
@@ -318,12 +512,60 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
         <div><b>Secured by Bitlync</b><div class="quiet" style="margin:0">Your credentials stay here. Your vendor never sees them.</div></div>
       </div>
-      <div class="posture">
-        <article><b>You own the connection</b><p class="quiet">Each vendor gets a scoped grant. Revoke one. The connection stays yours.</p></article>
-        <article><b>Status before they call</b><p class="quiet">See a connection problem before a partner calls. Status and an audit log sit on every connection.</p></article>
-        <article><b>No silent create</b><p class="quiet">A sure match maps. A leftover PSA company is an ask. Ambiguous stays unmatched. The create hop is not shipped yet.</p></article>
-        <article><b>Not certified SOC 2 yet</b><p class="quiet">Built to SOC 2 controls. Certification is on the roadmap.</p></article>
+      <div class="grid g2">
+        <article class="card">
+          <p class="kicker">Grants, not shared credentials</p>
+          <h3>You own the connection. Vendors get grants.</h3>
+          <p class="quiet" style="margin:0">You connect your PSA or RMM to Bitlync once. That connection is yours. Each vendor gets a separate, scoped grant. You enter the credential on our side. It stays in an isolated per-tenant vault. The vendor never sees it. Revoke a grant and that vendor is gone. Your connection stays yours.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">What a vendor can touch</p>
+          <h3>You see the scope before you connect</h3>
+          <p class="quiet">Every grant is shown in plain language, including what the vendor can <em>never</em> do:</p>
+          <div class="grant"><span class="gchip">Read</span><span>service tickets, companies, configurations</span></div>
+          <div class="grant"><span class="gchip">Write</span><span>create tickets on a board you approve</span></div>
+          <div class="grant"><span class="gchip">Never</span><span>delete records · read financials · change your configuration</span></div>
+          <p class="disclaim" style="text-align:left">Example grant — every vendor's scope is shown at connect time</p>
+        </article>
       </div>
+    </div>
+  </section>
+  <section class="dark-band pad">
+    <div class="wrap">
+      <p class="kicker">Our data posture</p>
+      <h2>Plainly stated</h2>
+      <div class="posture" style="margin-top:22px">
+        <div class="pos"><b>Synced once per tenant</b><p>One governed sync serves every vendor you've granted. Five tools never mean five pollers spending your shared API rate budget.</p></div>
+        <div class="pos"><b>Encrypted per-tenant</b><p>AES-256-GCM envelope encryption with per-tenant keys. Your tenant is isolated from every other.</p></div>
+        <div class="pos"><b>Owned by you</b><p>Every grant is revocable in one click. Your data is deletable on request.</p></div>
+        <div class="pos"><b>Audited, append-only</b><p>Every read and write by every vendor lands in an append-only log. It cannot be edited. You can see it.</p></div>
+        <div class="pos"><b>Support that can't touch your data</b><p>The support assistant is read-only. It has no write tool. It can diagnose your setup. It cannot change it.</p></div>
+        <div class="pos"><b>Never resold</b><p>Your operational data is not a product. Not aggregated, not sold. Ever.</p></div>
+      </div>
+      <p class="disclaim" style="color:#8B8B86;margin-top:22px">SOC 2 in progress.</p>
+    </div>
+  </section>
+  <section class="pad">
+    <div class="wrap">
+      <p class="kicker">Your portal</p>
+      <h2>See it. Scope it. Revoke it.</h2>
+      <p class="sub">Every connection comes with a portal account. It is a permissions page, not another app to manage.</p>
+      <div class="portal" aria-label="Mockup of the MSP connection portal">
+        <div class="pm-head">your connections</div>
+        <div class="pm-row">
+          <i>CW</i>
+          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
+          <span class="dot"><i></i>healthy · synced 4 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+        <div class="pm-row">
+          <i>NJ</i>
+          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
+          <span class="dot"><i></i>healthy · synced 11 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+      </div>
+      <p class="disclaim">Mockup — simulated data, not a live product</p>
     </div>
   </section>
 </div>
@@ -353,7 +595,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
       <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
     </nav>
-    <div>
+    <div class="docs-body">
 
 <div class="dpanel on" id="d-docs">
   <div class="docs-hero">
@@ -445,21 +687,42 @@ tenant_id: sandbox-mainstreet
   <div class="docs-hero">
     <p class="kicker">Architecture</p>
     <h1>Your product. Bitlync. The MSP pastes keys.</h1>
-    <p class="lede">One model. REST and MCP use it. The vault holds what the MSP pastes. You never do.</p>
+    <p class="lede">MSP pastes keys; ISV never holds them. One schema. Vault. Status/audit. Same model over REST and MCP.</p>
   </div>
-  <div class="arch" aria-hidden="true">
-    <svg viewBox="0 0 900 180">
-      <g fill="none" stroke="#E8F0C8" stroke-width="1.3" stroke-linecap="round">
-        <path d="M80 90 H 360"/>
-        <path d="M420 90 H 700"/>
-        <path d="M40 50 C 160 50, 280 90, 390 90"/>
-        <path d="M40 130 C 160 130, 280 90, 390 90"/>
+  <div class="arch" aria-label="Category chips flow into Bitlync, then one shape reaches your product">
+    <svg viewBox="0 0 720 300" role="img">
+      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9C9C4">
+        <rect x="12" y="18" width="118" height="28" rx="6" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="56" width="118" height="28" rx="14" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="94" width="118" height="28" rx="2" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="132" width="118" height="28" rx="10" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="170" width="118" height="28" rx="4" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="208" width="118" height="28" rx="13" fill="#1A1C16" stroke="#3A3D32"/>
+        <rect x="12" y="246" width="118" height="28" rx="8" fill="#1A1C16" stroke="#3A3D32"/>
+        <text x="24" y="36">PSA</text>
+        <text x="24" y="74">RMM</text>
+        <text x="24" y="112">Commerce</text>
+        <text x="24" y="150">Docs</text>
+        <text x="24" y="188">GRC</text>
+        <text x="24" y="226">Productivity</text>
+        <text x="24" y="264">Quoting</text>
       </g>
-      <circle cx="390" cy="90" r="3" fill="#E8F0C8"/>
-      <text x="80" y="36" font-family="JetBrains Mono,monospace" font-size="12" fill="#8B8E84">Your product</text>
-      <text x="360" y="122" font-family="Instrument Serif,serif" font-size="18" fill="#EDECE6">bitlync</text>
-      <text x="620" y="36" font-family="JetBrains Mono,monospace" font-size="12" fill="#8B8E84">MSP pastes keys</text>
+      <g fill="none" stroke="#8A9A4A" stroke-width="1.25">
+        <path class="flow" d="M130 32 C 240 32, 290 142, 356 150"/>
+        <path class="flow" d="M130 70 C 238 70, 292 144, 356 150"/>
+        <path class="flow" d="M130 108 C 236 108, 294 148, 356 150"/>
+        <path class="flow" d="M130 146 C 236 146, 296 150, 356 150"/>
+        <path class="flow" d="M130 184 C 236 184, 294 152, 356 150"/>
+        <path class="flow" d="M130 222 C 238 222, 292 156, 356 150"/>
+        <path class="flow" d="M130 260 C 240 260, 290 158, 356 150"/>
+      </g>
+      <circle cx="398" cy="150" r="38" fill="#101214" stroke="#C6F04D" stroke-width="1.4"/>
+      <text x="398" y="156" text-anchor="middle" font-family="Instrument Serif,serif" font-size="17" font-style="italic" fill="#EDECE6">bitlync</text>
+      <path class="flow" d="M436 150 H 518" stroke="#8A9A4A" fill="none" stroke-width="1.25"/>
+      <rect x="522" y="136" width="176" height="28" rx="6" fill="#1A1C16" stroke="#3A3D32"/>
+      <text x="610" y="155" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9C9C4">Your product</text>
     </svg>
+    <p class="cap">many systems → one shape → your product</p>
   </div>
   <p class="note">REST and MCP are the same model.</p>
   <p class="note">Keys sit in a vault. Status and an audit log sit on every connection.</p>
@@ -626,7 +889,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var stageIO=null;
 
   function parse(h){
     h=(h||'').replace('#','');
@@ -662,9 +924,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
     window.scrollTo({top:0,behavior:'auto'});
-    if(st.page==='home'){ reveal(); typeTerm(); }
-    if(st.page==='product') bindStages();
-    else if(stageIO){ stageIO.disconnect(); stageIO=null; }
+    if(st.page==='home') reveal();
     if(st.anchor){
       var t=document.getElementById(st.anchor);
       if(t) setTimeout(function(){ t.scrollIntoView({block:'start'}); }, 30);
@@ -700,48 +960,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
     },{threshold:0.2});
     els.forEach(function(el){ io.observe(el); });
-  }
-  var typed=false;
-  function typeTerm(){
-    var out=document.getElementById('termOut'); if(!out) return;
-    var text="\n200 {\n  \"served_from\": \"store\",\n  \"status\": \"in_progress\"\n}";
-    if(reduce || typed){ out.textContent=text; return; }
-    typed=true; out.textContent=''; var i=0;
-    (function tick(){ out.textContent=text.slice(0,i++); if(i<=text.length) setTimeout(tick,12); })();
-  }
-
-  var viz=document.getElementById('stageViz');
-  var frames=[
-    '<svg width="240" height="170" viewBox="0 0 240 170"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M18 28C70 28 92 86 168 86"/><path d="M18 56C68 56 94 86 168 86"/><path d="M18 86C72 86 100 86 168 86"/><path d="M18 116C68 116 94 86 168 86"/><path d="M18 144C70 144 92 86 168 86"/></g><circle cx="176" cy="86" r="3" fill="currentColor"/></svg>',
-    '<svg width="240" height="170" viewBox="0 0 240 170"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M30 40C80 40 110 86 168 86"/><path d="M30 86H168"/><path d="M30 132C80 132 110 86 168 86"/><rect x="48" y="70" width="28" height="32" rx="3"/></g><circle cx="176" cy="86" r="3" fill="currentColor"/></svg>',
-    '<svg width="240" height="170" viewBox="0 0 240 170"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M20 86H120"/><path d="M188 86H220"/><path d="M40 50C70 50 90 86 120 86"/><path d="M40 122C70 122 90 86 120 86"/></g><circle cx="168" cy="86" r="3" fill="currentColor"/><rect x="208" y="70" width="24" height="32" rx="3" fill="none" stroke="currentColor"/></svg>'
-  ];
-  function setOn(i){
-    var stages=document.querySelectorAll('.stage');
-    stages.forEach(function(s,n){ s.classList.toggle('on', n===i); });
-    if(viz) viz.innerHTML=frames[i]||frames[0];
-  }
-  function bindStages(){
-    var stages=document.querySelectorAll('.stage');
-    if(!stages.length) return;
-    if(stageIO){ stageIO.disconnect(); stageIO=null; }
-    stages.forEach(function(s){
-      s.onclick=function(){ setOn(+s.getAttribute('data-i')); };
-    });
-    if(reduce){
-      stages.forEach(function(s){ s.classList.add('on'); });
-      if(viz) viz.innerHTML=frames[0];
-      return;
-    }
-    setOn(0);
-    stageIO=new IntersectionObserver(function(entries){
-      var best=null, ratio=-1;
-      entries.forEach(function(en){
-        if(en.isIntersecting && en.intersectionRatio>ratio){ ratio=en.intersectionRatio; best=en.target; }
-      });
-      if(best) setOn(+best.getAttribute('data-i'));
-    },{threshold:[0.25,0.45,0.65], rootMargin:'-28% 0px -42% 0px'});
-    stages.forEach(function(s){ stageIO.observe(s); });
   }
 
   show(location.hash||'#home');
