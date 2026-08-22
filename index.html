@@ -127,18 +127,6 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-s
 @media(min-width:900px){
   .conduit{padding:40px 36px 26px}
 }
-.steps{display:grid;gap:0;border-top:1px solid var(--line)}
-.step-card{background:transparent;border:none;border-bottom:1px solid var(--line);
-  border-radius:0;padding:28px 0;display:grid;gap:14px 22px;align-items:center;
-  grid-template-columns:48px 1fr;opacity:0;transform:translateY(12px);
-  transition:opacity .55s ease,transform .55s ease}
-.step-card.in{opacity:1;transform:none}
-.step-mark{width:48px;height:48px}
-.step-card .num{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;margin:0 0 6px}
-.step-card p{margin:0;font-size:17px;line-height:1.4;max-width:36ch}
-@media (prefers-reduced-motion: reduce){
-  .step-card{opacity:1;transform:none;transition:none}
-}
 .road-strip{grid-template-columns:1fr}
 @media(min-width:820px){
   .road-strip{grid-template-columns:1.4fr 1fr 1fr 1fr}
