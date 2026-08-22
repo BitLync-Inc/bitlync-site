@@ -101,6 +101,54 @@ section.pad{padding:88px 0}
 .form-band iframe{width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-size:13px}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* docs */
+.docs-nav{position:sticky;top:64px;z-index:30;background:rgba(7,8,10,.9);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.docs-nav .wrap{display:flex;gap:22px;align-items:center;height:46px;overflow:auto;font-size:13.5px;color:var(--mute)}
+.docs-nav a.on,.docs-nav a:hover{color:var(--text)}
+.docs-hero{padding:64px 0 28px}
+.docs-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(42px,7vw,84px);
+  line-height:.95;letter-spacing:-.03em;margin:0 0 16px}
+.cards{display:grid;gap:14px;margin:36px 0 8px}
+@media(min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;border:1px solid var(--line);border-radius:16px;background:var(--panel);
+  padding:22px 22px 20px;min-height:168px;transition:border-color .3s ease, transform .3s ease}
+.card:hover{border-color:var(--acid2);transform:translateY(-2px)}
+.card .meta{font-family:var(--mono);font-size:11px;color:var(--acid);margin:0 0 8px}
+.card h3{font-family:var(--serif);font-size:28px;font-weight:400;margin:0 0 8px}
+.card p{margin:0;color:var(--mute);font-size:14.5px}
+.cards .reveal:nth-child(1){transition-delay:.04s}
+.cards .reveal:nth-child(2){transition-delay:.1s}
+.cards .reveal:nth-child(3){transition-delay:.16s}
+.cards .reveal:nth-child(4){transition-delay:.22s}
+.code{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden;margin:18px 0}
+.code .hd{display:flex;justify-content:space-between;gap:12px;align-items:center;
+  padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.code .hd b{color:var(--acid);font-weight:500}
+.code pre{margin:0;padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.65;overflow:auto;color:#C9CBBF}
+.code .k{color:var(--acid)}.code .s{color:#E8D48A}.code .c{color:#6E7364}
+.two{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0}
+@media(min-width:900px){.two{grid-template-columns:1fr 1.15fr}}
+.two article{background:var(--panel);padding:18px 18px 16px}
+.two .path{font-family:var(--mono);font-size:13px;color:var(--acid);margin:0 0 8px}
+.two h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}
+.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:18px 0}
+.rt th{text-align:left;font-family:var(--mono);font-size:11px;color:var(--acid);font-weight:500;padding:8px 8px 8px 0;border-bottom:1px solid var(--line)}
+.rt td{padding:10px 10px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rt code,.inline{font-family:var(--mono);font-size:12px}
+.note{color:var(--mute);font-size:14.5px;max-width:42rem}
+.guide{padding:28px 0;border-top:1px solid var(--line)}
+.guide h3{font-family:var(--serif);font-size:30px;margin:0 0 10px}
+.obj{border-top:1px solid var(--line);padding:22px 0}
+.obj h3{font-family:var(--serif);font-size:26px;margin:0 0 8px}
+.fields{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.fields span{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:#C9CBBF}
+.coming{font-family:var(--mono);font-size:11px;color:var(--acid);border:1px solid var(--acid);border-radius:999px;padding:3px 8px}
+@media (prefers-reduced-motion: reduce){
+  .card{transition:none}
+  .card:hover{transform:none}
+}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal,.stage{opacity:1;transform:none}
@@ -119,6 +167,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-si
       <a href="#home" data-nav="home" class="on">Home</a>
       <a href="#product" data-nav="product">Product</a>
       <a href="#integrations" data-nav="integrations">Integrations</a>
+      <a href="#developers" data-nav="developers">Developers</a>
       <a href="#msps" data-nav="msps">For MSPs</a>
       <a href="#partners" data-nav="partners">Partners</a>
     </nav>
@@ -135,6 +184,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-si
       <h1>Write once.<br><em>Connect to many.</em></h1>
       <p class="lede">Your product talks to Bitlync. MSPs paste their own PSA and RMM keys. Docs and a sandbox are how you start. Nine connectors are in the product today, against a seeded sandbox.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      <a class="btn ghost" href="#developers" data-nav="developers" style="margin-left:10px">Developers</a>
       <a class="btn ghost" href="#product" data-nav="product" style="margin-left:10px">See how it works</a>
       <div class="stage-visual reveal">
         <svg viewBox="0 0 1100 340" role="img" aria-label="Many systems fold into Bitlync, then one shape reaches your product">
@@ -287,23 +337,359 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mute);font-si
     </div>
   </section>
 </div>
+<div class="page" id="page-developers">
+  <nav class="docs-nav" aria-label="Developers">
+    <div class="wrap">
+      <a href="#developers" data-nav="developers">Index</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#api" data-nav="api">API</a>
+      <a href="#libraries" data-nav="libraries">Libraries</a>
+      <a href="#dictionary" data-nav="dictionary">Dictionary</a>
+    </div>
+  </nav>
+  <section class="docs-hero">
+    <div class="wrap">
+      <p class="kicker">Developers</p>
+      <h1>One API. Start in the sandbox.</h1>
+      <p class="lede">Write once. Connect to many. Docs and a sandbox are how ISVs start. Nine connectors are in the product today, against a seeded sandbox.</p>
+      <a class="btn" href="#guides" data-nav="guides">Quickstart</a>
+      <a class="btn ghost" href="#api" data-nav="api" style="margin-left:10px">API reference</a>
+      <div class="cards">
+        <a class="card reveal" href="#guides" data-nav="guides">
+          <p class="meta">Guides</p>
+          <h3>Quickstart</h3>
+          <p>First call, write safety, connect an MSP, sandbox reset.</p>
+        </a>
+        <a class="card reveal" href="#api" data-nav="api">
+          <p class="meta">Reference</p>
+          <h3>API</h3>
+          <p>Method, path, and example JSON. Auth, writes, Coming try-it.</p>
+        </a>
+        <a class="card reveal" href="#libraries" data-nav="libraries">
+          <p class="meta">Clients</p>
+          <h3>Libraries</h3>
+          <p>curl, Python, and TypeScript. Generated in-repo.</p>
+        </a>
+        <a class="card reveal" href="#dictionary" data-nav="dictionary">
+          <p class="meta">Language</p>
+          <h3>Object Dictionary</h3>
+          <p>Bitlync words. Ticket, Device, Agreement, Identity.</p>
+        </a>
+      </div>
+      <p class="note">A public host is coming. Try it out is marked Coming. No sandbox URL to publish.</p>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-guides">
+  <nav class="docs-nav" aria-label="Developers">
+    <div class="wrap">
+      <a href="#developers" data-nav="developers">Index</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#api" data-nav="api">API</a>
+      <a href="#libraries" data-nav="libraries">Libraries</a>
+      <a href="#dictionary" data-nav="dictionary">Dictionary</a>
+    </div>
+  </nav>
+  <section class="docs-hero">
+    <div class="wrap">
+      <p class="kicker">Guides</p>
+      <h1>From key to first write.</h1>
+      <p class="lede">Seeded sandbox tenants only. Responses include top-level <code class="inline">sandbox: true</code>.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <article class="guide reveal" id="quickstart">
+        <p class="kicker">01 · Quickstart</p>
+        <h3>Start the sandbox and copy a key</h3>
+        <p class="note">Keys look like <code class="inline">blk_…</code>. Send them as <code class="inline">X-API-Key</code>.</p>
+        <div class="code">
+          <div class="hd"><b>bash</b><span>local</span></div>
+          <pre><span class="c"># from the repo</span>
+python -m sandbox.serve --print-key
+
+export BITLYNC_BASE=  # your host when you have one
+export BITLYNC_KEY='blk_…'
+export TENANT=sandbox-mainstreet</pre>
+        </div>
+        <p class="note">Seeded tenants: <code class="inline">sandbox-mainstreet</code> is healthy (ConnectWise PSA + NinjaOne RMM + ScalePad GRC fixtures). <code class="inline">sandbox-northline</code> is degraded (HaloPSA missing ServiceDesk scope). These are fixture-backed sandbox tenants, not production hosts.</p>
+      </article>
+      <article class="guide reveal" id="first-call">
+        <p class="kicker">02 · First call</p>
+        <h3>Read tickets, then write once</h3>
+        <p class="note">GET seeded tickets. POST a ticket for Brightside Pediatrics with <code class="inline">dry_run</code> true, then false, same <code class="inline">idempotency_key</code>. Replay marks <code class="inline">idempotent_replay</code>. Then GET audit.</p>
+        <div class="code">
+          <div class="hd"><b>curl</b><span>$BITLYNC_BASE · public host coming</span></div>
+          <pre>curl -sS "$BITLYNC_BASE/tenants/$TENANT/tickets" \
+  -H "X-API-Key: $BITLYNC_KEY"
+
+curl -sS -X POST "$BITLYNC_BASE/tenants/$TENANT/tickets" \
+  -H "X-API-Key: $BITLYNC_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "company_name": "Brightside Pediatrics",
+    "summary": "Quarterly vCIO review, MFA coverage gap",
+    "priority": "medium",
+    "dry_run": true,
+    "idempotency_key": "quickstart-ticket-001"
+  }'</pre>
+        </div>
+        <p class="note">Repeat the POST with <code class="inline">dry_run: false</code>, then the same body again. GET <code class="inline">/tenants/$TENANT/audit</code> to see preview, commit, and replay.</p>
+      </article>
+      <article class="guide reveal" id="connect-msp">
+        <p class="kicker">03 · Connect an MSP</p>
+        <h3>The MSP pastes their own keys</h3>
+        <p class="note">The ISV does not paste MSP credentials. The MSP pastes PSA and RMM keys in the MSP portal. The ISV never holds those creds. A hosted portal is coming. There is no public connect URL to publish yet.</p>
+      </article>
+      <article class="guide reveal" id="sandbox-reset">
+        <p class="kicker">04 · Sandbox reset</p>
+        <h3>Clear audit and re-sync fixtures</h3>
+        <p class="note"><code class="inline">POST /sandbox/reset</code> with <code class="inline">{"tenant_id":"sandbox-mainstreet"}</code>. Clears audit, re-syncs fixtures, writes one <code class="inline">sandbox_reset</code> event. Production tenants return 422 <code class="inline">request_invalid</code>.</p>
+        <div class="code">
+          <div class="hd"><b>curl</b><span>sandbox tenants only</span></div>
+          <pre>curl -sS -X POST "$BITLYNC_BASE/sandbox/reset" \
+  -H "X-API-Key: $BITLYNC_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-api">
+  <nav class="docs-nav" aria-label="Developers">
+    <div class="wrap">
+      <a href="#developers" data-nav="developers">Index</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#api" data-nav="api">API</a>
+      <a href="#libraries" data-nav="libraries">Libraries</a>
+      <a href="#dictionary" data-nav="dictionary">Dictionary</a>
+    </div>
+  </nav>
+  <section class="docs-hero">
+    <div class="wrap">
+      <p class="kicker">API reference</p>
+      <h1>Routes that exist today.</h1>
+      <p class="lede">The machine surface that exists today. Auth is the <code class="inline">X-API-Key</code> header. This is not a pasted spec.</p>
+      <span class="coming">Try it out · Coming</span>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:12px">
+    <div class="wrap">
+      <div class="two reveal">
+        <article>
+          <p class="path">GET /tenants/{tenant_id}/tickets</p>
+          <h3>List tickets</h3>
+          <p class="note">Seeded example tenant: sandbox-mainstreet. Header <code class="inline">X-API-Key: blk_…</code></p>
+          <p style="margin:16px 0 0"><span class="coming">Try it out · Coming</span></p>
+          <p class="note" style="margin-top:12px">No public host. Use the local sandbox when you have the repo.</p>
+        </article>
+        <article>
+          <p class="path">200 · Ticket</p>
+          <div class="term" style="border:0;padding:0">
+            <div>{</div>
+            <div>  <span class="s">"sandbox"</span>: true,</div>
+            <div>  <span class="s">"source"</span>: <span class="s">"connectwise"</span>,</div>
+            <div>  <span class="s">"source_id"</span>: <span class="s">"…"</span>,</div>
+            <div>  <span class="s">"summary"</span>: <span class="s">"…"</span>,</div>
+            <div>  <span class="s">"status"</span>: <span class="s">"in_progress"</span>,</div>
+            <div>  <span class="s">"priority"</span>: <span class="s">"medium"</span>,</div>
+            <div>  <span class="s">"company_name"</span>: <span class="s">"Brightside Pediatrics"</span>,</div>
+            <div>  <span class="s">"synced_at"</span>: <span class="s">"…"</span>,</div>
+            <div>  <span class="s">"raw"</span>: { … }</div>
+            <div>}</div>
+          </div>
+        </article>
+      </div>
+      <h2 style="margin-top:48px">Featured routes</h2>
+      <p class="note">This is not a full spec. It is the shipped surface you can call.</p>
+      <table class="rt">
+        <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/tickets</code></td><td>List tickets</td></tr>
+          <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/tickets</code></td><td>dry_run defaults true</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>RMM devices</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/applications</code></td><td>Installed applications</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/audit</code></td><td>Audit trail</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/connections</code></td><td>Connection list</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/connections/events</code></td><td>Connection events</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/identity/mappings</code></td><td>Identity map</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/identity/unmapped</code></td><td>Unmapped companies</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/incidents</code></td><td>Incidents</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/status</code></td><td>Tenant status</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/routing</code></td><td>Routing</td></tr>
+          <tr><td><code>PUT</code></td><td><code>/tenants/{tenant_id}/routing</code></td><td>Update routing</td></tr>
+          <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/companies</code></td><td>Create company in PSA path</td></tr>
+          <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/deployments</code></td><td>Deployment write</td></tr>
+          <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/findings/route</code></td><td>Route a finding</td></tr>
+          <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/assistant/ask</code></td><td>Assistant ask</td></tr>
+          <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/assistant/stats</code></td><td>Assistant stats</td></tr>
+          <tr><td><code>GET</code></td><td><code>/connectors/{connector_key}/coverage</code></td><td>Connector coverage</td></tr>
+          <tr><td><code>POST</code></td><td><code>/sandbox/reset</code></td><td>Sandbox tenants only</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Writes take <code class="inline">dry_run</code> (default true) and <code class="inline">idempotency_key</code>. Replay sets <code class="inline">idempotent_replay</code>.</p>
+      <p class="note">Errors: branch on <code class="inline">code</code>. 401 auth, 403 tenant, 404 unknown tenant, 422 validation, 501 unsupported capability, 500 opaque. Creating a leftover PSA company in the ISV is not shipped (501 / OPEN).</p>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-libraries">
+  <nav class="docs-nav" aria-label="Developers">
+    <div class="wrap">
+      <a href="#developers" data-nav="developers">Index</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#api" data-nav="api">API</a>
+      <a href="#libraries" data-nav="libraries">Libraries</a>
+      <a href="#dictionary" data-nav="dictionary">Dictionary</a>
+    </div>
+  </nav>
+  <section class="docs-hero">
+    <div class="wrap">
+      <p class="kicker">Libraries</p>
+      <h1>curl, Python, TypeScript.</h1>
+      <p class="lede">Clients are generated from pinned OpenAPI with openapi-generator 7.12.0. They live in-repo. They are not published to package indexes.</p>
+    </div>
+  </section>
+
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <article class="guide reveal">
+        <h3>curl</h3>
+        <p class="note">Use <code class="inline">$BITLYNC_BASE</code>. Public host coming. No sandbox URL to publish.</p>
+        <div class="code"><div class="hd"><b>curl</b><span>X-API-Key</span></div><pre>curl -sS "$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets" \
+  -H "X-API-Key: $BITLYNC_KEY"</pre></div>
+      </article>
+      <article class="guide reveal">
+        <h3>Python</h3>
+        <p class="note">In-repo path <code class="inline">clients/python</code>. Import <code class="inline">bitlync_client</code>. Generated. Not on a public index.</p>
+        <div class="code"><div class="hd"><b>python</b><span>generated · in-repo</span></div><pre>from bitlync_client import ApiClient, Configuration
+from bitlync_client.api.service_api import ServiceApi
+
+config = Configuration(host=BITLYNC_BASE)
+config.api_key["APIKeyHeader"] = BITLYNC_KEY
+service = ServiceApi(ApiClient(config))
+listed = service.list_tickets_tenants_tenant_id_tickets_get(TENANT)
+created = service.create_ticket_tenants_tenant_id_tickets_post(TENANT, payload)</pre></div>
+      </article>
+      <article class="guide reveal">
+        <h3>TypeScript</h3>
+        <p class="note">Generated client in <code class="inline">clients/typescript</code>. Uses fetch. Not on a public index.</p>
+        <div class="code"><div class="hd"><b>typescript</b><span>generated · in-repo</span></div><pre>import { Configuration, ServiceApi } from "./index";
+
+const config = new Configuration({
+  basePath: process.env.BITLYNC_BASE!,
+  apiKey: process.env.BITLYNC_KEY!,
+});
+const service = new ServiceApi(config);
+const listed = await service.listTicketsTenantsTenantIdTicketsGet({
+  tenantId: tenant,
+});</pre></div>
+      </article>
+      <p style="margin:8px 0 28px"><span class="coming">Try it out · Coming</span> <span class="note">No public host to authorize against.</span></p>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-dictionary">
+  <nav class="docs-nav" aria-label="Developers">
+    <div class="wrap">
+      <a href="#developers" data-nav="developers">Index</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#api" data-nav="api">API</a>
+      <a href="#libraries" data-nav="libraries">Libraries</a>
+      <a href="#dictionary" data-nav="dictionary">Dictionary</a>
+    </div>
+  </nav>
+  <section class="docs-hero">
+    <div class="wrap">
+      <p class="kicker">Object Dictionary</p>
+      <h1>Bitlync words.</h1>
+      <p class="lede">Docs and the API use these terms. Vendor words stay in the vendor payload under <code class="inline">raw</code>. Every object carries <code class="inline">source</code>, <code class="inline">raw</code>, and <code class="inline">synced_at</code>.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <article class="obj reveal">
+        <h3>Agreement</h3>
+        <p class="note">Recurring MSP service billing arrangement. Not “PSA Contract.” The word exists in the canonical model. There is no list-agreements route on the machine surface.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>company_name</span><span>name</span><span>monthly_recurring_revenue</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>Company</h3>
+        <p class="note">The MSP end client. Create path: <code class="inline">POST /tenants/{tenant_id}/companies</code>. Creating a leftover PSA company in the ISV is not shipped.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>name</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>Ticket</h3>
+        <p class="note"><code class="inline">GET</code> and <code class="inline">POST /tenants/{tenant_id}/tickets</code>.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>summary</span><span>status</span><span>priority</span><span>company_name</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>Device</h3>
+        <p class="note"><code class="inline">GET /tenants/{tenant_id}/devices</code>.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>hostname</span><span>online</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>InstalledApplication</h3>
+        <p class="note"><code class="inline">GET /tenants/{tenant_id}/applications</code>.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>WriteResult / FanOutResult</h3>
+        <p class="note">Write responses. Partial is first-class. Replay sets <code class="inline">idempotent_replay</code>. <code class="inline">dry_run</code> defaults true.</p>
+        <div class="fields"><span>dry_run</span><span>idempotency_key</span><span>idempotent_replay</span><span>partial</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>IdentityMapping</h3>
+        <p class="note"><code class="inline">GET /tenants/{tenant_id}/identity/mappings</code> and <code class="inline">/identity/unmapped</code>. Sure match auto-maps. A leftover PSA company is an ask to create in the ISV (hop not live). Ambiguous stays unmatched.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>Connection</h3>
+        <p class="note"><code class="inline">GET /tenants/{tenant_id}/connections</code> and <code class="inline">/connections/events</code>.</p>
+        <div class="fields"><span>source</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>Finding</h3>
+        <p class="note">Route with <code class="inline">POST /tenants/{tenant_id}/findings/route</code>.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>KnowledgeArticle / DocAsset</h3>
+        <p class="note">Docs-domain objects in the model. Listed here as objects only. No list endpoint on the featured surface.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>synced_at</span><span>raw</span></div>
+      </article>
+      <article class="obj reveal">
+        <h3>TimeEntry</h3>
+        <p class="note">Exists in schema. Mapping is still next-slice. Schema-only. No route.</p>
+        <div class="fields"><span>source</span><span>source_id</span><span>synced_at</span><span>raw</span></div>
+      </article>
+    </div>
+  </section>
+</div>
 </main>
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · private beta · mock</span>
-    <span style="font-family:var(--mono);font-size:12px">bitlync.com</span>
+    <span><a href="#developers" data-nav="developers">Developers</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','product','integrations','msps','partners'];
+  var pages=['home','product','integrations','msps','partners','developers','guides','api','libraries','dictionary'];
+  var docs=['developers','guides','api','libraries','dictionary'];
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function show(id){
     if(pages.indexOf(id)<0)id='home';
     pages.forEach(function(p){document.getElementById('page-'+p).classList.toggle('on',p===id)});
-    document.querySelectorAll('nav.main a').forEach(function(a){a.classList.toggle('on',a.getAttribute('data-nav')===id)});
+    document.querySelectorAll('nav.main a').forEach(function(a){
+      var n=a.getAttribute('data-nav');
+      a.classList.toggle('on', n===id || (n==='developers' && docs.indexOf(id)>=0));
+    });
+    document.querySelectorAll('.docs-nav a').forEach(function(a){
+      a.classList.toggle('on', a.getAttribute('data-nav')===id);
+    });
     nav.classList.remove('open');
     if(menuBtn){menuBtn.setAttribute('aria-expanded','false')}
     window.scrollTo({top:0,behavior:'auto'});
