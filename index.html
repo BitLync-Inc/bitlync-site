@@ -150,6 +150,18 @@ pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
 .posture{grid-template-columns:1fr 1fr}
 @media(min-width:900px){.posture{grid-template-columns:1fr 1fr 1fr}}
 
+
+.value-block{padding-top:8px}
+.value-lead{font-family:var(--disp);font-weight:600;font-size:clamp(18px,2.2vw,22px);
+  letter-spacing:-.015em;line-height:1.35;max-width:28rem;margin:0 0 22px}
+.value-mix{display:grid;gap:16px 48px;border-top:1px solid var(--line);padding-top:22px}
+@media(min-width:820px){
+  .value-mix{grid-template-columns:1.15fr .85fr}
+  .value-mix .wide{grid-column:1/-1}
+}
+.value-mix p{margin:0;color:var(--ink2);font-size:15.5px;max-width:42ch}
+.value-mix .wide{max-width:52ch}
+
 html,body{overflow-x:clip}
 main{display:block}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;border:1px solid var(--line);
@@ -405,6 +417,19 @@ main{display:block}
         <p class="num">03</p>
         <p>Read and write through that same API.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight value-block">
+  <div class="wrap">
+    <p class="value-lead">See a connection problem before a partner calls. Status and an audit log sit on every MSP connection.</p>
+    <div class="value-mix">
+      <p>The MSP pastes their keys into a vault. You never hold them.</p>
+      <p>Caching, retries, and validation ship with every connection. Not add-ons.</p>
+      <p class="wide">One sync per MSP, so several products do not burn the same PSA budget. Honest 429 with Retry-After.</p>
+      <p>REST and MCP use the same model.</p>
+      <p>Connect is guided and validated in the flow. Not a docs page and two empty fields.</p>
     </div>
   </div>
 </section>
