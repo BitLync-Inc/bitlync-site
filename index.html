@@ -368,68 +368,62 @@ main{display:block}
 
 <section style="padding-bottom:44px">
   <div class="wrap center">
+    <p class="eyebrow">The product</p>
     <h1 style="font-size:clamp(30px,4.4vw,48px)">How Bitlync works</h1>
     <p class="sub">One model underneath. Your product uses one API. The MSP connects their own tools.</p>
   </div>
 </section>
 
 <section class="tight" style="padding-top:0">
-  <div class="wrap steps">
-    <div class="step-card">
-      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
-        <g fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round">
-          <path d="M6 10h14"/><path d="M6 18h14"/><path d="M6 26h14"/><path d="M6 34h14"/>
-          <path d="M20 10c8 0 12 14 18 14"/><path d="M20 18c7 0 11 8 18 8"/>
-          <path d="M20 26c7 0 11-8 18-8"/><path d="M20 34c8 0 12-14 18-14"/>
-        </g>
-        <circle cx="40" cy="24" r="4" fill="#0C6B70"/>
-      </svg>
-      <div>
-        <p class="num">01</p>
-        <p>Write once against one schema. Tickets, companies, contacts, agreements.</p>
-      </div>
+  <style>
+    .step-card{position:relative}
+    .step-card .num{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);
+      text-transform:uppercase;font-weight:600;margin:0 0 8px}
+  </style>
+  <div class="wrap grid g3">
+    <div class="card step-card">
+      <p class="num">01 — Your product integrates once</p>
+      <h3>One schema, every vendor</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
     </div>
-    <div class="step-card">
-      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
-        <g fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="14" cy="24" r="6"/>
-          <path d="M20 24h16"/>
-          <path d="M30 24v5"/><path d="M34 24v4"/>
-          <rect x="36" y="16" width="8" height="16" rx="1.5" stroke="#17181C"/>
-          <path d="M36 24h-0.5" stroke="#17181C"/>
-        </g>
-      </svg>
-      <div>
-        <p class="num">02</p>
-        <p>The MSP pastes their own keys. You never hold them.</p>
-      </div>
+    <div class="card step-card">
+      <p class="num">02 — Customers connect themselves</p>
+      <h3>Self-serve, guided, validated</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
     </div>
-    <div class="step-card">
-      <svg class="step-mark" viewBox="0 0 48 48" aria-hidden="true">
-        <g fill="none" stroke="#17181C" stroke-width="1.6" stroke-linejoin="round">
-          <rect x="8" y="10" width="20" height="26" rx="2"/>
-          <path d="M12 16h12" stroke="#0C6B70"/><path d="M12 21h12" stroke="#0C6B70"/><path d="M12 26h8" stroke="#0C6B70"/>
-        </g>
-        <path d="M32 24h10" fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M38 19l6 5-6 5" fill="none" stroke="#0C6B70" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div>
-        <p class="num">03</p>
-        <p>Read and write through that same API.</p>
-      </div>
+    <div class="card step-card">
+      <p class="num">03 — Act through the stack</p>
+      <h3>Read and write, safely</h3>
+      <p style="margin:0;font-size:14.5px;color:var(--muted)">Open a ticket or update a device through the API. Writes that already support it take <code style="font-family:var(--mono);font-size:12.5px">dry_run</code> and an <code style="font-family:var(--mono);font-size:12.5px">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
     </div>
   </div>
 </section>
 
-<section class="tight value-block">
+<section class="tight" style="padding-top:0">
+  <style>
+    .inc-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+    .inc{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 18px}
+    .inc b{display:block;font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:-.01em;margin:0 0 5px}
+    .inc p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
   <div class="wrap">
-    <p class="value-lead">See a connection problem before a partner calls. Status and an audit log sit on every MSP connection.</p>
-    <div class="value-mix">
-      <p>The MSP pastes their keys into a vault. You never hold them.</p>
-      <p>Caching, retries, and validation ship with every connection. Not add-ons.</p>
-      <p class="wide">One sync per MSP, so several products do not burn the same PSA budget. Honest 429 with Retry-After.</p>
-      <p>REST and MCP use the same model.</p>
-      <p>Connect is guided and validated in the flow. Not a docs page and two empty fields.</p>
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Everything that comes with an integration</p>
+      <h2>Every layer you'd otherwise build, bundled</h2>
+      <p class="sub" style="margin:0 auto">These are not add-ons. Caching, retries, validation, and the vault ship with every connection.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc"><b>Caching</b><p>Reads come from our synced store. They are fast and do not spend the vendor rate budget. Each response says where it came from and when it was synced.</p></div>
+      <div class="inc"><b>Rate-limit handling</b><p>We pace every call against each vendor's real limits so your product never trips them by accident.</p></div>
+      <div class="inc"><b>Retries</b><p>Transient vendor failures are retried with backoff. You see one clean result, not a flaky upstream.</p></div>
+      <div class="inc"><b>Honest delivery status</b><p>Deduped and retried. No silent drop. An acknowledged write cannot double-write. A throttled one returns a real Retry-After.</p></div>
+      <div class="inc"><b>De-duplication</b><p>Idempotency keys on writes that support them mean a retry does not double-create a ticket.</p></div>
+      <div class="inc"><b>Validation</b><p>Payloads are checked against each vendor’s rules before they leave. Errors show up in your request, not in an MSP’s PSA.</p></div>
+      <div class="inc"><b>Credential vault</b><p>The MSP pastes their own PSA or RMM keys. Those credentials sit in a per-tenant vault. Your product never holds them.</p></div>
+      <div class="inc"><b>Customer map</b><p>A sure match maps automatically. A leftover PSA company is an ask to create in the ISV. Ambiguous stays unmatched. No silent create. The create hop itself is not shipped yet.</p></div>
+      <div class="inc"><b>Identity hold</b><p>Unmatched records can be held in quarantine until someone releases them.</p></div>
+
+      <div class="inc"><b>Health + incidents</b><p>Connection status and an audit log are in the product. The vendor-health board on this page is a mockup.</p></div>
     </div>
   </div>
 </section>
@@ -448,6 +442,7 @@ main{display:block}
   </style>
   <div class="wrap">
     <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Developer experience</p>
       <h2>One call. Same shape every time.</h2>
     </div>
     <div class="code-shell">
@@ -457,20 +452,237 @@ main{display:block}
 
 <span class="c-kw">200 OK</span>
 {
-  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// from store</span>
+  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
   <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
   <span class="c-str">"data"</span>: [{
     <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
-    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// same status word</span>
+    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
     <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
-    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// vendor payload</span>
+    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
   }]
 }</pre>
     </div>
     <div class="dx-notes">
-      <div class="dx-note"><b>Writes</b>Where the API has them, writes take <span style="font-family:var(--mono)">dry_run</span> and an <span style="font-family:var(--mono)">idempotency_key</span>. Creating a leftover PSA company in the ISV is not shipped yet.</div>
+      <div class="dx-note"><b>Writes are governed</b>Every write takes <span style="font-family:var(--mono)">dry_run</span> to preview and an <span style="font-family:var(--mono)">idempotency_key</span> to make retries safe.</div>
       <div class="dx-note"><b>Escape hatch, always</b>The normalized shape is the default; the vendor's raw payload rides along under <span style="font-family:var(--mono)">.raw</span> when you need it.</div>
       <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. OpenAPI, curl, Python and TypeScript clients. First call the same day.</div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <style>
+    .rate-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));max-width:860px;margin:0 auto}
+    .rate{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 20px;text-align:center}
+    .rate .n{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.8vw,28px);letter-spacing:-.02em;color:var(--accent);margin:0 0 4px}
+    .rate p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <p class="eyebrow">Rate limits as a feature</p>
+      <h2>Limits that grow with the MSPs you connect</h2>
+    </div>
+    <div class="rate-grid">
+      <div class="rate"><p class="n">600 req/min</p><p>Times the number of MSPs you have connected. More customers, more headroom.</p></div>
+      <div class="rate"><p class="n">No daily cap</p><p>No hidden daily quota. The per-minute rate is the limit.</p></div>
+      <div class="rate"><p class="n">Honest 429s</p><p>Hit the limit and you get a real <span style="font-family:var(--mono);font-size:12px">429</span> with <span style="font-family:var(--mono);font-size:12px">Retry-After</span>. No silent throttle.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <style>
+    .mcp-grid{display:grid;gap:16px;max-width:920px;margin:0 auto}
+    @media(min-width:860px){.mcp-grid{grid-template-columns:1fr 1fr}}
+    .mcp-card{background:#22242B;border:1px solid #3A3D46;border-radius:var(--r-lg);padding:24px 22px}
+    .mcp-card b{display:block;font-family:var(--disp);font-size:16px;color:#fff;margin:0 0 6px;letter-spacing:-.01em}
+    .mcp-card p{margin:0;font-size:13.5px;color:#B9B9B4}
+    .mcp-card.bad{border-color:#5A3A3A}
+    .mcp-card.bad small{color:#C98B8B}
+    .mcp-card.good{border-color:#2E5E62}
+    .mcp-card small{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+      display:block;margin-bottom:10px;color:#5CC0C6}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Also over MCP</p>
+      <h2>The same model over MCP</h2>
+      <p class="sub" style="margin:0 auto">REST and MCP use the same service and the same model. What your app reads is what your agents read.</p>
+    </div>
+    <div class="mcp-grid">
+      <div class="mcp-card bad">
+        <small>Raw MCP servers</small>
+        <b>Agents pointed straight at vendor APIs</b>
+        <p>Every tool call is a live vendor request. It spends the MSP’s shared rate budget, unpaced and unaudited. An agent that polls hard can slow every product on that tenant.</p>
+      </div>
+      <div class="mcp-card good">
+        <small>Bitlync MCP</small>
+        <b>Sync-backed and governed</b>
+        <p>Agent reads come from the same synced store as the API. Zero vendor budget spent. Writes use the same dry-run, idempotency, and audit trail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <style>
+    .tix{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;max-width:860px;margin:0 auto}
+    .tix-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line);
+      font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .tix table{width:100%;border-collapse:collapse;font-size:13.5px}
+    .tix th{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+      text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);font-weight:600}
+    .tix td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+    .tix tr:last-child td{border-bottom:none}
+    .src{font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:600}
+    @media(max-width:700px){.tix .hide-m{display:none}}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">One normalized read</p>
+      <h2>Three PSAs. One shape.</h2>
+    </div>
+    <div class="tix">
+      <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+      <table>
+        <thead><tr><th>source</th><th>status</th><th class="hide-m">priority</th><th>summary</th><th class="hide-m">company</th></tr></thead>
+        <tbody>
+          <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td class="hide-m"><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td><td class="hide-m">Acme Dental Group</td></tr>
+          <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td class="hide-m"><span class="tag write">high</span></td><td>VPN drops every few minutes</td><td class="hide-m">Northwind Accounting</td></tr>
+          <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td class="hide-m"><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td><td class="hide-m">Halcyon Health Partners</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .connect-trio .card{background:var(--panel)}
+    .connect-trio h3{font-size:16.5px}
+    .mini-probe{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:11px 13px;
+      font-family:var(--mono);font-size:11.5px;margin-top:12px}
+    .mini-probe .row{display:flex;gap:8px;align-items:center;margin:4px 0}
+    .p-ok{color:var(--ok)}.p-bad{color:var(--bad)}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">The connect experience</p>
+      <h2>MSPs connect themselves. You do not send a docs page and two empty fields.</h2>
+      <p class="sub" style="margin:0 auto">Docs and a sandbox are for ISVs. MSPs connect their own keys in a guided flow.</p>
+    </div>
+    <div class="grid g3 connect-trio">
+      <div class="card">
+        <h3>Guided, in-flow</h3>
+        <p style="margin:0;font-size:14px;color:var(--muted)">Step-by-step credential guides sit beside the fields. Portal path and permissions are in the flow, not a link out.</p>
+      </div>
+      <div class="card">
+        <h3>Validated before it ships</h3>
+        <p style="margin:0 0 2px;font-size:14px;color:var(--muted)">Each key is tested against the scopes it needs. Bad setup is caught in the flow, not weeks later as a mystery ticket.</p>
+        <div class="mini-probe" aria-label="Example validation probe output">
+          <div class="row p-ok">✓ authentication</div>
+          <div class="row p-bad">✕ missing: Service Desk — Add</div>
+          <div class="row" style="color:var(--muted)">→ fix shown · re-test in place</div>
+          <div class="row p-ok">✓ all 6 scopes verified</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Hosted, credential-isolated</h3>
+        <p style="margin:0;font-size:14px;color:var(--muted)">Credentials are entered on Bitlync. They do not touch your frontend. The MSP owns the credential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:0">
+  <style>
+    .ops-grid{display:grid;gap:16px;max-width:920px;margin:0 auto}
+    @media(min-width:860px){.ops-grid{grid-template-columns:1.15fr 1fr}}
+    .ops{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+    .ops-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 16px;
+      border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+    .ops-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);
+      font-size:13.5px;flex-wrap:wrap}
+    .ops-row:last-child{border-bottom:none}
+    .ops-row b{font-weight:600}
+    .ops-row .grow{flex:1;min-width:130px}
+    .st{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px}
+    .st i{width:7px;height:7px;border-radius:50%;flex:none}
+    .st.ok{color:var(--ok)}.st.ok i{background:var(--ok)}
+    .st.deg{color:var(--warn)}.st.deg i{background:var(--warn)}
+    .audit-link{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:600;white-space:nowrap}
+    .ops small{font-size:11.5px;color:var(--muted);display:block}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:28px">
+      <p class="eyebrow">Operated, not just hosted</p>
+      <h2>See a connection problem before a partner calls.</h2>
+      <p class="sub" style="margin:0 auto">Every MSP connection has a status and an audit log. Vendor API changes and outages show up as vendor health.</p>
+    </div>
+    <div class="ops-grid">
+      <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
+        <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+        <div class="ops-row">
+          <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
+          <span class="st ok"><i></i>healthy</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+        <div class="ops-row">
+          <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
+          <span class="st ok"><i></i>healthy</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+        <div class="ops-row">
+          <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
+          <span class="st deg"><i></i>degraded</span>
+          <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+        </div>
+      </div>
+      <div class="ops" aria-label="Mockup: vendor API health board">
+        <div class="ops-head"><span>vendor health</span><span>monitored 24/7</span></div>
+        <div class="ops-row"><div class="grow"><b>ConnectWise</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row">
+          <div class="grow"><b>Autotask</b><small>vendor API change detected · mitigation deployed</small></div>
+          <span class="st deg"><i></i>degraded</span>
+        </div>
+        <div class="ops-row"><div class="grow"><b>HaloPSA</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row"><div class="grow"><b>NinjaOne</b></div><span class="st ok"><i></i>operational</span></div>
+        <div class="ops-row"><div class="grow"><b>Datto RMM</b></div><span class="st ok"><i></i>operational</span></div>
+      </div>
+    </div>
+    <p class="disclaim">Mockup — simulated data, not a live product</p>
+  </div>
+</section>
+
+<section class="tight">
+  <style>
+    .duality{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+    @media(min-width:820px){.duality{grid-template-columns:1fr 1fr}}
+    .duo{padding:34px 30px}
+    .duo.isv{background:var(--ink);color:#EDEDEA}
+    .duo.isv .eyebrow{color:#5CC0C6}
+    .duo.isv h3{color:#fff}
+    .duo.isv p{color:#B9B9B4}
+    .duo.msp{background:var(--card)}
+    .duo p{font-size:14.5px;margin:0}
+  </style>
+  <div class="wrap">
+    <div class="center" style="margin-bottom:26px">
+      <h2>Two sides of the same API</h2>
+      <p class="sub" style="margin:0 auto">Your app uses one API. The MSP connects their own tools.</p>
+    </div>
+    <div class="duality">
+      <div class="duo isv">
+        <p class="eyebrow">For your product</p>
+        <h3>Your product talks to one API</h3>
+        <p>Write once against one schema. You do not call vendor APIs directly. Credentials stay isolated from your app.</p>
+      </div>
+      <div class="duo msp">
+        <p class="eyebrow">For the MSP</p>
+        <h3>The MSP connects their own keys</h3>
+        <p>The MSP clicks to connect, sees what is granted, and can get help grounded in their real setup. <a href="#msps" data-nav="msps" style="color:var(--accent);font-weight:600">More for MSPs →</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -484,6 +696,7 @@ main{display:block}
   </style>
   <div class="wrap">
     <div class="center" style="margin-bottom:24px">
+      <p class="eyebrow">Coming — not live yet</p>
       <h2>On the roadmap, plainly labeled</h2>
     </div>
     <div class="road-strip">
@@ -492,6 +705,12 @@ main{display:block}
       <div class="road-item"><span class="tag road">Coming</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></div>
       <div class="road-item"><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:8px">
+  <div class="wrap center">
+    <h2 style="font-family:var(--disp);font-weight:600;max-width:20ch;margin:0 auto">Start in the sandbox. Add MSP keys when you are ready.</h2>
   </div>
 </section>
 
