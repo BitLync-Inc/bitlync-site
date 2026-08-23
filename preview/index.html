@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Bitlync. Write once. Connect to many.</title>
-<meta name="description" content="One API for ISVs. Write once and connect to many MSPs. Docs and a sandbox to start."/>
+<meta name="description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -14,26 +14,28 @@
 :root{
   --paper:#F7F4EC; --card:#FBFBF8; --ink:#17181C; --mute:#6B6A64; --hair:#E4DFD4;
   --acid:#C6F04D; --void:#07080A; --panel:#101214; --dline:#2C3128; --dtext:#EDECE6; --dmute:#8B8E84;
+  --ok:#3E7C5A; --ok-soft:#E8F1EB; --warn:#A9702C; --warn-soft:#F6EEDF; --bad:#B24A4A; --bad-soft:#F1E4E4;
   --serif:'Instrument Serif',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:clip;max-width:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;max-width:100%}
 body.docs{background:var(--void);color:var(--dtext)}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+img,svg{max-width:100%;height:auto}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:80;background:var(--ink);color:var(--paper);padding:8px 12px}
 header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--hair)}
 body.docs header{background:var(--void);border-bottom-color:var(--dline)}
-.bar{max-width:1180px;margin:0 auto;padding:0 22px;height:64px;display:flex;align-items:center;gap:22px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;font-style:italic;color:var(--ink)}
+.bar{max-width:1180px;margin:0 auto;padding:0 22px;height:64px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;font-style:italic;color:var(--ink);flex:none}
 body.docs .brand{color:var(--dtext)}
 .brand .mark{display:block;color:var(--ink)}
 body.docs .brand .mark{color:#E8F0C8}
-nav.main{display:flex;gap:22px;flex:1;justify-content:center;font-size:14px;color:var(--mute)}
+nav.main{display:flex;gap:20px;flex:1;justify-content:center;font-size:14px;color:var(--mute);flex-wrap:wrap}
 body.docs nav.main{color:var(--dmute)}
 nav.main a.on,nav.main a:hover{color:var(--ink)}
 body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
@@ -42,10 +44,10 @@ body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair)}
 body.docs .btn{background:var(--dtext);color:var(--void);border-color:var(--dtext)}
 body.docs .btn.ghost{background:transparent;color:var(--dtext);border-color:var(--dline)}
-.menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px}
+.menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 @media(max-width:840px){
-  nav.main{display:none;position:fixed;inset:64px 0 auto 0;background:var(--paper);flex-direction:column;padding:16px 22px;border-bottom:1px solid var(--hair)}
+  nav.main{display:none;position:fixed;inset:64px 0 auto 0;background:var(--paper);flex-direction:column;padding:16px 22px;border-bottom:1px solid var(--hair);gap:2px}
   body.docs nav.main{background:var(--void);border-bottom-color:var(--dline)}
   nav.main.open{display:flex}
   .menu{display:block;margin-left:auto}
@@ -53,156 +55,152 @@ body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 }
 .page{display:none}.page.on{display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
-.hero{padding:72px 0 48px}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,9vw,104px);
-  line-height:.92;letter-spacing:-.03em;margin:0 0 18px}
-.hero h1 em{font-style:italic;color:var(--ink)}
-.lede{font-size:18px;color:var(--mute);max-width:38rem;margin:0 0 28px}
+.hero{padding:64px 0 40px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,9vw,96px);
+  line-height:.94;letter-spacing:-.03em;margin:0 0 18px}
+.hero h1 em{font-style:italic}
+.lede{font-size:18px;color:var(--mute);max-width:38rem;margin:0 0 24px}
 body.docs .lede{color:var(--dmute)}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.conduit{margin-top:48px;background:#17181C;border-radius:18px;padding:26px 20px 18px;overflow:hidden}
-.conduit svg{display:block;width:100%;height:auto}
-.conduit .cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:#8B8B86;text-align:center;margin:14px 0 0}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+.hub{margin-top:40px;border-radius:18px;background:var(--void);overflow:hidden;padding:14px 10px 8px}
+.hub svg{display:block;width:100%;height:auto}
 .flow{stroke-dasharray:6 10;animation:dash 2.8s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-48}}
-.term{border:1px solid #2A2C34;border-radius:14px;padding:18px 20px;font-family:var(--mono);
-  font-size:12.5px;line-height:1.7;color:#C9CBBF;background:#101116}
-.term .k{color:#EDECE6}.term .s{color:#C8B48A}.term .c{color:#6E7364}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
-.reveal.in{opacity:1;transform:none}
 .kicker{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 10px}
 body.docs .kicker{color:var(--acid)}
-h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,52px);letter-spacing:-.02em;line-height:1.05;margin:0 0 14px}
-h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 8px;letter-spacing:-.015em}
-.sub{color:var(--mute);max-width:40rem}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.5vw,48px);letter-spacing:-.02em;line-height:1.08;margin:0 0 12px}
+h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.015em;margin:0 0 8px}
+.sub{color:var(--mute);max-width:44rem;margin:0 0 22px}
 body.docs .sub{color:var(--dmute)}
 section.pad{padding:72px 0}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
-.card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px 20px}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;min-width:0}
 .grid{display:grid;gap:14px}
-@media(min-width:900px){.g3{grid-template-columns:1fr 1fr 1fr}.g2{grid-template-columns:1fr 1fr}}
-.step .num{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute);margin:0 0 8px}
-.step p{margin:0;font-size:14.5px;color:var(--mute)}
-.inc-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:28px}
-.inc{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
-.inc b{display:block;font-size:15px;font-weight:600;margin:0 0 5px}
+.g3,.g2{grid-template-columns:1fr}
+@media(min-width:820px){.g3{grid-template-columns:1fr 1fr 1fr}.g2{grid-template-columns:1fr 1fr}}
+.num{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;font-weight:500;margin:0 0 8px}
+.inc-grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:700px){.inc-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.inc-grid{grid-template-columns:1fr 1fr 1fr}}
+.inc{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px;min-width:0}
+.inc b{display:block;font-size:15px;margin:0 0 5px}
 .inc p{margin:0;font-size:13.5px;color:var(--mute)}
-.code-well{background:#101116;border:1px solid #2A2C34;border-radius:14px;overflow:hidden;margin-top:22px}
-.code-well .hd{padding:11px 16px;border-bottom:1px solid #2A2C34;font-family:var(--mono);font-size:11.5px;color:#8B8B86}
-.code-well pre{margin:0;padding:18px 20px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:#D9D9D4;overflow:auto}
-.dx{display:grid;gap:12px;margin-top:16px}
-@media(min-width:800px){.dx{grid-template-columns:1fr 1fr}}
-.dx article{border:1px solid var(--hair);border-radius:12px;padding:14px 16px;background:var(--card)}
-.dx b{display:block;margin-bottom:4px}
-.dx p{margin:0;color:var(--mute);font-size:14px}
-.mcp{display:grid;gap:14px;margin-top:22px}
-@media(min-width:800px){.mcp{grid-template-columns:1fr 1fr}}
-.mcp article{background:#17181C;color:#C9C9C4;border:1px solid #2A2C34;border-radius:14px;padding:22px}
-.mcp small{font-family:var(--mono);font-size:11px;color:#8B8B86;display:block;margin-bottom:8px}
-.mcp b{display:block;color:#EDECE6;font-size:16px;margin:0 0 6px}
-.mcp p{margin:0;font-size:14px}
-.tix{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:auto;margin-top:22px}
-.tix .hd{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
-.tix table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
-.tix th{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:left;padding:10px 14px;border-bottom:1px solid var(--hair);font-weight:500}
+.dark{background:var(--ink);color:#EDEDEA}
+.dark .kicker{color:var(--acid)}
+.dark h2{color:#fff}
+.dark .sub{color:#B9B9B4}
+.code-shell{background:#101116;border:1px solid #2A2C34;border-radius:14px;overflow:hidden;max-width:760px;margin:0 auto}
+.code-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid #2A2C34;font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.7;color:#D9D9D4;white-space:pre-wrap;word-break:break-word}
+.c-com{color:#6F7A6F}.c-kw{color:var(--acid)}.c-str{color:#D9B47C}
+.dx-notes{display:grid;gap:12px;max-width:760px;margin:18px auto 0;grid-template-columns:1fr}
+@media(min-width:820px){.dx-notes{grid-template-columns:1fr 1fr 1fr}}
+.dx-note{background:#22242B;border:1px solid #3A3D46;border-radius:10px;padding:14px 16px;font-size:13px;color:#B9B9B4}
+.dx-note b{display:block;color:#fff;font-size:13.5px;margin-bottom:3px}
+.mcp-grid{display:grid;gap:14px;max-width:920px;margin:0 auto}
+@media(min-width:860px){.mcp-grid{grid-template-columns:1fr 1fr}}
+.mcp-card{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:22px}
+.mcp-card b{display:block;font-family:var(--serif);font-size:20px;color:#fff;margin:0 0 6px}
+.mcp-card p{margin:0;font-size:14px;color:#B9B9B4}
+.mcp-card small{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:10px;color:var(--acid)}
+.mcp-card.bad{border-color:#5A3A3A}
+.mcp-card.good{border-color:#3A4A28}
+.tix{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;max-width:860px;margin:0 auto}
+.tix-head{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.tix-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.tix table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
+.tix th{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);text-align:left;padding:10px 14px;border-bottom:1px solid var(--hair);font-weight:600}
 .tix td{padding:11px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
 .tix tr:last-child td{border-bottom:none}
-.src{font-family:var(--mono);font-size:11.5px}
-.st-word{font-family:var(--mono);font-size:11px;border:1px solid var(--hair);border-radius:999px;padding:2px 7px;color:var(--ink)}
+.src{font-family:var(--mono);font-size:11.5px;font-weight:500}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:3px 7px;font-weight:600;white-space:nowrap}
+.tag.built{background:var(--ok-soft);color:var(--ok)}
+.tag.next{background:#EFEADF;color:#7A6A3A}
+.tag.road{background:#EDEDE8;color:var(--mute)}
+.tag.read{background:#E8F1EB;color:var(--ok)}
+.tag.write{background:var(--warn-soft);color:var(--warn)}
+.tag.never{background:var(--bad-soft);color:var(--bad)}
+.tag.lock{background:#17181C;color:#F7F4EC}
+.dark .tag.road{background:#2A2C34;color:#8B8B86}
+.dark .tag.lock{background:var(--acid);color:#111}
 .disclaim{font-family:var(--mono);font-size:11.5px;color:var(--mute);margin:10px 0 0;text-align:center}
-.probe{border:1px solid var(--hair);border-radius:10px;background:var(--paper);padding:11px 13px;
-  font-family:var(--mono);font-size:11.5px;margin-top:12px}
-.probe .ok{color:var(--ink)}.probe .bad{color:var(--mute)}
-.ops-grid{display:grid;gap:14px;margin-top:22px}
+.mini-probe{border:1px solid var(--hair);border-radius:8px;background:var(--card);padding:11px 13px;font-family:var(--mono);font-size:11.5px;margin-top:12px}
+.mini-probe .row{display:flex;gap:8px;align-items:center;margin:4px 0}
+.p-ok{color:var(--ok)}.p-bad{color:var(--bad)}
+.ops-grid{display:grid;gap:14px}
 @media(min-width:860px){.ops-grid{grid-template-columns:1.15fr 1fr}}
 .ops{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
-.ops-head{display:flex;justify-content:space-between;gap:8px;padding:11px 16px;border-bottom:1px solid var(--hair);
-  font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.ops-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
 .ops-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--hair);font-size:13.5px;flex-wrap:wrap}
 .ops-row:last-child{border-bottom:none}
-.ops-row .grow{flex:1;min-width:130px}
-.ops-row small{display:block;font-size:11.5px;color:var(--mute)}
-.dot{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ink)}
-.dot i{width:7px;height:7px;border-radius:50%;background:var(--ink);flex:none}
-.dot.deg{color:var(--mute)}.dot.deg i{background:var(--mute)}
-.dark-band{background:#17181C;color:#EDEDEA}
-.dark-band h2{color:#fff}
-.dark-band .sub{color:#B9B9B4}
-.dark-band .kicker{color:#8B8B86}
-.road{display:grid;gap:12px}
+.ops-row .grow{flex:1;min-width:120px}
+.st{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px}
+.st i{width:7px;height:7px;border-radius:50%;flex:none}
+.st.ok{color:var(--ok)}.st.ok i{background:var(--ok)}
+.st.deg{color:var(--warn)}.st.deg i{background:var(--warn)}
+.audit-link{font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap}
+.ops small{font-size:11.5px;color:var(--mute);display:block}
+.road{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
 @media(min-width:800px){.road{grid-template-columns:1fr 1fr}}
-.road article{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:18px}
-.road b{display:block;font-size:16px;color:#fff;margin:6px 0}
-.road p{margin:0;color:#B9B9B4;font-size:14px}
-.tag{font-family:var(--mono);font-size:11px;color:#8B8B86}
-.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:32px}
-@media(max-width:720px){.grid9{grid-template-columns:repeat(3,1fr)}.cell{padding:12px 8px}.cell b{font-size:13px}.cell .cat{font-size:11px;margin:4px 0 8px}}
-.cell{background:var(--card);padding:18px 16px}
-.cell b{display:block;font-size:15px;font-weight:600}
-.cell .cat{display:block;color:var(--mute);font-size:12.5px;margin:6px 0 10px}
-.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
-  background:transparent;color:var(--ink);border:1px solid var(--ink);padding:2px 7px;border-radius:999px}
-.quiet{color:var(--mute);font-size:15px;max-width:36rem;margin:18px 0 0}
-body.docs .quiet{color:var(--dmute)}
-.cat-block{margin:56px 0 0}
-.cat-block h3{font-family:var(--serif);font-size:28px;margin:0 0 10px}
-.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--hair);font-size:15px}
+.road article{background:var(--card);padding:20px;min-width:0}
+.road b{display:block;font-size:16px;margin:6px 0}
+.road p{margin:0;color:var(--mute);font-size:14px}
+.grid9{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%}
+.cell{background:var(--card);padding:16px 12px;min-width:0}
+.cell b{display:block;font-size:14.5px;font-weight:600;overflow-wrap:anywhere}
+.cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
+.quiet{color:var(--mute);font-size:15px;max-width:40rem;margin:16px 0 0}
+.cat-block{margin:40px 0 0}
+.cat-block h3{margin:0 0 10px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--hair);font-size:15px;flex-wrap:wrap}
 .next{color:var(--mute);font-family:var(--mono);font-size:11px}
-.secured{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--ink);padding:12px 16px;border-radius:12px;margin:18px 0 28px}
-.grant{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:8px 0}
-.gchip{font-family:var(--mono);font-size:11px;border:1px solid var(--ink);border-radius:999px;padding:2px 7px;flex:none}
-.posture{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-.pos{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:20px 18px}
-.pos b{display:block;color:#fff;margin:0 0 5px}
-.pos p{margin:0;font-size:13.5px;color:#B9B9B4}
-.portal{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden;max-width:720px;margin:22px auto 0}
+.secured{display:inline-flex;align-items:flex-start;gap:12px;border:1px solid var(--ink);padding:12px 16px;border-radius:12px;margin:18px 0 28px;max-width:100%;flex-wrap:wrap}
+.posture{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:700px){.posture{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.posture{grid-template-columns:1fr 1fr 1fr}}
+.pos{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px;min-width:0}
+.pos b{display:block;margin:0 0 6px}
+.pos p{margin:0;font-size:13.5px;color:var(--mute)}
+.portal-mock{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden;max-width:720px;margin:0 auto}
 .pm-head{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
 .pm-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--hair);flex-wrap:wrap}
 .pm-row:last-child{border-bottom:none}
-.pm-row i{width:32px;height:32px;flex:none;border-radius:8px;background:var(--ink);color:var(--paper);
-  display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-style:normal;font-weight:600}
-.pm-row .meta{flex:1;min-width:160px}
+.pm-row i{width:32px;height:32px;flex:none;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-style:normal;font-weight:600}
+.pm-row .meta{flex:1;min-width:140px}
 .pm-row b{display:block;font-size:14px}
 .pm-row small{font-size:11.5px;color:var(--mute)}
-.revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--ink);font-weight:600}
-.form-band{border:1px solid var(--hair);border-radius:18px;padding:8px;background:var(--card)}
-.form-band iframe{width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
+.health{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ok);flex-wrap:wrap}
+.health i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--bad);font-weight:600}
+.form-band{border:1px solid var(--hair);border-radius:18px;padding:8px;background:var(--card);max-width:100%}
+.form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-.docs-shell{display:grid;gap:36px;padding:36px 0 80px}
+.docs-shell{display:grid;gap:28px;padding:36px 0 80px;grid-template-columns:1fr}
 @media(min-width:900px){.docs-shell{grid-template-columns:220px 1fr;align-items:start}}
-.docs-tree{position:sticky;top:80px;font-size:14px}
-.docs-tree p{font-family:var(--mono);font-size:11px;color:var(--acid);margin:0 0 12px}
+.docs-tree{font-size:14px}
+@media(min-width:900px){.docs-tree{position:sticky;top:80px}}
+@media(max-width:899px){.docs-tree{position:static;display:flex;flex-wrap:wrap;gap:4px 16px;padding-bottom:8px;border-bottom:1px solid var(--dline)}}
+.docs-tree p{font-family:var(--mono);font-size:11px;color:var(--acid);margin:0 0 12px;width:100%}
 .docs-tree a{display:block;padding:7px 0;color:var(--dmute)}
 .docs-tree a.on,.docs-tree a:hover{color:var(--dtext)}
-@media(max-width:899px){
-  .docs-shell{grid-template-columns:1fr;overflow-x:clip}
-  .docs-tree{position:static;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;
-    padding:0 0 16px;margin:0 0 8px;border-bottom:1px solid var(--dline)}
-  .docs-tree p{width:100%;margin:0 0 4px}
-  .docs-tree a{display:inline-block;padding:6px 0}
-  .docs-body{overflow-x:clip;min-width:0}
-}
 .dpanel{display:none}.dpanel.on{display:block}
-.docs-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,68px);
-  line-height:.98;letter-spacing:-.03em;margin:0 0 16px}
+.docs-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,6vw,64px);line-height:.98;letter-spacing:-.03em;margin:0 0 16px}
 .code{border:1px solid var(--dline);border-radius:14px;background:var(--panel);overflow:hidden;margin:18px 0}
-.code .hd{display:flex;justify-content:space-between;gap:12px;align-items:center;
-  padding:10px 14px;border-bottom:1px solid var(--dline);font-family:var(--mono);font-size:11.5px;color:var(--dmute)}
+.code .hd{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--dline);font-family:var(--mono);font-size:11.5px;color:var(--dmute)}
 .code .hd b{color:var(--acid);font-weight:500}
 .code pre{margin:0;padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.65;overflow:auto;color:#C9CBBF}
 .copy{font-family:var(--mono);font-size:11px;border:1px solid var(--dline);border-radius:999px;padding:3px 8px;color:var(--dtext);cursor:pointer}
 .two{display:grid;gap:1px;background:var(--dline);border:1px solid var(--dline);border-radius:14px;overflow:hidden;margin:18px 0}
 @media(min-width:900px){.two{grid-template-columns:1fr 1.15fr}}
-.two article{background:var(--panel);padding:18px 18px 16px}
+.two article{background:var(--panel);padding:18px 18px 16px;min-width:0}
 .two .path{font-family:var(--mono);font-size:13px;color:var(--acid);margin:0 0 8px}
 .two h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}
 .rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:18px 0}
 .rt th{text-align:left;font-family:var(--mono);font-size:11px;color:var(--acid);font-weight:500;padding:8px 8px 8px 0;border-bottom:1px solid var(--dline)}
-.rt td{padding:10px 10px 10px 0;border-bottom:1px solid var(--dline);vertical-align:top}
+.rt td{padding:10px 10px 10px 0;border-bottom:1px solid var(--dline);vertical-align:top;word-break:break-word}
+.rt-wrap{overflow-x:auto;max-width:100%}
 .rt code,.inline{font-family:var(--mono);font-size:12px}
 .note{color:var(--dmute);font-size:14.5px;max-width:42rem}
 .obj{border-top:1px solid var(--dline);padding:22px 0}
@@ -213,18 +211,40 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .coming{font-family:var(--mono);font-size:11px;color:var(--acid);border:1px solid var(--acid);border-radius:999px;padding:3px 8px}
 .uc{border-top:1px solid var(--dline);padding:22px 0}
 .uc h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
-.arch{margin:28px 0;border:1px solid var(--dline);border-radius:16px;background:#101214;padding:16px 14px 10px;overflow-x:clip}
+.arch{margin:28px 0;border:1px solid var(--dline);border-radius:16px;background:var(--panel);padding:10px;overflow:hidden}
 .arch svg{display:block;width:100%;height:auto}
-.arch .cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dmute);text-align:center;margin:10px 0 4px}
-@media(max-width:560px){
-  .wrap{padding:0 16px}
-  .hero{padding:48px 0 32px}
+.term{border-top:1px solid var(--dline);padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:#C9CBBF;background:var(--void)}
+.term .k{color:var(--acid)}.term .s{color:#E8D48A}.term .c{color:#6E7364}
+@media(max-width:375px){
+  .wrap,.bar{padding-left:14px;padding-right:14px}
   section.pad{padding:48px 0}
-  .hero h1{font-size:clamp(40px,12vw,72px)}
+  .hero{padding:40px 0 24px}
+  .hero h1{font-size:clamp(34px,12vw,48px)}
+  .cell{padding:10px 6px}
+  .cell b{font-size:12px}
+  .cell .cat{font-size:10.5px}
+  .card,.inc,.pos{padding:16px 14px}
+  .hub{padding:8px 4px 4px}
+  .btn-row .btn{flex:1 1 100%;text-align:center}
 }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+.docs-tree .nest{display:flex;flex-direction:column;gap:0;padding:0 0 8px 12px;width:100%;max-width:100%;overflow-x:clip}
+.docs-tree .nest a{font-size:12.5px;padding:4px 0;overflow-wrap:anywhere}
+.toc{display:flex;flex-wrap:wrap;gap:8px 16px;margin:8px 0 20px;max-width:100%;overflow-x:clip}
+.toc a{font-family:var(--mono);font-size:12px;color:var(--dmute);overflow-wrap:anywhere}
+.toc a:hover,.toc a.on{color:var(--dtext)}
+.concept{border-top:1px solid var(--dline);padding:26px 0 10px;min-width:0;max-width:100%;overflow-x:clip;overflow-wrap:anywhere;word-break:break-word}
+.concept h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,3.6vw,30px);letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
+.concept .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--acid);margin:14px 0 6px}
+@media(max-width:899px){
+  .docs-shell,.docs-tree,.dpanel{overflow-x:clip;max-width:100%}
+  .docs-tree .nest{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:2px 14px;padding:0 0 8px}
+  .docs-tree .nest a{display:inline;padding:4px 0}
+  .concept,.concept .code,.concept pre{overflow-x:clip;max-width:100%}
 }
 </style>
 </head>
@@ -244,90 +264,89 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <button class="menu" id="menuBtn" type="button" aria-expanded="false">Menu</button>
   </div>
 </header>
-
 <main>
 <div class="page on" id="page-home">
   <section class="hero">
     <div class="wrap">
       <p class="kicker">One API for ISVs</p>
       <h1>Write once.<br><em>Connect to many.</em></h1>
-      <p class="lede">Your product talks to Bitlync. MSPs paste their own PSA and RMM keys. Docs and a sandbox are how you start. Connectors are in the product today, against a seeded sandbox.</p>
+      <p class="lede">Write your product against Bitlync once. It can reach the PSA, RMM, distributor, and documentation tools your MSP customers run. Reads come from our store. Writes are checked before they go out.</p>
       <div class="btn-row">
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#product" data-nav="product">See how it works</a>
         <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
       </div>
-      <div class="conduit reveal" aria-label="Many systems fold into Bitlync, then one shape reaches your product">
-        <svg viewBox="0 0 720 340" role="img">
-          <g font-family="JetBrains Mono,monospace" font-size="12" fill="#C9C9C4">
-            <rect x="16" y="14" width="128" height="30" rx="6" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="56" width="128" height="30" rx="15" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="98" width="128" height="30" rx="2" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="140" width="128" height="30" rx="10" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="182" width="128" height="30" rx="4" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="224" width="128" height="30" rx="13" fill="#22242B" stroke="#3A3D46"/>
-            <rect x="16" y="266" width="128" height="30" rx="8" fill="#22242B" stroke="#3A3D46"/>
-            <text x="30" y="33">PSA</text>
-            <text x="30" y="75">RMM</text>
-            <text x="30" y="117">Commerce</text>
-            <text x="30" y="159">Docs</text>
-            <text x="30" y="201">GRC</text>
-            <text x="30" y="243">Productivity</text>
-            <text x="30" y="285">Quoting</text>
+      <div class="hub" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
+        <svg viewBox="0 0 720 360" role="img">
+          <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+            <rect x="16" y="18" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="64" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="110" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="156" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="202" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="248" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="294" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <text x="82" y="36" text-anchor="middle">PSA</text>
+            <text x="82" y="82" text-anchor="middle">RMM</text>
+            <text x="82" y="128" text-anchor="middle">Commerce</text>
+            <text x="82" y="174" text-anchor="middle">Productivity</text>
+            <text x="82" y="220" text-anchor="middle">Documentation</text>
+            <text x="82" y="266" text-anchor="middle">GRC/vCIO</text>
+            <text x="82" y="312" text-anchor="middle">Quoting/CPQ</text>
           </g>
-          <g fill="none" stroke="#9AA09A" stroke-width="1.5">
-            <path class="flow" d="M144 29 C 250 29, 300 160, 368 170"/>
-            <path class="flow" d="M144 71 C 248 71, 304 162, 368 170"/>
-            <path class="flow" d="M144 113 C 246 113, 308 166, 368 170"/>
-            <path class="flow" d="M144 155 C 246 155, 310 170, 368 170"/>
-            <path class="flow" d="M144 197 C 246 197, 308 174, 368 170"/>
-            <path class="flow" d="M144 239 C 248 239, 304 178, 368 170"/>
-            <path class="flow" d="M144 281 C 250 281, 300 180, 368 170"/>
+          <g fill="none" stroke="#8B8E84" stroke-width="1.25">
+            <path class="flow" d="M148 32 C 250 32, 300 170, 392 176"/>
+            <path class="flow" d="M148 78 C 248 78, 304 172, 392 178"/>
+            <path class="flow" d="M148 124 C 246 124, 308 174, 392 180"/>
+            <path class="flow" d="M148 170 C 246 170, 310 178, 392 182"/>
+            <path class="flow" d="M148 216 C 246 216, 308 186, 392 184"/>
+            <path class="flow" d="M148 262 C 248 262, 304 190, 392 186"/>
+            <path class="flow" d="M148 308 C 250 308, 300 194, 392 188"/>
           </g>
-          <circle cx="412" cy="170" r="42" fill="#101214" stroke="#EDECE6" stroke-width="1.5"/>
-          <text x="412" y="176" text-anchor="middle" font-family="Instrument Serif,serif" font-size="18" font-style="italic" fill="#EDECE6">bitlync</text>
-          <path class="flow" d="M454 170 H 530" stroke="#9AA09A" fill="none" stroke-width="1.5"/>
-          <rect x="534" y="155" width="168" height="30" rx="6" fill="#22242B" stroke="#3A3D46"/>
-          <text x="618" y="175" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="#C9C9C4">Your product</text>
+          <circle cx="430" cy="182" r="38" fill="none" stroke="#EDECE6" stroke-width="1.6"/>
+          <text x="430" y="187" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
+          <path class="flow" d="M468 182 H 548" fill="none" stroke="#8B8E84" stroke-width="1.4"/>
+          <rect x="552" y="166" width="148" height="32" rx="14" fill="#16181C" stroke="#3A3D46"/>
+          <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
         </svg>
-        <p class="cap">many systems → one shape → your product writes once</p>
       </div>
     </div>
   </section>
 </div>
-
 <div class="page" id="page-product">
   <section class="pad" style="padding-bottom:28px">
-    <div class="wrap">
-      <p class="kicker">How Bitlync works</p>
-      <h2>One model. The MSP connects their tools.</h2>
+    <div class="wrap center">
+      <p class="kicker">The product</p>
+      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,56px);margin:0 0 12px">How Bitlync works</h1>
       <p class="sub">One model underneath. Your product uses one API. The MSP connects their own tools.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap grid g3">
-      <article class="card step">
+      <div class="card">
         <p class="num">01 — Your product integrates once</p>
         <h3>One schema, every vendor</h3>
-        <p>Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
-      </article>
-      <article class="card step">
+        <p class="quiet" style="margin:0">Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
+      </div>
+      <div class="card">
         <p class="num">02 — Customers connect themselves</p>
         <h3>Self-serve, guided, validated</h3>
-        <p>The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
-      </article>
-      <article class="card step">
+        <p class="quiet" style="margin:0">The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
+      </div>
+      <div class="card">
         <p class="num">03 — Act through the stack</p>
         <h3>Read and write, safely</h3>
-        <p>Open a ticket or update a device through the API. Writes that already support it take <code class="inline">dry_run</code> and an <code class="inline">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
-      </article>
+        <p class="quiet" style="margin:0">Open a ticket or update a device through the API. Writes that already support it take <code class="inline">dry_run</code> and an <code class="inline">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
+      </div>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">Everything that comes with an integration</p>
-      <h2>Every layer you'd otherwise build, bundled</h2>
-      <p class="sub">These are not add-ons. Caching, retries, validation, and the vault ship with every connection.</p>
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Everything that comes with an integration</p>
+        <h2>Every layer you'd otherwise build, bundled</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">These are not add-ons. Caching, retries, validation, and the vault ship with every connection.</p>
+      </div>
       <div class="inc-grid">
         <div class="inc"><b>Caching</b><p>Reads come from our synced store. They are fast and do not spend the vendor rate budget. Each response says where it came from and when it was synced.</p></div>
         <div class="inc"><b>Rate-limit handling</b><p>We pace every call against each vendor's real limits so your product never trips them by accident.</p></div>
@@ -342,152 +361,178 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
     </div>
   </section>
-  <section class="pad">
+  <section class="dark pad">
     <div class="wrap">
-      <p class="kicker">Developer experience</p>
-      <h2>One call. Same shape every time.</h2>
-      <div class="code-well">
-        <div class="hd">GET /tenants/{msp}/tickets</div>
-        <div class="term" style="border:0;border-radius:0;background:transparent">
-          <div><span class="k">GET</span> /tenants/{msp}/tickets</div>
-          <div class="c">X-API-Key: blk_live_••••••••</div>
-          <div style="margin-top:10px"><span class="k">200 OK</span></div>
-          <div>{</div>
-          <div>  <span class="s">"served_from"</span>: <span class="s">"store"</span>,            <span class="c">// read from our synced store</span></div>
-          <div>  <span class="s">"last_synced_at"</span>: <span class="s">"2026-07-11T14:03:22Z"</span>,</div>
-          <div>  <span class="s">"data"</span>: [{</div>
-          <div>    <span class="s">"id"</span>: <span class="s">"tkt_8f31"</span>,</div>
-          <div>    <span class="s">"status"</span>: <span class="s">"in_progress"</span>,       <span class="c">// normalized across every PSA</span></div>
-          <div>    <span class="s">"summary"</span>: <span class="s">"VPN drops every few minutes"</span>,</div>
-          <div>    <span class="s">"raw"</span>: { … }                    <span class="c">// the vendor's original payload</span></div>
-          <div>  }]</div>
-          <div>}</div>
-        </div>
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Developer experience</p>
+        <h2>One call. Same shape every time.</h2>
       </div>
-      <div class="dx">
-        <article><b>Writes are governed</b><p>Every write takes <code class="inline">dry_run</code> to preview and an <code class="inline">idempotency_key</code> to make retries safe.</p></article>
-        <article><b>Escape hatch, always</b><p>The normalized shape is the default; the vendor's raw payload rides along under <code class="inline">.raw</code> when you need it.</p></article>
+      <div class="code-shell">
+        <div class="code-head">one read — any PSA underneath</div>
+<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
+<span class="c-com">X-API-Key: blk_live_••••••••</span>
+
+<span class="c-kw">200 OK</span>
+{
+  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
+  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
+  <span class="c-str">"data"</span>: [{
+    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
+    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
+    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
+    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
+  }]
+}</pre>
+      </div>
+      <div class="dx-notes">
+        <div class="dx-note"><b>Writes are governed</b>Every write takes <span style="font-family:var(--mono)">dry_run</span> to preview and an <span style="font-family:var(--mono)">idempotency_key</span> to make retries safe.</div>
+        <div class="dx-note"><b>Escape hatch, always</b>The normalized shape is the default; the vendor's raw payload rides along under <span style="font-family:var(--mono)">.raw</span> when you need it.</div>
+        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. curl, Python and TypeScript clients. First call the same day.</div>
       </div>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="dark pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">Also over MCP</p>
-      <h2>The same model over MCP</h2>
-      <p class="sub">REST and MCP use the same service and the same model. What your app reads is what your agents read.</p>
-      <div class="mcp">
-        <article>
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Also over MCP</p>
+        <h2>The same model over MCP</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">REST and MCP use the same service and the same model. What your app reads is what your agents read.</p>
+      </div>
+      <div class="mcp-grid">
+        <div class="mcp-card bad">
           <small>Raw MCP servers</small>
           <b>Agents pointed straight at vendor APIs</b>
           <p>Every tool call is a live vendor request. It spends the MSP’s shared rate budget, unpaced and unaudited. An agent that polls hard can slow every product on that tenant.</p>
-        </article>
-        <article>
+        </div>
+        <div class="mcp-card good">
           <small>Bitlync MCP</small>
           <b>Sync-backed and governed</b>
           <p>Agent reads come from the same synced store as the API. Zero vendor budget spent. Writes use the same dry-run, idempotency, and audit trail.</p>
-        </article>
+        </div>
       </div>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="pad">
     <div class="wrap">
-      <p class="kicker">One normalized read</p>
-      <h2>Same status. Every PSA.</h2>
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">One normalized read</p>
+        <h2>Same status. Every PSA.</h2>
+      </div>
       <div class="tix">
-        <div class="hd">normalized tickets — 3 sources, 1 shape</div>
+        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+        <div class="tix-scroll">
         <table>
-          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th><th>company</th></tr></thead>
+          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
           <tbody>
-            <tr><td class="src">connectwise</td><td><span class="st-word">waiting</span></td><td>critical</td><td>Server room UPS reporting battery fault</td><td>Acme Dental Group</td></tr>
-            <tr><td class="src">autotask</td><td><span class="st-word">in progress</span></td><td>high</td><td>VPN drops every few minutes</td><td>Northwind Accounting</td></tr>
-            <tr><td class="src">halopsa</td><td><span class="st-word">waiting</span></td><td>critical</td><td>Phishing report — possible compromise</td><td>Halcyon Health Partners</td></tr>
+            <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td></tr>
+            <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
+            <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">The connect experience</p>
-      <h2>MSPs connect themselves. You do not send a docs page and two empty fields.</h2>
-      <p class="sub">Docs and a sandbox are for ISVs. MSPs connect their own keys in a guided flow.</p>
-      <div class="grid g3" style="margin-top:22px">
-        <article class="card">
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">The connect experience</p>
+        <h2>MSPs connect themselves. You do not send a docs page and two empty fields.</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Docs and a sandbox are for ISVs. MSPs connect their own keys in a guided flow.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card">
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Step-by-step credential guides sit beside the fields. Portal path and permissions are in the flow, not a link out.</p>
-        </article>
-        <article class="card">
+        </div>
+        <div class="card">
           <h3>Validated before it ships</h3>
-          <p class="quiet" style="margin:0">Each key is tested against the scopes it needs. Bad setup is caught in the flow, not weeks later as a mystery ticket.</p>
-          <div class="probe" aria-label="Example validation probe output">
-            <div class="ok">✓ authentication</div>
-            <div class="bad">✕ missing: Service Desk — Add</div>
-            <div class="bad">→ fix shown · re-test in place</div>
-            <div class="ok">✓ all 6 scopes verified</div>
+          <p class="quiet" style="margin:0 0 2px">Each key is tested against the scopes it needs. Bad setup is caught in the flow, not weeks later as a mystery ticket.</p>
+          <div class="mini-probe" aria-label="Example validation probe output">
+            <div class="row p-ok">✓ authentication</div>
+            <div class="row p-bad">✕ missing: Service Desk — Add</div>
+            <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
+            <div class="row p-ok">✓ all 6 scopes verified</div>
           </div>
-        </article>
-        <article class="card">
+        </div>
+        <div class="card">
           <h3>Hosted, credential-isolated</h3>
           <p class="quiet" style="margin:0">Credentials are entered on Bitlync. They do not touch your frontend. The MSP owns the credential.</p>
-        </article>
+        </div>
       </div>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">Operated, not just hosted</p>
-      <h2>See a connection problem before a partner calls.</h2>
-      <p class="sub">Every MSP connection has a status and an audit log. Vendor API changes and outages show up as vendor health.</p>
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Operated, not just hosted</p>
+        <h2>See a connection problem before a partner calls.</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Every MSP connection has a status and an audit log. Vendor API changes and outages show up as vendor health.</p>
+      </div>
       <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
           <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
-          <div class="ops-row"><div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div><span class="dot"><i></i>healthy</span></div>
-          <div class="ops-row"><div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div><span class="dot"><i></i>healthy</span></div>
-          <div class="ops-row"><div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div><span class="dot deg"><i></i>degraded</span></div>
+          <div class="ops-row">
+            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
+            <span class="st ok"><i></i>healthy</span>
+            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+          </div>
+          <div class="ops-row">
+            <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
+            <span class="st ok"><i></i>healthy</span>
+            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+          </div>
+          <div class="ops-row">
+            <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
+            <span class="st deg"><i></i>degraded</span>
+            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+          </div>
         </div>
         <div class="ops" aria-label="Mockup: vendor API health board">
           <div class="ops-head"><span>vendor health</span><span>monitored 24/7</span></div>
-          <div class="ops-row"><div class="grow"><b>ConnectWise</b></div><span class="dot"><i></i>operational</span></div>
-          <div class="ops-row"><div class="grow"><b>Autotask</b><small>vendor API change detected · mitigation deployed</small></div><span class="dot deg"><i></i>degraded</span></div>
-          <div class="ops-row"><div class="grow"><b>HaloPSA</b></div><span class="dot"><i></i>operational</span></div>
-          <div class="ops-row"><div class="grow"><b>NinjaOne</b></div><span class="dot"><i></i>operational</span></div>
-          <div class="ops-row"><div class="grow"><b>Datto RMM</b></div><span class="dot"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>ConnectWise</b></div><span class="st ok"><i></i>operational</span></div>
+          <div class="ops-row">
+            <div class="grow"><b>Autotask</b><small>vendor API change detected · mitigation deployed</small></div>
+            <span class="st deg"><i></i>degraded</span>
+          </div>
+          <div class="ops-row"><div class="grow"><b>HaloPSA</b></div><span class="st ok"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>NinjaOne</b></div><span class="st ok"><i></i>operational</span></div>
+          <div class="ops-row"><div class="grow"><b>Datto RMM</b></div><span class="st ok"><i></i>operational</span></div>
         </div>
       </div>
       <p class="disclaim">Mockup — simulated data, not a live product</p>
     </div>
   </section>
-  <section class="dark-band pad">
+  <section class="pad" style="padding-top:8px">
     <div class="wrap">
       <h2>On the roadmap</h2>
-      <div class="road" style="margin-top:22px">
-        <article><span class="tag">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></article>
-        <article><span class="tag">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></article>
-        <article><span class="tag">Coming</span><b>Direct-to-Bitlync cutover.</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></article>
-        <article><span class="tag">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></article>
+      <div class="road">
+        <article><span class="tag road">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></article>
+        <article><span class="tag road">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></article>
+        <article><span class="tag lock">Locked</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></article>
+        <article><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></article>
       </div>
     </div>
   </section>
 </div>
-
 <div class="page" id="page-integrations">
   <section class="pad">
     <div class="wrap">
       <p class="kicker">Coverage</p>
       <h2>Connectors in the product today.</h2>
+      <p class="sub">One layer across PSA, RMM, documentation, commerce, and GRC. Live means a connector is in the product today, against a seeded sandbox. Not a production AWS tenant. The rest is sequenced by partner demand.</p>
       <div class="grid9">
-        <div class="cell"><b>ConnectWise</b><span class="cat">PSA</span><span class="chip">Live</span></div>
-        <div class="cell"><b>HaloPSA</b><span class="cat">PSA</span><span class="chip">Live</span></div>
-        <div class="cell"><b>Autotask</b><span class="cat">PSA</span><span class="chip">Live</span></div>
-        <div class="cell"><b>NinjaOne</b><span class="cat">RMM</span><span class="chip">Live</span></div>
-        <div class="cell"><b>Datto RMM</b><span class="cat">RMM</span><span class="chip">Live</span></div>
-        <div class="cell"><b>ScalePad</b><span class="cat">GRC</span><span class="chip">Live</span></div>
-        <div class="cell"><b>Pax8</b><span class="cat">Commerce</span><span class="chip">Live</span></div>
-        <div class="cell"><b>IT Glue</b><span class="cat">Documentation</span><span class="chip">Live</span></div>
-        <div class="cell"><b>Hudu</b><span class="cat">Documentation</span><span class="chip">Live</span></div>
+        <div class="cell"><b>ConnectWise</b><span class="cat">PSA</span></div>
+        <div class="cell"><b>HaloPSA</b><span class="cat">PSA</span></div>
+        <div class="cell"><b>Autotask</b><span class="cat">PSA</span></div>
+        <div class="cell"><b>NinjaOne</b><span class="cat">RMM</span></div>
+        <div class="cell"><b>Datto RMM</b><span class="cat">RMM</span></div>
+        <div class="cell"><b>ScalePad</b><span class="cat">GRC</span></div>
+        <div class="cell"><b>Pax8</b><span class="cat">Commerce</span></div>
+        <div class="cell"><b>IT Glue</b><span class="cat">Documentation</span></div>
+        <div class="cell"><b>Hudu</b><span class="cat">Documentation</span></div>
       </div>
-      <p class="quiet">Live means a connector is in the product, against a seeded sandbox. Not a production AWS tenant.</p>
       <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
       <div class="cat-block">
         <h3>Next</h3>
@@ -503,38 +548,43 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 </div>
 
 <div class="page" id="page-msps">
-  <section class="pad">
-    <div class="wrap">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap center">
       <p class="kicker">For MSPs</p>
-      <h2>Saw “Secured by Bitlync” in a connect screen?</h2>
-      <p class="sub">One of your software vendors uses Bitlync to connect to your stack. You paste the keys. They never hold them.</p>
-      <div class="secured">
+      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,52px);margin:0 0 12px">Saw “Secured by Bitlync”<br>in a connect screen?</h1>
+      <p class="sub">One of your software vendors uses Bitlync to connect to your stack. Here is what that means, what we can touch, and how you stay in control.</p>
+      <div class="secured" role="img" aria-label="Secured by Bitlync badge">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
         <div><b>Secured by Bitlync</b><div class="quiet" style="margin:0">Your credentials stay here. Your vendor never sees them.</div></div>
       </div>
-      <div class="grid g2">
-        <article class="card">
-          <p class="kicker">Grants, not shared credentials</p>
-          <h3>You own the connection. Vendors get grants.</h3>
-          <p class="quiet" style="margin:0">You connect your PSA or RMM to Bitlync once. That connection is yours. Each vendor gets a separate, scoped grant. You enter the credential on our side. It stays in an isolated per-tenant vault. The vendor never sees it. Revoke a grant and that vendor is gone. Your connection stays yours.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">What a vendor can touch</p>
-          <h3>You see the scope before you connect</h3>
-          <p class="quiet">Every grant is shown in plain language, including what the vendor can <em>never</em> do:</p>
-          <div class="grant"><span class="gchip">Read</span><span>service tickets, companies, configurations</span></div>
-          <div class="grant"><span class="gchip">Write</span><span>create tickets on a board you approve</span></div>
-          <div class="grant"><span class="gchip">Never</span><span>delete records · read financials · change your configuration</span></div>
-          <p class="disclaim" style="text-align:left">Example grant — every vendor's scope is shown at connect time</p>
-        </article>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap grid g2">
+      <div class="card">
+        <p class="kicker">Grants, not shared credentials</p>
+        <h3>You own the connection. Vendors get grants.</h3>
+        <p class="quiet" style="margin:0">You connect your PSA or RMM to Bitlync once. That connection is yours. Each vendor gets a separate, scoped grant. You enter the credential on our side. It stays in an isolated per-tenant vault. The vendor never sees it. Revoke a grant and that vendor is gone. Your connection stays yours.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">What a vendor can touch</p>
+        <h3>You see the scope before you connect</h3>
+        <p class="quiet">Every grant is shown in plain language, including what the vendor can <em>never</em> do:</p>
+        <div style="display:grid;gap:8px;font-size:13.5px">
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · read financials · change your configuration</span></div>
+        </div>
       </div>
     </div>
   </section>
-  <section class="dark-band pad">
+  <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">Our data posture</p>
-      <h2>Plainly stated</h2>
-      <div class="posture" style="margin-top:22px">
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Our data posture</p>
+        <h2>Plainly stated</h2>
+      </div>
+      <div class="posture">
         <div class="pos"><b>Synced once per tenant</b><p>One governed sync serves every vendor you've granted. Five tools never mean five pollers spending your shared API rate budget.</p></div>
         <div class="pos"><b>Encrypted per-tenant</b><p>AES-256-GCM envelope encryption with per-tenant keys. Your tenant is isolated from every other.</p></div>
         <div class="pos"><b>Owned by you</b><p>Every grant is revocable in one click. Your data is deletable on request.</p></div>
@@ -542,26 +592,28 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="pos"><b>Support that can't touch your data</b><p>The support assistant is read-only. It has no write tool. It can diagnose your setup. It cannot change it.</p></div>
         <div class="pos"><b>Never resold</b><p>Your operational data is not a product. Not aggregated, not sold. Ever.</p></div>
       </div>
-      <p class="disclaim" style="color:#8B8B86;margin-top:22px">SOC 2 in progress.</p>
+      <p class="disclaim">SOC 2 in progress.</p>
     </div>
   </section>
-  <section class="pad">
+  <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <p class="kicker">Your portal</p>
-      <h2>See it. Scope it. Revoke it.</h2>
-      <p class="sub">Every connection comes with a portal account. It is a permissions page, not another app to manage.</p>
-      <div class="portal" aria-label="Mockup of the MSP connection portal">
+      <div class="center" style="margin-bottom:24px">
+        <p class="kicker">Your portal</p>
+        <h2>See it. Scope it. Revoke it.</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Every connection comes with a portal account. It is a permissions page, not another app to manage.</p>
+      </div>
+      <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
         <div class="pm-head">your connections</div>
         <div class="pm-row">
           <i>CW</i>
           <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
-          <span class="dot"><i></i>healthy · synced 4 min ago</span>
+          <span class="health"><i></i>healthy · synced 4 min ago</span>
           <button class="revoke" type="button">Revoke</button>
         </div>
         <div class="pm-row">
           <i>NJ</i>
           <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
-          <span class="dot"><i></i>healthy · synced 11 min ago</span>
+          <span class="health"><i></i>healthy · synced 11 min ago</span>
           <button class="revoke" type="button">Revoke</button>
         </div>
       </div>
@@ -575,28 +627,49 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Early access</p>
       <h2>Build this with us.</h2>
-      <p class="sub">A small number of paid design partners. Founding terms, not a public price list. A short conversation and an NDA.</p>
-      <div class="form-band" style="margin-top:28px">
-        <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" title="Bitlync early access"></iframe>
+      <p class="sub">We are taking a small number of paid design partners before general availability. Software providers who need real integrations, and want a say in what gets built first.</p>
+      <div class="grid g3" style="margin:28px 0">
+        <div class="card"><p class="kicker">How it starts</p><h3>A conversation, not a form</h3><p class="quiet" style="margin:0">A short conversation and an NDA.</p></div>
+        <div class="card"><p class="kicker">What you get</p><h3>Founding terms, locked</h3><p class="quiet" style="margin:0">Founding terms locked in for the partners who join early.</p></div>
+        <div class="card"><p class="kicker">What we ask</p><h3>A real integration need</h3><p class="quiet" style="margin:0">Candid feedback as we build, and a real gap we can solve together.</p></div>
+      </div>
+      <div class="form-band">
+        <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Bitlync — Request Early Access"></iframe>
       </div>
     </div>
   </section>
 </div>
-
 <div class="page" id="page-docs">
   <div class="wrap docs-shell">
     <nav class="docs-tree" aria-label="Docs">
       <p>Docs</p>
       <a href="#docs" data-docs="docs">Overview</a>
-      <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
+            <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
+      <div class="nest">
+        <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
+        <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+        <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
+        <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
+        <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
+        <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
+        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+        <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
+        <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
+        <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
+        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
+        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+        <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+        <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
+        <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+      </div>
       <a href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
       <a href="#docs-architecture" data-docs="docs-architecture">Architecture</a>
       <a href="#docs-reference" data-docs="docs-reference">Reference</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
       <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
     </nav>
-    <div class="docs-body">
-
+    <div>
 <div class="dpanel on" id="d-docs">
   <div class="docs-hero">
     <p class="kicker">Overview</p>
@@ -607,19 +680,354 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <p class="note" style="margin-top:22px">Connectors in the product today run against a seeded sandbox. Not a production AWS tenant.</p>
   </div>
 </div>
-
 <div class="dpanel" id="d-docs-concepts">
   <div class="docs-hero">
     <p class="kicker">Concepts</p>
-    <h1>Bitlync words.</h1>
-    <p class="lede">Write once. Connect to many. One call. Same shape every time.</p>
+    <h1>Operator manual.</h1>
+    <p class="lede">Short title. Mechanism. Payload. What is not shipped. Nested hashes under Concepts. <span class="coming">Try it out · Coming</span></p>
   </div>
-  <p class="note">The MSP pastes their own keys. The ISV never holds them.</p>
-  <p class="note">An Agreement is a recurring MSP service billing arrangement. It is not a “PSA Contract.”</p>
-  <p class="note">Every object carries <code class="inline">source</code>, <code class="inline">raw</code>, and <code class="inline">synced_at</code>. Vendor words stay under <code class="inline">raw</code>.</p>
-  <p class="note">A sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. The create-into-ISV hop is not shipped.</p>
-</div>
+  <nav class="toc" aria-label="Concepts">
+    <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
+    <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+    <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
+    <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
+    <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
+    <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
+    <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+    <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
+    <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
+    <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
+    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
+    <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+    <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+    <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+    <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
+    <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+  </nav>
+<article class="concept" id="docs-concepts-caching">
+  <h2>Caching / store-served reads</h2>
+  <p class="note">Reads come from the synced store for that MSP tenant. One sync fills the store. Every ISV on that tenant reads the same copy.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">The caller asks for tickets, devices, or other listed reads. Bitlync answers from the store. That path does not spend vendor budget. <code class="inline">live=True</code> is the priced escape hatch when a store read is not enough. There is no public live-read URL on this page.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">The response names the store and the last sync. Fields are <code class="inline">served_from</code> and <code class="inline">last_synced_at</code>.</p>
+    <div class="code">
+    <div class="hd"><b>store-served read</b><button class="copy" type="button" data-copy="{&quot;served_from&quot;:&quot;store&quot;,&quot;last_synced_at&quot;:&quot;2026-07-11T14:03:22Z&quot;,&quot;data&quot;:[{&quot;status&quot;:&quot;in_progress&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;raw&quot;:{}}]}">Copy</button></div>
+    <pre>{
+  "served_from": "store",
+  "last_synced_at": "2026-07-11T14:03:22Z",
+  "data": [{
+    "status": "in_progress",
+    "source": "psa",
+    "raw": {}
+  }]
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No public live-read URL. No live-read host on this page. Try it out is Coming.</p>
+</article>
+<article class="concept" id="docs-concepts-rate-limits">
+  <h2>Rate limits</h2>
+  <p class="note">One sync per MSP tenant serves every ISV. Writes to the vendor are paced to that vendor’s real limit. The ISV is not asked to guess a vendor quota.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">ISV-facing: 600 req/min times the number of connected MSPs. There is no daily cap. The per-minute rate is the limit. Hit it and the API returns a real 429 with <code class="inline">Retry-After</code>. There is no silent throttle.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">A 429 you can branch on. The header is the wait. Do not treat a delayed 200 as a throttle.</p>
+    <div class="code">
+    <div class="hd"><b>429 + Retry-After</b><button class="copy" type="button" data-copy="Retry-After: 12">Copy</button></div>
+    <pre>HTTP 429
+Retry-After: 12
 
+{
+  "status": 429
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No silent queue that looks like success. This page does not document a vendor daily cap, and it does not treat the vendor as the villain.</p>
+</article>
+<article class="concept" id="docs-concepts-retries">
+  <h2>Retries</h2>
+  <p class="note">Transient vendor 429 and 503 are retried with backoff on the Bitlync side of the write.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">The caller sends one write. Bitlync retries the vendor when the failure is transient. The caller is not asked to implement vendor backoff for those hops.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">One clean result. If the write still cannot land, the final 429 still carries the vendor <code class="inline">Retry-After</code>.</p>
+    <div class="code">
+    <div class="hd"><b>final 429 still honest</b><button class="copy" type="button" data-copy="Retry-After: 30">Copy</button></div>
+    <pre>HTTP 429
+Retry-After: 30
+
+{
+  "status": 429
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No hidden swallow of a vendor 429. No rewrite of a final 429 into a 200.</p>
+</article>
+<article class="concept" id="docs-concepts-honest-delivery">
+  <h2>Honest delivery</h2>
+  <p class="note">Delivery status is visible. Nothing is dropped on the floor to keep a dashboard green.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">A write that was acknowledged cannot double-write. A write that was throttled is a real 429, not a delayed success. Dedup and retries sit on this same rule.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Success means the write landed or was an idempotent replay. Throttle means 429 plus <code class="inline">Retry-After</code>.</p>
+    <div class="code">
+    <div class="hd"><b>acknowledged, not doubled</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;ok&quot;,&quot;idempotent_replay&quot;:false}">Copy</button></div>
+    <pre>{
+  "idempotent_replay": false
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No silent drop. No “accepted” that later vanishes.</p>
+</article>
+<article class="concept" id="docs-concepts-dedup">
+  <h2>Dedup</h2>
+  <p class="note">Writes that support it take <code class="inline">idempotency_key</code>. The same key does not open a second ticket.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Send the key on the write. A retry with that key is a replay, not a new vendor create.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">The replay is marked <code class="inline">idempotent_replay</code>.</p>
+    <div class="code">
+    <div class="hd"><b>same key</b><button class="copy" type="button" data-copy="{&quot;summary&quot;:&quot;Printer offline&quot;,&quot;dry_run&quot;:false,&quot;idempotency_key&quot;:&quot;ticket-1&quot;}">Copy</button></div>
+    <pre>{
+  "summary": "Printer offline",
+  "dry_run": false,
+  "idempotency_key": "ticket-1"
+}
+
+{
+  "status": "ok",
+  "idempotent_replay": true
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">Keys are not implied on every future write. Only writes that already support <code class="inline">idempotency_key</code>.</p>
+</article>
+<article class="concept" id="docs-concepts-validation">
+  <h2>Validation</h2>
+  <p class="note">The payload is checked against that vendor’s rules before it leaves Bitlync.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">A bad field fails on the request you sent. It does not land as a mystery ticket in the MSP’s PSA.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">HTTP 422. Branch on stable <code class="inline">code</code> <code class="inline">validation</code>.</p>
+    <div class="code">
+    <div class="hd"><b>422 on your request</b><button class="copy" type="button" data-copy="{&quot;status&quot;:422,&quot;code&quot;:&quot;validation&quot;}">Copy</button></div>
+    <pre>HTTP 422
+
+{
+  "status": 422,
+  "code": "validation"
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No “send it anyway and let the PSA reject it.” No extra validation codes on this page.</p>
+</article>
+<article class="concept" id="docs-concepts-credential-vault">
+  <h2>Credential vault</h2>
+  <p class="note">The MSP pastes their own keys. Those keys sit in a per-tenant vault. The ISV never holds them.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">ISVs start with a key that looks like <code class="inline">blk_…</code> and header <code class="inline">X-API-Key</code>. MSP credentials are entered on Bitlync, not in your frontend.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Your product sends <code class="inline">X-API-Key</code>. It does not send the MSP’s PSA or RMM secret.</p>
+    <div class="code">
+    <div class="hd"><b>ISV auth header</b><button class="copy" type="button" data-copy="X-API-Key: blk_…">Copy</button></div>
+    <pre>X-API-Key: blk_…
+
+# MSP keys are not in this header.
+# They sit in the per-tenant vault.</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.</p>
+</article>
+<article class="concept" id="docs-concepts-customer-map">
+  <h2>Customer map</h2>
+  <p class="note">A sure match auto-maps. A leftover PSA company with no ISV candidate is an ask: the MSP creates or imports it in the ISV. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Listed identity routes exist: <code class="inline">GET /tenants/{tenant_id}/identity/mappings</code> and <code class="inline">GET /tenants/{tenant_id}/identity/unmapped</code>. The create-into-ISV hop is not shipped.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Mapped rows when the match is sure. <code class="inline">UNMAPPED</code> when a person has to choose. Creating a leftover PSA company in the ISV returns 501 (OPEN).</p>
+    <div class="code">
+    <div class="hd"><b>unmapped is human</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;UNMAPPED&quot;}">Copy</button></div>
+    <pre>{
+  "status": "UNMAPPED"
+}
+
+HTTP 501
+{
+  "status": 501,
+  "code": "unsupported"
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">The create hop is not shipped (501 / OPEN). No silent create of an ISV customer from a leftover PSA company.</p>
+</article>
+<article class="concept" id="docs-concepts-identity-hold">
+  <h2>Identity hold</h2>
+  <p class="note">Unmatched records can sit in quarantine until someone releases them.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Hold is a reserved record, not an auto-merge. The reserved shape name is <code class="inline">QuarantinedRecord</code>.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Unmatched work stays unmatched until release. Do not treat this page as a schema for that record.</p>
+    <div class="code">
+    <div class="hd"><b>reserved name only</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;UNMAPPED&quot;}">Copy</button></div>
+    <pre>{
+  "status": "UNMAPPED"
+}
+
+# Reserved shape: QuarantinedRecord
+# Fields are not documented on this page.</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No quarantine UI on this site. No invented fields for <code class="inline">QuarantinedRecord</code>.</p>
+</article>
+<article class="concept" id="docs-concepts-health">
+  <h2>Health + incidents + audit</h2>
+  <p class="note">Status and an audit log sit on every connection. Incidents are a listed read.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note"><code class="inline">GET /tenants/{tenant_id}/audit</code> exists. Also listed: <code class="inline">/status</code>, <code class="inline">/incidents</code>, <code class="inline">/connections</code>, and <code class="inline">/connections/events</code>.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Audit is a GET on the tenant. The vendor-health board on the marketing page is a mockup. It is not a live AWS board.</p>
+    <div class="code">
+    <div class="hd"><b>GET audit</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/audit&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div>
+    <pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/audit" \
+  -H "X-API-Key: $BITLYNC_KEY"
+
+GET /tenants/{tenant_id}/audit
+GET /tenants/{tenant_id}/status
+GET /tenants/{tenant_id}/incidents</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">The marketing vendor-health board is not wired to production AWS. No public ops host on this page.</p>
+</article>
+<article class="concept" id="docs-concepts-escape-hatch">
+  <h2>Escape hatch</h2>
+  <p class="note">The canonical Bitlync shape is the default. The vendor payload always rides on <code class="inline">raw</code>.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Normalize <code class="inline">status</code>, <code class="inline">source</code>, and the other Bitlync words. Keep the vendor’s original object under <code class="inline">raw</code>. Never drop it.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">You can stay on the canonical fields. You can read <code class="inline">raw</code> when a vendor word is not in the model.</p>
+    <div class="code">
+    <div class="hd"><b>raw always present</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;in_progress&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;raw&quot;:{}}">Copy</button></div>
+    <pre>{
+  "status": "in_progress",
+  "source": "psa",
+  "raw": {}
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No mode that strips <code class="inline">raw</code>. No second public schema that replaces the canonical default.</p>
+</article>
+<article class="concept" id="docs-concepts-writes">
+  <h2>Writes</h2>
+  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Preview first. Then commit with the same body and an <code class="inline">idempotency_key</code> on writes that support it. If a fan-out is only partial, that failure is explicit. It is never collapsed into a single silent success.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">A dry run does not create a ticket. A commit does. Partial failure is visible on the response, not hidden.</p>
+    <div class="code">
+    <div class="hd"><b>dry_run then commit</b><button class="copy" type="button" data-copy="{&quot;summary&quot;:&quot;Printer offline&quot;,&quot;dry_run&quot;:true,&quot;idempotency_key&quot;:&quot;ticket-1&quot;}">Copy</button></div>
+    <pre>{
+  "summary": "Printer offline",
+  "dry_run": true,
+  "idempotency_key": "ticket-1"
+}
+
+{
+  "summary": "Printer offline",
+  "dry_run": false,
+  "idempotency_key": "ticket-1"
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No default-commit write. Creating a leftover PSA company in the ISV is not shipped. <span class="coming">Try it out · Coming</span></p>
+</article>
+<article class="concept" id="docs-concepts-sandbox">
+  <h2>Sandbox</h2>
+  <p class="note">Seeded fixtures only: <code class="inline">sandbox-mainstreet</code> and <code class="inline">sandbox-northline</code>. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder. There is no public sandbox host on this page.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Every sandbox response includes <code class="inline">sandbox</code> true. <code class="inline">POST /sandbox/reset</code> with that tenant id clears audit, re-syncs fixtures, and writes one <code class="inline">sandbox_reset</code> event. A production tenant on that route returns 422 <code class="inline">request_invalid</code>.</p>
+  <p class="lbl">What the caller sees</p>
+    <div class="code">
+    <div class="hd"><b>sandbox flag + reset</b><button class="copy" type="button" data-copy="{&quot;tenant_id&quot;:&quot;sandbox-mainstreet&quot;}">Copy</button></div>
+    <pre>{
+  "sandbox": true,
+  "served_from": "store"
+}
+
+POST /sandbox/reset
+{ "tenant_id": "sandbox-mainstreet" }
+
+HTTP 422
+{
+  "status": 422,
+  "code": "request_invalid"
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No public sandbox URL. No production host printed here. Connectors on this site run against a seeded sandbox, not a production AWS tenant. <span class="coming">Try it out · Coming</span></p>
+</article>
+<article class="concept" id="docs-concepts-errors">
+  <h2>Errors</h2>
+  <p class="note">Branch on the stable <code class="inline">code</code>. Do not parse a human sentence.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">The codes on this page are the codes that exist: 401 <code class="inline">auth</code>, 403 <code class="inline">tenant</code>, 404 unknown tenant, 422 <code class="inline">validation</code> (and <code class="inline">request_invalid</code> on a bad sandbox reset), 429 plus <code class="inline">Retry-After</code>, 501 <code class="inline">unsupported</code> / parked capability, 500 opaque <code class="inline">internal_error</code>.</p>
+  <p class="lbl">What the caller sees</p>
+    <div class="code">
+    <div class="hd"><b>stable code</b><button class="copy" type="button" data-copy="{&quot;status&quot;:401,&quot;code&quot;:&quot;auth&quot;}">Copy</button></div>
+    <pre>HTTP 401  { "status": 401, "code": "auth" }
+HTTP 403  { "status": 403, "code": "tenant" }
+HTTP 404  { "status": 404 }
+HTTP 422  { "status": 422, "code": "validation" }
+HTTP 429  Retry-After: 12
+HTTP 501  { "status": 501, "code": "unsupported" }
+HTTP 500  { "status": 500, "code": "internal_error" }</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No extra codes on this page. 500 stays opaque. A parked write is 501, not a generic 500.</p>
+</article>
+<article class="concept" id="docs-concepts-permissions">
+  <h2>MSP permission / probe</h2>
+  <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">The MSP pastes keys in the guided flow. The probe names the permission to fix. The ISV does not paste MSP creds.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Reads still serve from the store. A parked write is 501 <code class="inline">unsupported</code>. Portal copy tells the MSP which permission to fix.</p>
+    <div class="code">
+    <div class="hd"><b>parked write, not 500</b><button class="copy" type="button" data-copy="{&quot;status&quot;:501,&quot;code&quot;:&quot;unsupported&quot;}">Copy</button></div>
+    <pre>HTTP 501
+{
+  "status": 501,
+  "code": "unsupported"
+}
+
+# Portal copy names the permission.
+# ISV does not paste MSP creds.</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No ISV-side form that collects PSA keys. Partial connect is not collapsed into “failed.”</p>
+</article>
+<article class="concept" id="docs-concepts-routing">
+  <h2>Routing</h2>
+  <p class="note">A finding lands as a PSA ticket until the MSP chooses otherwise. The ISV does not force workflows.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">Listed routes: <code class="inline">POST /tenants/{tenant_id}/findings/route</code> and <code class="inline">GET</code> / <code class="inline">PUT /tenants/{tenant_id}/routing</code>. Alert to ticket is the live path. Incident and approval sit on that same path.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">The finding becomes a ticket in the PSA the MSP already runs. Routing changes are the MSP’s.</p>
+    <div class="code">
+    <div class="hd"><b>finding to ticket</b><button class="copy" type="button" data-copy="POST /tenants/{tenant_id}/findings/route">Copy</button></div>
+    <pre>POST /tenants/{tenant_id}/findings/route
+GET  /tenants/{tenant_id}/routing
+PUT  /tenants/{tenant_id}/routing
+
+{
+  "source": "psa",
+  "raw": {}
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">The ISV does not ship a forced workflow pack. Event push is Coming. <span class="coming">Try it out · Coming</span></p>
+</article>
+</div>
 <div class="dpanel" id="d-docs-quickstart">
   <div class="docs-hero">
     <p class="kicker">Quickstart</p>
@@ -635,14 +1043,12 @@ tenant_id: sandbox-mainstreet
 # or sandbox-northline</pre>
   </div>
   <p class="note"><code class="inline">sandbox-mainstreet</code> and <code class="inline">sandbox-northline</code> are sandbox fixtures (PSA and RMM seed data). They are not production tenants.</p>
-
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">GET tickets</h3>
   <div class="code">
     <div class="hd"><b>GET tickets</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div>
     <pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets" \
   -H "X-API-Key: $BITLYNC_KEY"</pre>
   </div>
-
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">POST tickets</h3>
   <p class="note"><code class="inline">dry_run</code> defaults true. Commit by sending <code class="inline">dry_run: false</code> plus an <code class="inline">idempotency_key</code>. The same key on a retry returns <code class="inline">idempotent_replay</code>.</p>
   <div class="two">
@@ -664,14 +1070,12 @@ tenant_id: sandbox-mainstreet
       </div>
     </article>
   </div>
-
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">GET audit</h3>
   <div class="code">
     <div class="hd"><b>GET audit</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/audit&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div>
     <pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/audit" \
   -H "X-API-Key: $BITLYNC_KEY"</pre>
   </div>
-
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">Sandbox reset</h3>
   <p class="note"><code class="inline">POST /sandbox/reset</code> with <code class="inline">{"tenant_id":"sandbox-mainstreet"}</code>. Clears audit, re-syncs fixtures, writes one <code class="inline">sandbox_reset</code> event. Production tenants return 422 <code class="inline">request_invalid</code>.</p>
   <div class="code">
@@ -682,61 +1086,57 @@ tenant_id: sandbox-mainstreet
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
   </div>
 </div>
-
 <div class="dpanel" id="d-docs-architecture">
   <div class="docs-hero">
     <p class="kicker">Architecture</p>
     <h1>Your product. Bitlync. The MSP pastes keys.</h1>
-    <p class="lede">MSP pastes keys; ISV never holds them. One schema. Vault. Status/audit. Same model over REST and MCP.</p>
+    <p class="lede">One model. REST and MCP use it. The vault holds what the MSP pastes. You never do.</p>
   </div>
-  <div class="arch" aria-label="Category chips flow into Bitlync, then one shape reaches your product">
-    <svg viewBox="0 0 720 300" role="img">
-      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9C9C4">
-        <rect x="12" y="18" width="118" height="28" rx="6" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="56" width="118" height="28" rx="14" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="94" width="118" height="28" rx="2" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="132" width="118" height="28" rx="10" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="170" width="118" height="28" rx="4" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="208" width="118" height="28" rx="13" fill="#1A1C16" stroke="#3A3D32"/>
-        <rect x="12" y="246" width="118" height="28" rx="8" fill="#1A1C16" stroke="#3A3D32"/>
-        <text x="24" y="36">PSA</text>
-        <text x="24" y="74">RMM</text>
-        <text x="24" y="112">Commerce</text>
-        <text x="24" y="150">Docs</text>
-        <text x="24" y="188">GRC</text>
-        <text x="24" y="226">Productivity</text>
-        <text x="24" y="264">Quoting</text>
+  <div class="arch" aria-label="Hub: vendor systems fold into Bitlync, then one shape reaches your product">
+    <svg viewBox="0 0 720 340" role="img">
+      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#8B8E84">
+        <rect x="16" y="16" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="58" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="100" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="142" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="184" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="226" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <rect x="16" y="268" width="128" height="26" rx="13" fill="#101214" stroke="#2C3128"/>
+        <text x="80" y="33" text-anchor="middle" fill="#C9CBBF">PSA</text>
+        <text x="80" y="75" text-anchor="middle" fill="#C9CBBF">RMM</text>
+        <text x="80" y="117" text-anchor="middle" fill="#C9CBBF">Commerce</text>
+        <text x="80" y="159" text-anchor="middle" fill="#C9CBBF">Productivity</text>
+        <text x="80" y="201" text-anchor="middle" fill="#C9CBBF">Documentation</text>
+        <text x="80" y="243" text-anchor="middle" fill="#C9CBBF">Vault</text>
+        <text x="80" y="285" text-anchor="middle" fill="#C9CBBF">Audit</text>
       </g>
-      <g fill="none" stroke="#8A9A4A" stroke-width="1.25">
-        <path class="flow" d="M130 32 C 240 32, 290 142, 356 150"/>
-        <path class="flow" d="M130 70 C 238 70, 292 144, 356 150"/>
-        <path class="flow" d="M130 108 C 236 108, 294 148, 356 150"/>
-        <path class="flow" d="M130 146 C 236 146, 296 150, 356 150"/>
-        <path class="flow" d="M130 184 C 236 184, 294 152, 356 150"/>
-        <path class="flow" d="M130 222 C 238 222, 292 156, 356 150"/>
-        <path class="flow" d="M130 260 C 240 260, 290 158, 356 150"/>
+      <g fill="none" stroke="#C6F04D" stroke-width="1.15" opacity=".85">
+        <path class="flow" d="M144 29 C 240 29, 300 160, 390 166"/>
+        <path class="flow" d="M144 71 C 238 71, 304 162, 390 168"/>
+        <path class="flow" d="M144 113 C 236 113, 306 164, 390 170"/>
+        <path class="flow" d="M144 155 C 236 155, 308 168, 390 172"/>
+        <path class="flow" d="M144 197 C 236 197, 306 176, 390 174"/>
+        <path class="flow" d="M144 239 C 238 239, 304 180, 390 176"/>
+        <path class="flow" d="M144 281 C 240 281, 300 184, 390 178"/>
       </g>
-      <circle cx="398" cy="150" r="38" fill="#101214" stroke="#C6F04D" stroke-width="1.4"/>
-      <text x="398" y="156" text-anchor="middle" font-family="Instrument Serif,serif" font-size="17" font-style="italic" fill="#EDECE6">bitlync</text>
-      <path class="flow" d="M436 150 H 518" stroke="#8A9A4A" fill="none" stroke-width="1.25"/>
-      <rect x="522" y="136" width="176" height="28" rx="6" fill="#1A1C16" stroke="#3A3D32"/>
-      <text x="610" y="155" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9C9C4">Your product</text>
+      <circle cx="428" cy="172" r="36" fill="none" stroke="#C6F04D" stroke-width="1.6"/>
+      <text x="428" y="177" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#EDECE6">bitlync</text>
+      <path class="flow" d="M464 172 H 548" fill="none" stroke="#C6F04D" stroke-width="1.3"/>
+      <rect x="552" y="156" width="148" height="32" rx="14" fill="#101214" stroke="#2C3128"/>
+      <text x="626" y="176" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
     </svg>
-    <p class="cap">many systems → one shape → your product</p>
   </div>
   <p class="note">REST and MCP are the same model.</p>
   <p class="note">Keys sit in a vault. Status and an audit log sit on every connection.</p>
   <p class="note">Caching, retries, and validation ship with every connection.</p>
   <p class="note">One sync per MSP. Honest 429 with Retry-After.</p>
 </div>
-
 <div class="dpanel" id="d-docs-reference">
   <div class="docs-hero">
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). This is not a pasted spec. <span class="coming">Try it out · Coming</span></p>
   </div>
-
   <div class="two" id="ref-tickets">
     <article>
       <p class="path">GET /tenants/{tenant_id}/tickets</p>
@@ -754,7 +1154,7 @@ tenant_id: sandbox-mainstreet
       </div>
     </article>
   </div>
-
+  <div class="rt-wrap">
   <table class="rt">
     <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
     <tbody>
@@ -774,8 +1174,8 @@ tenant_id: sandbox-mainstreet
       <tr><td><code>POST</code></td><td><code>/sandbox/reset</code></td><td>Sandbox tenants only</td></tr>
     </tbody>
   </table>
+  </div>
   <p class="note">There is no GET /agreements.</p>
-
   <article class="obj" id="docs-ticket">
     <h3>Ticket</h3>
     <p class="note">GET and POST /tenants/{tenant_id}/tickets.</p>
@@ -823,7 +1223,6 @@ tenant_id: sandbox-mainstreet
     </div>
   </article>
 </div>
-
 <div class="dpanel" id="d-docs-use-cases">
   <div class="docs-hero">
     <p class="kicker">Use cases</p>
@@ -837,7 +1236,6 @@ tenant_id: sandbox-mainstreet
   <article class="uc"><h3>5. Time on the ticket <span class="coming">later</span></h3><p class="note">Time entries exist in schema. Mapping is still next-slice. No route.</p></article>
   <article class="uc"><h3>6. Close with evidence <span class="coming">later</span></h3><p class="note">Close a ticket with the work attached. Not shipped.</p></article>
 </div>
-
 <div class="dpanel" id="d-docs-libraries">
   <div class="docs-hero">
     <p class="kicker">Libraries</p>
@@ -867,7 +1265,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   </article>
   <p style="margin:8px 0 8px"><span class="coming">Try it out · Coming</span></p>
 </div>
-
     </div>
   </div>
 </div>
@@ -888,12 +1285,12 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   };
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function parse(h){
     h=(h||'').replace('#','');
     if(!h) return {page:'home',docs:'docs',anchor:null};
     if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h};
+    if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:h};
     if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null};
     if(h==='developers'||h==='guides'||h==='api'||h==='libraries'||h==='dictionary'){
       var map={developers:'docs',guides:'docs-quickstart',api:'docs-reference',libraries:'docs-libraries',dictionary:'docs-concepts'};
@@ -919,12 +1316,14 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(el) el.classList.toggle('on', id===st.docs);
     });
     document.querySelectorAll('.docs-tree a').forEach(function(a){
-      a.classList.toggle('on', a.getAttribute('data-docs')===st.docs);
+      var href=(a.getAttribute('href')||'').replace('#','');
+      var dd=a.getAttribute('data-docs');
+      var on = st.anchor ? href===st.anchor : (dd===st.docs && href===st.docs);
+      a.classList.toggle('on', on);
     });
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
     window.scrollTo({top:0,behavior:'auto'});
-    if(st.page==='home') reveal();
     if(st.anchor){
       var t=document.getElementById(st.anchor);
       if(t) setTimeout(function(){ t.scrollIntoView({block:'start'}); }, 30);
@@ -946,22 +1345,19 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(field.classList.contains('copy') || field.closest('.fields')) return;
     }
     var d=e.target.closest('[data-docs]');
-    if(d){ e.preventDefault(); var id=d.getAttribute('data-docs'); history.pushState(null,'','#'+id); show('#'+id); return; }
+    if(d){ e.preventDefault(); var href=d.getAttribute('href')||''; var id=d.getAttribute('data-docs'); var hash=(href.charAt(0)==='#')?href:('#'+id); if(hash.indexOf('#docs-concepts-')===0 || (id&&id.indexOf('docs-concepts-')===0)) hash=href.charAt(0)==='#'?href:('#'+id); history.pushState(null,'',hash); show(hash); return; }
     var t=e.target.closest('[data-nav]'); if(!t) return;
     e.preventDefault(); history.pushState(null,'','#'+t.getAttribute('data-nav')); show('#'+t.getAttribute('data-nav'));
   });
   window.addEventListener('popstate',function(){ show(location.hash); });
   if(menuBtn) menuBtn.addEventListener('click',function(){ var o=nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded',o?'true':'false'); });
-
-  function reveal(){
-    var els=document.querySelectorAll('.page.on .reveal');
-    if(reduce || !('IntersectionObserver' in window)){ els.forEach(function(el){el.classList.add('in')}); return; }
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-    },{threshold:0.2});
-    els.forEach(function(el){ io.observe(el); });
-  }
-
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&nav.classList.contains('open')){
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+      menuBtn.focus();
+    }
+  });
   show(location.hash||'#home');
 })();
 </script>
