@@ -203,6 +203,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .rt-wrap{overflow-x:auto;max-width:100%}
 .rt code,.inline{font-family:var(--mono);font-size:12px}
 .note{color:var(--dmute);font-size:14.5px;max-width:42rem}
+.ov-stack{margin:10px 0 16px;padding:0 0 0 1.15em;max-width:42rem;color:var(--dmute);font-size:14.5px;line-height:1.5}
+.ov-stack li{margin:7px 0}
+.ov-stack b{color:var(--dtext);font-weight:600}
 .obj{border-top:1px solid var(--dline);padding:22px 0}
 .obj h3{font-family:var(--serif);font-size:26px;margin:0 0 8px}
 .fields{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
@@ -679,6 +682,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <p class="kicker">Overview</p>
     <h1>Docs and a sandbox. That is how ISVs start.</h1>
     <p class="lede">Write once. Connect to many. Hold a key, call a seeded tenant, then have the MSP paste their own keys. Try it out is Coming. There is no public sandbox URL on this page.</p>
+<p class="note">You sell software to MSPs (managed service providers). They run IT for other companies. They will not buy you unless you connect to the stack they already use to run that business.</p>
+<ul class="ov-stack">
+  <li><b>PSA</b> — their business system. Customers, tickets, service desk, projects, invoices, agreements.</li>
+  <li><b>RMM</b> — their device system. Inventory, monitoring, patching, access.</li>
+  <li><b>Documentation</b> — the detailed record. Passwords, networks, and what happened at that customer, linked to the PSA company and the RMM assets.</li>
+  <li><b>Commerce</b> — where they buy licenses (direct or through a distributor) and then bill the customer.</li>
+</ul>
+<p class="note">Those tools do not share one API. Every MSP picked a different mix. Bitlync is one API with one shape. You write once. The MSP pastes their own keys. You do not hold them.</p>
 <div class="arch-pair">
     <div class="arch" aria-label="Today every product polls the same PSA">
       <p class="ah bad">Today — every product polls</p>
