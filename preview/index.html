@@ -669,7 +669,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
       </div>
       <a href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
-      <a href="#docs-architecture" data-docs="docs-architecture">Architecture</a>
       <a href="#docs-reference" data-docs="docs-reference">Reference</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
       <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
@@ -680,6 +679,93 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <p class="kicker">Overview</p>
     <h1>Docs and a sandbox. That is how ISVs start.</h1>
     <p class="lede">Write once. Connect to many. Hold a key, call a seeded tenant, then have the MSP paste their own keys. Try it out is Coming. There is no public sandbox URL on this page.</p>
+<div class="arch-pair">
+    <div class="arch" aria-label="Today every product polls the same PSA">
+      <p class="ah bad">Today — every product polls</p>
+      <svg viewBox="0 0 360 300" role="img">
+        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+          <rect x="16" y="16" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
+          <rect x="16" y="56" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
+          <rect x="16" y="96" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
+          <rect x="16" y="136" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
+          <rect x="16" y="176" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
+          <text x="60" y="34" text-anchor="middle">ISV A</text>
+          <text x="60" y="74" text-anchor="middle">ISV B</text>
+          <text x="60" y="114" text-anchor="middle">ISV C</text>
+          <text x="60" y="154" text-anchor="middle">ISV D</text>
+          <text x="60" y="194" text-anchor="middle">ISV E</text>
+        </g>
+        <g fill="none" stroke="#C98B8B" stroke-width="1.25" stroke-linecap="round">
+          <path d="M104 30 C 156 30, 178 110, 228 110"/>
+          <path d="M104 70 C 150 70, 176 110, 228 110"/>
+          <path d="M104 110 C 156 110, 184 110, 228 110"/>
+          <path d="M104 150 C 150 150, 176 110, 228 110"/>
+          <path d="M104 190 C 156 190, 178 110, 228 110"/>
+        </g>
+        <rect x="228" y="82" width="116" height="56" rx="10" fill="#1A1212" stroke="#C98B8B"/>
+        <text x="286" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#E8B4B4">PSA API</text>
+        <text x="286" y="122" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#C98B8B">shared budget</text>
+        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C98B8B">Five products. Same reads.</text>
+        <text x="180" y="264" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C98B8B">One noisy poll starves the MSP.</text>
+      </svg>
+    </div>
+    <div class="arch" aria-label="With Bitlync one governed sync">
+      <p class="ah ok">With Bitlync — one governed sync</p>
+      <svg viewBox="0 0 360 300" role="img">
+        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+          <rect x="16" y="16" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
+          <rect x="16" y="56" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
+          <rect x="16" y="96" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
+          <rect x="16" y="136" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
+          <rect x="16" y="176" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
+          <text x="60" y="34" text-anchor="middle">ISV A</text>
+          <text x="60" y="74" text-anchor="middle">ISV B</text>
+          <text x="60" y="114" text-anchor="middle">ISV C</text>
+          <text x="60" y="154" text-anchor="middle">ISV D</text>
+          <text x="60" y="194" text-anchor="middle">ISV E</text>
+        </g>
+        <g fill="none" stroke="#8B8E84" stroke-width="1.25" stroke-linecap="round">
+          <path d="M104 30 C 148 30, 164 110, 186 110"/>
+          <path d="M104 70 C 144 70, 162 110, 186 110"/>
+          <path d="M104 110 C 148 110, 168 110, 186 110"/>
+          <path d="M104 150 C 144 150, 162 110, 186 110"/>
+          <path d="M104 190 C 148 190, 164 110, 186 110"/>
+        </g>
+        <circle cx="218" cy="110" r="32" fill="#101214" stroke="#C6F04D" stroke-width="1.5"/>
+        <text x="218" y="108" text-anchor="middle" font-family="Instrument Serif,serif" font-size="14" font-style="italic" fill="#EDECE6">bitlync</text>
+        <text x="218" y="124" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">store</text>
+        <path d="M250 110 H 292" fill="none" stroke="#8B8E84" stroke-width="1.4" stroke-linecap="round"/>
+        <rect x="292" y="86" width="52" height="48" rx="8" fill="#101214" stroke="#2C3128"/>
+        <text x="318" y="106" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#C9CBBF">PSA</text>
+        <text x="318" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
+        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C6F04D">Store-served reads. Zero vendor calls.</text>
+        <text x="180" y="264" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#8B8E84">N products. Same one sync.</text>
+      </svg>
+    </div>
+  </div>
+  <p class="note">One sync per MSP, paced to that vendor’s real shared budget. Honest 429 with Retry-After.</p>
+  <p class="note">The MSP pastes keys. You never hold them. REST and MCP use the same model.</p>
+  <div class="arch" aria-label="A store-served read">
+    <p class="ah">A store-served read</p>
+    <svg viewBox="0 0 720 88" role="img">
+      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+        <rect x="16" y="28" width="120" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <text x="76" y="48" text-anchor="middle">Your product</text>
+        <text x="168" y="48" fill="#8B8E84">read tickets</text>
+        <rect x="268" y="20" width="200" height="48" rx="12" fill="#101214" stroke="#C6F04D"/>
+        <text x="368" y="42" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
+        <text x="368" y="58" text-anchor="middle" font-size="9" fill="#8B8E84">served_from · last_synced_at</text>
+        <rect x="568" y="28" width="136" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <text x="636" y="48" text-anchor="middle">PSA API</text>
+      </g>
+      <path d="M136 44 H 160" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
+      <path d="M248 44 H 268" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
+      <path d="M468 44 H 568" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
+      <text x="518" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
+    </svg>
+  </div>
+  <p class="note">How it behaves — cache, 429, retries, vault, routing — lives in <a href="#docs-concepts">Concepts</a>.</p>
+
     <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
     <a class="btn ghost" href="#docs-reference" data-docs="docs-reference" style="margin-left:10px">Reference</a>
     <p class="note" style="margin-top:22px">Connectors in the product today run against a seeded sandbox. Not a production AWS tenant.</p>
@@ -1091,100 +1177,6 @@ tenant_id: sandbox-mainstreet
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
   </div>
 </div>
-<div class="dpanel" id="d-docs-architecture">
-  <div class="docs-hero">
-    <p class="kicker">Architecture</p>
-    <h1>Write once. Connect to many.</h1>
-    <p class="lede">Read once, serve many. One store. One sync per MSP. N products add no extra vendor load.</p>
-  </div>
-  <div class="arch-pair">
-    <div class="arch" aria-label="Today every product polls the same PSA">
-      <p class="ah bad">Today — every product polls</p>
-      <svg viewBox="0 0 360 300" role="img">
-        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
-          <rect x="16" y="16" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
-          <rect x="16" y="56" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
-          <rect x="16" y="96" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
-          <rect x="16" y="136" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
-          <rect x="16" y="176" width="88" height="28" rx="8" fill="#101214" stroke="#3A2C2C"/>
-          <text x="60" y="34" text-anchor="middle">ISV A</text>
-          <text x="60" y="74" text-anchor="middle">ISV B</text>
-          <text x="60" y="114" text-anchor="middle">ISV C</text>
-          <text x="60" y="154" text-anchor="middle">ISV D</text>
-          <text x="60" y="194" text-anchor="middle">ISV E</text>
-        </g>
-        <g fill="none" stroke="#C98B8B" stroke-width="1.25" stroke-linecap="round">
-          <path d="M104 30 C 156 30, 178 110, 228 110"/>
-          <path d="M104 70 C 150 70, 176 110, 228 110"/>
-          <path d="M104 110 C 156 110, 184 110, 228 110"/>
-          <path d="M104 150 C 150 150, 176 110, 228 110"/>
-          <path d="M104 190 C 156 190, 178 110, 228 110"/>
-        </g>
-        <rect x="228" y="82" width="116" height="56" rx="10" fill="#1A1212" stroke="#C98B8B"/>
-        <text x="286" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#E8B4B4">PSA API</text>
-        <text x="286" y="122" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#C98B8B">shared budget</text>
-        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C98B8B">Five products. Same reads.</text>
-        <text x="180" y="264" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C98B8B">One noisy poll starves the MSP.</text>
-      </svg>
-    </div>
-    <div class="arch" aria-label="With Bitlync one governed sync">
-      <p class="ah ok">With Bitlync — one governed sync</p>
-      <svg viewBox="0 0 360 300" role="img">
-        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
-          <rect x="16" y="16" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
-          <rect x="16" y="56" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
-          <rect x="16" y="96" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
-          <rect x="16" y="136" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
-          <rect x="16" y="176" width="88" height="28" rx="8" fill="#101214" stroke="#2C3128"/>
-          <text x="60" y="34" text-anchor="middle">ISV A</text>
-          <text x="60" y="74" text-anchor="middle">ISV B</text>
-          <text x="60" y="114" text-anchor="middle">ISV C</text>
-          <text x="60" y="154" text-anchor="middle">ISV D</text>
-          <text x="60" y="194" text-anchor="middle">ISV E</text>
-        </g>
-        <g fill="none" stroke="#8B8E84" stroke-width="1.25" stroke-linecap="round">
-          <path d="M104 30 C 148 30, 164 110, 186 110"/>
-          <path d="M104 70 C 144 70, 162 110, 186 110"/>
-          <path d="M104 110 C 148 110, 168 110, 186 110"/>
-          <path d="M104 150 C 144 150, 162 110, 186 110"/>
-          <path d="M104 190 C 148 190, 164 110, 186 110"/>
-        </g>
-        <circle cx="218" cy="110" r="32" fill="#101214" stroke="#C6F04D" stroke-width="1.5"/>
-        <text x="218" y="108" text-anchor="middle" font-family="Instrument Serif,serif" font-size="14" font-style="italic" fill="#EDECE6">bitlync</text>
-        <text x="218" y="124" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">store</text>
-        <circle cx="246" cy="98" r="2" fill="#C6F04D"/>
-        <path d="M250 110 H 292" fill="none" stroke="#8B8E84" stroke-width="1.4" stroke-linecap="round"/>
-        <rect x="292" y="86" width="52" height="48" rx="8" fill="#101214" stroke="#2C3128"/>
-        <text x="318" y="106" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#C9CBBF">PSA</text>
-        <text x="318" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
-        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C6F04D">Store-served reads. Zero vendor calls.</text>
-        <text x="180" y="264" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#8B8E84">N products. Same one sync.</text>
-      </svg>
-    </div>
-  </div>
-  <p class="note">One sync per MSP, paced to that vendor’s real shared budget. Honest 429 with Retry-After.</p>
-  <p class="note">The MSP pastes keys. You never hold them. REST and MCP use the same model.</p>
-  <div class="arch" aria-label="A store-served read">
-    <p class="ah">A store-served read</p>
-    <svg viewBox="0 0 720 88" role="img">
-      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
-        <rect x="16" y="28" width="120" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
-        <text x="76" y="48" text-anchor="middle">Your product</text>
-        <text x="168" y="48" fill="#8B8E84">read tickets</text>
-        <rect x="268" y="20" width="200" height="48" rx="12" fill="#101214" stroke="#C6F04D"/>
-        <text x="368" y="42" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
-        <text x="368" y="58" text-anchor="middle" font-size="9" fill="#8B8E84">served_from · last_synced_at</text>
-        <rect x="568" y="28" width="136" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
-        <text x="636" y="48" text-anchor="middle">PSA API</text>
-      </g>
-      <path d="M136 44 H 160" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <path d="M248 44 H 268" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <path d="M468 44 H 568" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <text x="518" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
-    </svg>
-  </div>
-  <p class="note">How it behaves — cache, 429, retries, vault, routing — lives in <a href="#docs-concepts">Concepts</a>.</p>
-</div>
 <div class="dpanel" id="d-docs-reference">
   <div class="docs-hero">
     <p class="kicker">Reference</p>
@@ -1332,10 +1324,11 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 <script>
 (function(){
   var pages=['home','product','integrations','msps','partners','docs'];
-  var docsIds=['docs','docs-concepts','docs-quickstart','docs-architecture','docs-reference','docs-use-cases','docs-libraries'];
+  var docsIds=['docs','docs-concepts','docs-quickstart','docs-reference','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
-    'docs-device':'docs-reference','docs-agreement':'docs-reference'
+    'docs-device':'docs-reference','docs-agreement':'docs-reference',
+    'docs-architecture':'docs'
   };
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
