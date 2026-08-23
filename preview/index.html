@@ -334,17 +334,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="card">
         <p class="num">01 — Your product integrates once</p>
         <h3>One schema, every vendor</h3>
-        <p class="quiet" style="margin:0">Write against one model: tickets, companies, contacts, and agreements, using Bitlync words. Devices too, where that connector exists. No per-vendor branches in your codebase.</p>
+        <p class="quiet" style="margin:0">Write against one model: tickets, companies, contacts, devices, and agreements. No per-vendor branches in your codebase.</p>
       </div>
       <div class="card">
         <p class="num">02 — Customers connect themselves</p>
         <h3>Self-serve, guided, validated</h3>
-        <p class="quiet" style="margin:0">The MSP pastes their own PSA or RMM keys. You never hold those credentials. ISVs start with docs and a sandbox, not a wiring guide per MSP.</p>
+        <p class="quiet" style="margin:0">The MSP pastes their own keys. You never store them. Bitlync guides the connect so you do not take the support tickets.</p>
       </div>
       <div class="card">
         <p class="num">03 — Act through the stack</p>
         <h3>Read and write, safely</h3>
-        <p class="quiet" style="margin:0">Open a ticket or update a device through the API. Writes that already support it take <code class="inline">dry_run</code> and an <code class="inline">idempotency_key</code>. Creating a leftover PSA company in the ISV is not shipped yet.</p>
+        <p class="quiet" style="margin:0">Open a ticket or update a device through the API. You can preview a write before it lands.</p>
       </div>
     </div>
   </section>
@@ -353,19 +353,19 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="center" style="margin-bottom:24px">
         <p class="kicker">Everything that comes with an integration</p>
         <h2>Every layer you'd otherwise build, bundled</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">These are not add-ons. Caching, retries, validation, and the vault ship with every connection.</p>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Caching, retries, validation, and the vault ship with every connection.</p>
       </div>
       <div class="inc-grid">
-        <div class="inc"><b>Caching</b><p>Reads come from our synced store. They are fast and do not spend the vendor rate budget. Each response says where it came from and when it was synced.</p></div>
-        <div class="inc"><b>Rate-limit handling</b><p>We pace every call against each vendor's real limits so your product never trips them by accident.</p></div>
-        <div class="inc"><b>Retries</b><p>Transient vendor failures are retried with backoff. You see one clean result, not a flaky upstream.</p></div>
-        <div class="inc"><b>Honest delivery status</b><p>Deduped and retried. No silent drop. An acknowledged write cannot double-write. A throttled one returns a real Retry-After.</p></div>
-        <div class="inc"><b>De-duplication</b><p>Idempotency keys on writes that support them mean a retry does not double-create a ticket.</p></div>
-        <div class="inc"><b>Validation</b><p>Payloads are checked against each vendor’s rules before they leave. Errors show up in your request, not in an MSP’s PSA.</p></div>
-        <div class="inc"><b>Credential vault</b><p>The MSP pastes their own PSA or RMM keys. Those credentials sit in a per-tenant vault. Your product never holds them.</p></div>
-        <div class="inc"><b>Customer map</b><p>A sure match maps automatically. A leftover PSA company is an ask to create in the ISV. Ambiguous stays unmatched. No silent create. The create hop itself is not shipped yet.</p></div>
-        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held in quarantine until someone releases them.</p></div>
-        <div class="inc"><b>Health + incidents</b><p>Connection status and an audit log are in the product. The vendor-health board on this page is a mockup.</p></div>
+        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not spend the vendor budget.</p></div>
+        <div class="inc"><b>Rate-limit handling</b><p>We pace calls to each vendor’s real limits.</p></div>
+        <div class="inc"><b>Retries</b><p>Transient failures are retried. You see one result.</p></div>
+        <div class="inc"><b>Honest delivery status</b><p>No silent drop. A throttle is a real Retry-After.</p></div>
+        <div class="inc"><b>De-duplication</b><p>A retry does not double-create a ticket.</p></div>
+        <div class="inc"><b>Validation</b><p>Checked before they leave. Errors show in your request.</p></div>
+        <div class="inc"><b>Credential vault</b><p>The MSP pastes keys. Your product never holds them.</p></div>
+        <div class="inc"><b>Customer map</b><p>A sure match maps. Ambiguous stays unmatched.</p></div>
+        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held until someone releases them.</p></div>
+        <div class="inc"><b>Health + incidents</b><p>Status and an audit log on every connection. The board here is a mockup.</p></div>
       </div>
     </div>
   </section>
@@ -393,9 +393,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 }</pre>
       </div>
       <div class="dx-notes">
-        <div class="dx-note"><b>Writes are governed</b>Every write takes <span style="font-family:var(--mono)">dry_run</span> to preview and an <span style="font-family:var(--mono)">idempotency_key</span> to make retries safe.</div>
-        <div class="dx-note"><b>Escape hatch, always</b>The normalized shape is the default; the vendor's raw payload rides along under <span style="font-family:var(--mono)">.raw</span> when you need it.</div>
-        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. curl, Python and TypeScript clients. First call the same day.</div>
+        <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
+        <div class="dx-note"><b>Escape hatch, always</b>The vendor payload rides along under <span style="font-family:var(--mono)">.raw</span>.</div>
+        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
       </div>
     </div>
   </section>
@@ -404,18 +404,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="center" style="margin-bottom:24px">
         <p class="kicker">Also over MCP</p>
         <h2>The same model over MCP</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">REST and MCP use the same service and the same model. What your app reads is what your agents read.</p>
+        <p class="sub" style="margin-left:auto;margin-right:auto">REST and MCP use the same model.</p>
       </div>
       <div class="mcp-grid">
         <div class="mcp-card bad">
           <small>Raw MCP servers</small>
           <b>Agents pointed straight at vendor APIs</b>
-          <p>Every tool call is a live vendor request. It spends the MSP’s shared rate budget, unpaced and unaudited. An agent that polls hard can slow every product on that tenant.</p>
+          <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
         </div>
         <div class="mcp-card good">
           <small>Bitlync MCP</small>
           <b>Sync-backed and governed</b>
-          <p>Agent reads come from the same synced store as the API. Zero vendor budget spent. Writes use the same dry-run, idempotency, and audit trail.</p>
+          <p>Reads come from the same store as the API. Writes use the same checks.</p>
         </div>
       </div>
     </div>
@@ -446,17 +446,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <div class="center" style="margin-bottom:24px">
         <p class="kicker">The connect experience</p>
-        <h2>MSPs connect themselves. You do not send a docs page and two empty fields.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">Docs and a sandbox are for ISVs. MSPs connect their own keys in a guided flow.</p>
+        <h2>MSPs connect themselves.</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">MSPs paste keys in a guided flow. Docs and a sandbox are for you.</p>
       </div>
       <div class="grid g3">
         <div class="card">
           <h3>Guided, in-flow</h3>
-          <p class="quiet" style="margin:0">Step-by-step credential guides sit beside the fields. Portal path and permissions are in the flow, not a link out.</p>
+          <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
         </div>
         <div class="card">
           <h3>Validated before it ships</h3>
-          <p class="quiet" style="margin:0 0 2px">Each key is tested against the scopes it needs. Bad setup is caught in the flow, not weeks later as a mystery ticket.</p>
+          <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
           <div class="mini-probe" aria-label="Example validation probe output">
             <div class="row p-ok">✓ authentication</div>
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
@@ -466,7 +466,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
         <div class="card">
           <h3>Hosted, credential-isolated</h3>
-          <p class="quiet" style="margin:0">Credentials are entered on Bitlync. They do not touch your frontend. The MSP owns the credential.</p>
+          <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
         </div>
       </div>
     </div>
@@ -475,8 +475,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <div class="center" style="margin-bottom:24px">
         <p class="kicker">Operated, not just hosted</p>
-        <h2>See a connection problem before a partner calls.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">Every MSP connection has a status and an audit log. Vendor API changes and outages show up as vendor health.</p>
+        <h2>See a problem before a partner calls.</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Status and an audit log on every connection.</p>
       </div>
       <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
@@ -516,10 +516,10 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <h2>On the roadmap</h2>
       <div class="road">
-        <article><span class="tag road">Coming</span><b>Event push</b><p>Webhooks to your product when tickets, devices, or companies change. You do not have to poll us.</p></article>
-        <article><span class="tag road">Coming</span><b>Linked assets</b><p>One asset graph across PSA, RMM, and documentation. The same device, recognized everywhere.</p></article>
+        <article><span class="tag road">Coming</span><b>Event push</b><p>Webhooks when tickets, devices, or companies change.</p></article>
+        <article><span class="tag road">Coming</span><b>Linked assets</b><p>The same device, recognized across the stack.</p></article>
         <article><span class="tag road">Coming</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></article>
-        <article><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier when it ships. Security features will not be a paid add-on.</p></article>
+        <article><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier. Not a paid add-on.</p></article>
       </div>
     </div>
   </section>
@@ -529,7 +529,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Coverage</p>
       <h2>Connectors in the product today.</h2>
-      <p class="sub">One layer across PSA, RMM, documentation, commerce, and GRC. Live means a connector is in the product today, against a seeded sandbox. Not a production AWS tenant. The rest is sequenced by partner demand.</p>
+      <p class="sub">One layer across the stack. Live means in the product today, against a sandbox. The rest follows partner demand.</p>
       <div class="grid9">
         <div class="cell"><b>ConnectWise</b><span class="cat">PSA</span></div>
         <div class="cell"><b>HaloPSA</b><span class="cat">PSA</span></div>
@@ -560,7 +560,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap center">
       <p class="kicker">For MSPs</p>
       <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,52px);margin:0 0 12px">Saw “Secured by Bitlync”<br>in a connect screen?</h1>
-      <p class="sub">One of your software vendors uses Bitlync to connect to your stack. Here is what that means, what we can touch, and how you stay in control.</p>
+      <p class="sub">One of your vendors uses Bitlync to connect to your stack. Here is what that means, and how you stay in control.</p>
       <div class="secured" role="img" aria-label="Secured by Bitlync badge">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
         <div><b>Secured by Bitlync</b><div class="quiet" style="margin:0">Your credentials stay here. Your vendor never sees them.</div></div>
@@ -572,12 +572,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="card">
         <p class="kicker">Grants, not shared credentials</p>
         <h3>You own the connection. Vendors get grants.</h3>
-        <p class="quiet" style="margin:0">You connect your PSA or RMM to Bitlync once. That connection is yours. Each vendor gets a separate, scoped grant. You enter the credential on our side. It stays in an isolated per-tenant vault. The vendor never sees it. Revoke a grant and that vendor is gone. Your connection stays yours.</p>
+        <p class="quiet" style="margin:0">You connect once. Each vendor gets a scoped grant. Keys stay in your vault. Revoke a grant and that vendor is gone.</p>
       </div>
       <div class="card">
         <p class="kicker">What a vendor can touch</p>
         <h3>You see the scope before you connect</h3>
-        <p class="quiet">Every grant is shown in plain language, including what the vendor can <em>never</em> do:</p>
+        <p class="quiet">Every grant is shown in plain language, including what they can never do:</p>
         <div style="display:grid;gap:8px;font-size:13.5px">
           <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
           <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
@@ -593,12 +593,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>Plainly stated</h2>
       </div>
       <div class="posture">
-        <div class="pos"><b>Synced once per tenant</b><p>One governed sync serves every vendor you've granted. Five tools never mean five pollers spending your shared API rate budget.</p></div>
-        <div class="pos"><b>Encrypted per-tenant</b><p>AES-256-GCM envelope encryption with per-tenant keys. Your tenant is isolated from every other.</p></div>
-        <div class="pos"><b>Owned by you</b><p>Every grant is revocable in one click. Your data is deletable on request.</p></div>
-        <div class="pos"><b>Audited, append-only</b><p>Every read and write by every vendor lands in an append-only log. It cannot be edited. You can see it.</p></div>
-        <div class="pos"><b>Support that can't touch your data</b><p>The support assistant is read-only. It has no write tool. It can diagnose your setup. It cannot change it.</p></div>
-        <div class="pos"><b>Never resold</b><p>Your operational data is not a product. Not aggregated, not sold. Ever.</p></div>
+        <div class="pos"><b>Synced once per tenant</b><p>One sync serves every vendor you granted.</p></div>
+        <div class="pos"><b>Encrypted per-tenant</b><p>Per-tenant keys. Isolated from every other tenant.</p></div>
+        <div class="pos"><b>Owned by you</b><p>Revoke a grant in one click. Delete your data on request.</p></div>
+        <div class="pos"><b>Audited, append-only</b><p>Every read and write lands in a log you can see. It cannot be edited.</p></div>
+        <div class="pos"><b>Support that can't touch your data</b><p>Support is read-only. It can diagnose. It cannot change your setup.</p></div>
+        <div class="pos"><b>Never resold</b><p>Your operational data is not sold. Not aggregated.</p></div>
       </div>
       <p class="disclaim">SOC 2 in progress.</p>
     </div>
@@ -608,7 +608,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="center" style="margin-bottom:24px">
         <p class="kicker">Your portal</p>
         <h2>See it. Scope it. Revoke it.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">Every connection comes with a portal account. It is a permissions page, not another app to manage.</p>
+        <p class="sub" style="margin-left:auto;margin-right:auto">A permissions page. Not another app to manage.</p>
       </div>
       <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
         <div class="pm-head">your connections</div>
@@ -635,7 +635,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Early access</p>
       <h2>Build this with us.</h2>
-      <p class="sub">We are taking a small number of paid design partners before general availability. Software providers who need real integrations, and want a say in what gets built first.</p>
+      <p class="sub">A small number of paid design partners before general availability. Real integrations. A say in what gets built first.</p>
       <div class="grid g3" style="margin:28px 0">
         <div class="card"><p class="kicker">How it starts</p><h3>A conversation, not a form</h3><p class="quiet" style="margin:0">A short conversation and an NDA.</p></div>
         <div class="card"><p class="kicker">What you get</p><h3>Founding terms, locked</h3><p class="quiet" style="margin:0">Founding terms locked in for the partners who join early.</p></div>
