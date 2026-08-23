@@ -690,6 +690,92 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <li><b>Commerce</b> — where they buy licenses (direct or through a distributor) and then bill the customer.</li>
 </ul>
 <p class="note">Those tools do not share one API. Every MSP picked a different mix. Bitlync is one API with one shape. You write once. The MSP pastes their own keys. You do not hold them.</p>
+<div class="arch" aria-label="Your product talks to Bitlync. The MSP stack folds in.">
+    <svg viewBox="0 0 720 280" role="img">
+      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+        <rect x="16" y="122" width="132" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <text x="82" y="142" text-anchor="middle">Your product</text>
+      </g>
+      <path d="M148 138 H 214" fill="none" stroke="#8B8E84" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="250" cy="138" r="34" fill="#101214" stroke="#C6F04D" stroke-width="1.5"/>
+      <text x="250" y="136" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#EDECE6">bitlync</text>
+      <text x="250" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one shape</text>
+      <g fill="none" stroke="#8B8E84" stroke-width="1.25" stroke-linecap="round">
+        <path d="M456 48 C 380 48, 360 138, 284 138"/>
+        <path d="M456 98 C 378 98, 356 138, 284 138"/>
+        <path d="M456 178 C 378 178, 356 138, 284 138"/>
+        <path d="M456 228 C 380 228, 360 138, 284 138"/>
+      </g>
+      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+        <rect x="456" y="32" width="148" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <rect x="456" y="82" width="148" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <rect x="456" y="162" width="148" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <rect x="456" y="212" width="148" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
+        <text x="530" y="52" text-anchor="middle">PSA</text>
+        <text x="530" y="102" text-anchor="middle">RMM</text>
+        <text x="530" y="182" text-anchor="middle">Documentation</text>
+        <text x="530" y="232" text-anchor="middle">Commerce</text>
+      </g>
+    </svg>
+  </div>
+  <p class="note">The MSP pastes keys. You never hold them. REST and MCP use the same model.</p>
+<p class="note">How it behaves — cache, 429, retries, vault, routing — lives in <a href="#docs-concepts">Concepts</a>.</p>
+
+    <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
+    <a class="btn ghost" href="#docs-reference" data-docs="docs-reference" style="margin-left:10px">Reference</a>
+    <p class="note" style="margin-top:22px">Connectors in the product today run against a seeded sandbox. Not a production AWS tenant.</p>
+  </div>
+</div>
+<div class="dpanel" id="d-docs-concepts">
+  <div class="docs-hero">
+    <p class="kicker">Concepts</p>
+    <h1>Operator manual.</h1>
+    <p class="lede">Short title. Mechanism. Payload. What is not shipped. Nested hashes under Concepts. <span class="coming">Try it out · Coming</span></p>
+  </div>
+  <nav class="toc" aria-label="Concepts">
+    <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
+    <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+    <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
+    <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
+    <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
+    <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
+    <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+    <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
+    <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
+    <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
+    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
+    <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+    <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+    <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+    <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
+    <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+  </nav>
+<article class="concept" id="docs-concepts-caching">
+  <h2>Caching / store-served reads</h2>
+  <p class="note">Reads come from the synced store for that MSP tenant. One sync fills the store. Every ISV on that tenant reads the same copy.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">The caller asks for tickets, devices, or other listed reads. Bitlync answers from the store. That path does not spend vendor budget. <code class="inline">live=True</code> is the priced escape hatch when a store read is not enough. There is no public live-read URL on this page.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">The response names the store and the last sync. Fields are <code class="inline">served_from</code> and <code class="inline">last_synced_at</code>.</p>
+    <div class="code">
+    <div class="hd"><b>store-served read</b><button class="copy" type="button" data-copy="{&quot;served_from&quot;:&quot;store&quot;,&quot;last_synced_at&quot;:&quot;2026-07-11T14:03:22Z&quot;,&quot;data&quot;:[{&quot;status&quot;:&quot;in_progress&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;raw&quot;:{}}]}">Copy</button></div>
+    <pre>{
+  "served_from": "store",
+  "last_synced_at": "2026-07-11T14:03:22Z",
+  "data": [{
+    "status": "in_progress",
+    "source": "psa",
+    "raw": {}
+  }]
+}</pre>
+  </div>
+  <p class="lbl">Not shipped</p>
+  <p class="note">No public live-read URL. No live-read host on this page. Try it out is Coming.</p>
+</article>
+<article class="concept" id="docs-concepts-rate-limits">
+  <h2>Rate limits</h2>
+  <p class="note">One sync per MSP tenant serves every ISV. Writes to the vendor are paced to that vendor’s real limit. The ISV is not asked to guess a vendor quota.</p>
+  <p class="note">Today every product polls the same PSA and spends the shared budget. With Bitlync, N products read the store. One governed sync. Honest 429 with Retry-After.</p>
 <div class="arch-pair">
     <div class="arch" aria-label="Today every product polls the same PSA">
       <p class="ah bad">Today — every product polls</p>
@@ -754,83 +840,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </svg>
     </div>
   </div>
-  <p class="note">One sync per MSP, paced to that vendor’s real shared budget. Honest 429 with Retry-After.</p>
-  <p class="note">The MSP pastes keys. You never hold them. REST and MCP use the same model.</p>
-  <div class="arch" aria-label="A store-served read">
-    <p class="ah">A store-served read</p>
-    <svg viewBox="0 0 720 88" role="img">
-      <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
-        <rect x="16" y="28" width="120" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
-        <text x="76" y="48" text-anchor="middle">Your product</text>
-        <text x="168" y="48" fill="#8B8E84">read tickets</text>
-        <rect x="268" y="20" width="200" height="48" rx="12" fill="#101214" stroke="#C6F04D"/>
-        <text x="368" y="42" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
-        <text x="368" y="58" text-anchor="middle" font-size="9" fill="#8B8E84">served_from · last_synced_at</text>
-        <rect x="568" y="28" width="136" height="32" rx="10" fill="#101214" stroke="#2C3128"/>
-        <text x="636" y="48" text-anchor="middle">PSA API</text>
-      </g>
-      <path d="M136 44 H 160" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <path d="M248 44 H 268" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <path d="M468 44 H 568" fill="none" stroke="#8B8E84" stroke-width="1.2"/>
-      <text x="518" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
-    </svg>
-  </div>
-  <p class="note">How it behaves — cache, 429, retries, vault, routing — lives in <a href="#docs-concepts">Concepts</a>.</p>
-
-    <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
-    <a class="btn ghost" href="#docs-reference" data-docs="docs-reference" style="margin-left:10px">Reference</a>
-    <p class="note" style="margin-top:22px">Connectors in the product today run against a seeded sandbox. Not a production AWS tenant.</p>
-  </div>
-</div>
-<div class="dpanel" id="d-docs-concepts">
-  <div class="docs-hero">
-    <p class="kicker">Concepts</p>
-    <h1>Operator manual.</h1>
-    <p class="lede">Short title. Mechanism. Payload. What is not shipped. Nested hashes under Concepts. <span class="coming">Try it out · Coming</span></p>
-  </div>
-  <nav class="toc" aria-label="Concepts">
-    <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
-    <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
-    <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
-    <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
-    <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
-    <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
-    <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
-    <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
-    <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
-    <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
-    <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-    <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
-    <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-    <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
-    <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
-  </nav>
-<article class="concept" id="docs-concepts-caching">
-  <h2>Caching / store-served reads</h2>
-  <p class="note">Reads come from the synced store for that MSP tenant. One sync fills the store. Every ISV on that tenant reads the same copy.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">The caller asks for tickets, devices, or other listed reads. Bitlync answers from the store. That path does not spend vendor budget. <code class="inline">live=True</code> is the priced escape hatch when a store read is not enough. There is no public live-read URL on this page.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">The response names the store and the last sync. Fields are <code class="inline">served_from</code> and <code class="inline">last_synced_at</code>.</p>
-    <div class="code">
-    <div class="hd"><b>store-served read</b><button class="copy" type="button" data-copy="{&quot;served_from&quot;:&quot;store&quot;,&quot;last_synced_at&quot;:&quot;2026-07-11T14:03:22Z&quot;,&quot;data&quot;:[{&quot;status&quot;:&quot;in_progress&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;raw&quot;:{}}]}">Copy</button></div>
-    <pre>{
-  "served_from": "store",
-  "last_synced_at": "2026-07-11T14:03:22Z",
-  "data": [{
-    "status": "in_progress",
-    "source": "psa",
-    "raw": {}
-  }]
-}</pre>
-  </div>
-  <p class="lbl">Not shipped</p>
-  <p class="note">No public live-read URL. No live-read host on this page. Try it out is Coming.</p>
-</article>
-<article class="concept" id="docs-concepts-rate-limits">
-  <h2>Rate limits</h2>
-  <p class="note">One sync per MSP tenant serves every ISV. Writes to the vendor are paced to that vendor’s real limit. The ISV is not asked to guess a vendor quota.</p>
+  
   <p class="lbl">Mechanism</p>
   <p class="note">ISV-facing: 600 req/min times the number of connected MSPs. There is no daily cap. The per-minute rate is the limit. Hit it and the API returns a real 429 with <code class="inline">Retry-After</code>. There is no silent throttle.</p>
   <p class="lbl">What the caller sees</p>
@@ -1186,6 +1196,42 @@ tenant_id: sandbox-mainstreet
   -H "X-API-Key: $BITLYNC_KEY" \
   -H "Content-Type: application/json" \
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
+  </div>
+  <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
+  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. There is no public MCP host. Use <code class="inline">$BITLYNC_BASE</code>. <span class="coming">Try it out · Coming</span></p>
+  <div class="code">
+    <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
+  &quot;mcpServers&quot;: {
+    &quot;bitlync&quot;: {
+      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
+      &quot;headers&quot;: {
+        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
+      }
+    }
+  }
+}">Copy</button></div>
+    <pre>{
+  &quot;mcpServers&quot;: {
+    &quot;bitlync&quot;: {
+      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
+      &quot;headers&quot;: {
+        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
+      }
+    }
+  }
+}</pre>
+  </div>
+  <div class="code">
+    <div class="hd"><b>agent prompt</b><button class="copy" type="button" data-copy="Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
+
+Read with list_tickets, list_devices, or list_installed_applications.
+The write tool is route_finding. Do not create tickets over MCP.
+dry_run ticket create is REST-only.">Copy</button></div>
+    <pre>Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
+
+Read with list_tickets, list_devices, or list_installed_applications.
+The write tool is route_finding. Do not create tickets over MCP.
+dry_run ticket create is REST-only.</pre>
   </div>
 </div>
 <div class="dpanel" id="d-docs-reference">
