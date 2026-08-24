@@ -92,12 +92,16 @@ section.pad{padding:72px 0}
 .logo-track img{width:20px;height:20px;object-fit:contain;filter:grayscale(1);opacity:.8}
 .logo-track a:hover img{opacity:1}
 .cake{margin:0 auto 22px;width:100%;max-width:none;display:flex;flex-direction:column;align-items:center;gap:6px}
-.cake .layer{background:#F3F0E6;border:1px solid #E4DFD4;border-radius:12px;padding:10px 12px 11px;text-align:center;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
+.cake .layer{border:1px solid #C9C3B4;border-radius:12px;padding:10px 12px 11px;text-align:center;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
+.cake .layer:nth-child(1){background:#C4BBA6}
+.cake .layer:nth-child(2){background:#D2C9B2}
+.cake .layer:nth-child(3){background:#DDD4BC}
+.cake .layer:nth-child(4){background:#E6DDC6}
 .cake .layer b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:-.015em}
 .cake .layer span{display:block;font-size:12px;color:var(--mute);margin-top:2px}
 .cake .layer.store{background:#17181C;border-color:#17181C;color:#F7F4EC}
 .cake .layer.store span{color:#B9B9B4}
-.cake .layer:hover{transform:translateY(-4px);border-color:#C9C3B4;box-shadow:0 10px 24px rgba(23,24,28,.1);background:#EBE6D8;z-index:1}
+.cake .layer:hover{transform:translateY(-4px);border-color:#8A8680;box-shadow:0 10px 24px rgba(23,24,28,.12);filter:brightness(.94);z-index:1}
 .cake .layer.store:hover{background:#2A2C31;border-color:#2A2C31;color:#fff}
 @media(prefers-reduced-motion:reduce){.cake .layer:hover{transform:none}}
 .card .viz{margin:14px 0 0;border:1px solid var(--hair);border-radius:10px;background:#F3F0E6;padding:6px 8px;overflow:hidden}
