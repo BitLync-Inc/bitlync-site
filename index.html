@@ -74,10 +74,10 @@ body.docs .sub{color:var(--dmute)}
 section.pad{padding:72px 0}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
 .card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
-#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover,#page-product .cake:hover{transform:translateY(-5px);border-color:#C9C3B4;box-shadow:0 14px 32px rgba(23,24,28,.09)}
+#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover{transform:translateY(-5px);border-color:#C9C3B4;box-shadow:0 14px 32px rgba(23,24,28,.09)}
 #page-product .card:hover .viz{background:#EBE6D8}
 #page-product .inc{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-@media(prefers-reduced-motion:reduce){#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover,#page-product .cake:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover{transform:none}}
 
 .logo-scroll{overflow:hidden;margin:22px 0 0;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent);mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent)}
 .logo-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logos 48s linear infinite}
@@ -91,8 +91,15 @@ section.pad{padding:72px 0}
 .logo-track a{display:inline-flex;align-items:center;gap:8px}
 .logo-track img{width:20px;height:20px;object-fit:contain;filter:grayscale(1);opacity:.8}
 .logo-track a:hover img{opacity:1}
-.cake{margin:0 auto 22px;max-width:520px}
-.cake svg{display:block;width:100%;height:auto}
+.cake{margin:0 auto 22px;max-width:520px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.cake .layer{background:#F3F0E6;border:1px solid #E4DFD4;border-radius:12px;padding:10px 12px 11px;text-align:center;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
+.cake .layer b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:-.015em}
+.cake .layer span{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.cake .layer.store{background:#17181C;border-color:#17181C;color:#F7F4EC}
+.cake .layer.store span{color:#B9B9B4}
+.cake .layer:hover{transform:translateY(-4px);border-color:#C9C3B4;box-shadow:0 10px 24px rgba(23,24,28,.1);background:#EBE6D8;z-index:1}
+.cake .layer.store:hover{background:#2A2C31;border-color:#2A2C31;color:#fff}
+@media(prefers-reduced-motion:reduce){.cake .layer:hover{transform:none}}
 .card .viz{margin:14px 0 0;border:1px solid var(--hair);border-radius:10px;background:#F3F0E6;padding:6px 8px;overflow:hidden}
 .card .viz svg,.viz-band svg,.layer-pic svg{display:block;width:100%;height:auto}
 .viz-band{margin:18px 0 0;border:1px solid var(--hair);border-radius:16px;background:var(--card);padding:12px 12px 10px}
@@ -478,23 +485,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub" style="margin-left:auto;margin-right:auto">Caching, retries, validation, and the vault ship with every connection.</p>
       </div>
       <div class="cake" aria-label="Five layers that ship with every connection">
-        <svg viewBox="0 0 420 250" role="img">
-          <rect x="28" y="12" width="364" height="46" rx="12" fill="#E8E3D6" stroke="#D4CFC2"/>
-          <text x="210" y="32" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">audit</text>
-          <text x="210" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">every read and write, visible</text>
-          <rect x="44" y="54" width="332" height="46" rx="12" fill="#EFEBE0" stroke="#D8D3C6"/>
-          <text x="210" y="74" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">vault</text>
-          <text x="210" y="90" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">MSP keys. Not yours.</text>
-          <rect x="60" y="96" width="300" height="46" rx="12" fill="#F4F0E6" stroke="#DDD8CB"/>
-          <text x="210" y="116" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">preview</text>
-          <text x="210" y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">see a write before it lands</text>
-          <rect x="76" y="138" width="268" height="46" rx="12" fill="#F7F4EC" stroke="#E4DFD4"/>
-          <text x="210" y="158" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">pace</text>
-          <text x="210" y="174" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">honest 429 · vendor budget</text>
-          <rect x="92" y="180" width="236" height="50" rx="12" fill="#17181C"/>
-          <text x="210" y="202" text-anchor="middle" font-family="Instrument Serif,serif" font-size="17" font-style="italic" fill="#F7F4EC">store</text>
-          <text x="210" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#B9B9B4">reads from here</text>
-        </svg>
+        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
+        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
+        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
+        <div class="layer" style="width:68%"><b>pace</b><span>honest 429 · vendor budget</span></div>
+        <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
       </div>
       <div class="inc-grid">
         <div class="inc"><b>Caching</b><p>Reads come from our store. They do not spend the vendor budget.</p></div>
