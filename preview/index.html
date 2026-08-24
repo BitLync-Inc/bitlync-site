@@ -74,6 +74,18 @@ body.docs .sub{color:var(--dmute)}
 section.pad{padding:72px 0}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
 .card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;min-width:0}
+
+.logo-scroll{overflow:hidden;margin:22px 0 0;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent);mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent)}
+.logo-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logos 48s linear infinite}
+.logo-track a{flex:none;font-family:var(--serif);font-size:17px;font-style:italic;color:#8A8680;letter-spacing:.01em;white-space:nowrap;transition:transform .2s ease,color .2s ease,opacity .2s ease;opacity:.72}
+.logo-track a:hover{color:#17181C;opacity:1;transform:translateY(-3px)}
+@keyframes logos{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.logo-track{animation:none}}
+.cell.logo-cell{display:flex;flex-direction:column;gap:2px;transition:background .2s ease}
+.cell.logo-cell:hover{background:#F3F0E6}
+.cell .mark-l{font-family:var(--serif);font-style:italic;font-size:15px;color:#6B6A64;margin:0 0 4px}
+.cake{margin:0 auto 22px;max-width:520px}
+.cake svg{display:block;width:100%;height:auto}
 .card .viz{margin:14px 0 0;border:1px solid var(--hair);border-radius:10px;background:#F3F0E6;padding:6px 8px;overflow:hidden}
 .card .viz svg,.viz-band svg,.layer-pic svg{display:block;width:100%;height:auto}
 .viz-band{margin:18px 0 0;border:1px solid var(--hair);border-radius:16px;background:var(--card);padding:12px 12px 10px}
@@ -282,7 +294,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">One API for ISVs</p>
       <h1>Write once. Connect to many.</h1>
-      <p class="lede">MSPs already picked their stack. You shouldn’t have to build and maintain all these disparate integrations just to land new customers.</p>
+      <p class="lede">MSPs already chose their tools. Each vendor is a different API, a different error path, and another thing you’d have to keep.</p>
       <div class="btn-row">
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#product" data-nav="product">See how it works</a>
@@ -322,6 +334,28 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
         </svg>
       </div>
+      <div class="logo-scroll" aria-label="Vendors in the product today">
+        <div class="logo-track">
+          <a href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer">ConnectWise</a>
+          <a href="https://halopsa.com" target="_blank" rel="noopener noreferrer">HaloPSA</a>
+          <a href="https://www.autotask.com" target="_blank" rel="noopener noreferrer">Autotask</a>
+          <a href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer">NinjaOne</a>
+          <a href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer">Datto RMM</a>
+          <a href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer">ScalePad</a>
+          <a href="https://www.pax8.com" target="_blank" rel="noopener noreferrer">Pax8</a>
+          <a href="https://www.itglue.com" target="_blank" rel="noopener noreferrer">IT Glue</a>
+          <a href="https://www.hudu.com" target="_blank" rel="noopener noreferrer">Hudu</a>
+          <a href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer">ConnectWise</a>
+          <a href="https://halopsa.com" target="_blank" rel="noopener noreferrer">HaloPSA</a>
+          <a href="https://www.autotask.com" target="_blank" rel="noopener noreferrer">Autotask</a>
+          <a href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer">NinjaOne</a>
+          <a href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer">Datto RMM</a>
+          <a href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer">ScalePad</a>
+          <a href="https://www.pax8.com" target="_blank" rel="noopener noreferrer">Pax8</a>
+          <a href="https://www.itglue.com" target="_blank" rel="noopener noreferrer">IT Glue</a>
+          <a href="https://www.hudu.com" target="_blank" rel="noopener noreferrer">Hudu</a>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -340,26 +374,26 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h3>One schema, every vendor</h3>
         <p class="quiet" style="margin:0">Write against one model: tickets, companies, contacts, devices, and agreements. No per-vendor branches in your codebase.</p>
         <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 280 92" role="img">
-            <text x="140" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
+          <svg viewBox="0 0 360 100" role="img">
+            <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
             <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
-              <path d="M140 28 C 140 40, 40 48, 40 62"/>
-              <path d="M140 28 C 140 40, 90 50, 90 62"/>
-              <path d="M140 28 C 140 42, 140 52, 140 62"/>
-              <path d="M140 28 C 140 40, 190 50, 190 62"/>
-              <path d="M140 28 C 140 40, 240 48, 240 62"/>
+              <path d="M180 28 C 180 42, 40 50, 40 64"/>
+              <path d="M180 28 C 180 42, 110 52, 110 64"/>
+              <path d="M180 28 C 180 44, 180 54, 180 64"/>
+              <path d="M180 28 C 180 42, 250 52, 250 64"/>
+              <path d="M180 28 C 180 42, 320 50, 320 64"/>
             </g>
             <g font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">
-              <rect x="12" y="62" width="56" height="18" rx="9" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="62" y="62" width="56" height="18" rx="9" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="112" y="62" width="56" height="18" rx="9" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="162" y="62" width="56" height="18" rx="9" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="212" y="62" width="56" height="18" rx="9" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <text x="40" y="74" text-anchor="middle">ticket</text>
-              <text x="90" y="74" text-anchor="middle">company</text>
-              <text x="140" y="74" text-anchor="middle">contact</text>
-              <text x="190" y="74" text-anchor="middle">device</text>
-              <text x="240" y="74" text-anchor="middle">agree</text>
+              <rect x="8" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="284" y="64" width="70" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <text x="40" y="78" text-anchor="middle">ticket</text>
+              <text x="110" y="78" text-anchor="middle">company</text>
+              <text x="180" y="78" text-anchor="middle">contact</text>
+              <text x="250" y="78" text-anchor="middle">device</text>
+              <text x="319" y="78" text-anchor="middle">AGREEMENT</text>
             </g>
           </svg>
         </div>
@@ -369,23 +403,27 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h3>Self-serve, guided, validated</h3>
         <p class="quiet" style="margin:0">The MSP pastes their own keys. You never store them. Bitlync guides the connect so you do not take the support tickets.</p>
         <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 280 92" role="img">
-            <rect x="12" y="28" width="72" height="36" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="48" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#17181C">MSP key</text>
-            <path d="M84 46 H 118" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <rect x="118" y="22" width="88" height="48" rx="10" fill="#17181C"/>
-            <text x="162" y="42" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#F7F4EC">vault</text>
-            <text x="162" y="58" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">MSP only</text>
-            <path d="M206 46 H 228" fill="none" stroke="#C4BFB4" stroke-width="1.2" stroke-dasharray="3 4" stroke-linecap="round"/>
-            <rect x="228" y="28" width="40" height="36" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="248" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#B24A4A">no</text>
+          <svg viewBox="0 0 320 100" role="img">
+            <rect x="6" y="28" width="88" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
+            <text x="50" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">MSP pastes</text>
+            <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#6B6A64">keys</text>
+            <path d="M94 50 H 112" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
+            <polygon points="112,46 120,50 112,54" fill="#8A8680"/>
+            <rect x="120" y="22" width="100" height="56" rx="8" fill="#17181C"/>
+            <text x="170" y="44" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#F7F4EC">check scopes</text>
+            <text x="170" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">what the ISV needs</text>
+            <path d="M220 50 H 238" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
+            <polygon points="238,46 246,50 238,54" fill="#8A8680"/>
+            <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
+            <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
+            <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
           </svg>
         </div>
       </div>
       <div class="card">
         <p class="num">03 — Act through the stack</p>
         <h3>Read and write, safely</h3>
-        <p class="quiet" style="margin:0">Open a ticket. Write back only on tickets Bitlync created. Close stays off unless the MSP turns it on. Devices stay read-only.</p>
+        <p class="quiet" style="margin:0">Open a ticket. Write back only on tickets Bitlync created. Close stays off until the MSP turns it on.</p>
         <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 280 92" role="img">
             <rect x="8" y="30" width="64" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
@@ -417,10 +455,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <polygon points="420,40 430,44 420,48" fill="#8A8680"/>
           <rect x="430" y="26" width="88" height="36" rx="10" fill="#FBFBF8" stroke="#E4DFD4"/>
           <text x="474" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#17181C">PSA</text>
-          <rect x="536" y="26" width="168" height="36" rx="10" fill="#F3F0E6" stroke="#E4DFD4"/>
-          <text x="620" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#6B6A64">close off · MSP flag</text>
+          <rect x="536" y="18" width="168" height="52" rx="10" fill="#F3F0E6" stroke="#E4DFD4"/>
+          <text x="620" y="40" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#17181C">Close stays off</text>
+          <text x="620" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#6B6A64">until the MSP turns it on</text>
         </svg>
-        <p>One way. Tickets Bitlync created only. Not two-way. Devices stay a read.</p>
+        <p>One way. Tickets Bitlync created only. Not two-way.</p>
       </div>
     </div>
   </section>
@@ -431,15 +470,23 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>Every layer you'd otherwise build, bundled</h2>
         <p class="sub" style="margin-left:auto;margin-right:auto">Caching, retries, validation, and the vault ship with every connection.</p>
       </div>
-      <div class="layer-pic" aria-hidden="true">
-        <svg viewBox="0 0 720 56" role="img">
-          <g font-family="JetBrains Mono,monospace" font-size="10" fill="#6B6A64">
-            <rect x="8" y="12" width="130" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/><text x="73" y="32" text-anchor="middle">store</text>
-            <rect x="150" y="12" width="130" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/><text x="215" y="32" text-anchor="middle">pace 429</text>
-            <rect x="292" y="12" width="130" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/><text x="357" y="32" text-anchor="middle">preview</text>
-            <rect x="434" y="12" width="130" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/><text x="499" y="32" text-anchor="middle">vault</text>
-            <rect x="576" y="12" width="136" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/><text x="644" y="32" text-anchor="middle">audit</text>
-          </g>
+      <div class="cake" aria-label="Five layers that ship with every connection">
+        <svg viewBox="0 0 420 250" role="img">
+          <rect x="28" y="12" width="364" height="46" rx="12" fill="#E8E3D6" stroke="#D4CFC2"/>
+          <text x="210" y="32" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">audit</text>
+          <text x="210" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">every read and write, visible</text>
+          <rect x="44" y="54" width="332" height="46" rx="12" fill="#EFEBE0" stroke="#D8D3C6"/>
+          <text x="210" y="74" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">vault</text>
+          <text x="210" y="90" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">MSP keys. Not yours.</text>
+          <rect x="60" y="96" width="300" height="46" rx="12" fill="#F4F0E6" stroke="#DDD8CB"/>
+          <text x="210" y="116" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">preview</text>
+          <text x="210" y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">see a write before it lands</text>
+          <rect x="76" y="138" width="268" height="46" rx="12" fill="#F7F4EC" stroke="#E4DFD4"/>
+          <text x="210" y="158" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" fill="#17181C">pace</text>
+          <text x="210" y="174" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#6B6A64">honest 429 · vendor budget</text>
+          <rect x="92" y="180" width="236" height="50" rx="12" fill="#17181C"/>
+          <text x="210" y="202" text-anchor="middle" font-family="Instrument Serif,serif" font-size="17" font-style="italic" fill="#F7F4EC">store</text>
+          <text x="210" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#B9B9B4">reads from here</text>
         </svg>
       </div>
       <div class="inc-grid">
@@ -616,17 +663,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Coverage</p>
       <h2>Connectors in the product today.</h2>
-      <p class="sub">One layer across the stack. Live means in the product today, against a sandbox. The rest follows partner demand.</p>
+      <p class="sub">Connect to the stacks your MSPs already run. Live means in the product today, against a sandbox. The rest follows partner demand.</p>
       <div class="grid9">
-        <div class="cell"><b>ConnectWise</b><span class="cat">PSA</span></div>
-        <div class="cell"><b>HaloPSA</b><span class="cat">PSA</span></div>
-        <div class="cell"><b>Autotask</b><span class="cat">PSA</span></div>
-        <div class="cell"><b>NinjaOne</b><span class="cat">RMM</span></div>
-        <div class="cell"><b>Datto RMM</b><span class="cat">RMM</span></div>
-        <div class="cell"><b>ScalePad</b><span class="cat">GRC</span></div>
-        <div class="cell"><b>Pax8</b><span class="cat">Commerce</span></div>
-        <div class="cell"><b>IT Glue</b><span class="cat">Documentation</span></div>
-        <div class="cell"><b>Hudu</b><span class="cat">Documentation</span></div>
+        <a class="cell logo-cell" href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">ConnectWise</span><b>ConnectWise</b><span class="cat">PSA</span></a>
+        <a class="cell logo-cell" href="https://halopsa.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">HaloPSA</span><b>HaloPSA</b><span class="cat">PSA</span></a>
+        <a class="cell logo-cell" href="https://www.autotask.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">Autotask</span><b>Autotask</b><span class="cat">PSA</span></a>
+        <a class="cell logo-cell" href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">NinjaOne</span><b>NinjaOne</b><span class="cat">RMM</span></a>
+        <a class="cell logo-cell" href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer"><span class="mark-l">Datto RMM</span><b>Datto RMM</b><span class="cat">RMM</span></a>
+        <a class="cell logo-cell" href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">ScalePad</span><b>ScalePad</b><span class="cat">GRC</span></a>
+        <a class="cell logo-cell" href="https://www.pax8.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">Pax8</span><b>Pax8</b><span class="cat">Commerce</span></a>
+        <a class="cell logo-cell" href="https://www.itglue.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">IT Glue</span><b>IT Glue</b><span class="cat">Documentation</span></a>
+        <a class="cell logo-cell" href="https://www.hudu.com" target="_blank" rel="noopener noreferrer"><span class="mark-l">Hudu</span><b>Hudu</b><span class="cat">Documentation</span></a>
       </div>
       <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
       <div class="cat-block">
