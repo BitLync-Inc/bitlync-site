@@ -1118,7 +1118,7 @@ GET /tenants/{tenant_id}/incidents</pre>
 </article>
 <article class="concept" id="docs-concepts-writes">
   <h2>Writes</h2>
-  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. Not field-level ticket sync.</p>
+  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, close with evidence, or POST hours on that ticket only. Close stays off unless the MSP turns it on. Hours take stated billable and an optional member. No notes on time. Not a time read. Not two-way. Not field-level ticket sync.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Preview first. Then commit with the same body and an <code class="inline">idempotency_key</code> on writes that support it. If a fan-out is only partial, that failure is explicit. It is never collapsed into a single silent success.</p>
   <p class="lbl">What the caller sees</p>
@@ -1332,7 +1332,7 @@ dry_run ticket create is REST-only.</pre>
       <p class="path">GET /tenants/{tenant_id}/tickets</p>
       <p class="path">POST /tenants/{tenant_id}/tickets</p>
       <h3>Tickets</h3>
-      <p class="note">List and create. Write back (update, note, close-with-evidence) only on tickets Bitlync created. Close defaults off. dry_run defaults true.</p>
+      <p class="note">List and create. Write back (update, note, close-with-evidence, hours) only on tickets Bitlync created. Close defaults off. Hours are a write, not a read. dry_run defaults true.</p>
       <p style="margin:16px 0 0"><span class="coming">Try it out · Coming</span></p>
     </article>
     <article>
@@ -1368,7 +1368,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">There is no GET /agreements.</p>
   <article class="obj" id="docs-ticket">
     <h3>Ticket</h3>
-    <p class="note">GET and POST /tenants/{tenant_id}/tickets. Write-back is only on tickets Bitlync created.</p>
+    <p class="note">GET and POST /tenants/{tenant_id}/tickets. Write-back and hours only on tickets Bitlync created. Time has no notes field.</p>
     <div class="fields">
       <button type="button" data-goto="ref-tickets" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">source</button>
       <button type="button" data-goto="ref-tickets" data-copy="{&quot;source&quot;:&quot;psa&quot;,&quot;source_id&quot;:&quot;…&quot;,&quot;summary&quot;:&quot;…&quot;,&quot;status&quot;:&quot;in_progress&quot;,&quot;priority&quot;:&quot;medium&quot;,&quot;synced_at&quot;:&quot;…&quot;,&quot;raw&quot;:{}}">source_id</button>
@@ -1423,7 +1423,7 @@ dry_run ticket create is REST-only.</pre>
   <article class="uc"><h3>2. Map customers <span class="coming">live</span></h3><p class="note">Sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. The create-into-ISV hop is Coming.</p></article>
   <article class="uc"><h3>3. Billing reconciliation <span class="coming">Coming</span></h3><p class="note">Agreement-shaped billing later. There is no GET /agreements today.</p></article>
   <article class="uc"><h3>4. Agent deploy</h3><p class="note">POST /tenants/{tenant_id}/deployments.</p></article>
-  <article class="uc"><h3>5. Time on the ticket <span class="coming">later</span></h3><p class="note">Time entries exist in schema. Mapping is still next-slice. No route.</p></article>
+  <article class="uc"><h3>5. Time on the ticket <span class="coming">live</span></h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member. Same write grant. Fixtures and dry_run. Not Autotask yet. Not a time read. No list. No timers. No notes field. Not two-way time. No billing codes, work types, or start–end.</p></article>
   <article class="uc"><h3>6. Close with evidence <span class="coming">live</span></h3><p class="note">On tickets Bitlync created: append evidence, or close if the MSP turned that on. Close defaults off. Fixtures and dry_run. Not two-way ticketing.</p></article>
 </div>
 <div class="dpanel" id="d-docs-libraries">
