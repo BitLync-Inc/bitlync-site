@@ -471,11 +471,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
         <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
         <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
-        <div class="layer" style="width:68%"><b>pace</b><span>honest rate limit · vendor budget</span></div>
+        <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
         <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
       </div>
       <div class="inc-grid">
-        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not spend the vendor budget.</p></div>
+        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
         <div class="inc"><b>Rate-limit handling</b><p>We pace calls to each vendor’s real limits.</p></div>
         <div class="inc"><b>Retries</b><p>Transient failures are retried. You see one result.</p></div>
         <div class="inc"><b>Honest delivery status</b><p>No silent drop. A throttle is a real Retry-After.</p></div>
