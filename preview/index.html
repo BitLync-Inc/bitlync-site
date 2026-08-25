@@ -1160,7 +1160,7 @@ GET /tenants/{tenant_id}/incidents</pre>
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">No default-commit write. Creating a leftover PSA company in the ISV returns 501.</p>
+  <p class="note">Ticket create, write-back, and time are fixtures on ConnectWise, Halo, and Autotask. No default-commit write. Live Autotask HTTP write is not shipped. Autotask agreement-line writes are not shipped. Creating a leftover PSA company in the ISV returns 501.</p>
 </article>
 <article class="concept" id="docs-concepts-sandbox">
   <h2>Sandbox</h2>
@@ -1347,7 +1347,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.53.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.54.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
