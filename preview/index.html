@@ -660,6 +660,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Agreement — pull</li>
             <li>Line item — pull and push</li>
             <li>Time — push</li>
+            <li>Project — pull and push</li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
@@ -1208,7 +1209,7 @@ GET /tenants/{tenant_id}/incidents</pre>
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. Creating a leftover PSA company in the ISV returns 501.</p>
+  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. Autotask pulls projects and writes a task on an existing project. We do not create the project. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
 </article>
@@ -1492,6 +1493,11 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">agreement_requires_existing</code> — missing or unknown agreement.</p>
+  <p class="note">Autotask writes a task on an existing project. We do not mint a Project header. Baseline cannot take that write.</p>
+  <p class="note"><code class="inline">project_requires_existing</code> — missing or unknown project.</p>
+  <p class="note"><code class="inline">project_header_not_supported</code> — they tried to mint a Project header. Bitlync still refuses. That is policy.</p>
+  <p class="note"><code class="inline">project_not_writable</code> — Baseline cannot take that write.</p>
+  <p class="note"><code class="inline">project_company_cannot_update</code> — the project’s company cannot be updated.</p>
 </div>
 <div class="dpanel" id="d-docs-use-cases">
   <div class="docs-hero">
