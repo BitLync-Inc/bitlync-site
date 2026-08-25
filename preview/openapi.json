@@ -1,0 +1,3685 @@
+{
+  "components": {
+    "schemas": {
+      "AskBody": {
+        "properties": {
+          "question": {
+            "description": "The MSP's question, in natural language.",
+            "title": "Question",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "title": "AskBody",
+        "type": "object"
+      },
+      "CreateAgreementLineMappingBody": {
+        "properties": {
+          "agreement_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agreement Id"
+          },
+          "agreement_line_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agreement Line Ref"
+          },
+          "psa_vendor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Psa Vendor"
+          },
+          "status": {
+            "description": "mapped (pair to an AgreementLine) or unmapped (explicit unpaired state).",
+            "title": "Status",
+            "type": "string"
+          },
+          "vendor_key": {
+            "title": "Vendor Key",
+            "type": "string"
+          },
+          "vendor_product_ref": {
+            "title": "Vendor Product Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vendor_key",
+          "vendor_product_ref",
+          "status"
+        ],
+        "title": "CreateAgreementLineMappingBody",
+        "type": "object"
+      },
+      "CreateCompanyBody": {
+        "properties": {
+          "dry_run": {
+            "default": true,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "CreateCompanyBody",
+        "type": "object"
+      },
+      "CreateTicketBody": {
+        "properties": {
+          "company_name": {
+            "title": "Company Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "dry_run": {
+            "default": true,
+            "description": "Preview without side effects (the default).",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stable caller-side id; a replay returns the original result.",
+            "title": "Idempotency Key"
+          },
+          "priority": {
+            "default": "medium",
+            "title": "Priority",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "company_name",
+          "summary"
+        ],
+        "title": "CreateTicketBody",
+        "type": "object"
+      },
+      "CreateTimeEntryBody": {
+        "properties": {
+          "billable": {
+            "description": "Caller-stated billable flag \u2014 never guessed.",
+            "title": "Billable",
+            "type": "boolean"
+          },
+          "dry_run": {
+            "default": true,
+            "description": "Preview without side effects (the default).",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "hours": {
+            "description": "Hours worked. Must be finite and greater than 0.",
+            "title": "Hours",
+            "type": "number"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stable caller-side id; a replay returns the original result.",
+            "title": "Idempotency Key"
+          },
+          "member": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional technician display name. Live member-id lookup is OPEN.",
+            "title": "Member"
+          },
+          "ticket_ref": {
+            "description": "PSA ticket id from this ISV's link store.",
+            "title": "Ticket Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_ref",
+          "hours",
+          "billable"
+        ],
+        "title": "CreateTimeEntryBody",
+        "type": "object"
+      },
+      "DeployBody": {
+        "properties": {
+          "dry_run": {
+            "default": true,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          },
+          "package_name": {
+            "title": "Package Name",
+            "type": "string"
+          },
+          "target_os": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Os"
+          }
+        },
+        "required": [
+          "package_name"
+        ],
+        "title": "DeployBody",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "RouteFindingBody": {
+        "properties": {
+          "company_name": {
+            "title": "Company Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "dry_run": {
+            "default": true,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "description": "The ISV's own stable finding id \u2014 replay can never duplicate.",
+            "title": "Idempotency Key",
+            "type": "string"
+          },
+          "kind": {
+            "description": "'technical' or 'organizational' (Task 8 router).",
+            "title": "Kind",
+            "type": "string"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "title",
+          "severity",
+          "company_name",
+          "idempotency_key"
+        ],
+        "title": "RouteFindingBody",
+        "type": "object"
+      },
+      "RoutingConfigBody": {
+        "properties": {
+          "overrides": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "description": "Finding kind ('technical' or 'organizational') -> WriteBackTarget value ('service_ticket' or 'project') to set for THIS tenant, or null to clear the override and revert to the ISV's recommendation. A target outside the calling ISV's supported_targets is 422.",
+            "title": "Overrides",
+            "type": "object"
+          }
+        },
+        "title": "RoutingConfigBody",
+        "type": "object"
+      },
+      "SandboxResetBody": {
+        "properties": {
+          "tenant_id": {
+            "description": "Sandbox tenant to re-seed.",
+            "examples": [
+              "sandbox-mainstreet"
+            ],
+            "title": "Tenant Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id"
+        ],
+        "title": "SandboxResetBody",
+        "type": "object"
+      },
+      "SubmitIsvCostBody": {
+        "properties": {
+          "actual_quantity": {
+            "title": "Actual Quantity",
+            "type": "number"
+          },
+          "billable_quantity": {
+            "title": "Billable Quantity",
+            "type": "number"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "customer_price_extended": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Price Extended"
+          },
+          "customer_price_unit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Price Unit"
+          },
+          "dry_run": {
+            "default": true,
+            "description": "Preview without side effects (the default).",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "external_customer_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Customer Name"
+          },
+          "external_customer_ref": {
+            "title": "External Customer Ref",
+            "type": "string"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stable caller-side id; a replay replaces the prior row, never double-counts.",
+            "title": "Idempotency Key"
+          },
+          "msp_cost_extended": {
+            "title": "Msp Cost Extended",
+            "type": "number"
+          },
+          "msp_cost_unit": {
+            "title": "Msp Cost Unit",
+            "type": "number"
+          },
+          "period_end": {
+            "title": "Period End",
+            "type": "string"
+          },
+          "period_start": {
+            "title": "Period Start",
+            "type": "string"
+          },
+          "product_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Name"
+          },
+          "product_source_id": {
+            "title": "Product Source Id",
+            "type": "string"
+          },
+          "suggested_retail_extended": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suggested Retail Extended"
+          },
+          "suggested_retail_unit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suggested Retail Unit"
+          }
+        },
+        "required": [
+          "external_customer_ref",
+          "product_source_id",
+          "period_start",
+          "period_end",
+          "actual_quantity",
+          "billable_quantity",
+          "currency",
+          "msp_cost_unit",
+          "msp_cost_extended"
+        ],
+        "title": "SubmitIsvCostBody",
+        "type": "object"
+      },
+      "SubmitPartnerMinimumBody": {
+        "properties": {
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "dry_run": {
+            "default": true,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          },
+          "minimum_amount": {
+            "title": "Minimum Amount",
+            "type": "number"
+          },
+          "period_end": {
+            "title": "Period End",
+            "type": "string"
+          },
+          "period_start": {
+            "title": "Period Start",
+            "type": "string"
+          },
+          "product_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Name"
+          },
+          "product_source_id": {
+            "title": "Product Source Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "product_source_id",
+          "period_start",
+          "period_end",
+          "currency",
+          "minimum_amount"
+        ],
+        "title": "SubmitPartnerMinimumBody",
+        "type": "object"
+      },
+      "SuggestAgreementLineMappingBody": {
+        "properties": {
+          "product_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Name"
+          },
+          "product_sku": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Sku"
+          },
+          "vendor_key": {
+            "title": "Vendor Key",
+            "type": "string"
+          },
+          "vendor_product_ref": {
+            "title": "Vendor Product Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vendor_key",
+          "vendor_product_ref"
+        ],
+        "title": "SuggestAgreementLineMappingBody",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WriteAgreementLineBody": {
+        "properties": {
+          "action": {
+            "description": "new | modify | replace | end \u2014 operating grain is the addition.",
+            "title": "Action",
+            "type": "string"
+          },
+          "agreement_line_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agreement Line Source Id"
+          },
+          "agreement_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for new \u2014 must name an existing E2 agreement.",
+            "title": "Agreement Source Id"
+          },
+          "cancelled_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ISO-8601; required for end and for replace's cancel half.",
+            "title": "Cancelled Date"
+          },
+          "dry_run": {
+            "default": true,
+            "description": "Preview without side effects (the default).",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "effective_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Date"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          },
+          "product_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Source Id"
+          },
+          "quantity": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity"
+          },
+          "unit_cost": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Cost"
+          },
+          "unit_price": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Price"
+          },
+          "vendor_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
+            "title": "Vendor Key"
+          },
+          "vendor_product_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
+            "title": "Vendor Product Ref"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "WriteAgreementLineBody",
+        "type": "object"
+      },
+      "WriteTicketBody": {
+        "properties": {
+          "action": {
+            "description": "update | append_note | close_with_resolution \u2014 one write per request.",
+            "title": "Action",
+            "type": "string"
+          },
+          "done": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "close_with_resolution: what was done.",
+            "title": "Done"
+          },
+          "dry_run": {
+            "default": true,
+            "description": "Preview without side effects (the default).",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "found": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "close_with_resolution: what was found.",
+            "title": "Found"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stable caller-side id; a replay returns the original result.",
+            "title": "Idempotency Key"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "append_note text. Not a canonical Note.",
+            "title": "Note"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "close_with_resolution: when (ISO-8601).",
+            "title": "Occurred At"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Canonical TicketStatus value the fixture already maps.",
+            "title": "Status"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "ticket_ref": {
+            "description": "PSA ticket id from this ISV's link store.",
+            "title": "Ticket Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "ticket_ref"
+        ],
+        "title": "WriteTicketBody",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "description": "Per-ISV key scoped to explicit tenants. An OAuth2 machine-to-machine flow replaces this scheme later (see api/auth.py).",
+        "in": "header",
+        "name": "X-API-Key",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
+    "title": "Bitlync API",
+    "version": "0.53.0",
+    "x-error-catalog": "/docs/errors",
+    "x-object-dictionary": "/docs/object-dictionary",
+    "x-quickstart": "/docs/quickstart"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/connectors/{connector_key}/coverage": {
+      "get": {
+        "description": "The generated field-fidelity manifest for one connector\n(coverage/*.json \u2014 which canonical fields map at full fidelity,\nwhich are lossy, which don't exist at the vendor). Connector-global\n(the manifest is the same for every tenant) but auth-gated like\nevery route. A catalog connector without a committed manifest\nreturns manifest=null with a note; an unknown key is 404.",
+        "operationId": "get_connector_coverage_connectors__connector_key__coverage_get",
+        "parameters": [
+          {
+            "example": "connectwise",
+            "in": "path",
+            "name": "connector_key",
+            "required": true,
+            "schema": {
+              "title": "Connector Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Connector Coverage Connectors  Connector Key  Coverage Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Connector Coverage",
+        "tags": [
+          "Visibility"
+        ]
+      }
+    },
+    "/docs/errors": {
+      "get": {
+        "description": "Every deliberate API failure: stable `code`, HTTP status, and what to do next.\nBranch on `code`, not on status alone \u2014 two 409 states (`scope_parked` vs\n`scope_narrowed`) need opposite remedies.",
+        "operationId": "error_catalog_docs_errors_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Error Catalog Docs Errors Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Error Catalog",
+        "tags": [
+          "Developer"
+        ]
+      }
+    },
+    "/docs/object-dictionary": {
+      "get": {
+        "description": "Canonical object names and PSA/RMM vendor translation tables.",
+        "operationId": "object_dictionary_docs_object_dictionary_get",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Object Dictionary",
+        "tags": [
+          "Developer"
+        ]
+      }
+    },
+    "/docs/quickstart": {
+      "get": {
+        "description": "Copyable curl quickstart for the seeded sandbox world.",
+        "operationId": "quickstart_docs_quickstart_get",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Quickstart",
+        "tags": [
+          "Developer"
+        ]
+      }
+    },
+    "/sandbox/reset": {
+      "post": {
+        "description": "Re-seed one sandbox tenant: refresh synced reads, clear its audit\ntrail, and record a single sandbox_reset entry as the new first\nevent. Refuses production tenants.",
+        "operationId": "reset_sandbox_sandbox_reset_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "tenant_id": "sandbox-mainstreet"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/SandboxResetBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Reset Sandbox Sandbox Reset Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Reset Sandbox",
+        "tags": [
+          "Platform"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/applications": {
+      "get": {
+        "description": "Canonical installed applications from the tenant's RMM software\ninventory (AI-footprint capability), catalog-tagged by product /\npublisher / category. Store-served with `last_synced_at` where a sync\nengine is wired; `?live=true` is the freshness escape hatch. The\nplatform persists only tracked categories (a category watchlist the RMM\nalready collects under the grant, never a fleet-wide personal-software\ndump); `category`/`publisher` narrow within that. Read-only.",
+        "operationId": "list_installed_applications_tenants__tenant_id__applications_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to one software category, e.g. 'ai_assistant' or 'security'.",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter to one software category, e.g. 'ai_assistant' or 'security'.",
+              "title": "Category"
+            }
+          },
+          {
+            "description": "Filter by normalized publisher (e.g. 'OpenAI') or raw-publisher substring.",
+            "in": "query",
+            "name": "publisher",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter by normalized publisher (e.g. 'OpenAI') or raw-publisher substring.",
+              "title": "Publisher"
+            }
+          },
+          {
+            "in": "query",
+            "name": "live",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Live",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Installed Applications Tenants  Tenant Id  Applications Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Installed Applications",
+        "tags": [
+          "Endpoint"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/assistant/ask": {
+      "post": {
+        "description": "Ask the AI support assistant about this tenant's integrations.\nRead-only: it diagnoses from live tenant state + the vendor setup-guide\ncorpus and tells you WHERE TO CLICK \u2014 it never writes to a vendor.\nUngroundable questions come back `escalated: true` (clean handoff),\nnever an improvised fix. Every tool call the assistant makes lands\nin this tenant's audit trail. Abuse controls (Task 9.8): the ask is\nrate-limited per key like every route, and when the assistant is\nwired with a budget manager each ask is metered against hard daily\ntoken + dollar caps (budget-hit replies come back `escalated: true`\nwith the reset time, never a silent failure).",
+        "operationId": "assistant_ask_tenants__tenant_id__assistant_ask_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Assistant Ask Tenants  Tenant Id  Assistant Ask Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Assistant Ask",
+        "tags": [
+          "Assistant"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/assistant/stats": {
+      "get": {
+        "description": "The assistant's deflection value for this tenant (Task 9.14),\naggregated from the append-only audit trail: `asks` (completed\nasks), `resolved` (grounded answers), `escalated` (hand-offs to the\nhuman/ISV queue), `cap_hit_handoffs` (the escalations caused by a\nspend cap \u2014 capacity, not an unanswerable question), and\n`deflection_rate` = resolved / asks (null until there are asks).\nCounting, not asking: in-process state only \u2014 zero vendor calls,\nzero LLM calls. Served even where no assistant is configured (an\nhonest all-zeros trail, never a 501 \u2014 the trail exists regardless).",
+        "operationId": "get_deflection_stats_tenants__tenant_id__assistant_stats_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "ISO-8601 timestamp (UTC assumed when naive); only asks at or after it count. Omit for all time.",
+            "in": "query",
+            "name": "since",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "ISO-8601 timestamp (UTC assumed when naive); only asks at or after it count. Omit for all time.",
+              "title": "Since"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Deflection Stats Tenants  Tenant Id  Assistant Stats Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Deflection Stats",
+        "tags": [
+          "Assistant"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/audit": {
+      "get": {
+        "description": "The tenant's append-only operation trail: every read, write, and\nidempotent replay this surface performed, with outcome \u2014 so an\nintegration can be verified by what it DID, not just what it got\nback. Same schema for sandbox and production tenants. Paginated\n(S4), oldest first: the cursor is positional over the append-only\ntrail (history never reorders).",
+        "operationId": "list_audit_events_tenants__tenant_id__audit_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Audit Events Tenants  Tenant Id  Audit Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Audit Events",
+        "tags": [
+          "Platform"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/agreement-line-mappings": {
+      "get": {
+        "description": "List vendor-product \u2194 PSA agreement-line pairings for this tenant.\nCreates zero mappings. UNMAPPED rows are first-class stored state.",
+        "operationId": "list_agreement_line_mappings_tenants__tenant_id__commerce_agreement_line_mappings_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "vendor_key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Vendor Key"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_end_dated",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Include End Dated",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Agreement Line Mappings Tenants  Tenant Id  Commerce Agreement Line Mappings Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Agreement Line Mappings",
+        "tags": [
+          "Commerce"
+        ]
+      },
+      "post": {
+        "description": "Explicit POST \u2014 the only path that creates a pairing (or records\nUNMAPPED). Suggestions, E2 reads, and E1 submits create nothing.",
+        "operationId": "create_agreement_line_mapping_tenants__tenant_id__commerce_agreement_line_mappings_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAgreementLineMappingBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Create Agreement Line Mapping Tenants  Tenant Id  Commerce Agreement Line Mappings Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Create Agreement Line Mapping",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/agreement-line-mappings/suggestions": {
+      "post": {
+        "description": "Exact-name / SKU labelled suggestions. Never persists a pair;\nnever auto-applies. A suggestion is not a mapping.",
+        "operationId": "suggest_agreement_line_mappings_tenants__tenant_id__commerce_agreement_line_mappings_suggestions_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestAgreementLineMappingBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Suggest Agreement Line Mappings Tenants  Tenant Id  Commerce Agreement Line Mappings Suggestions Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Suggest Agreement Line Mappings",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/agreement-line-mappings/{mapping_id}/release": {
+      "post": {
+        "description": "End-date a pair and leave an UNMAPPED successor. History is kept.",
+        "operationId": "release_agreement_line_mapping_tenants__tenant_id__commerce_agreement_line_mappings__mapping_id__release_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "mapping_id",
+            "required": true,
+            "schema": {
+              "title": "Mapping Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Release Agreement Line Mapping Tenants  Tenant Id  Commerce Agreement Line Mappings  Mapping Id  Release Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Release Agreement Line Mapping",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/agreement-lines": {
+      "post": {
+        "description": "Write one PSA agreement addition (new / modify / replace / end).\n\nFixture / dry_run first. modify/replace/end require a MAPPED E3 pair;\nUNMAPPED refuses with code agreement_line_unmapped. Never deletes an\naddition; never cancels the agreement header. Not a queue.",
+        "operationId": "write_agreement_line_tenants__tenant_id__commerce_agreement_lines_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteAgreementLineBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Write Agreement Line Tenants  Tenant Id  Commerce Agreement Lines Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Write Agreement Line",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/costs": {
+      "get": {
+        "description": "ISV-submitted customer/product/period costs for this tenant.\nScoped to the calling ISV's key \u2014 another ISV never sees these rows.\n``aggregate=true`` adds hub-level SUM rollups (many spokes \u2192 one hub).",
+        "operationId": "list_isv_costs_tenants__tenant_id__commerce_costs_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "When true, include hub-level SUM rollups across identity spokes.",
+            "in": "query",
+            "name": "aggregate",
+            "required": false,
+            "schema": {
+              "default": false,
+              "description": "When true, include hub-level SUM rollups across identity spokes.",
+              "title": "Aggregate",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Isv Costs Tenants  Tenant Id  Commerce Costs Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Isv Costs",
+        "tags": [
+          "Commerce"
+        ]
+      },
+      "post": {
+        "description": "Submit (or idempotently replace) one ISV direct-channel cost row\nat the customer/product/period grain. Channel is always ``direct``.",
+        "operationId": "submit_isv_cost_tenants__tenant_id__commerce_costs_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitIsvCostBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Submit Isv Cost Tenants  Tenant Id  Commerce Costs Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Submit Isv Cost",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/partner-minimums": {
+      "get": {
+        "description": "Partner-level billing floors above customer grain, with\n``unallocated_amount`` surfaced and never allocated onto customers.",
+        "operationId": "list_partner_minimums_tenants__tenant_id__commerce_partner_minimums_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Partner Minimums Tenants  Tenant Id  Commerce Partner Minimums Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Partner Minimums",
+        "tags": [
+          "Commerce"
+        ]
+      },
+      "post": {
+        "description": "Submit (or idempotently replace) one partner-level minimum floor.",
+        "operationId": "submit_partner_minimum_tenants__tenant_id__commerce_partner_minimums_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitPartnerMinimumBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Submit Partner Minimum Tenants  Tenant Id  Commerce Partner Minimums Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Submit Partner Minimum",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/reconcile": {
+      "get": {
+        "description": "Read-only comparison of vendor cost records against mapped PSA\nagreement lines. Returns typed drift rows with both sides' refs\nand numbers. Performs zero writes. This is a comparison of\nsubmitted records and connector reads \u2014 not a vendor\nverification of amounts.",
+        "operationId": "reconcile_tenants__tenant_id__commerce_reconcile_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "vendor_key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Vendor Key"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Reconcile Tenants  Tenant Id  Commerce Reconcile Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Reconcile",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/companies": {
+      "post": {
+        "description": "Create a company record (501 until a connector implements it).",
+        "operationId": "create_company_tenants__tenant_id__companies_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Create Company Tenants  Tenant Id  Companies Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Create Company"
+      }
+    },
+    "/tenants/{tenant_id}/connections": {
+      "get": {
+        "description": "Per-connection health for the tenant's connected vendors:\nstatus (healthy / degraded / attention_needed / dead \u2014 or \"unknown\"\nfor a connection with no sync history), the current issue where one\nexists, and `last_synced_at` (staleness is explicit; null = never\nsynced). Served from the in-process health tracker + sync store \u2014\nthis call never touches a vendor.",
+        "operationId": "list_connections_tenants__tenant_id__connections_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Connections Tenants  Tenant Id  Connections Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Connections",
+        "tags": [
+          "Visibility"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/connections/events": {
+      "get": {
+        "description": "The tenant's two-class event feed (visibility spec \u00a71.2):\n`resolved` = the platform caught and fixed it (audit trail, no\naction needed); `attention_needed` = deflection exhausted, human\naction required. Events caused by a known vendor incident carry\n`incident_id` \u2014 one root cause, grouped, never 300 loose rows.\nPaginated (S4): this feed's cursor is its PRE-EXISTING `since`\nparam \u2014 `next_cursor` returns the event id to pass as `since` for\nthe next page (null = caught up).",
+        "operationId": "list_connection_events_tenants__tenant_id__connections_events_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to one class: 'resolved' or 'attention_needed'. Omit for both.",
+            "in": "query",
+            "name": "class",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter to one class: 'resolved' or 'attention_needed'. Omit for both.",
+              "title": "Class"
+            }
+          },
+          {
+            "description": "Last-seen event id \u2014 this feed's cursor; only events after it return. next_cursor feeds this param.",
+            "in": "query",
+            "name": "since",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Last-seen event id \u2014 this feed's cursor; only events after it return. next_cursor feeds this param.",
+              "title": "Since"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Connection Events Tenants  Tenant Id  Connections Events Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Connection Events",
+        "tags": [
+          "Visibility"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/deployments": {
+      "post": {
+        "description": "Deploy a package via the tenant's RMM (501 until a connector implements it).",
+        "operationId": "deploy_tenants__tenant_id__deployments_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeployBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Deploy Tenants  Tenant Id  Deployments Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Deploy",
+        "tags": [
+          "Endpoint"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/devices": {
+      "get": {
+        "description": "Canonical devices from the tenant's RMM. Same store-served /\n`?live=true` semantics as /tickets, same pagination contract.",
+        "operationId": "list_devices_tenants__tenant_id__devices_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "live",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Live",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Devices Tenants  Tenant Id  Devices Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Devices",
+        "tags": [
+          "Endpoint"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/findings/route": {
+      "post": {
+        "description": "Route one finding by kind (Task 8): technical -> the PSA queue,\norganizational -> the engagement layer. Multi-destination routes\nreturn the fan-out envelope with per-target outcomes.",
+        "operationId": "route_finding_tenants__tenant_id__findings_route_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "company_name": "Brightside Pediatrics",
+                "description": "File-server backup job failed 2026-06-28 through 2026-06-30.",
+                "dry_run": true,
+                "idempotency_key": "dx-quickstart-finding-001",
+                "kind": "technical",
+                "severity": "high",
+                "title": "Backup job failing three nights running"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/RouteFindingBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Route Finding Tenants  Tenant Id  Findings Route Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Route Finding",
+        "tags": [
+          "Engagement"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/identity/mappings": {
+      "get": {
+        "description": "ACTIVE customer-identity mappings (CM-0.b). Each item is the\ncaller's visible spoke plus the resolved PSA target when one\nexists \u2014 never the whole hub. Grant-gated per external_party.\nReads only; served from the durable identity store (zero vendor\ncalls).",
+        "operationId": "list_identity_mappings_tenants__tenant_id__identity_mappings_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Identity Mappings Tenants  Tenant Id  Identity Mappings Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Identity Mappings",
+        "tags": [
+          "Identity"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/identity/unmapped": {
+      "get": {
+        "description": "UNMAPPED customer-identity rows (CM-0.b) \u2014 first-class stored\nstate with matched_signals evidence, not an absence. Same\ngrant/visibility posture as /identity/mappings. Reads only.",
+        "operationId": "list_identity_unmapped_tenants__tenant_id__identity_unmapped_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Identity Unmapped Tenants  Tenant Id  Identity Unmapped Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Identity Unmapped",
+        "tags": [
+          "Identity"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/incidents": {
+      "get": {
+        "description": "Open VENDOR incidents (visibility spec \u00a71.4) \u2014 the vendor's API\nitself broke, distinct from this tenant's own connection issues\n(those live in /connections and the event feed, linked here via\nincident_id). Platform-wide by design: one vendor break affects\nevery tenant on that vendor, so there is no tenant filtering, only\ntenant-scoped access. Deliberately OUTSIDE the S4 pagination\ncontract: the OPEN-incident list is bounded by how many vendors\ncan be down at once, never by tenant data volume.",
+        "operationId": "list_incidents_tenants__tenant_id__incidents_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Incidents Tenants  Tenant Id  Incidents Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Incidents",
+        "tags": [
+          "Visibility"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/routing": {
+      "get": {
+        "description": "This ISV's supported/recommended write-back targets for this\ntenant, plus the MSP's current per-finding-kind routing \u2014 an\noverride where one is set, the ISV's recommendation otherwise\n(`routes[kind].overridden` says which). In-process config, zero\nvendor calls.",
+        "operationId": "get_routing_config_tenants__tenant_id__routing_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Routing Config Tenants  Tenant Id  Routing Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Routing Config",
+        "tags": [
+          "Platform"
+        ]
+      },
+      "put": {
+        "description": "Set (or clear, with null) this tenant's per-finding-kind\nwrite-back target override. Only targets the calling ISV supports\nare accepted \u2014 anything else is 422, never a silent fallback.\nReturns the resulting routing view (same shape as the GET).",
+        "operationId": "set_routing_config_tenants__tenant_id__routing_put",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoutingConfigBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Set Routing Config Tenants  Tenant Id  Routing Put",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Set Routing Config",
+        "tags": [
+          "Platform"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/status": {
+      "get": {
+        "description": "The aggregate health summary for one tenant: every connection's\nhealth view, counts per status, `overall` (the worst connection's\nstatus), `attention_needed` (connections needing a human now), and\n`oldest_last_synced_at` (the least-fresh synced data; null when any\nsyncable connection has never synced).",
+        "operationId": "get_tenant_status_tenants__tenant_id__status_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Tenant Status Tenants  Tenant Id  Status Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Tenant Status",
+        "tags": [
+          "Visibility"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/tickets": {
+      "get": {
+        "description": "Canonical tickets from the tenant's PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch \u2014 it re-syncs\nthis request against the per-connection vendor budget. Paginated\n(S4): at most `limit` tickets (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "operationId": "list_tickets_tenants__tenant_id__tickets_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "live",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Live",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Tickets Tenants  Tenant Id  Tickets Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Tickets",
+        "tags": [
+          "Service"
+        ]
+      },
+      "post": {
+        "description": "Create one ticket through the tenant's PSA, honoring the two-tier\nwrite-back routing config (board / type / priority).",
+        "operationId": "create_ticket_tenants__tenant_id__tickets_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "company_name": "Brightside Pediatrics",
+                "description": "Three admin accounts still lack MFA after the tabletop exercise.",
+                "dry_run": true,
+                "idempotency_key": "dx-quickstart-ticket-001",
+                "priority": "medium",
+                "summary": "Quarterly vCIO review \u2014 MFA coverage gap"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Create Ticket Tenants  Tenant Id  Tickets Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Create Ticket",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/tickets/time": {
+      "post": {
+        "description": "Attach hours to a linked ticket as a canonical TimeEntry.\n\nFixture / dry_run first. The ISV may write only tickets in its own\nlink store (same gate as /tickets/write). Not a TicketNote. Not a\nnew MCP tool. Not a third Grant.scope.",
+        "operationId": "write_time_entry_tenants__tenant_id__tickets_time_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTimeEntryBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Write Time Entry Tenants  Tenant Id  Tickets Time Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Write Time Entry",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/tickets/write": {
+      "post": {
+        "description": "Update, append a note, or close-with-resolution on a linked ticket.\n\nFixture / dry_run first. The ISV may write only tickets in its own\nlink store. Close is MSP opt-in (RoutingConfig.allow_close_on_resolution,\ndefault off). Not a new MCP tool. Not two-way ticketing.",
+        "operationId": "write_ticket_tenants__tenant_id__tickets_write_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteTicketBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Write Ticket Tenants  Tenant Id  Tickets Write Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Write Ticket",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/usage": {
+      "get": {
+        "description": "Daily usage + limit hits for this tenant (Task 9.8 abuse\nvisibility): requests served/rate-limited, assistant token and\ndollar spend, budget/breaker blocks. `day` is YYYY-MM-DD (UTC);\ndefaults to today. Raw data only \u2014 no dashboard.",
+        "operationId": "get_usage_summary_tenants__tenant_id__usage_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "day",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Day"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Usage Summary Tenants  Tenant Id  Usage Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Usage Summary",
+        "tags": [
+          "Platform"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "PSA tier \u2014 canonical Ticket reads and ticket write-back.",
+      "name": "Service"
+    },
+    {
+      "description": "RMM tier \u2014 canonical Device and InstalledApplication reads.",
+      "name": "Endpoint"
+    },
+    {
+      "description": "GRC/vCIO tier \u2014 finding routing to PSA or engagement layer.",
+      "name": "Engagement"
+    },
+    {
+      "description": "Customer-identity map \u2014 ACTIVE mappings and UNMAPPED spokes.",
+      "name": "Identity"
+    },
+    {
+      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, and fixture dry_run agreement-line writes (Track E).",
+      "name": "Commerce"
+    },
+    {
+      "description": "Connection health, event feed, incidents, and connector coverage.",
+      "name": "Visibility"
+    },
+    {
+      "description": "Read-only AI support \u2014 grounded answers, never writes.",
+      "name": "Assistant"
+    },
+    {
+      "description": "Audit trail, usage metering, routing config, and sandbox utilities.",
+      "name": "Platform"
+    },
+    {
+      "description": "Error catalog and quickstart \u2014 branch on `code`, not HTTP status alone.",
+      "name": "Developer"
+    }
+  ]
+}
