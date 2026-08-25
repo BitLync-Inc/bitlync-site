@@ -652,17 +652,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="disclaim">Mockup — simulated data, not a live product</p>
     </div>
   </section>
-  <section class="pad" style="padding-top:8px">
-    <div class="wrap">
-      <h2>On the roadmap</h2>
-      <div class="road">
-        <article><span class="tag road">Coming</span><b>Event push</b><p>Webhooks when tickets, devices, or companies change.</p></article>
-        <article><span class="tag road">Coming</span><b>Linked assets</b><p>The same device, recognized across the stack.</p></article>
-        <article><span class="tag road">Coming</span><b>Direct-to-Bitlync cutover</b><p>You already talk to the PSA. Move that path onto us. Same tool. New connect step. No rebuild.</p></article>
-        <article><span class="tag road">Coming</span><b>Entra SSO</b><p>Ungated on every tier. Not a paid add-on.</p></article>
-      </div>
-    </div>
-  </section>
 </div>
 <div class="page" id="page-integrations">
   <section class="pad">
@@ -689,7 +678,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="row"><span>N-able</span><span class="next">Next</span></div>
         <div class="row"><span>ImmyBot</span><span class="next">Next</span></div>
         <div class="row"><span>Microsoft 365</span><span class="next">Next</span></div>
-        <div class="row"><span>CPQ platforms</span><span class="next">Roadmap</span></div>
+        <div class="row"><span>CPQ platforms</span><span class="next">Next</span></div>
       </div>
     </div>
   </section>
@@ -820,8 +809,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="dpanel on" id="d-docs">
   <div class="docs-hero">
     <p class="kicker">Overview</p>
-    <h1>Docs and a sandbox. That is how ISVs start.</h1>
-    <p class="lede">Write once. Connect to many. Hold a key, call a seeded tenant, then have the MSP paste their own keys. Try it out is Coming. There is no public sandbox URL on this page.</p>
+    <h1>Start here.</h1>
+    <p class="lede">Hold a key. Call a seeded tenant. Then the MSP pastes their own keys. There is no public sandbox URL on this page.</p>
 <p class="note">You sell software to MSPs (managed service providers). They run IT for other companies, on a stack they already chose. Winning those deals is much harder if you cannot connect to that stack.</p>
 <ul class="ov-stack">
   <li><b>PSA</b> — their business system. Customers, tickets, service desk, projects, invoices, agreements.</li>
@@ -869,8 +858,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="dpanel" id="d-docs-concepts">
   <div class="docs-hero">
     <p class="kicker">Concepts</p>
-    <h1>Operator manual.</h1>
-    <p class="lede">Short title. Mechanism. Payload. What is not shipped. Nested hashes under Concepts. <span class="coming">Try it out · Coming</span></p>
+    <h1>How the API behaves.</h1>
+    <p class="lede">Store reads, pacing, writes, vault, and errors. Shipped only.</p>
   </div>
   <nav class="toc" aria-label="Concepts">
     <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
@@ -910,12 +899,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">No public live-read URL. No live-read host on this page. Try it out is Coming.</p>
+  <p class="note">No public live-read URL. No live-read host on this page.</p>
 </article>
 <article class="concept" id="docs-concepts-rate-limits">
   <h2>Rate limits</h2>
-  <p class="note">One sync per MSP tenant serves every ISV. Writes to the vendor are paced to that vendor’s real limit. The ISV is not asked to guess a vendor quota.</p>
-  <p class="note">Today every product polls the same PSA and spends the shared budget. With Bitlync, N products read the store. One governed sync. Honest 429 with Retry-After.</p>
+  <p class="note">We pace writes to the vendor’s real limit. If we have to wait, you get a rate-limit response (HTTP 429) with Retry-After. You do not guess a vendor quota.</p>
+  <p class="note">One sync per MSP tenant fills the store. Every product on that tenant reads the same copy. Today, without us, every product polls the same PSA and spends the shared budget.</p>
 <div class="arch-pair">
     <div class="arch" aria-label="Today every product polls the same PSA">
       <p class="ah bad">Today — every product polls</p>
@@ -982,9 +971,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </div>
   
   <p class="lbl">Mechanism</p>
-  <p class="note">ISV-facing: 600 req/min times the number of connected MSPs. There is no daily cap. The per-minute rate is the limit. Hit it and the API returns a real 429 with <code class="inline">Retry-After</code>. There is no silent throttle.</p>
+  <p class="note">ISV-facing: 600 req/min times the number of connected MSPs. There is no daily cap. The per-minute rate is the limit. Hit it and you get a rate-limit response with <code class="inline">Retry-After</code>. There is no silent throttle.</p>
   <p class="lbl">What the caller sees</p>
-  <p class="note">A 429 you can branch on. The header is the wait. Do not treat a delayed 200 as a throttle.</p>
+  <p class="note">A rate-limit response you can branch on. The header is the wait. Do not treat a delayed 200 as a throttle.</p>
     <div class="code">
     <div class="hd"><b>429 + Retry-After</b><button class="copy" type="button" data-copy="Retry-After: 12">Copy</button></div>
     <pre>HTTP 429
@@ -1095,7 +1084,7 @@ Retry-After: 30
   <h2>Customer map</h2>
   <p class="note">A sure match auto-maps. A leftover PSA company with no ISV candidate is an ask: the MSP creates or imports it in the ISV. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create.</p>
   <p class="lbl">Mechanism</p>
-  <p class="note">Listed identity routes exist: <code class="inline">GET /tenants/{tenant_id}/identity/mappings</code> and <code class="inline">GET /tenants/{tenant_id}/identity/unmapped</code>. The create-into-ISV hop is not shipped.</p>
+  <p class="note">Listed identity routes exist: <code class="inline">GET /tenants/{tenant_id}/identity/mappings</code> and <code class="inline">GET /tenants/{tenant_id}/identity/unmapped</code>.</p>
   <p class="lbl">What the caller sees</p>
   <p class="note">Mapped rows when the match is sure. <code class="inline">UNMAPPED</code> when a person has to choose. Creating a leftover PSA company in the ISV returns 501 (OPEN).</p>
     <div class="code">
@@ -1111,7 +1100,7 @@ HTTP 501
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">The create hop is not shipped (501 / OPEN). No silent create of an ISV customer from a leftover PSA company.</p>
+  <p class="note">Creating a leftover PSA company in the ISV returns 501. No silent create.</p>
 </article>
 <article class="concept" id="docs-concepts-identity-hold">
   <h2>Identity hold</h2>
@@ -1191,7 +1180,7 @@ GET /tenants/{tenant_id}/incidents</pre>
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">No default-commit write. Creating a leftover PSA company in the ISV is not shipped. <span class="coming">Try it out · Coming</span></p>
+  <p class="note">No default-commit write. Creating a leftover PSA company in the ISV returns 501.</p>
 </article>
 <article class="concept" id="docs-concepts-sandbox">
   <h2>Sandbox</h2>
@@ -1216,7 +1205,7 @@ HTTP 422
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">No public sandbox URL. No production host printed here. Connectors on this site run against a seeded sandbox, not a production AWS tenant. <span class="coming">Try it out · Coming</span></p>
+  <p class="note">No public sandbox URL. No production host printed here. Connectors on this site run against a seeded sandbox, not a production AWS tenant.</p>
 </article>
 <article class="concept" id="docs-concepts-errors">
   <h2>Errors</h2>
@@ -1277,7 +1266,7 @@ PUT  /tenants/{tenant_id}/routing
 }</pre>
   </div>
   <p class="lbl">Not shipped</p>
-  <p class="note">The ISV does not ship a forced workflow pack. Event push is Coming. <span class="coming">Try it out · Coming</span></p>
+  <p class="note">The ISV does not ship a forced workflow pack.</p>
 </article>
 </div>
 <div class="dpanel" id="d-docs-quickstart">
@@ -1307,7 +1296,6 @@ tenant_id: sandbox-mainstreet
     <article>
       <p class="path">POST /tenants/{tenant_id}/tickets</p>
       <p class="note">Header <code class="inline">X-API-Key: blk_…</code>.</p>
-      <p style="margin:16px 0 0"><span class="coming">Try it out · Coming</span></p>
     </article>
     <article>
       <p class="path">body · dry_run then commit</p>
@@ -1338,7 +1326,7 @@ tenant_id: sandbox-mainstreet
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
   </div>
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
-  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. There is no public MCP host. Use <code class="inline">$BITLYNC_BASE</code>. <span class="coming">Try it out · Coming</span></p>
+  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. There is no public MCP host. Use <code class="inline">$BITLYNC_BASE</code>. </p>
   <div class="code">
     <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
   &quot;mcpServers&quot;: {
@@ -1378,7 +1366,7 @@ dry_run ticket create is REST-only.</pre>
   <div class="docs-hero">
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
-    <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). This is not a pasted spec. <span class="coming">Try it out · Coming</span></p>
+    <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). This is not a pasted spec.</p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -1386,7 +1374,6 @@ dry_run ticket create is REST-only.</pre>
       <p class="path">POST /tenants/{tenant_id}/tickets</p>
       <h3>Tickets</h3>
       <p class="note">List and create. Write back (update, note, close-with-evidence, hours) only on tickets Bitlync created. Close defaults off. Hours are a write, not a read. dry_run defaults true.</p>
-      <p style="margin:16px 0 0"><span class="coming">Try it out · Coming</span></p>
     </article>
     <article>
       <p class="path">curl · JSON</p>
@@ -1412,7 +1399,6 @@ dry_run ticket create is REST-only.</pre>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/status</code></td><td></td></tr>
       <tr><td><code>GET</code> / <code>PUT</code></td><td><code>/tenants/{tenant_id}/routing</code></td><td></td></tr>
       <tr id="ref-companies"><td><code>POST</code></td><td><code>/tenants/{tenant_id}/companies</code></td><td></td></tr>
-      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/deployments</code></td><td></td></tr>
       <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/findings/route</code></td><td></td></tr>
       <tr><td><code>POST</code></td><td><code>/sandbox/reset</code></td><td>Sandbox tenants only</td></tr>
     </tbody>
@@ -1434,7 +1420,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Creating a leftover PSA company in the ISV is not shipped.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Creating a leftover PSA company in the ISV returns 501.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -1469,15 +1455,13 @@ dry_run ticket create is REST-only.</pre>
 <div class="dpanel" id="d-docs-use-cases">
   <div class="docs-hero">
     <p class="kicker">Use cases</p>
-    <h1>What you can build.</h1>
-    <p class="lede">Six paths. Honest labels. Device inventory is not a use case.</p>
+    <h1>Shipped paths.</h1>
+    <p class="lede">Alert to ticket, customer map, time on a linked ticket, close with evidence. Device inventory is not a use case.</p>
   </div>
-  <article class="uc"><h3>1. Alert to ticket <span class="coming">live</span></h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. We do not watch the MSP close or edit. Incident and approval sit on this path.</p></article>
-  <article class="uc"><h3>2. Map customers <span class="coming">live</span></h3><p class="note">Sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. The create-into-ISV hop is Coming.</p></article>
-  <article class="uc"><h3>3. Billing reconciliation <span class="coming">Coming</span></h3><p class="note">Agreement-shaped billing later. There is no GET /agreements today.</p></article>
-  <article class="uc"><h3>4. Agent deploy <span class="coming">Coming</span></h3><p class="note">POST /tenants/{tenant_id}/deployments exists. Connectors still answer 501. Not live.</p></article>
-  <article class="uc"><h3>5. Time on the ticket <span class="coming">live</span></h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member. Same write grant. Fixtures and dry_run. Not Autotask yet. Not a time read. No list. No timers. No notes field. Not two-way time. No billing codes, work types, or start–end.</p></article>
-  <article class="uc"><h3>6. Close with evidence <span class="coming">live</span></h3><p class="note">On tickets Bitlync created: append evidence, or close if the MSP turned that on. Close defaults off. Fixtures and dry_run. Not two-way ticketing.</p></article>
+  <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. We do not watch the MSP close or edit. Incident and approval sit on this path.</p></article>
+  <article class="uc"><h3>2. Map customers</h3><p class="note">Sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. Creating it in the ISV returns 501.</p></article>
+  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member. Same write grant. Fixtures and dry_run. Not a time read. No list. No timers. No notes field. Not two-way time. No billing codes, work types, or start–end.</p></article>
+  <article class="uc"><h3>4. Close with evidence</h3><p class="note">On tickets Bitlync created: append evidence, or close if the MSP turned that on. Close defaults off. Fixtures and dry_run. Not two-way ticketing.</p></article>
 </div>
 <div class="dpanel" id="d-docs-libraries">
   <div class="docs-hero">
@@ -1506,7 +1490,6 @@ tickets = client.tickets.list(tenant_id="sandbox-mainstreet")</pre></div>
 const client = new Client({ apiKey: "blk_…" })
 const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   </article>
-  <p style="margin:8px 0 8px"><span class="coming">Try it out · Coming</span></p>
 </div>
     </div>
   </div>
