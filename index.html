@@ -74,10 +74,10 @@ body.docs .sub{color:var(--dmute)}
 section.pad{padding:72px 0}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
 .card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
-#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover{transform:translateY(-5px);border-color:#C9C3B4;box-shadow:0 14px 32px rgba(23,24,28,.09)}
+#page-product .card:hover,#page-product .inc:hover{transform:translateY(-5px);border-color:#C9C3B4;box-shadow:0 14px 32px rgba(23,24,28,.09)}
 #page-product .card:hover .viz{background:#EBE6D8}
 #page-product .inc{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-@media(prefers-reduced-motion:reduce){#page-product .card:hover,#page-product .inc:hover,#page-product .viz-band:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){#page-product .card:hover,#page-product .inc:hover{transform:none}}
 
 .logo-scroll{overflow:hidden;margin:22px 0 0;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent);mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent)}
 .logo-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logos 48s linear infinite}
@@ -105,9 +105,7 @@ section.pad{padding:72px 0}
 .cake .layer.store:hover{background:#2A2C31;border-color:#2A2C31;color:#fff}
 @media(prefers-reduced-motion:reduce){.cake .layer:hover{transform:none}}
 .card .viz{margin:14px 0 0;border:1px solid var(--hair);border-radius:10px;background:#F3F0E6;padding:6px 8px;overflow:hidden}
-.card .viz svg,.viz-band svg,.layer-pic svg{display:block;width:100%;height:auto}
-.viz-band{margin:18px 0 0;border:1px solid var(--hair);border-radius:16px;background:var(--card);padding:12px 12px 10px}
-.viz-band p{margin:8px 4px 0;font-size:13.5px;color:var(--mute);max-width:40rem}
+.card .viz svg,.layer-pic svg{display:block;width:100%;height:auto}
 .layer-pic{margin:0 auto 20px;max-width:720px;border:1px solid var(--hair);border-radius:14px;background:var(--card);padding:10px 12px}
 .grid{display:grid;gap:14px}
 .g3,.g2{grid-template-columns:1fr}
@@ -162,7 +160,6 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .mini-probe .row{display:flex;gap:8px;align-items:center;margin:4px 0}
 .p-ok{color:var(--ok)}.p-bad{color:var(--bad)}
 .ops-grid{display:grid;gap:14px}
-@media(min-width:860px){.ops-grid{grid-template-columns:1.15fr 1fr}}
 .ops{border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
 .ops-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
 .ops-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--hair);font-size:13.5px;flex-wrap:wrap}
@@ -520,7 +517,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
       <div class="dx-notes">
         <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
-        <div class="dx-note"><b>Escape hatch, always</b>The vendor payload rides along under <span style="font-family:var(--mono)">.raw</span>.</div>
+        <div class="dx-note"><b>.raw always rides along</b>The vendor payload stays under <span style="font-family:var(--mono)">.raw</span>.</div>
         <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
       </div>
     </div>
@@ -624,7 +621,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </div>
         </div>
       </div>
-      <p class="disclaim">Mockup — simulated data, not a live product</p>
+      <p class="disclaim">Mockup. Simulated data.</p>
       <p class="sub" style="margin:22px auto 0;text-align:center"><a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
     </div>
   </section>
@@ -742,14 +739,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <div class="card">
-        <p class="kicker">Checked before it goes live</p>
+        <p class="kicker">Checked in the flow</p>
         <h3>We test the keys in the flow</h3>
-        <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test. It does not go live broken.</p>
+        <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test.</p>
         <div class="mini-probe" aria-label="Example permission check">
             <div class="row p-ok">✓ keys work</div>
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
             <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
-            <div class="row p-ok">✓ ready to go live</div>
+            <div class="row p-ok">✓ keys tested</div>
         </div>
       </div>
     </div>
@@ -793,7 +790,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <button class="revoke" type="button">Revoke</button>
         </div>
       </div>
-      <p class="disclaim">Mockup — simulated data, not a live product</p>
+      <p class="disclaim">Mockup. Simulated data.</p>
     </div>
   </section>
 </div>
@@ -833,7 +830,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
         <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
         <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
+        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
         <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
         <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
         <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
@@ -898,7 +895,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <div class="docs-hero">
     <p class="kicker">Concepts</p>
     <h1>How the API behaves.</h1>
-    <p class="lede">Store reads, pacing, writes, vault, and errors. Shipped only.</p>
+    <p class="lede">Store reads, pacing, writes, vault, and errors.</p>
   </div>
   <nav class="toc" aria-label="Concepts">
     <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
@@ -911,7 +908,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
     <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
     <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Escape hatch</a>
+    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
     <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
     <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
     <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
@@ -937,7 +934,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   }]
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No public live-read URL. No live-read host on this page.</p>
 </article>
 <article class="concept" id="docs-concepts-rate-limits">
@@ -1022,7 +1018,6 @@ Retry-After: 12
   "status": 429
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No silent queue that looks like success. This page does not document a vendor daily cap.</p>
 </article>
 <article class="concept" id="docs-concepts-retries">
@@ -1041,7 +1036,6 @@ Retry-After: 30
   "status": 429
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No hidden swallow of a vendor rate limit (429). No rewrite of a final rate limit into a 200.</p>
 </article>
 <article class="concept" id="docs-concepts-honest-delivery">
@@ -1057,7 +1051,6 @@ Retry-After: 30
   "idempotent_replay": false
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No silent drop. No “accepted” that later vanishes.</p>
 </article>
 <article class="concept" id="docs-concepts-dedup">
@@ -1080,7 +1073,6 @@ Retry-After: 30
   "idempotent_replay": true
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">Keys are not implied on every future write. Only writes that already support <code class="inline">idempotency_key</code>.</p>
 </article>
 <article class="concept" id="docs-concepts-validation">
@@ -1099,7 +1091,6 @@ Retry-After: 30
   "code": "validation"
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No “send it anyway and let the PSA reject it.” No extra validation codes on this page.</p>
 </article>
 <article class="concept" id="docs-concepts-credential-vault">
@@ -1116,7 +1107,6 @@ Retry-After: 30
 # MSP keys are not in this header.
 # They sit in the per-tenant vault.</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.</p>
 </article>
 <article class="concept" id="docs-concepts-customer-map">
@@ -1138,7 +1128,6 @@ HTTP 501
   "code": "unsupported"
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">Creating a leftover PSA company in the ISV returns 501. No silent create.</p>
 </article>
 <article class="concept" id="docs-concepts-identity-hold">
@@ -1157,8 +1146,7 @@ HTTP 501
 # Reserved shape: QuarantinedRecord
 # Fields are not documented on this page.</pre>
   </div>
-  <p class="lbl">Not shipped</p>
-  <p class="note">No quarantine UI on this site. No invented fields for <code class="inline">QuarantinedRecord</code>.</p>
+
 </article>
 <article class="concept" id="docs-concepts-health">
   <h2>Health + incidents + audit</h2>
@@ -1166,7 +1154,7 @@ HTTP 501
   <p class="lbl">Mechanism</p>
   <p class="note"><code class="inline">GET /tenants/{tenant_id}/audit</code> exists. Also listed: <code class="inline">/status</code>, <code class="inline">/incidents</code>, <code class="inline">/connections</code>, and <code class="inline">/connections/events</code>.</p>
   <p class="lbl">What the caller sees</p>
-  <p class="note">Audit is a GET on the tenant. The vendor-health board on the marketing page is a mockup. It is not a live AWS board.</p>
+  <p class="note">Audit is a GET on the tenant.</p>
     <div class="code">
     <div class="hd"><b>GET audit</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/audit&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div>
     <pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/audit" \
@@ -1176,11 +1164,10 @@ GET /tenants/{tenant_id}/audit
 GET /tenants/{tenant_id}/status
 GET /tenants/{tenant_id}/incidents</pre>
   </div>
-  <p class="lbl">Not shipped</p>
-  <p class="note">The marketing vendor-health board is not wired to production AWS. No public ops host on this page.</p>
+  <p class="note">No public ops host on this page.</p>
 </article>
 <article class="concept" id="docs-concepts-escape-hatch">
-  <h2>Escape hatch</h2>
+  <h2>Raw</h2>
   <p class="note">The canonical Bitlync shape is the default. The vendor payload always rides on <code class="inline">raw</code>.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Normalize <code class="inline">status</code>, <code class="inline">source</code>, and the other Bitlync words. Keep the vendor’s original object under <code class="inline">raw</code>. Never drop it.</p>
@@ -1194,7 +1181,6 @@ GET /tenants/{tenant_id}/incidents</pre>
   "raw": {}
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No mode that strips <code class="inline">raw</code>. No second public schema that replaces the canonical default.</p>
 </article>
 <article class="concept" id="docs-concepts-writes">
@@ -1218,8 +1204,7 @@ GET /tenants/{tenant_id}/incidents</pre>
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
-  <p class="note">Ticket create, write-back, and time are fixtures on ConnectWise, Halo, and Autotask. No default-commit write. Live Autotask HTTP write is not shipped. Autotask agreement-line writes are not shipped. Creating a leftover PSA company in the ISV returns 501.</p>
+  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. ConnectWise writes line items. Autotask and Halo do not. Creating a leftover PSA company in the ISV returns 501.</p>
 </article>
 <article class="concept" id="docs-concepts-sandbox">
   <h2>Sandbox</h2>
@@ -1243,7 +1228,6 @@ HTTP 422
   "code": "request_invalid"
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No public sandbox URL. No production host printed here. Connectors on this site run against a seeded sandbox, not a production AWS tenant.</p>
 </article>
 <article class="concept" id="docs-concepts-errors">
@@ -1262,7 +1246,6 @@ HTTP 429  Retry-After: 12
 HTTP 501  { "status": 501, "code": "unsupported" }
 HTTP 500  { "status": 500, "code": "internal_error" }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No extra codes on this page. 500 stays opaque. A parked write is 501, not a generic 500.</p>
 </article>
 <article class="concept" id="docs-concepts-permissions">
@@ -1283,14 +1266,13 @@ HTTP 500  { "status": 500, "code": "internal_error" }</pre>
 # Portal copy names the permission.
 # ISV does not paste MSP creds.</pre>
   </div>
-  <p class="lbl">Not shipped</p>
   <p class="note">No ISV-side form that collects PSA keys. Partial connect is not collapsed into “failed.”</p>
 </article>
 <article class="concept" id="docs-concepts-routing">
   <h2>Routing</h2>
   <p class="note">A finding lands as a PSA ticket until the MSP chooses otherwise. The ISV does not force workflows.</p>
   <p class="lbl">Mechanism</p>
-  <p class="note">Listed routes: <code class="inline">POST /tenants/{tenant_id}/findings/route</code> and <code class="inline">GET</code> / <code class="inline">PUT /tenants/{tenant_id}/routing</code>. Alert to ticket is the live path. Incident and approval sit on that same path.</p>
+  <p class="note">Listed routes: <code class="inline">POST /tenants/{tenant_id}/findings/route</code> and <code class="inline">GET</code> / <code class="inline">PUT /tenants/{tenant_id}/routing</code>. Alert to ticket is the path. Incident and approval sit on that same path.</p>
   <p class="lbl">What the caller sees</p>
   <p class="note">The finding becomes a ticket in the PSA the MSP already runs. Routing changes are the MSP’s.</p>
     <div class="code">
@@ -1304,8 +1286,7 @@ PUT  /tenants/{tenant_id}/routing
   "raw": {}
 }</pre>
   </div>
-  <p class="lbl">Not shipped</p>
-  <p class="note">The ISV does not ship a forced workflow pack.</p>
+
 </article>
 </div>
 <div class="dpanel" id="d-docs-quickstart">
@@ -1495,7 +1476,7 @@ dry_run ticket create is REST-only.</pre>
 <div class="dpanel" id="d-docs-use-cases">
   <div class="docs-hero">
     <p class="kicker">Use cases</p>
-    <h1>Shipped paths.</h1>
+    <h1>The paths.</h1>
     <p class="lede">Alert to ticket, customer map, time on a linked ticket, close with evidence. Device inventory is not a use case.</p>
   </div>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. We do not watch the MSP close or edit. Incident and approval sit on this path.</p></article>
