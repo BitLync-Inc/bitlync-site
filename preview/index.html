@@ -183,6 +183,13 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:14.5px;font-weight:600;overflow-wrap:anywhere}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
+.cell.logo-cell.open{background:#F3F0E6}
+.cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
+.cell.logo-cell.open .objs{display:block}
+.cell.logo-cell .objs li{font-size:12.5px;color:var(--ink);line-height:1.4;padding:6px 0;border-bottom:1px solid var(--hair);overflow-wrap:anywhere}
+.cell.logo-cell .objs li:last-child{border-bottom:none;padding-bottom:2px}
+.cell.logo-cell .objs i{font-style:normal;font-size:11px;color:var(--mute)}
+.cell.logo-cell:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
 .quiet{color:var(--mute);font-size:15px;max-width:40rem;margin:16px 0 0}
 .cat-block{margin:40px 0 0}
 .cat-block h3{margin:0 0 10px}
@@ -354,24 +361,24 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
       <div class="logo-scroll" aria-label="Vendors in the product today">
         <div class="logo-track">
-          <a href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
-          <a href="https://halopsa.com" target="_blank" rel="noopener noreferrer"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
-          <a href="https://www.autotask.com" target="_blank" rel="noopener noreferrer"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
-          <a href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
-          <a href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
-          <a href="https://www.pax8.com" target="_blank" rel="noopener noreferrer"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="https://www.itglue.com" target="_blank" rel="noopener noreferrer"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
-          <a href="https://www.hudu.com" target="_blank" rel="noopener noreferrer"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
-          <a href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
-          <a href="https://halopsa.com" target="_blank" rel="noopener noreferrer"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
-          <a href="https://www.autotask.com" target="_blank" rel="noopener noreferrer"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
-          <a href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
-          <a href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
-          <a href="https://www.pax8.com" target="_blank" rel="noopener noreferrer"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="https://www.itglue.com" target="_blank" rel="noopener noreferrer"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
-          <a href="https://www.hudu.com" target="_blank" rel="noopener noreferrer"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
+          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
+          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
+          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
+          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
+          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
+          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
+          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
+          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
+          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
+          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
+          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
+          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
+          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
+          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
+          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
+          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
         </div>
       </div>
     </div>
@@ -629,15 +636,75 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h2>Connectors.</h2>
       <p class="sub">Connect to the stacks your MSPs already run.</p>
       <div class="grid9">
-        <a class="cell logo-cell" href="https://www.connectwise.com" target="_blank" rel="noopener noreferrer"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span></a>
-        <a class="cell logo-cell" href="https://halopsa.com" target="_blank" rel="noopener noreferrer"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span></a>
-        <a class="cell logo-cell" href="https://www.autotask.com" target="_blank" rel="noopener noreferrer"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span></a>
-        <a class="cell logo-cell" href="https://www.ninjaone.com" target="_blank" rel="noopener noreferrer"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span></a>
-        <a class="cell logo-cell" href="https://www.datto.com/products/rmm" target="_blank" rel="noopener noreferrer"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span></a>
-        <a class="cell logo-cell" href="https://www.scalepad.com" target="_blank" rel="noopener noreferrer"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">GRC</span></a>
-        <a class="cell logo-cell" href="https://www.pax8.com" target="_blank" rel="noopener noreferrer"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span></a>
-        <a class="cell logo-cell" href="https://www.itglue.com" target="_blank" rel="noopener noreferrer"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span></a>
-        <a class="cell logo-cell" href="https://www.hudu.com" target="_blank" rel="noopener noreferrer"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span></a>
+        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket <i>(Service Ticket)</i> — pull and push</li>
+            <li>Company <i>(Company)</i> — pull</li>
+            <li>Agreement <i>(Agreement)</i> — pull</li>
+            <li>Agreement line <i>(Addition)</i> — pull and push</li>
+            <li>Time <i>(Time Entry)</i> — push</li>
+            <li>Project <i>(Project)</i> — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket <i>(Ticket)</i> — pull and push</li>
+            <li>Company <i>(Client)</i> — pull</li>
+            <li>Time <i>(Time Entry)</i> — push</li>
+            <li>Project <i>(Project)</i> — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket <i>(Ticket)</i> — pull and push</li>
+            <li>Company <i>(Company)</i> — pull</li>
+            <li>Agreement <i>(Contract)</i> — pull</li>
+            <li>Agreement line <i>(Contract Service)</i> — pull</li>
+            <li>Time <i>(Time Entry)</i> — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
+          <ul class="objs">
+            <li>Device <i>(Device)</i> — pull</li>
+            <li>Software <i>(Software)</i> — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
+          <ul class="objs">
+            <li>Device <i>(Device)</i> — pull</li>
+            <li>Software <i>(Software)</i> — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">GRC</span>
+          <ul class="objs">
+            <li>Action item <i>(Action Item)</i> — pull and push</li>
+            <li>Initiative <i>(Initiative)</i> — pull and push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
+          <ul class="objs">
+            <li>Company <i>(Company)</i> — pull</li>
+            <li>Product <i>(Product)</i> — pull</li>
+            <li>Subscription <i>(Subscription)</i> — pull</li>
+            <li>Invoice <i>(Invoice)</i> — pull</li>
+            <li>Order <i>(Order)</i> — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
+          <ul class="objs">
+            <li>Company <i>(Organization)</i> — pull</li>
+            <li>Asset <i>(Configuration)</i> — pull</li>
+            <li>Asset <i>(Flexible Asset)</i> — pull</li>
+            <li>Document <i>(Document)</i> — pull and push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
+          <ul class="objs">
+            <li>Company <i>(Company)</i> — pull</li>
+            <li>Asset <i>(Asset)</i> — pull</li>
+            <li>Document <i>(Article)</i> — pull and push</li>
+          </ul>
+        </a>
       </div>
       <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
       <p class="sub" style="margin:22px auto 0"><a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
@@ -1486,22 +1553,38 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
 
+  var connectors=['connectwise','halo','autotask','ninjaone','datto','scalepad','pax8','itglue','hudu'];
+
   function parse(h){
     h=(h||'').replace('#','');
-    if(!h) return {page:'home',docs:'docs',anchor:null};
-    if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h};
-    if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:h};
-    if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null};
+    if(!h) return {page:'home',docs:'docs',anchor:null,connector:null};
+    if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h,connector:null};
+    if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:h,connector:null};
+    if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null,connector:null};
     if(h==='developers'||h==='guides'||h==='api'||h==='libraries'||h==='dictionary'){
       var map={developers:'docs',guides:'docs-quickstart',api:'docs-reference',libraries:'docs-libraries',dictionary:'docs-concepts'};
-      return {page:'docs',docs:map[h],anchor:null};
+      return {page:'docs',docs:map[h],anchor:null,connector:null};
     }
-    if(pages.indexOf(h)>=0) return {page:h,docs:'docs',anchor:null};
-    return {page:'home',docs:'docs',anchor:null};
+    if(h.indexOf('integrations/')===0){
+      var slug=h.slice(13);
+      if(connectors.indexOf(slug)>=0) return {page:'integrations',docs:'docs',anchor:null,connector:slug};
+      return {page:'home',docs:'docs',anchor:null,connector:null};
+    }
+    if(pages.indexOf(h)>=0) return {page:h,docs:'docs',anchor:null,connector:null};
+    return {page:'home',docs:'docs',anchor:null,connector:null};
+  }
+
+  function setConnector(slug){
+    document.querySelectorAll('[data-connector]').forEach(function(el){
+      var on=!!slug && el.getAttribute('data-connector')===slug;
+      el.classList.toggle('open',on);
+      el.setAttribute('aria-expanded',on?'true':'false');
+    });
   }
 
   function show(hash){
     var st=parse(hash);
+    var cur=document.querySelector('.page.on');
     pages.forEach(function(p){
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
@@ -1521,12 +1604,18 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var on = st.anchor ? href===st.anchor : (dd===st.docs && href===st.docs);
       a.classList.toggle('on', on);
     });
+    setConnector(st.connector);
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
-    window.scrollTo({top:0,behavior:'auto'});
+    var same=cur && cur.id==='page-'+st.page;
+    if(!(st.page==='integrations' && same)) window.scrollTo({top:0,behavior:'auto'});
     if(st.anchor){
       var t=document.getElementById(st.anchor);
       if(t) setTimeout(function(){ t.scrollIntoView({block:'start'}); }, 30);
+    }
+    if(st.connector){
+      var tile=document.querySelector('[data-connector="'+st.connector+'"]');
+      if(tile) setTimeout(function(){ tile.scrollIntoView({block:'nearest'}); }, 40);
     }
   }
 
@@ -1546,8 +1635,25 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     }
     var d=e.target.closest('[data-docs]');
     if(d){ e.preventDefault(); var href=d.getAttribute('href')||''; var id=d.getAttribute('data-docs'); var hash=(href.charAt(0)==='#')?href:('#'+id); if(hash.indexOf('#docs-concepts-')===0 || (id&&id.indexOf('docs-concepts-')===0)) hash=href.charAt(0)==='#'?href:('#'+id); history.pushState(null,'',hash); show(hash); return; }
-    var t=e.target.closest('[data-nav]'); if(!t) return;
-    e.preventDefault(); history.pushState(null,'','#'+t.getAttribute('data-nav')); show('#'+t.getAttribute('data-nav'));
+    var conn=e.target.closest('a[href^="#integrations/"]');
+    if(conn){
+      e.preventDefault();
+      var href=conn.getAttribute('href')||'#integrations';
+      if(conn.hasAttribute('data-connector') && conn.classList.contains('open')){
+        history.pushState(null,'','#integrations');
+        show('#integrations');
+        return;
+      }
+      history.pushState(null,'',href);
+      show(href);
+      return;
+    }
+    var t=e.target.closest('[data-nav]');
+    if(t){ e.preventDefault(); history.pushState(null,'','#'+t.getAttribute('data-nav')); show('#'+t.getAttribute('data-nav')); return; }
+    if(document.getElementById('page-integrations').classList.contains('on') && document.querySelector('.cell.logo-cell.open') && !e.target.closest('.cell.logo-cell')){
+      history.pushState(null,'','#integrations');
+      show('#integrations');
+    }
   });
   window.addEventListener('popstate',function(){ show(location.hash); });
   if(menuBtn) menuBtn.addEventListener('click',function(){ var o=nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded',o?'true':'false'); });
@@ -1556,9 +1662,15 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       nav.classList.remove('open');
       menuBtn.setAttribute('aria-expanded','false');
       menuBtn.focus();
+      return;
+    }
+    if(e.key==='Escape'&&document.querySelector('.cell.logo-cell.open')){
+      history.pushState(null,'','#integrations');
+      show('#integrations');
     }
   });
   show(location.hash||'#home');
+
 })();
 </script>
 <script async src="https://tally.so/widgets/embed.js"></script>
