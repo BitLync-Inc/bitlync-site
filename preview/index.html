@@ -676,11 +676,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap grid g2">
+    <div class="wrap grid g3">
       <div class="card">
         <p class="kicker">Grants, not shared credentials</p>
         <h3>You own the connection. Vendors get grants.</h3>
         <p class="quiet" style="margin:0">You connect once. Each vendor gets a scoped grant. Keys stay in your vault. Revoke a grant and that vendor is gone.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">Checked before it goes live</p>
+        <h3>We test the keys in the flow</h3>
+        <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test. It does not go live broken.</p>
+        <div class="mini-probe" aria-label="Example permission check">
+            <div class="row p-ok">✓ keys work</div>
+            <div class="row p-bad">✕ missing: Service Desk — Add</div>
+            <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
+            <div class="row p-ok">✓ ready to go live</div>
+        </div>
       </div>
       <div class="card">
         <p class="kicker">What a vendor can touch</p>
