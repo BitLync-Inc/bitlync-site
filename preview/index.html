@@ -683,6 +683,16 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="quiet" style="margin:0">You connect once. Each vendor gets a scoped grant. Keys stay in your vault. Revoke a grant and that vendor is gone.</p>
       </div>
       <div class="card">
+        <p class="kicker">What a vendor can touch</p>
+        <h3>You see the scope before you connect</h3>
+        <p class="quiet">Every grant is shown in plain language, including what they can never do:</p>
+        <div style="display:grid;gap:8px;font-size:13.5px">
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · read financials · change your configuration</span></div>
+        </div>
+      </div>
+      <div class="card">
         <p class="kicker">Checked before it goes live</p>
         <h3>We test the keys in the flow</h3>
         <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test. It does not go live broken.</p>
@@ -691,16 +701,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
             <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
             <div class="row p-ok">✓ ready to go live</div>
-        </div>
-      </div>
-      <div class="card">
-        <p class="kicker">What a vendor can touch</p>
-        <h3>You see the scope before you connect</h3>
-        <p class="quiet">Every grant is shown in plain language, including what they can never do:</p>
-        <div style="display:grid;gap:8px;font-size:13.5px">
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · read financials · change your configuration</span></div>
         </div>
       </div>
     </div>
