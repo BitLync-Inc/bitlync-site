@@ -683,7 +683,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </a>
         <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
           <ul class="objs">
-            <li>Company — pull</li>
+            <li>Company — pull and push</li>
             <li>Product — pull</li>
             <li>Subscription — pull</li>
             <li>Invoice — pull</li>
@@ -1209,7 +1209,7 @@ GET /tenants/{tenant_id}/incidents</pre>
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501.</p>
+  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
 </article>
@@ -1449,7 +1449,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Creating a leftover PSA company in the ISV returns 501.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. We do not mint a PSA company. Creating a leftover PSA company in the ISV still returns 501.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -1498,6 +1498,10 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">project_header_not_supported</code> — they tried to mint a Project header. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">project_not_writable</code> — Baseline cannot take that write.</p>
   <p class="note"><code class="inline">project_company_cannot_update</code> — the project’s company cannot be updated.</p>
+  <p class="note">Pax8 matches companies it already has, then creates the rest. We do not mint a PSA company.</p>
+  <p class="note"><code class="inline">psa_company_create_refused</code> — they aimed create at the PSA. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
+  <p class="note"><code class="inline">company_match_ambiguous</code> — more than one match. We do not create.</p>
+  <p class="note"><code class="inline">distributor_required</code> — no connected distributor for this write.</p>
 </div>
 <div class="dpanel" id="d-docs-use-cases">
   <div class="docs-hero">
