@@ -3654,7 +3654,7 @@
       "name": "Endpoint"
     },
     {
-      "description": "GRC/vCIO tier \u2014 finding routing to PSA or engagement layer.",
+      "description": "Customer Success tier \u2014 finding routing to PSA or engagement layer.",
       "name": "Engagement"
     },
     {
