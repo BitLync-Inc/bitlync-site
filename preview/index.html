@@ -292,6 +292,35 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   .docs-tree .nest a{display:inline;padding:4px 0}
   .concept,.concept .code,.concept pre{overflow-x:clip;max-width:100%}
 }
+
+.drop{position:relative}
+.drop > a{color:inherit}
+.drop .panel{display:none;position:absolute;left:50%;top:100%;transform:translateX(-50%);
+  padding-top:12px;width:640px;z-index:50}
+.drop:hover .panel,.drop:focus-within .panel{display:block}
+.drop .panel-in{background:var(--card);border:1px solid var(--hair);border-radius:16px;
+  box-shadow:0 18px 40px rgba(23,24,28,.08);padding:18px 18px 14px}
+.drop .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drop a.big{display:block;padding:16px;border:1px solid var(--hair);border-radius:12px;background:var(--paper)}
+.drop a.big b{display:block;font-size:15px;margin:0 0 4px;color:var(--ink)}
+.drop a.big span{display:block;font-size:13px;color:var(--mute);line-height:1.4;font-weight:400}
+.roles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 0 4px}
+.roles a,.roles span{display:block;padding:12px 10px;border:1px solid var(--hair);border-radius:10px;
+  background:var(--paper);color:var(--ink);font-size:14px;font-weight:500;text-align:center}
+.roles a em{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--mute);margin-top:2px}
+.roles-label{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;
+  text-transform:uppercase;margin:14px 0 0}
+.uc-note{font-size:15px;color:var(--mute);margin:0 0 8px}
+.uc-note.lead{margin:0 0 12px}
+.uc-note.end{margin:0}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;margin-top:28px}
+.cats h3{font-size:15px;font-family:var(--sans);font-weight:600;margin:0 0 6px;letter-spacing:0}
+.cats .grain{font-size:13px;color:var(--mute);margin:0 0 12px;line-height:1.35;font-weight:400}
+.uc-stack{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.uc-stack span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--mute)}
+.uc-stack img{height:18px;width:auto;filter:grayscale(1);opacity:.85}
+@media(max-width:900px){.cats{grid-template-columns:1fr 1fr}}
+@media(max-width:840px){.drop .panel{display:none !important}}
 </style>
 </head>
 <body>
@@ -303,6 +332,23 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#home" data-nav="home" class="on">Home</a>
       <a href="#product" data-nav="product">Product</a>
       <a href="#integrations" data-nav="integrations">Connectors</a>
+      <div class="drop">
+        <a href="#usecases" data-nav="usecases">Use cases</a>
+        <div class="panel">
+          <div class="panel-in">
+            <div class="pair">
+              <a class="big" href="#usecases" data-nav="usecases"><b>Enterprise</b><span>Enterprise vendors coming downmarket (into SMB; MSP is the channel).</span></a>
+              <a class="big" href="#usecases" data-nav="usecases"><b>Startups</b><span>Startups breaking into the MSP ecosystem.</span></a>
+            </div>
+            <p class="roles-label">Who it’s for</p>
+            <div class="roles">
+              <span>Product managers</span>
+              <span>Revenue leaders</span>
+              <a href="#docs" data-nav="docs">Developers<em>→ Docs</em></a>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href="#msps" data-nav="msps">For MSPs</a>
       <a href="#docs" data-nav="docs">Docs</a>
     </nav>
@@ -712,6 +758,79 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
 </div>
 
+
+<div class="page" id="page-usecases">
+  <section class="pad" style="padding-bottom:36px">
+    <div class="wrap center">
+      <p class="kicker">Use cases</p>
+      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,56px);letter-spacing:-.03em;line-height:.98;margin:0 0 16px">Break into the MSP market.</h1>
+      <p class="sub">Enterprise coming downmarket, or a startup breaking in. Both are trying to reach SMB through the MSP. Integrations make you legitimate.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0;padding-bottom:28px">
+    <div class="wrap" style="max-width:40rem;margin:0 auto">
+      <p class="uc-note lead">You reach SMB through the MSP.</p>
+      <p class="uc-note"><b>PSA</b> — their business system (customers, tickets, agreements / billing).</p>
+      <p class="uc-note"><b>RMM</b> — devices they manage.</p>
+      <p class="uc-note"><b>Documentation</b> — the record at that customer (passwords, networks, what happened).</p>
+      <p class="uc-note"><b>Customer Success</b> — risk and asset lifecycle on that same customer.</p>
+      <p class="uc-note"><b>Commerce</b> — where the MSP buys licenses, even if you are not listed.</p>
+      <p class="uc-note end">The MSP already picked this stack. If you do not connect to it, you are not in the deal.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="center">What they look for</h2>
+      <div class="cats">
+        <div>
+          <h3>PSA</h3>
+          <p class="grain">Open a ticket, map the customer.</p>
+          <div class="uc-stack">
+            <span><img src="logos/connectwise.png" alt="">ConnectWise</span>
+            <span><img src="logos/halopsa.png" alt="">HaloPSA</span>
+            <span><img src="logos/autotask.png" alt="">Autotask</span>
+          </div>
+        </div>
+        <div>
+          <h3>RMM</h3>
+          <p class="grain">See the devices they manage.</p>
+          <div class="uc-stack">
+            <span><img src="logos/ninjaone.png" alt="">NinjaOne</span>
+            <span><img src="logos/datto.png" alt="">Datto RMM</span>
+          </div>
+        </div>
+        <div>
+          <h3>Documentation</h3>
+          <p class="grain">The record at that customer.</p>
+          <div class="uc-stack">
+            <span><img src="logos/itglue.png" alt="">IT Glue</span>
+            <span><img src="logos/hudu.png" alt="">Hudu</span>
+          </div>
+        </div>
+        <div>
+          <h3>Customer Success</h3>
+          <p class="grain">The risk / lifecycle work.</p>
+          <div class="uc-stack">
+            <span><img src="logos/scalepad.png" alt="">ScalePad</span>
+          </div>
+        </div>
+        <div>
+          <h3>Commerce</h3>
+          <p class="grain">License counts, even if you are not listed on the marketplace.</p>
+          <div class="uc-stack">
+            <span><img src="logos/pax8.png" alt="">Pax8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:36px">
+    <div class="wrap center">
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      <a class="btn ghost" href="#product" data-nav="product">Product</a>
+    </div>
+  </section>
+</div>
 <div class="page" id="page-msps">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap center">
@@ -1554,7 +1673,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </footer>
 <script>
 (function(){
-  var pages=['home','product','integrations','msps','partners','docs'];
+  var pages=['home','product','integrations','usecases','msps','partners','docs'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
