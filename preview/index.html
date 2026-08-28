@@ -353,6 +353,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .inc{min-height:100%}
 .inc-grid{align-items:stretch}
 .tix-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-solutions-product .walk3{display:grid;gap:8px;margin-top:14px}
+#page-solutions-product .w3{display:flex;align-items:center;gap:10px;border:1px solid #E4DFD4;background:#FBFBF8;border-radius:8px;padding:8px 10px;font-family:var(--mono);font-size:11.5px;color:#17181C}
+#page-solutions-product .w3 b{flex:none;width:16px;font-family:var(--mono);font-size:11px;color:#6B6A64;font-weight:600}
+#page-solutions-product .portal-mock{max-width:100%;margin:14px 0 0}
+#page-solutions-product .card .disclaim{margin:8px 0 0}
 #page-solutions-developer .code-shell{max-width:100%;width:100%;margin:28px auto 0;background:#161618;border:1px solid #2A2C34;border-radius:10px}
 #page-solutions-developer .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
 #page-solutions-developer .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
@@ -887,6 +892,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="card">
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
+          <div class="walk3" aria-label="Guided connect steps">
+            <div class="w3"><b>1</b><span>Choose the tool</span></div>
+            <div class="w3"><b>2</b><span>Steps sit beside the fields</span></div>
+            <div class="w3"><b>3</b><span>We test the keys</span></div>
+          </div>
         </div>
         <div class="card">
           <h3>Validated before it ships</h3>
@@ -901,6 +911,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="card">
           <h3>Hosted, credential-isolated</h3>
           <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
+          <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
+        <div class="pm-head">your connections</div>
+        <div class="pm-row">
+          <i>CW</i>
+          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
+          <span class="health"><i></i>healthy · synced 4 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+        <div class="pm-row">
+          <i>NJ</i>
+          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
+          <span class="health"><i></i>healthy · synced 11 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+      </div>
+          <p class="disclaim">Mockup. Simulated data.</p>
         </div>
       
       <p class="sol-caption">Example validation. Not a live key.</p>
