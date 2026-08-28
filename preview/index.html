@@ -51,6 +51,10 @@ body.docs .menu{border-color:var(--dline);color:var(--dtext)}
   nav.main.open{display:flex}
   .menu{display:block;margin-left:auto}
   .nav-cta{display:none}
+  .drop .panel{position:static;transform:none;width:100%;padding-top:6px;display:none}
+  .drop.open .panel,.drop:focus-within .panel{display:block}
+  .drop .panel-in{box-shadow:none;border:0;padding:0;background:transparent}
+  .sol-rows a{padding:12px 8px}
 }
 .page{display:none}.page.on{display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
@@ -295,9 +299,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 
 .drop{position:relative}
 .drop > a{color:inherit}
-.drop .panel{display:none;position:absolute;left:50%;top:100%;transform:translateX(-50%);
-  padding-top:12px;width:640px;z-index:50}
-.drop:hover .panel,.drop:focus-within .panel{display:block}
+.drop .panel{display:none;position:absolute;left:0;top:100%;
+  padding-top:10px;width:260px;z-index:50}
+.drop:hover .panel,.drop:focus-within .panel,.drop.open .panel{display:block}
+.sol-rows{display:flex;flex-direction:column;gap:2px;padding:4px 0 2px}
+.sol-rows a{display:block;padding:11px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--ink)}
+.sol-rows a:hover,.sol-rows a:focus{background:#EFEBE0}
+.sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
+.sol-table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14px;background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+.sol-table th,.sol-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair)}
+.sol-table th{font-size:12px;color:var(--mute);font-weight:600}
+.sol-table tr:last-child td{border-bottom:0}
+.sol-caption{font-family:var(--mono);font-size:11px;color:var(--mute);margin:0 0 8px}
 .drop .panel-in{background:var(--card);border:1px solid var(--hair);border-radius:16px;
   box-shadow:0 18px 40px rgba(23,24,28,.08);padding:18px 18px 14px}
 .drop .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -320,7 +333,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .uc-stack span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--mute)}
 .uc-stack img{height:18px;width:auto;filter:grayscale(1);opacity:.85}
 @media(max-width:900px){.cats{grid-template-columns:1fr 1fr}}
-@media(max-width:840px){.drop .panel{display:none !important}}
 .sol-list{margin:0 0 22px;padding-left:1.15em;color:var(--mute)}
 .sol-list li{margin:0 0 8px}
 </style>
@@ -334,12 +346,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#home" data-nav="home" class="on">Home</a>
       <a href="#product" data-nav="product">Product</a>
       <a href="#integrations" data-nav="integrations">Connectors</a>
-            <div class="drop">
-        <a href="#solutions/product" data-nav="solutions">Solutions</a>
+            <div class="drop" id="solDrop">
+        <a href="#solutions/product" data-nav="solutions" data-sol-toggle="1">Solutions</a>
         <div class="panel">
           <div class="panel-in">
             <p class="roles-label">By persona</p>
-            <div class="roles" style="grid-template-columns:1fr 1fr">
+            <div class="sol-rows">
               <a href="#solutions/product" data-nav="solutions">Product</a>
               <a href="#solutions/developer" data-nav="solutions">Developer</a>
               <a href="#solutions/sales" data-nav="solutions">Sales</a>
@@ -759,79 +771,90 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 
 
 <div class="page" id="page-solutions-product">
-  <section class="pad">
-    <div class="wrap" style="max-width:40rem">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Product</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px">Ship the integration. Keep the roadmap.</h1>
-      <p class="sub">One model. Honest coverage. Connect names a missing permission. You do not write a client per PSA.</p>
-      <h2>Why this</h2>
-      <ul class="sol-list">
-          <li>One model for Ticket, Company, Agreement, Line item, Project.</li>
-          <li>Coverage is the Connectors tile. If it is not on the tile, do not say it.</li>
-          <li>Connect names a missing permission before it becomes a ticket.</li>
-          <li>The MSP pastes keys. You never hold them.</li>
-          <li>Writes that exist go on an existing agreement or project. We do not mint headers.</li>
-      </ul>
-      <h2>What stalls</h2>
-      <p class="sub">Each new PSA parks a sprint. The deal waits on that client. Support pages engineering when a key is short.</p>
+      <h1 class="sol-h1">Build the product, not the integrations.</h1>
+      <p class="sub">PMs care about a good product experience. For the MSP, Bitlync is that experience: they paste their own keys, they finish connect, and a missing permission is named in the flow. That is what they see. It has to be good.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap" style="max-width:42rem">
+      <h2>The experience the MSP gets</h2>
+      <p class="sub">They are not waiting on your engineer to type a key. They connect themselves. If a scope is short, the flow says so. They do not bounce into a ticket on your desk to finish setup.</p>
+      <p class="sub">Your roadmap stays on the product. You are not parking sprints on a second and third PSA client every time a deal names one you do not have yet.</p>
+      <h2>What happens without it</h2>
+      <p class="sub">The MSP hits a dead connect. Your team gets the page. The deal waits. The product you wanted to ship sits.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
 <div class="page" id="page-solutions-developer">
-  <section class="pad">
-    <div class="wrap" style="max-width:40rem">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Developer</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px">Write once. Connect to many.</h1>
-      <p class="sub">One API. The MSP holds the keys. An error is a stable code and one English sentence.</p>
-      <h2>Why this</h2>
-      <ul class="sol-list">
-          <li>One call shape per object, every vendor.</li>
-          <li>Reads come from the store, not a live vendor hit on every request.</li>
-          <li>dry_run on writes. Same payload in sandbox.</li>
-          <li>A missing permission is named before you debug a 403.</li>
-      </ul>
-      <h2>What stalls</h2>
-      <p class="sub">A vendor client per PSA. Rate limits you do not own. A close you cannot prove.</p>
+      <h1 class="sol-h1">One shape. Every PSA you have to live with.</h1>
+      <p class="sub">You should not own a ConnectWise client, an Autotask client, and a Halo client so the same ticket can land in three places. Bitlync is one API. MCP and REST hit the same service.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap" style="max-width:42rem">
+      <h2>Why this API</h2>
+      <p class="sub">Reads come from the store. You are not paying the vendor rate limit on every list. The throttle is honest: you see what you have left.</p>
+      <p class="sub">Writes take <code class="inline">dry_run</code> first. Same payload in sandbox. If we refuse, you get a stable code and one English sentence, not a vendor HTML error page.</p>
+      <p class="sub">A leftover verb stays on the old client until we have that object. <code class="inline">.raw</code> is extra fields on a read, for the vendor keys you still need. It is not a write pipe.</p>
+      <p class="sub">Connect names a missing permission. Support should not need an engineer to re-run that step.</p>
+      <h2>What this replaces</h2>
+      <p class="sub">Three vendor SDKs. Retry logic you do not trust. A close you cannot prove. A 403 that means "something" and a night of guessing which scope was off.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
     </div>
   </section>
 </div>
 <div class="page" id="page-solutions-sales">
-  <section class="pad">
-    <div class="wrap" style="max-width:40rem">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Sales</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px">Do you integrate with my PSA? Yes.</h1>
-      <p class="sub">The stack they already picked is on the Connectors page. That is the yes. We do not invent a win rate.</p>
-      <h2>Why this</h2>
-      <ul class="sol-list">
-          <li>Yes is a page they can open.</li>
-          <li>Same objects on ConnectWise, Halo, and Autotask.</li>
-          <li>The MSP connects. You do not collect their keys.</li>
-          <li>Honest coverage. If it is not on the tile, it is not a yes.</li>
-      </ul>
-      <h2>What stalls</h2>
-      <p class="sub">The deal stalls when the PSA is missing. You should not be writing a one-off client to unstick it.</p>
+      <h1 class="sol-h1">You should never have to say we do not integrate.</h1>
+      <p class="sub">This market buys because of integrations. Enterprise coming downmarket, or a startup breaking in: the logos on your site are how an MSP decides you actually care about their channel.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap" style="max-width:42rem">
+      <h2>What you can say</h2>
+      <p class="sub">Do you integrate with my PSA? Yes. ConnectWise, Autotask, and Halo are on the Connectors page. They can open it.</p>
+      <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector. Bitlync is how you stay in the room.</p>
+      <h2>What legitimacy looks like</h2>
+      <p class="sub">Integrations that speak to the MSP. Not a generic "we will build it." The stack they already run, on a page they can send to their team.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
-  <section class="pad">
-    <div class="wrap" style="max-width:40rem">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Customer Success</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px">The MSP connects. You do not run their PSA.</h1>
-      <p class="sub">They paste keys. A missing permission is named in the flow, not a ticket. Health and an audit log exist.</p>
-      <h2>Why this</h2>
-      <ul class="sol-list">
-          <li>The MSP pastes keys. The ISV never holds them.</li>
-          <li>A missing permission is named in connect.</li>
-          <li>Health and an audit log so you can see what ran.</li>
-          <li>You do not support the MSP's PSA for them.</li>
-      </ul>
-      <h2>What stalls</h2>
-      <p class="sub">Support pages engineering because a key was short or a permission was off. That should die in the connect step.</p>
+      <h1 class="sol-h1">When a partner calls, see where they stalled.</h1>
+      <p class="sub">CS cares about the same experience the MSP gets: they paste keys, they finish connect, a missing permission is named in the flow. That should not become a ticket. The dashboard shows who is connected, last seen, errors, and where they stalled.</p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap" style="max-width:52rem">
+      <h2>What you see</h2>
+      <p class="sub">Which partners are connected. When they last connected. What error, if any, stopped them. You should not have to page engineering to find out a key was short or a scope was off.</p>
+      <p class="sol-caption">Example board. Not live numbers.</p>
+      <table class="sol-table">
+        <thead>
+          <tr><th>Partner</th><th>Last connected</th><th>Status</th><th>What stalled</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Northline IT</td><td>2 hours ago</td><td>Connected</td><td>—</td></tr>
+          <tr><td>Harborstack</td><td>Yesterday</td><td>Needs permission</td><td>Connect named a missing ticket-write scope</td></tr>
+          <tr><td>Plainfield Tech</td><td>Never</td><td>Not connected</td><td>MSP has not pasted keys</td></tr>
+        </tbody>
+      </table>
+      <h2>What leaves your queue</h2>
+      <p class="sub">"Can you check if their Autotask key works?" The probe already said. "Did the ticket write?" The audit log did. You are not the person who re-runs connect, and you are not the team that supports the MSP's PSA.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
@@ -1804,8 +1827,18 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       show(href);
       return;
     }
+    var tog=e.target.closest('[data-sol-toggle]');
+    if(tog){
+      var drop=tog.closest('.drop');
+      var mobile=window.matchMedia('(max-width:840px)').matches || (nav && nav.classList.contains('open'));
+      if(mobile){
+        e.preventDefault();
+        drop.classList.toggle('open');
+        return;
+      }
+    }
     var t=e.target.closest('[data-nav]');
-    if(t){ e.preventDefault(); var href=t.getAttribute('href')||('#'+t.getAttribute('data-nav')); if(href.charAt(0)!=='#') href='#'+t.getAttribute('data-nav'); history.pushState(null,'',href); show(href); return; }
+    if(t){ e.preventDefault(); var href=t.getAttribute('href')||('#'+t.getAttribute('data-nav')); if(href.charAt(0)!=='#') href='#'+t.getAttribute('data-nav'); var drop=t.closest('.drop'); if(drop) drop.classList.remove('open'); history.pushState(null,'',href); show(href); return; }
     if(document.getElementById('page-integrations').classList.contains('on') && document.querySelector('.cell.logo-cell.open') && !e.target.closest('.cell.logo-cell')){
       history.pushState(null,'','#integrations');
       show('#integrations');
