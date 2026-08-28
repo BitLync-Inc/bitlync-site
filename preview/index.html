@@ -227,6 +227,35 @@ footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-si
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .docs-shell{display:grid;gap:28px;padding-top:36px;padding-bottom:80px;grid-template-columns:1fr}
+.docs-tree .docs-grp{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dmute);margin:10px 0 2px;width:100%}
+.docs-rail{display:none}
+.rail-tabs{display:flex;border-bottom:1px solid var(--dline)}
+.rail-tab{flex:1;border:0;background:transparent;padding:8px 6px;font-family:var(--mono);font-size:11px;color:var(--dmute);cursor:pointer}
+.rail-tab[aria-selected="true"]{color:var(--acid);box-shadow:inset 0 -2px 0 var(--acid)}
+.docs-rail .code{margin:0;border:0;border-radius:0;border-bottom:1px solid var(--dline)}
+.docs-rail .code:last-child{border-bottom:0}
+.cov-wrap{overflow-x:auto;margin:18px 0;max-width:100%}
+.cov{border-collapse:collapse;font-size:12.5px;min-width:960px}
+.cov th,.cov td{padding:7px 8px;border-bottom:1px solid var(--dline);white-space:nowrap;color:var(--dtext)}
+.cov thead th{font-family:var(--mono);font-size:11px;color:var(--acid);font-weight:500;text-align:left}
+.cov th[scope="row"]{font-family:var(--mono);font-size:12px;font-weight:500;text-align:left;color:var(--dtext)}
+.cov th[scope="row"],.cov thead th:first-child{position:sticky;left:0;background:var(--void);z-index:1}
+@media(min-width:1100px){
+#page-docs .docs-shell{grid-template-columns:220px minmax(0,1fr) 360px;align-items:start}
+#page-docs .docs-main{min-width:0}
+#page-docs .docs-rail{display:block;position:sticky;top:80px;max-height:calc(100vh - 100px);overflow:auto;background:var(--panel);border:1px solid var(--dline);border-radius:14px}
+#page-docs .docs-rail[hidden]{display:none}
+#page-docs .dpanel .code{display:none}
+#page-docs .docs-tree{position:sticky;top:80px}
+}
+@media(max-width:1099px){
+#page-docs .docs-rail{display:none}
+}
+@media(max-width:899px){
+.docs-tree .docs-grp{flex:1 1 100%}
+.toc{display:none}
+}
+
 @media(min-width:900px){.docs-shell{grid-template-columns:220px 1fr;align-items:start}}
 .docs-tree{font-size:14px}
 @media(min-width:900px){.docs-tree{position:sticky;top:80px}}
@@ -1314,31 +1343,37 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs" data-docs="docs">Overview</a>
       <a href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
       <a href="#docs-replace-existing" data-docs="docs-replace-existing">Replace existing integrations</a>
+      <a href="#docs-coverage" data-docs="docs-coverage">Coverage</a>
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
+        <p class="docs-grp">Reads</p>
         <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
         <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
         <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
         <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
+        <p class="docs-grp">Writes</p>
+        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
         <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
         <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
-        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
+        <p class="docs-grp">Identity</p>
         <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
         <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
-        <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
-        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-        <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
-        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-        <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
         <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+        <p class="docs-grp">Trust</p>
+        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+        <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
+        <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
+        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+        <p class="docs-grp">Sandbox</p>
+        <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
       </div>
       <a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
       <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
       <a href="#docs-reference" data-docs="docs-reference">Reference</a>
     </nav>
-    <div>
+    <div class="docs-main">
 <div class="dpanel on" id="d-docs">
   <div class="docs-hero">
     <p class="kicker">Overview</p>
@@ -1903,6 +1938,20 @@ dry_run ticket create is REST-only.</pre>
     <a href="/skills/replace-existing-integrations/SKILL.md">Replace existing integrations</a>
   </div>
 </div>
+<div class="dpanel" id="d-docs-coverage">
+  <div class="docs-hero">
+    <p class="kicker">Coverage</p>
+    <h1>Coverage.</h1>
+    <p class="lede">What exists on each connector today.</p>
+    <p class="note">Every connector here is Sandbox.</p>
+  </div>
+  <div class="cov-wrap">
+    <table class="cov">
+      <thead><tr><th scope="col"></th><th scope="col">ConnectWise</th><th scope="col">HaloPSA</th><th scope="col">Autotask</th><th scope="col">NinjaOne</th><th scope="col">Datto RMM</th><th scope="col">ScalePad</th><th scope="col">Pax8</th><th scope="col">IT Glue</th><th scope="col">Hudu</th></tr></thead>
+      <tbody><tr><th scope="row">Ticket</th><td>Pull and push</td><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Line item</th><td>Pull and push</td><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Project</th><td>Pull and push</td><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Company</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>Pull</td><td>Pull</td></tr><tr><th scope="row">Agreement</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Time</th><td>Push</td><td>Push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Device</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Software</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Action item</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Initiative</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Product</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Subscription</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Invoice</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Order</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Push</td><td>—</td><td>—</td></tr><tr><th scope="row">Document</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>Pull and push</td></tr><tr><th scope="row">Configuration</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td></tr><tr><th scope="row">Asset</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td></tr></tbody>
+    </table>
+  </div>
+</div>
 <div class="dpanel" id="d-docs-reference">
   <div class="docs-hero">
     <p class="kicker">Reference</p>
@@ -2057,6 +2106,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </div>
       <p style="margin:36px 0 0"><a class="btn" href="#partners" data-nav="partners">Request a key</a></p>
     </div>
+    <aside class="docs-rail" id="docsRail" aria-label="Code examples" hidden></aside>
   </div>
 </div>
 </main>
@@ -2069,7 +2119,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 <script>
 (function(){
   var pages=['home','product','integrations','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
-  var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
+  var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
     'docs-device':'docs-reference','docs-agreement':'docs-reference',
@@ -2145,6 +2195,54 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var t=document.getElementById(st.anchor);
       if(t) setTimeout(function(){ t.scrollIntoView({block:'start'}); }, 30);
     }
+
+  function fillDocsRail(){
+    var rail=document.getElementById('docsRail');
+    if(!rail) return;
+    rail.innerHTML='';
+    var st=parse(location.hash||'#docs');
+    var panel=document.getElementById('d-'+st.docs);
+    if(!panel){ rail.hidden=true; return; }
+    var codes;
+    if(st.docs==='docs-concepts' && st.anchor){
+      var art=document.getElementById(st.anchor);
+      codes=art ? art.querySelectorAll('.code') : [];
+    } else if(st.docs==='docs-concepts'){
+      codes=[];
+    } else {
+      codes=panel.querySelectorAll('.code');
+    }
+    if(!codes.length){ rail.hidden=true; return; }
+    rail.hidden=false;
+    if(st.docs==='docs-libraries' && codes.length>1){
+      var tabs=document.createElement('div');
+      tabs.className='rail-tabs';
+      var labels=['curl','Python','TypeScript'];
+      var clones=[];
+      codes.forEach(function(c,i){
+        var b=document.createElement('button');
+        b.type='button';
+        b.className='rail-tab';
+        b.textContent=labels[i]||('tab '+(i+1));
+        b.setAttribute('aria-selected', i===0?'true':'false');
+        tabs.appendChild(b);
+        var cl=c.cloneNode(true);
+        cl.hidden=i!==0;
+        clones.push(cl);
+      });
+      rail.appendChild(tabs);
+      clones.forEach(function(cl){ rail.appendChild(cl); });
+      tabs.querySelectorAll('button').forEach(function(b,i){
+        b.addEventListener('click',function(){
+          tabs.querySelectorAll('button').forEach(function(x,j){ x.setAttribute('aria-selected', j===i?'true':'false'); });
+          clones.forEach(function(cl,j){ cl.hidden=j!==i; });
+        });
+      });
+      return;
+    }
+    codes.forEach(function(c){ rail.appendChild(c.cloneNode(true)); });
+  }
+    fillDocsRail();
     if(st.connector){
       var tile=document.querySelector('[data-connector="'+st.connector+'"]');
       if(tile) setTimeout(function(){ tile.scrollIntoView({block:'nearest'}); }, 40);
