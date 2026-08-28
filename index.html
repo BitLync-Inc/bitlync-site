@@ -1259,7 +1259,7 @@ HTTP 500  { "status": 500, "code": "internal_error" }</pre>
 <article class="concept" id="docs-concepts-permissions">
   <h2>MSP permission / probe</h2>
   <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
-  <p class="note">ConnectWise connect is a numbered click path in the flow. If a permission is missing, we name it in English. We do not create a company in the PSA and we do not create an agreement.</p>
+  <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We do not create a company in the PSA and we do not create an agreement.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The MSP pastes keys in the guided flow. The probe names the permission to fix. The ISV does not paste MSP creds.</p>
   <p class="lbl">What the caller sees</p>
