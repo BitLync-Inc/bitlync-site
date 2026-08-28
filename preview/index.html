@@ -916,8 +916,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>One shape</h2>
         <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
 
-        <h2>Cache, rate limits, and retries</h2>
-        <p class="sub">Reads come from the store and do not hit the PSA each time. We pace calls, retry transient failures, and return one result or HTTP 429 with <code class="inline">Retry-After</code>.</p>
+        <h2>The store</h2>
+        <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait.</p>
 
         <h2>Vault</h2>
         <p class="sub">The MSP pastes their keys. Those keys sit in the vault, not in your product.</p>
