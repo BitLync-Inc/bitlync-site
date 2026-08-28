@@ -353,7 +353,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .inc{min-height:100%}
 .inc-grid{align-items:stretch}
 .tix-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#page-solutions-developer .code-shell{max-width:100%;width:100%;margin:36px auto 0}
+#page-solutions-developer .code-shell{max-width:100%;width:100%;margin:28px auto 0;background:#161618;border:1px solid #2A2C34;border-radius:10px}
+#page-solutions-developer .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-developer .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-developer .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-developer .term-dots .d-red{background:#FF5F57}
+#page-solutions-developer .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-developer .term-dots .d-grn{background:#28C840}
+#page-solutions-developer .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
 #page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
 #page-solutions-developer .tix{margin-top:36px}
 .grid9{overflow:visible}
@@ -903,7 +910,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 </div>
 <div class="page" id="page-solutions-developer">
   <section class="pad" style="padding-bottom:28px">
-    <div class="wrap"><div class="sol-copy">
+    <div class="wrap">
+      <div class="sol-copy">
       <p class="kicker">Solutions / Developer</p>
       <h1 class="sol-h1">One call, same shape every time.</h1>
       <p class="sub">Write against one shape. Cache, rate limits, retries, and the vault ship with the connection.</p>
@@ -913,30 +921,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
       </div>
-    </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div style="max-width:42rem">
-        <h2>The shape</h2>
-        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
-
-        <h2>The store</h2>
-        <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait. No silent drop. A retry does not create a second ticket.</p>
-
-        <h2>The vault</h2>
-        <p class="sub">Keys stay out of your product. The MSP connects their own tools. Those credentials live with us, not in your app. They can manage and revoke them.</p>
-
-        <h2>The preview</h2>
-        <p class="sub">Writes take <code class="inline">dry_run</code> first. If we refuse, you get a stable code and a sentence you can read.</p>
-
-        <h2>The sandbox</h2>
-        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
-
       </div>
       <div class="code-shell">
-        <div class="code-head">one read — any PSA underneath</div>
+        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">sandbox</span></div>
 <pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
 <span class="c-com">X-API-Key: blk_live_••••••••</span>
 
@@ -966,11 +953,27 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
-</div>
-<div class="page"       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>The sandbox</h2>
+        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
+
+        <h2>The shape</h2>
+        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
+
+        <h2>The store</h2>
+        <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait. No silent drop. A retry does not create a second ticket.</p>
+
+        <h2>The vault</h2>
+        <p class="sub">Keys stay out of your product. The MSP connects their own tools. Those credentials live with us, not in your app. They can manage and revoke them.</p>
+
+        <h2>The preview</h2>
+        <p class="sub">Writes take <code class="inline">dry_run</code> first. If we refuse, you get a stable code and a sentence you can read.</p>
+
+      </div>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
