@@ -913,14 +913,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div style="max-width:42rem">
-        <h2>One shape</h2>
+        <h2>The shape</h2>
         <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
 
         <h2>The store</h2>
         <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait.</p>
 
-        <h2>Vault</h2>
-        <p class="sub">The MSP pastes their keys. Those keys sit in the vault, not in your product.</p>
+        <h2>The vault</h2>
+        <p class="sub">Keys stay out of your product. The MSP connects their own tools. Those credentials live with us, not in your app. They can manage and revoke them.</p>
 
         <h2>Preview the write first</h2>
         <p class="sub">Writes take <code class="inline">dry_run</code> first. If we refuse, you get a stable code and a sentence you can read.</p>
