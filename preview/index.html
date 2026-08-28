@@ -1576,7 +1576,7 @@ Retry-After: 12
   "status": 429
 }</pre>
   </div>
-  <p class="note">No silent queue that looks like success. This page does not document a vendor daily cap.</p>
+  <p class="note">No silent queue that looks like success.</p>
 </article>
 <article class="concept" id="docs-concepts-retries">
   <h2>Retries</h2>
@@ -1649,7 +1649,7 @@ Retry-After: 30
   "code": "validation"
 }</pre>
   </div>
-  <p class="note">No “send it anyway and let the PSA reject it.” No extra validation codes on this page.</p>
+  <p class="note">No “send it anyway and let the PSA reject it.”</p>
 </article>
 <article class="concept" id="docs-concepts-credential-vault">
   <h2>Credential vault</h2>
@@ -1694,7 +1694,7 @@ HTTP 501
   <p class="lbl">Mechanism</p>
   <p class="note">Hold is a reserved record, not an auto-merge. The reserved shape name is <code class="inline">QuarantinedRecord</code>.</p>
   <p class="lbl">What the caller sees</p>
-  <p class="note">Unmatched work stays unmatched until release. Do not treat this page as a schema for that record.</p>
+  <p class="note">Unmatched work stays unmatched until release.</p>
     <div class="code">
     <div class="hd"><b>reserved name only</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;UNMAPPED&quot;}">Copy</button></div>
     <pre>{
@@ -1768,7 +1768,7 @@ GET /tenants/{tenant_id}/incidents</pre>
 </article>
 <article class="concept" id="docs-concepts-sandbox">
   <h2>Sandbox</h2>
-  <p class="note">Seeded fixtures only: <code class="inline">sandbox-mainstreet</code> and <code class="inline">sandbox-northline</code>. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder. There is no public sandbox host on this page.</p>
+  <p class="note">Seeded fixtures only: <code class="inline">sandbox-mainstreet</code> and <code class="inline">sandbox-northline</code>. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Every sandbox response includes <code class="inline">sandbox</code> true. <code class="inline">POST /sandbox/reset</code> with that tenant id clears audit, re-syncs fixtures, and writes one <code class="inline">sandbox_reset</code> event. A production tenant on that route returns 422 <code class="inline">request_invalid</code>.</p>
   <p class="lbl">What the caller sees</p>
@@ -1806,7 +1806,7 @@ HTTP 429  Retry-After: 12
 HTTP 501  { "status": 501, "code": "unsupported" }
 HTTP 500  { "status": 500, "code": "internal_error" }</pre>
   </div>
-  <p class="note">No extra codes on this page. 500 stays opaque. A parked write is 501, not a generic 500.</p>
+  <p class="note">500 stays opaque. A parked write is 501, not a generic 500.</p>
 </article>
 <article class="concept" id="docs-concepts-permissions">
   <h2>MSP permission / probe</h2>
@@ -1908,7 +1908,7 @@ tenant_id: sandbox-mainstreet
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
   </div>
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
-  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. There is no public MCP host. Use <code class="inline">$BITLYNC_BASE</code>. </p>
+  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. Use <code class="inline">$BITLYNC_BASE</code>. </p>
   <div class="code">
     <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
   &quot;mcpServers&quot;: {
@@ -2097,7 +2097,7 @@ dry_run ticket create is REST-only.</pre>
   </div>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. We do not watch the MSP close or edit. Incident and approval sit on this path.</p></article>
   <article class="uc"><h3>2. Map customers</h3><p class="note">Sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. Creating it in the ISV returns 501.</p></article>
-  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member. Same write grant. Fixtures and dry_run. Not a time read. No list. No timers. No notes field. Not two-way time. No billing codes, work types, or start–end.</p></article>
+  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
   <article class="uc"><h3>4. Close with evidence</h3><p class="note">On tickets Bitlync created: append evidence, or close if the MSP turned that on. Close defaults off. Fixtures and dry_run. Not two-way ticketing.</p></article>
 </div>
 <div class="dpanel" id="d-docs-libraries">
