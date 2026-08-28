@@ -311,14 +311,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-table th{font-size:12px;color:var(--mute);font-weight:600}
 .sol-table tr:last-child td{border-bottom:0}
 .sol-caption{font-family:var(--mono);font-size:11px;color:var(--mute);margin:0 0 8px}
-.sol-win{margin:18px 0 32px;background:#10243E;border-radius:18px;padding:40px 28px 48px}
-.sol-app{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.28)}
-.sol-win-bar{display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#F7F4EC;border-bottom:1px solid #E8E4DA}
-.sol-win-bar i{width:8px;height:8px;border-radius:50%;background:#C9C4B8;display:block}
-.sol-win-bar span{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--mute)}
-.sol-win-body{padding:18px 16px 16px;background:#FBFBF8}
-.sol-win-body.ink{background:#17181C;color:#F7F4EC}
-.sol-win-body .disclaim{margin-top:12px}
 
 .drop .panel-in{background:var(--card);border:1px solid var(--hair);border-radius:16px;
   box-shadow:0 18px 40px rgba(23,24,28,.08);padding:18px 18px 14px}
@@ -793,11 +785,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>One model. The MSP still sees their words.</h2>
         <p class="sub">PMs should not be translating vendor field names. We normalize to Bitlync words. The MSP sees the stack names they already use.</p>
       </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one model</span></div>
-  <div class="sol-win-body">
-<div class="viz" aria-hidden="true">
+      <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 360 100" role="img">
             <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
             <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
@@ -820,9 +808,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <text x="319" y="78" text-anchor="middle">AGREEMENT</text>
             </g>
           </svg>
-        </div>
-  </div>
-  </div>
 </div>
       <div style="max-width:42rem">
         <h2>You are not babysitting three clients</h2>
@@ -832,11 +817,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">They do not get stuck. A numbered click path shows where to click in the vendor. We validate the keys and permissions before it goes live. A missing permission is named in the flow.</p>
         <p class="sub">They should not have to build and keep a connect knowledge base (screenshots, click paths, updates). We keep the guide. Today that is a numbered Bitlync click path, kept current.</p>
       </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect</span></div>
-  <div class="sol-win-body">
-<div class="viz" aria-hidden="true">
+      <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 320 100" role="img">
             <rect x="6" y="28" width="88" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
             <text x="50" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">MSP pastes</text>
@@ -851,17 +832,15 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
             <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
             <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
-          </svg>
-        </div>\n\n<div class="grid g3">
+          </svg>\n\n<div class="grid g3">
         <div class="card">
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
-        </div>
         <div class="card">
           <h3>Validated before it ships</h3>
           <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
           <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication</div>
+            <div class="row p-ok">✓ authentication
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
             <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
             <div class="row p-ok">✓ all 6 scopes verified</div>
@@ -891,14 +870,10 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · layers</span></div>
-  <div class="sol-win-body">
-<div class="cake" aria-label="Five layers that ship with every connection">
-        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
-        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
-        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
+      <div class="cake" aria-label="Five layers that ship with every connection">
+        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span>
+        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span>
+        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span>
         <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
         <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
       </div>
@@ -907,12 +882,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 </div>
       <div class="inc-grid">
         <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · GET /tickets</span></div>
-  <div class="sol-win-body ink">
-<div class="code-shell">
-        <div class="code-head">one read — any PSA underneath</div>
+      <div class="code-shell">
+        <div class="code-head">one read — any PSA underneath
 <pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
 <span class="c-com">X-API-Key: blk_live_••••••••</span>
 
@@ -927,8 +898,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
   }]
 }</pre>
-      </div>
-  </div>
   </div>
 </div>
       <div class="dx-notes">
@@ -937,32 +906,21 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
       </div>
     </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · MCP</span></div>
-  <div class="sol-win-body ink">
-<div class="mcp-grid">
+      <div class="mcp-grid">
         <div class="mcp-card bad">
           <small>Raw MCP servers</small>
           <b>Agents pointed straight at vendor APIs</b>
           <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
-        </div>
         <div class="mcp-card good">
           <small>Bitlync MCP</small>
           <b>Sync-backed and governed</b>
           <p>Reads come from the same store as the API. Writes use the same checks.</p>
-        </div>
-      </div>
     </div>
   </div>
   </div>
 </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one shape</span></div>
-  <div class="sol-win-body">
-<div class="tix">
-        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+      <div class="tix">
+        <div class="tix-head">normalized tickets — 3 sources, 1 shape
         <div class="tix-scroll">
         <table>
           <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
@@ -971,9 +929,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
             <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
           </tbody>
-        </table>
-        </div>
-      </div><p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+        </table><p class="disclaim">Simulated data — three PSAs, one normalized read</p>
   </div>
   </div>
 </div>
@@ -1005,11 +961,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">You should never have to say we do not integrate. You should never have to say it is on the roadmap. Point them at Connectors. They connect themselves.</p>
         <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector.</p>
       </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · Connectors</span></div>
-  <div class="sol-win-body">
-<div class="grid9">
+      <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
@@ -1082,9 +1034,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Asset — pull</li>
           </ul>
         </a>
-      </div>
-  </div>
-  </div>
 </div>
       <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
@@ -1102,18 +1051,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connections</span></div>
-  <div class="sol-win-body">
-<div class="ops-grid">
+      <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
-          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span>
           <div class="ops-row">
-            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
+            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small>
             <span class="st ok"><i></i>healthy</span>
             <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
-          </div>
           <div class="ops-row">
             <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
@@ -1129,14 +1073,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </div>
   </div>
 </div>
-      <div class="sol-win">
-  <div class="sol-app">
-<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect probe</span></div>
-  <div class="sol-win-body">
-<div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication</div>
-  </div>
-  </div>
+      <div class="mini-probe" aria-label="Example validation probe output">
+            <div class="row p-ok">✓ authentication
 </div>
       <p class="sol-caption">Example probe. Not live numbers.</p>
       <div style="max-width:42rem">
