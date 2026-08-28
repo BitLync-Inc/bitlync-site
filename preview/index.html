@@ -184,6 +184,7 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
+.status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
 .cell.logo-cell.open{background:#F3F0E6}
 .cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
 .cell.logo-cell.open .objs{display:block}
@@ -214,8 +215,8 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .health{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ok);flex-wrap:wrap}
 .health i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
 .revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--bad);font-weight:600}
-.form-band{border:1px solid var(--hair);border-radius:18px;padding:8px;background:var(--card);max-width:100%}
-.form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
+.form-band{border:1px solid var(--hair);border-radius:16px;padding:24px 24px 8px;background:var(--paper);max-width:42rem;font-family:var(--sans);color:var(--ink)}
+.form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:8px;background:var(--paper);color-scheme:light}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -414,7 +415,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
         </svg>
       </div>
-      <div class="logo-scroll" aria-label="Vendors in the product today">
+      <div class="logo-scroll" aria-label="Connectors in the sandbox">
         <div class="logo-track">
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
@@ -691,7 +692,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h2>Connectors.</h2>
       <p class="sub">Connect to the stacks your MSPs already run.</p>
       <div class="grid9">
-        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
+        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -701,7 +702,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Time — push</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
+        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -711,7 +712,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Time — push</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
+        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -721,25 +722,25 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Time — push</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
+        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Device — pull</li>
             <li>Software — pull</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
+        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Device — pull</li>
             <li>Software — pull</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
+        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Action item — pull and push</li>
             <li>Initiative — pull and push</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
+        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Company — pull and push</li>
             <li>Product — pull</li>
@@ -748,7 +749,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Order — push</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
+        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Document — pull and push</li>
             <li>Company — pull</li>
@@ -756,7 +757,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Asset — pull</li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
+        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Document — pull and push</li>
             <li>Company — pull</li>
@@ -867,6 +868,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       
       <p class="sol-caption">Example validation. Not a live key.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
@@ -970,6 +972,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
@@ -1078,6 +1081,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </a>
       </div>
       <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
@@ -1139,6 +1143,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="mini-probe" aria-label="Example validation probe output">
             <div class="row p-ok">✓ authentication</div>
       <p class="sol-caption">Example probe. Not live numbers.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
@@ -1235,7 +1240,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h2>Build this with us.</h2>
       <p class="sub">A small number of paid design partners before general availability. Real integrations. A say in what gets built first.</p>
       <div class="grid g3" style="margin:28px 0">
-        <div class="card"><p class="kicker">How it starts</p><h3>A conversation, not a form</h3><p class="quiet" style="margin:0">A short conversation and an NDA.</p></div>
+        <div class="card"><p class="kicker">How it starts</p><h3>Start with a short form</h3><p class="quiet" style="margin:0">Then a conversation and an NDA.</p></div>
         <div class="card"><p class="kicker">What you get</p><h3>Founding terms, locked</h3><p class="quiet" style="margin:0">Founding terms locked in for the partners who join early.</p></div>
         <div class="card"><p class="kicker">What we ask</p><h3>A real integration need</h3><p class="quiet" style="margin:0">Candid feedback as we build, and a real gap we can solve together.</p></div>
       </div>
