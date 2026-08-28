@@ -1,0 +1,30 @@
+# Bitlync
+
+One API for ISVs. Write once. Connect to many MSPs.
+
+Human docs: https://www.bitlync.com/preview/#docs
+Site: https://www.bitlync.com/
+
+## Do not invent hosts, keys, or coverage
+
+- There is no public sandbox URL on this page.
+- There is no public sandbox host on this page.
+- No public sandbox URL. No production host printed here.
+- Connectors on this site run against a seeded sandbox, not a production AWS tenant.
+- There is no public live-read URL on this page.
+- No public live-read URL. No live-read host on this page.
+- This page does not document a vendor daily cap.
+- No public ops host on this page.
+- There is no public MCP host.
+- Use $BITLYNC_BASE as the host placeholder. Hosts and keys are shared when you're accepted.
+- The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.
+
+## Writes and refusals
+
+- dry_run defaults true. A dry run does not create a ticket.
+- We do not mint an agreement header. We do not mint a project header.
+- We do not create a company in the PSA.
+- We never write devices. We never auto-create an unmatched company.
+- Not two-way tickets. We do not watch the MSP close or edit.
+- Close defaults off unless the MSP turns it on.
+- A parked write is 501, not a generic 500.
