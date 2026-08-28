@@ -366,6 +366,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-customer-success .pm-mid b{display:block;font-size:13.5px;font-weight:600}
 #page-solutions-customer-success .pm-mid small{display:block;font-size:11.5px;color:var(--mute)}
 #page-solutions-customer-success .pm-act{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+#page-solutions-customer-success .pm-block + .pm-block{border-top:1px solid var(--hair)}
+#page-solutions-customer-success .pm-row{border-bottom:none}
+#page-solutions-customer-success .audit-btn{font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;border:0;background:none;padding:0;color:inherit;cursor:pointer}
+#page-solutions-customer-success .audit-btn[aria-expanded="true"]{color:var(--ink)}
+#page-solutions-customer-success .pm-tray{padding:8px 16px 14px 60px;background:#F6F3EA;font-family:var(--mono);font-size:12px}
+#page-solutions-customer-success .pm-log{display:grid;grid-template-columns:72px 1fr;gap:2px 14px;padding:3px 0;color:var(--ink)}
+#page-solutions-customer-success .pm-log time{color:var(--mute);font-variant-numeric:tabular-nums}
+
 
 #page-solutions-customer-success .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
 #page-solutions-customer-success .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
@@ -1149,20 +1157,39 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
       <div class="portal-mock" aria-label="Mockup of the connection portal">
         <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connections</span></div>
-        <div class="pm-row">
-          <div class="pm-who"><i>CW</i><b>Blue Spruce IT</b></div>
-          <div class="pm-mid"><b>ConnectWise</b><small>scopes verified</small></div>
-          <div class="pm-act"><span class="health"><i></i>healthy · synced 3 min ago</span><a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a></div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>CW</i><b>Blue Spruce IT</b></div>
+            <div class="pm-mid"><b>ConnectWise</b><small>scopes verified</small></div>
+            <div class="pm-act"><span class="health"><i></i>healthy · synced 3 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-blue-spruce">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-blue-spruce" hidden>
+            <div class="pm-log"><time>2:03 PM</time><span>read tickets · from the store</span></div>
+            <div class="pm-log"><time>1:58 PM</time><span>opened ticket tkt_8f31 · VPN drops every few minutes</span></div>
+          </div>
         </div>
-        <div class="pm-row">
-          <div class="pm-who"><i>HA</i><b>Harbor Managed Services</b></div>
-          <div class="pm-mid"><b>HaloPSA</b><small>scopes verified</small></div>
-          <div class="pm-act"><span class="health"><i></i>healthy · synced 6 min ago</span><a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a></div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>HA</i><b>Harbor Managed Services</b></div>
+            <div class="pm-mid"><b>HaloPSA</b><small>scopes verified</small></div>
+            <div class="pm-act"><span class="health"><i></i>healthy · synced 6 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-harbor">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-harbor" hidden>
+            <div class="pm-log"><time>1:56 PM</time><span>read companies · from the store</span></div>
+            <div class="pm-log"><time>1:51 PM</time><span>read tickets · from the store</span></div>
+          </div>
         </div>
-        <div class="pm-row">
-          <div class="pm-who"><i>AT</i><b>Cedar Ridge Technology</b></div>
-          <div class="pm-mid"><b>Autotask</b><small>missing: Service Desk — Add</small></div>
-          <div class="pm-act"><span class="st deg"><i></i>degraded</span><a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a></div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>AT</i><b>Cedar Ridge Technology</b></div>
+            <div class="pm-mid"><b>Autotask</b><small>missing: Service Desk — Add</small></div>
+            <div class="pm-act"><span class="st deg"><i></i>degraded</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-cedar">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-cedar" hidden>
+            <div class="pm-log"><time>2:04 PM</time><span>read tickets · from the store</span></div>
+            <div class="pm-log"><time>2:04 PM</time><span>write refused · missing: Service Desk — Add</span></div>
+            <div class="pm-log"><time>2:04 PM</time><span>named in the row · waiting on the MSP</span></div>
+          </div>
         </div>
       </div>
       <p class="disclaim">Mockup. Simulated data.</p>
@@ -2195,6 +2222,33 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       solDrop.classList.remove('open');
     });
   }
+
+  (function(){
+    var root=document.getElementById('page-solutions-customer-success');
+    if(!root) return;
+    var btns=root.querySelectorAll('.audit-btn');
+    function closeAll(except){
+      btns.forEach(function(b){
+        if(b===except) return;
+        b.setAttribute('aria-expanded','false');
+        var tr=document.getElementById(b.getAttribute('aria-controls'));
+        if(tr) tr.hidden=true;
+      });
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var tray=document.getElementById(btn.getAttribute('aria-controls'));
+        if(!tray) return;
+        var open=btn.getAttribute('aria-expanded')==='true';
+        closeAll();
+        if(!open){
+          btn.setAttribute('aria-expanded','true');
+          tray.hidden=false;
+        }
+      });
+    });
+  })();
+
   show(location.hash||'#home');
 
 })();
