@@ -358,6 +358,16 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-product .w3 b{flex:none;width:16px;font-family:var(--mono);font-size:11px;color:#6B6A64;font-weight:600}
 #page-solutions-product .portal-mock{max-width:100%;margin:14px 0 0}
 #page-solutions-product .card .disclaim{margin:8px 0 0}
+#page-solutions-customer-success .portal-mock{max-width:100%;margin:0}
+#page-solutions-customer-success .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-customer-success .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-customer-success .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-customer-success .term-dots .d-red{background:#FF5F57}
+#page-solutions-customer-success .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-customer-success .term-dots .d-grn{background:#28C840}
+#page-solutions-customer-success .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+#page-solutions-customer-success .pm-row small{display:block}
+#page-solutions-customer-success .quiet + .btn{margin-top:22px;display:inline-block}
 #page-solutions-developer .code-shell{max-width:100%;width:100%;margin:28px auto 0;background:#161618;border:1px solid #2A2C34;border-radius:10px}
 #page-solutions-developer .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
 #page-solutions-developer .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
@@ -1115,7 +1125,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Customer Success</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
-      <p class="sub">Customer success and support can see last sync, permissions, and the log.</p>
+      <p class="sub">Customer success and support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Customer success cannot see last sync or the log. A developer has to read the vendor error.</p>
@@ -1127,49 +1137,36 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div style="max-width:42rem">
-        <h2>Last sync</h2>
-        <p class="sub">Each connection shows when it last synced. You can see if it is healthy or stalled.</p>
-
-        <h2>Permissions</h2>
-        <p class="sub">You can see what permissions they have. A missing permission is named.</p>
-
         <h2>The log</h2>
-        <p class="sub">Every read and write lands in a log you can open.</p>
-
       </div>
-      <div class="ops-grid">
-        <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
-          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
-          <div class="ops-row">
-            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
-            <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
-          </div>
-          <div class="ops-row">
-            <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
-            <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
-          </div>
-          <div class="ops-row">
-            <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
-            <span class="st deg"><i></i>degraded</span>
-            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
-          </div>
+      <div class="portal-mock" aria-label="Mockup of the connection portal">
+        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connections</span></div>
+        <div class="pm-row">
+          <i>CW</i>
+          <div class="meta"><b>Blue Spruce IT</b><small>ConnectWise</small></div>
+          <span class="health"><i></i>healthy · synced 3 min ago</span>
+          <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+        </div>
+        <div class="pm-row">
+          <i>HA</i>
+          <div class="meta"><b>Harbor Managed Services</b><small>HaloPSA</small></div>
+          <span class="health"><i></i>healthy · synced 6 min ago</span>
+          <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+        </div>
+        <div class="pm-row">
+          <i>AT</i>
+          <div class="meta"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small><small>missing: Service Desk — Add</small></div>
+          <span class="st deg"><i></i>degraded</span>
+          <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
         </div>
       </div>
       <p class="disclaim">Mockup. Simulated data.</p>
       <div style="max-width:42rem">
-        <h2>Named miss in connect</h2>
-        <p class="sub">The MSP pastes their own keys. If a permission is missing, the flow names it, so it does not become a support ticket.</p>
-
-        <h2>Resolve without a developer</h2>
-        <p class="sub">Last sync, permissions, and the log are enough for customer success and support. They do not need a developer for a bad key or a missing permission.</p>
-
+        <p class="quiet">Each connection shows when it last synced. You can see if it is healthy or stalled.</p>
+        <p class="quiet">A missing permission is named in the row.</p>
+        <p class="quiet">Every read and write lands in a log you can open.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       </div>
-      <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication</div>
-      <p class="sol-caption">Example probe. Not live numbers.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
