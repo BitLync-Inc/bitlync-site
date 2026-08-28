@@ -821,6 +821,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p>Docs</p>
       <a href="#docs" data-docs="docs">Overview</a>
       <a href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
+      <a href="#docs-replace-existing" data-docs="docs-replace-existing">Replace existing integrations</a>
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
         <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
@@ -1391,6 +1392,19 @@ The write tool is route_finding. Do not create tickets over MCP.
 dry_run ticket create is REST-only.</pre>
   </div>
 </div>
+<div class="dpanel" id="d-docs-replace-existing">
+  <div class="docs-hero">
+    <p class="kicker">Replace existing integrations</p>
+    <h1>Replace existing integrations.</h1>
+    <p class="lede">You already have vendor clients. Change those calls to Bitlync. We do not ingest your old code or import tokens.</p>
+  </div>
+  <p class="note">The ISV rewrites the calls. The MSP pastes keys once. Connect names a missing permission in the flow.</p>
+  <p class="note"><code class="inline">.raw</code> is extra fields on a read. It is not a write pipe. Leftover verbs stay on the old client.</p>
+  <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
+  <p class="note">Never: mint an agreement header; create a company in the PSA; write devices; auto-create an unmatched company; two-way tickets or watch the MSP close.</p>
+  <p class="note">Tickets: open, update, close with evidence. Linked or created tickets only. Close defaults off until the MSP allows it. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company push: ISV to a distributor only. Not into the PSA.</p>
+  <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes. The longer checklist is the skill: <a href="/skills/replace-existing-integrations/SKILL.md">Replace existing integrations</a>.</p>
+</div>
 <div class="dpanel" id="d-docs-reference">
   <div class="docs-hero">
     <p class="kicker">Reference</p>
@@ -1556,7 +1570,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 <script>
 (function(){
   var pages=['home','product','integrations','msps','partners','docs'];
-  var docsIds=['docs','docs-concepts','docs-quickstart','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
+  var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
     'docs-device':'docs-reference','docs-agreement':'docs-reference',
