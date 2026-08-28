@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Bitlync. Write once. Connect to many.</title>
 <meta name="description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
+<link rel="canonical" href="https://www.bitlync.com/"/>
+<meta property="og:title" content="Bitlync. Write once. Connect to many."/>
+<meta property="og:description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
+<meta property="og:image" content="https://www.bitlync.com/og.png"/>
+<meta property="og:url" content="https://www.bitlync.com/"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -51,6 +57,10 @@ body.docs .menu{border-color:var(--dline);color:var(--dtext)}
   nav.main.open{display:flex}
   .menu{display:block;margin-left:auto}
   .nav-cta{display:none}
+  .drop .panel{position:static;transform:none;width:100%;padding-top:6px;display:none}
+  .drop.open .panel,.drop:focus-within .panel{display:block}
+  .drop .panel-in{box-shadow:none;border:0;padding:0;background:transparent}
+  .sol-rows a{padding:12px 8px}
 }
 .page{display:none}.page.on{display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
@@ -121,23 +131,23 @@ section.pad{padding:72px 0}
 .dark .kicker{color:var(--acid)}
 .dark h2{color:#fff}
 .dark .sub{color:#B9B9B4}
-.code-shell{background:#101116;border:1px solid #2A2C34;border-radius:14px;overflow:hidden;max-width:760px;margin:0 auto}
+.code-shell{background:#101116;border:1px solid #2A2C34;border-radius:14px;overflow:hidden;max-width:760px;width:100%;margin:0 auto}
 .code-head{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid #2A2C34;font-family:var(--mono);font-size:11.5px;color:#8B8B86}
 pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.7;color:#D9D9D4;white-space:pre-wrap;word-break:break-word}
 .c-com{color:#6F7A6F}.c-kw{color:var(--acid)}.c-str{color:#D9B47C}
-.dx-notes{display:grid;gap:12px;max-width:760px;margin:18px auto 0;grid-template-columns:1fr}
-@media(min-width:820px){.dx-notes{grid-template-columns:1fr 1fr 1fr}}
-.dx-note{background:#22242B;border:1px solid #3A3D46;border-radius:10px;padding:14px 16px;font-size:13px;color:#B9B9B4}
-.dx-note b{display:block;color:#fff;font-size:13.5px;margin-bottom:3px}
-.mcp-grid{display:grid;gap:14px;max-width:920px;margin:0 auto}
-@media(min-width:860px){.mcp-grid{grid-template-columns:1fr 1fr}}
-.mcp-card{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:22px}
+.dx-notes{display:grid;gap:18px;width:100%;max-width:920px;margin:20px auto 0;grid-template-columns:1fr}
+@media(min-width:900px){.dx-notes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.dx-note{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:20px;font-size:13px;color:#B9B9B4;min-width:0}
+.dx-note b{display:block;color:#fff;font-size:13.5px;margin:0 0 8px}
+.mcp-grid{display:grid;gap:18px;width:100%;max-width:920px;margin:20px auto 0;grid-template-columns:1fr}
+@media(min-width:840px){.mcp-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.mcp-card{background:#22242B;border:1px solid #3A3D46;border-radius:14px;padding:20px;min-width:0}
 .mcp-card b{display:block;font-family:var(--serif);font-size:20px;color:#fff;margin:0 0 6px}
 .mcp-card p{margin:0;font-size:14px;color:#B9B9B4}
-.mcp-card small{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:10px;color:var(--acid)}
+.mcp-card small{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;display:block;margin:0 0 10px;color:var(--acid)}
 .mcp-card.bad{border-color:#5A3A3A}
 .mcp-card.good{border-color:#3A4A28}
-.tix{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;max-width:860px;margin:0 auto}
+.tix{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;max-width:920px;width:100%;margin:24px auto 0}
 .tix-head{padding:11px 16px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:11.5px;color:var(--mute)}
 .tix-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
 .tix table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
@@ -180,6 +190,7 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
+.status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
 .cell.logo-cell.open{background:#F3F0E6}
 .cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
 .cell.logo-cell.open .objs{display:block}
@@ -210,8 +221,8 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .health{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--ok);flex-wrap:wrap}
 .health i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
 .revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--bad);font-weight:600}
-.form-band{border:1px solid var(--hair);border-radius:18px;padding:8px;background:var(--card);max-width:100%}
-.form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:12px;background:#fff}
+.form-band{border:1px solid var(--hair);border-radius:16px;padding:24px 24px 8px;background:var(--paper);max-width:42rem;font-family:var(--sans);color:var(--ink)}
+.form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:8px;background:var(--paper);color-scheme:light}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -292,6 +303,129 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   .docs-tree .nest a{display:inline;padding:4px 0}
   .concept,.concept .code,.concept pre{overflow-x:clip;max-width:100%}
 }
+
+.drop{position:relative}
+.drop > a{color:inherit}
+.drop .panel{display:none;position:absolute;left:0;top:100%;
+  padding-top:10px;width:260px;z-index:50}
+.drop:hover .panel,.drop:focus-within .panel,.drop.open .panel{display:block}
+.sol-rows{display:flex;flex-direction:column;gap:2px;padding:4px 0 2px}
+.sol-rows a{display:block;padding:11px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--ink)}
+.sol-rows a:hover,.sol-rows a:focus{background:#EFEBE0}
+.sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
+.sol-table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14px;background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+.sol-table th,.sol-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair)}
+.sol-table th{font-size:12px;color:var(--mute);font-weight:600}
+.sol-table tr:last-child td{border-bottom:0}
+.sol-caption{font-family:var(--mono);font-size:11px;color:var(--mute);margin:0 0 8px}
+
+.drop .panel-in{background:var(--card);border:1px solid var(--hair);border-radius:16px;
+  box-shadow:0 18px 40px rgba(23,24,28,.08);padding:18px 18px 14px}
+.drop .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drop a.big{display:block;padding:16px;border:1px solid var(--hair);border-radius:12px;background:var(--paper)}
+.drop a.big b{display:block;font-size:15px;margin:0 0 4px;color:var(--ink)}
+.drop a.big span{display:block;font-size:13px;color:var(--mute);line-height:1.4;font-weight:400}
+.roles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 0 4px}
+.roles a,.roles span{display:block;padding:12px 10px;border:1px solid var(--hair);border-radius:10px;
+  background:var(--paper);color:var(--ink);font-size:14px;font-weight:500;text-align:center}
+.roles a em{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--mute);margin-top:2px}
+.roles-label{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;
+  text-transform:uppercase;margin:14px 0 0}
+.uc-note{font-size:15px;color:var(--mute);margin:0 0 8px}
+.uc-note.lead{margin:0 0 12px}
+.uc-note.end{margin:0}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;margin-top:28px}
+.cats h3{font-size:15px;font-family:var(--sans);font-weight:600;margin:0 0 6px;letter-spacing:0}
+.cats .grain{font-size:13px;color:var(--mute);margin:0 0 12px;line-height:1.35;font-weight:400}
+.uc-stack{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.uc-stack span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--mute)}
+.uc-stack img{height:18px;width:auto;filter:grayscale(1);opacity:.85}
+@media(max-width:900px){.cats{grid-template-columns:1fr 1fr}}
+.sol-list{margin:0 0 22px;padding-left:1.15em;color:var(--mute)}
+.sol-list li{margin:0 0 8px}
+.skill-card{margin:18px 0 0;padding:16px 18px;border:1px solid var(--dline);border-radius:12px;background:var(--panel);max-width:36rem}
+.skill-card p{margin:0 0 8px;color:var(--dtext)}
+.skill-card a{text-decoration:underline;color:var(--dtext)}
+
+.sol-copy{max-width:42rem}
+.page[id^="page-solutions"] h2{margin:22px 0 8px}
+.page[id^="page-solutions"] .sol-copy h2:first-of-type{margin-top:8px}
+.inc{min-height:100%}
+.inc-grid{align-items:stretch}
+.tix-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-solutions-product .portal-mock{max-width:100%;margin:14px 0 0}
+#page-solutions-product .card .disclaim{margin:8px 0 0}
+#page-solutions-product .connect-win{margin-top:14px;border:1px solid var(--hair);border-radius:10px;background:var(--card);overflow:hidden}
+#page-solutions-product .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-product .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-product .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-product .term-dots .d-red{background:#FF5F57}
+#page-solutions-product .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-product .term-dots .d-grn{background:#28C840}
+#page-solutions-product .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+#page-solutions-product .cn-tabs{display:flex;border-bottom:1px solid var(--hair)}
+#page-solutions-product .cn-tab{flex:1;border:0;background:transparent;padding:8px 6px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mute);cursor:pointer}
+#page-solutions-product .cn-tab[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 #17181C}
+#page-solutions-product .cn-pane{padding:12px}
+#page-solutions-product .cn-pick{display:block;width:100%;text-align:left;border:1px solid var(--hair);background:#FBFBF8;border-radius:8px;padding:8px 10px;margin:0 0 8px;font-family:var(--mono);font-size:11.5px;cursor:pointer}
+#page-solutions-product .cn-pick:last-child{margin-bottom:0}
+#page-solutions-product .cn-pick[aria-pressed="true"]{border-color:#17181C;background:#F3F0E6}
+#page-solutions-product .cn-field{display:flex;align-items:flex-start;gap:10px;margin:0 0 10px}
+#page-solutions-product .cn-field b{flex:none;width:16px;font-family:var(--mono);font-size:11px;color:#6B6A64;font-weight:600;line-height:28px}
+#page-solutions-product .cn-field label{flex:1;display:block;font-family:var(--mono);font-size:11px;color:var(--mute)}
+#page-solutions-product .cn-field input{display:block;width:100%;margin-top:4px;border:1px solid #E4DFD4;background:#FBFBF8;border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:12px;color:var(--ink)}
+#page-solutions-product .cn-note{margin:4px 0 0;font-family:var(--mono);font-size:11px;color:var(--mute)}
+#page-solutions-product .connect-win .mini-probe{margin-top:0}
+#page-solutions-customer-success .portal-mock{max-width:100%;margin:0}
+#page-solutions-customer-success .pm-block + .pm-block{border-top:1px solid var(--hair)}
+#page-solutions-customer-success .pm-row{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:16px 20px;border-bottom:none}
+#page-solutions-customer-success .pm-who{display:flex;align-items:center;gap:12px;min-width:0}
+#page-solutions-customer-success .pm-who b{display:block;font-size:14px;line-height:22px}
+#page-solutions-customer-success .pm-mid{display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:0;text-align:center}
+#page-solutions-customer-success .pm-vendor{display:flex;align-items:center;justify-content:center;gap:8px;height:22px;flex:none}
+#page-solutions-customer-success .pm-vendor img{width:20px;height:20px;object-fit:contain;filter:grayscale(1);opacity:.85;flex:none}
+#page-solutions-customer-success .pm-vendor b{display:block;font-size:13.5px;line-height:22px;font-weight:600}
+#page-solutions-customer-success .pm-mid small{display:block;font-size:11.5px;line-height:16px;color:var(--mute);margin-top:2px}
+#page-solutions-customer-success .pm-act{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+#page-solutions-customer-success .health.warn{color:var(--warn)}
+#page-solutions-customer-success .health.warn i{background:var(--warn)}
+#page-solutions-customer-success .audit-btn{font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;color:var(--ink);cursor:pointer}
+#page-solutions-customer-success .audit-btn[aria-expanded="true"]{border-color:#17181C;background:#F3F0E6}
+#page-solutions-customer-success .pm-tray{padding:8px 16px 14px 60px;background:#F6F3EA;font-family:var(--mono);font-size:12px}
+#page-solutions-customer-success .pm-log{display:grid;grid-template-columns:72px 1fr;gap:2px 14px;padding:3px 0;color:var(--ink)}
+#page-solutions-customer-success .pm-log time{color:var(--mute);font-variant-numeric:tabular-nums}
+#page-solutions-customer-success .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-customer-success .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-customer-success .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-customer-success .term-dots .d-red{background:#FF5F57}
+#page-solutions-customer-success .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-customer-success .term-dots .d-grn{background:#28C840}
+#page-solutions-customer-success .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+#page-solutions-customer-success .disclaim + div .btn{margin-top:22px;display:inline-block}
+@media(max-width:700px){
+#page-solutions-customer-success .pm-row{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+#page-solutions-customer-success .pm-mid{align-items:flex-start;text-align:left}
+#page-solutions-customer-success .pm-vendor{justify-content:flex-start}
+#page-solutions-customer-success .pm-act{justify-content:flex-start;width:100%}
+#page-solutions-customer-success .pm-tray{padding:8px 16px 14px}
+}
+#page-solutions-developer .code-shell{max-width:100%;width:100%;margin:28px auto 0;background:#161618;border:1px solid #2A2C34;border-radius:10px}
+#page-solutions-developer .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-developer .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-developer .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-developer .term-dots .d-red{background:#FF5F57}
+#page-solutions-developer .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-developer .term-dots .d-grn{background:#28C840}
+#page-solutions-developer .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+#page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
+#page-solutions-developer .tix{max-width:100%;width:100%;margin:36px auto 0}
+.grid9{overflow:visible}
+.cell b{white-space:normal}
+@media(min-width:841px){
+  .drop .panel{display:none}
+  .drop:hover .panel,.drop:focus-within .panel{display:none}
+  .drop.hot .panel{display:block}
+}
 </style>
 </head>
 <body>
@@ -301,9 +435,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <a class="brand" href="#home" data-nav="home"><svg class="mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><path d="M4.5 7.2C12 7.2 15.2 16 22.4 16"/><path d="M4.5 11.6C11.2 11.6 15 16 22.4 16"/><path d="M4.5 16C12 16 16 16 22.4 16"/><path d="M4.5 20.4C11.2 20.4 15 16 22.4 16"/><path d="M4.5 24.8C12 24.8 15.2 16 22.4 16"/></g><circle cx="24.3" cy="16" r="1.25" fill="currentColor"/></svg> bitlync</a>
     <nav class="main" id="mainNav">
       <a href="#home" data-nav="home" class="on">Home</a>
-      <a href="#product" data-nav="product">Product</a>
+      <div class="drop" id="solDrop">
+        <a href="#solutions/product" data-nav="solutions" data-sol-toggle="1">Solutions</a>
+        <div class="panel">
+          <div class="panel-in">
+            <p class="roles-label">By persona</p>
+            <div class="sol-rows">
+              <a href="#solutions/product" data-nav="solutions">Product</a>
+              <a href="#solutions/developer" data-nav="solutions">Developer</a>
+              <a href="#solutions/sales" data-nav="solutions">Sales</a>
+              <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a>
+              <a href="#msps" data-nav="msps">MSPs</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href="#integrations" data-nav="integrations">Connectors</a>
-      <a href="#msps" data-nav="msps">For MSPs</a>
       <a href="#docs" data-nav="docs">Docs</a>
     </nav>
     <a class="btn nav-cta" href="#partners" data-nav="partners">Request early access</a>
@@ -319,7 +466,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="lede">Ship the product. Don’t own the integration stack.</p>
       <div class="btn-row">
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-        <a class="btn ghost" href="#product" data-nav="product">See how it works</a>
+        <a class="btn ghost" href="#solutions/product" data-nav="solutions">See how it works</a>
         <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
       </div>
       <div class="hub" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
@@ -356,7 +503,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
         </svg>
       </div>
-      <div class="logo-scroll" aria-label="Vendors in the product today">
+      <div class="logo-scroll" aria-label="Connectors in the sandbox">
         <div class="logo-track">
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
@@ -607,22 +754,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <div class="ops-row">
             <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
           <div class="ops-row">
             <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
           <div class="ops-row">
             <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
             <span class="st deg"><i></i>degraded</span>
-            <a class="audit-link" href="#product" data-nav="product">audit log →</a>
+            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
         </div>
       </div>
       <p class="disclaim">Mockup. Simulated data.</p>
-      <p class="sub" style="margin:22px auto 0;text-align:center"><a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
+      <p class="sub" style="margin:22px auto 0;text-align:center"><a class="btn ghost" href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
     </div>
   </section>
 </div>
@@ -632,6 +779,290 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="kicker">Coverage</p>
       <h2>Connectors.</h2>
       <p class="sub">Connect to the stacks your MSPs already run.</p>
+      <div class="grid9">
+        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Device — pull</li>
+            <li>Software — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Device — pull</li>
+            <li>Software — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Action item — pull and push</li>
+            <li>Initiative — pull and push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Company — pull and push</li>
+            <li>Product — pull</li>
+            <li>Subscription — pull</li>
+            <li>Invoice — pull</li>
+            <li>Order — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Document — pull and push</li>
+            <li>Company — pull</li>
+            <li>Configuration — pull</li>
+            <li>Asset — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span>
+          <ul class="objs">
+            <li>Document — pull and push</li>
+            <li>Company — pull</li>
+            <li>Asset — pull</li>
+          </ul>
+        </a>
+      </div>
+      <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
+      <p class="sub" style="margin:22px auto 0"><a class="btn ghost" href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
+    </div>
+  </section>
+</div>
+
+
+<div class="page" id="page-solutions-product">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap"><div class="sol-copy">
+      <p class="kicker">Solutions / Product</p>
+      <h1 class="sol-h1">Ship in weeks, not quarters.</h1>
+      <p class="sub">Write to one model. We integrate the whole stack. A single integration, on its own, can take quarters.</p>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, each tool in the stack is its own project. Product compares fields across vendor docs. Engineering maintains another vendor library. Someone has to write the help docs for that integration and keep them current. Each tool also means a vendor relationship to maintain.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>One model for the stack</h2>
+        <p class="sub">You do not plan a separate project for each tool in the stack. You write to one model. We normalize to Bitlync words. The MSP still sees the names they already use.</p>
+      </div>
+      <div class="viz" aria-hidden="true">
+          <svg viewBox="0 0 360 100" role="img">
+            <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
+            <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
+              <path d="M180 28 C 180 42, 40 50, 40 64"/>
+              <path d="M180 28 C 180 42, 110 52, 110 64"/>
+              <path d="M180 28 C 180 44, 180 54, 180 64"/>
+              <path d="M180 28 C 180 42, 250 52, 250 64"/>
+              <path d="M180 28 C 180 42, 320 50, 320 64"/>
+            </g>
+            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">
+              <rect x="8" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="288" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <text x="40" y="78" text-anchor="middle">ticket</text>
+              <text x="110" y="78" text-anchor="middle">company</text>
+              <text x="180" y="78" text-anchor="middle">contact</text>
+              <text x="250" y="78" text-anchor="middle">device</text>
+              <text x="320" y="78" text-anchor="middle">agreement</text>
+            </g>
+          </svg>
+        </div>
+      <div style="max-width:42rem">
+        <h2>No vendor program per tool</h2>
+        <p class="sub">You do not apply to each vendor, wait on their sandbox, sit in their approval, or pay a program fee just to ship.</p>
+
+        <h2>Guided connect, in your product</h2>
+        <p class="sub">The MSP connects in a guided flow that can look like your product. We walk them through it. Vendor-specific steps sit beside the fields. We validate keys and permissions before it goes live.</p>
+      </div>
+      <div class="grid g2">
+        <div class="card">
+          <h3>Guided, in-flow</h3>
+          <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
+          <div class="connect-win" aria-label="Simulated connect flow">
+            <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connect</span></div>
+            <div class="cn-tabs" role="tablist">
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-tool" aria-selected="true" aria-controls="cn-pane-tool">Tool</button>
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-steps" aria-selected="false" aria-controls="cn-pane-steps">Steps</button>
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-test" aria-selected="false" aria-controls="cn-pane-test">Test</button>
+            </div>
+            <div class="cn-pane" id="cn-pane-tool" role="tabpanel" aria-labelledby="cn-tab-tool">
+              <button class="cn-pick" type="button" aria-pressed="true">PSA</button>
+              <button class="cn-pick" type="button" aria-pressed="false">RMM</button>
+              <button class="cn-pick" type="button" aria-pressed="false">Documentation</button>
+            </div>
+            <div class="cn-pane" id="cn-pane-steps" role="tabpanel" aria-labelledby="cn-tab-steps" hidden>
+              <div class="cn-field"><b>1</b><label>Company ID<input type="text" value="" disabled></label></div>
+              <div class="cn-field"><b>2</b><label>Public key<input type="text" value="" disabled></label></div>
+              <p class="cn-note">steps sit beside the fields</p>
+            </div>
+            <div class="cn-pane" id="cn-pane-test" role="tabpanel" aria-labelledby="cn-tab-test" hidden>
+              <div class="mini-probe" aria-label="Example validation probe output">
+                <div class="row p-ok">✓ authentication</div>
+                <div class="row p-bad">✕ missing: Service Desk — Add</div>
+                <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Hosted, MSP-managed</h3>
+          <p class="quiet" style="margin:0">Keys stay on Bitlync. The MSP manages and can revoke them. They do not touch your frontend.</p>
+          <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
+        <div class="pm-head">your connections</div>
+        <div class="pm-row">
+          <i>CW</i>
+          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
+          <span class="health"><i></i>healthy · synced 4 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+        <div class="pm-row">
+          <i>NJ</i>
+          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
+          <span class="health"><i></i>healthy · synced 11 min ago</span>
+          <button class="revoke" type="button">Revoke</button>
+        </div>
+      </div>
+          <p class="disclaim">Mockup. Simulated data.</p>
+        </div>
+      </div>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-solutions-developer">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap">
+      <div class="sol-copy">
+      <p class="kicker">Solutions / Developer</p>
+      <h1 class="sol-h1">One call, same shape every time.</h1>
+      <p class="sub">Write against one shape. Cache, rate limits, retries, and the vault ship with the connection.</p>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, each vendor has its own auth, limits, retries, and error pages. You hold MSP keys, and MCP pointed at the vendor spends the shared rate budget on every call.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+      </div>
+      </div>
+      <div style="max-width:42rem">
+        <h2>The sandbox</h2>
+        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
+      </div>
+      <div class="code-shell">
+        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">sandbox</span></div>
+<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
+<span class="c-com">X-API-Key: blk_live_••••••••</span>
+
+<span class="c-kw">200 OK</span>
+{
+  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
+  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
+  <span class="c-str">"data"</span>: [{
+    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
+    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
+    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
+    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
+  }]
+}</pre>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>The shape</h2>
+        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
+      </div>
+      <div class="tix">
+        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+        <div class="tix-scroll">
+        <table>
+          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
+          <tbody>
+            <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td></tr>
+            <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
+            <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+      <div style="max-width:42rem">
+        <h2>The store</h2>
+        <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait. No silent drop. A retry does not create a second ticket.</p>
+
+        <h2>The vault</h2>
+        <p class="sub">Keys stay out of your product. The MSP connects their own tools. Those credentials live with us, not in your app. They can manage and revoke them.</p>
+
+        <h2>The preview</h2>
+        <p class="sub">Writes take <code class="inline">dry_run</code> first. If we refuse, you get a stable code and a sentence you can read.</p>
+
+      </div>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-solutions-sales">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap"><div class="sol-copy">
+      <p class="kicker">Solutions / Sales</p>
+      <h1 class="sol-h1">Integrations grow revenue.</h1>
+      <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Sellers love to sell a roadmap, but roadmaps do not close deals. Without an integration into their stack, the deal stalls.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>Faster cycles</h2>
+        <p class="sub">They connect the stack they already run. The cycle does not wait on a custom build.</p>
+
+        <h2>Stay competitive</h2>
+        <p class="sub">Point them at the connectors that exist. A weaker product does not win just because it already has the integration.</p>
+
+      </div>
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
           <ul class="objs">
@@ -706,12 +1137,74 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
       </div>
-      <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
-      <p class="sub" style="margin:22px auto 0"><a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Thumb an issue to vote.</a></p>
+      <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
 </div>
-
+<div class="page" id="page-solutions-customer-success">
+  <section class="pad" style="padding-bottom:28px">
+    <div class="wrap"><div class="sol-copy">
+      <p class="kicker">Solutions / Customer Success</p>
+      <h1 class="sol-h1">Resolve it without a developer.</h1>
+      <p class="sub">Customer success and support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Customer success cannot see last sync or the log. A developer has to read the vendor error.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>The log</h2>
+      </div>
+      <div class="portal-mock" aria-label="Mockup of the connection portal">
+        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connections</span></div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>CW</i><b>Blue Spruce IT</b></div>
+            <div class="pm-mid"><div class="pm-vendor"><img src="logos/connectwise.png" alt="" width="20" height="20"><b>ConnectWise</b></div><small>scopes verified</small></div>
+            <div class="pm-act"><span class="health"><i></i>healthy · synced 3 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-blue-spruce">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-blue-spruce" hidden>
+            <div class="pm-log"><time>2:03 PM</time><span>read tickets · from the store</span></div>
+            <div class="pm-log"><time>1:58 PM</time><span>opened ticket tkt_8f31 · VPN drops every few minutes</span></div>
+          </div>
+        </div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>HA</i><b>Harbor Managed Services</b></div>
+            <div class="pm-mid"><div class="pm-vendor"><img src="logos/halopsa.png" alt="" width="20" height="20"><b>HaloPSA</b></div><small>scopes verified</small></div>
+            <div class="pm-act"><span class="health"><i></i>healthy · synced 6 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-harbor">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-harbor" hidden>
+            <div class="pm-log"><time>1:56 PM</time><span>read companies · from the store</span></div>
+            <div class="pm-log"><time>1:51 PM</time><span>read tickets · from the store</span></div>
+          </div>
+        </div>
+        <div class="pm-block">
+          <div class="pm-row">
+            <div class="pm-who"><i>AT</i><b>Cedar Ridge Technology</b></div>
+            <div class="pm-mid"><div class="pm-vendor"><img src="logos/autotask.png" alt="" width="20" height="20"><b>Autotask</b></div><small>missing: Service Desk — Add</small></div>
+            <div class="pm-act"><span class="health warn"><i></i>degraded · synced 18 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-cedar">audit log →</button></div>
+          </div>
+          <div class="pm-tray" id="cs-tray-cedar" hidden>
+            <div class="pm-log"><time>2:04 PM</time><span>read tickets · from the store</span></div>
+            <div class="pm-log"><time>2:04 PM</time><span>write refused · missing: Service Desk — Add</span></div>
+            <div class="pm-log"><time>2:04 PM</time><span>named in the row · waiting on the MSP</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="disclaim">Mockup. Simulated data.</p>
+      <div style="max-width:42rem">
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      </div>
+    </div>
+  </section>
+</div>
 <div class="page" id="page-msps">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap center">
@@ -805,7 +1298,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h2>Build this with us.</h2>
       <p class="sub">A small number of paid design partners before general availability. Real integrations. A say in what gets built first.</p>
       <div class="grid g3" style="margin:28px 0">
-        <div class="card"><p class="kicker">How it starts</p><h3>A conversation, not a form</h3><p class="quiet" style="margin:0">A short conversation and an NDA.</p></div>
+        <div class="card"><p class="kicker">How it starts</p><h3>A short form first.</h3><p class="quiet" style="margin:0">You fill the form below, then we talk and do an NDA.</p></div>
         <div class="card"><p class="kicker">What you get</p><h3>Founding terms, locked</h3><p class="quiet" style="margin:0">Founding terms locked in for the partners who join early.</p></div>
         <div class="card"><p class="kicker">What we ask</p><h3>A real integration need</h3><p class="quiet" style="margin:0">Candid feedback as we build, and a real gap we can solve together.</p></div>
       </div>
@@ -867,7 +1360,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <text x="82" y="142" text-anchor="middle">Your product</text>
       </g>
       <path d="M148 138 H 214" fill="none" stroke="#8B8E84" stroke-width="1.4" stroke-linecap="round"/>
-      <circle cx="250" cy="138" r="34" fill="#101214" stroke="#C6F04D" stroke-width="1.5"/>
+      <circle cx="250" cy="138" r="34" fill="#101214" stroke="#8A8680" stroke-width="1.5"/>
       <text x="250" y="136" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#EDECE6">bitlync</text>
       <text x="250" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one shape</text>
       <g fill="none" stroke="#8B8E84" stroke-width="1.25" stroke-linecap="round">
@@ -997,14 +1490,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <path d="M104 150 C 144 150, 162 110, 186 110"/>
           <path d="M104 190 C 148 190, 164 110, 186 110"/>
         </g>
-        <circle cx="218" cy="110" r="32" fill="#101214" stroke="#C6F04D" stroke-width="1.5"/>
+        <circle cx="218" cy="110" r="32" fill="#101214" stroke="#8A8680" stroke-width="1.5"/>
         <text x="218" y="108" text-anchor="middle" font-family="Instrument Serif,serif" font-size="14" font-style="italic" fill="#EDECE6">bitlync</text>
         <text x="218" y="124" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">store</text>
         <path d="M250 110 H 292" fill="none" stroke="#8B8E84" stroke-width="1.4" stroke-linecap="round"/>
         <rect x="292" y="86" width="52" height="48" rx="8" fill="#101214" stroke="#2C3128"/>
         <text x="318" y="106" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#C9CBBF">PSA</text>
         <text x="318" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8B8E84">one sync</text>
-        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C6F04D">Store-served reads. Zero vendor calls.</text>
+        <text x="180" y="246" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#C9CBBF">Store-served reads. Zero vendor calls.</text>
         <text x="180" y="264" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11.5" fill="#8B8E84">N products. Same one sync.</text>
       </svg>
     </div>
@@ -1303,7 +1796,8 @@ PUT  /tenants/{tenant_id}/routing
   <div class="docs-hero">
     <p class="kicker">Quickstart</p>
     <h1>From key to first write.</h1>
-    <p class="lede">Seeded tenants are fixture-backed only. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder.</p>
+    <p class="note">Hosts and keys are shared when you're accepted.</p>
+    <p class="lede">Seeded tenants are fixture-backed only. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder. <a class="btn" href="#partners" data-nav="partners">Request a key</a></p>
   </div>
   <p class="note">Keys look like <code class="inline">blk_…</code>. Send them as <code class="inline">X-API-Key</code>.</p>
   <div class="code">
@@ -1403,7 +1897,12 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
   <p class="note">Never: mint an agreement header; create a company in the PSA; write devices; auto-create an unmatched company; two-way tickets or watch the MSP close.</p>
   <p class="note">Tickets: open, update, close with evidence. Linked or created tickets only. Close defaults off until the MSP allows it. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company push: ISV to a distributor only. Not into the PSA.</p>
-  <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes. The longer checklist is the skill: <a href="/skills/replace-existing-integrations/SKILL.md">Replace existing integrations</a>.</p>
+  <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes.</p>
+  <div class="skill-card">
+    <p class="kicker">Migrating?</p>
+    <p>Hand this skill file to your coding agent</p>
+    <a href="/skills/replace-existing-integrations/SKILL.md">Replace existing integrations</a>
+  </div>
 </div>
 <div class="dpanel" id="d-docs-reference">
   <div class="docs-hero">
@@ -1557,6 +2056,7 @@ const client = new Client({ apiKey: "blk_…" })
 const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   </article>
 </div>
+      <p style="margin:36px 0 0"><a class="btn" href="#partners" data-nav="partners">Request a key</a></p>
     </div>
   </div>
 </div>
@@ -1569,7 +2069,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </footer>
 <script>
 (function(){
-  var pages=['home','product','integrations','msps','partners','docs'];
+  var pages=['home','product','integrations','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
@@ -1596,6 +2096,12 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(connectors.indexOf(slug)>=0) return {page:'integrations',docs:'docs',anchor:null,connector:slug};
       return {page:'home',docs:'docs',anchor:null,connector:null};
     }
+    if(h==='solutions' || h.indexOf('solutions/')===0){
+      var slug=h==='solutions' ? 'product' : h.slice(10);
+      var smap={product:'solutions-product',developer:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
+      var sp=smap[slug]||'solutions-product';
+      return {page:sp,docs:'docs',anchor:null,connector:null};
+    }
     if(pages.indexOf(h)>=0) return {page:h,docs:'docs',anchor:null,connector:null};
     return {page:'home',docs:'docs',anchor:null,connector:null};
   }
@@ -1618,7 +2124,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     document.body.classList.toggle('docs', st.page==='docs');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
-      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs'));
+      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page.indexOf('solutions-')===0 || st.page==='msps')));
     });
     docsIds.forEach(function(id){
       var el=document.getElementById('d-'+id);
@@ -1633,6 +2139,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     setConnector(st.connector);
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
+    document.querySelectorAll('.drop').forEach(function(d){ d.classList.remove('open'); d.classList.remove('hot'); });
     var same=cur && cur.id==='page-'+st.page;
     if(!(st.page==='integrations' && same)) window.scrollTo({top:0,behavior:'auto'});
     if(st.anchor){
@@ -1674,8 +2181,18 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       show(href);
       return;
     }
+    var tog=e.target.closest('[data-sol-toggle]');
+    if(tog){
+      var drop=tog.closest('.drop');
+      var mobile=window.matchMedia('(max-width:840px)').matches || (nav && nav.classList.contains('open'));
+      if(mobile){
+        e.preventDefault();
+        drop.classList.toggle('open');
+        return;
+      }
+    }
     var t=e.target.closest('[data-nav]');
-    if(t){ e.preventDefault(); history.pushState(null,'','#'+t.getAttribute('data-nav')); show('#'+t.getAttribute('data-nav')); return; }
+    if(t){ e.preventDefault(); var href=t.getAttribute('href')||('#'+t.getAttribute('data-nav')); if(href.charAt(0)!=='#') href='#'+t.getAttribute('data-nav'); var drop=t.closest('.drop'); if(drop) drop.classList.remove('open'); history.pushState(null,'',href); show(href); return; }
     if(document.getElementById('page-integrations').classList.contains('on') && document.querySelector('.cell.logo-cell.open') && !e.target.closest('.cell.logo-cell')){
       history.pushState(null,'','#integrations');
       show('#integrations');
@@ -1695,6 +2212,68 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       show('#integrations');
     }
   });
+  var solDrop=document.getElementById('solDrop');
+  function isMobileNav(){
+    return window.matchMedia('(max-width:840px)').matches || (nav && nav.classList.contains('open'));
+  }
+  if(solDrop){
+    solDrop.addEventListener('mouseenter',function(){
+      if(!isMobileNav()) solDrop.classList.add('hot');
+    });
+    solDrop.addEventListener('mouseleave',function(){
+      solDrop.classList.remove('hot');
+      solDrop.classList.remove('open');
+    });
+  }
+
+  (function(){
+    var root=document.getElementById('page-solutions-customer-success');
+    if(!root) return;
+    var btns=root.querySelectorAll('.audit-btn');
+    function closeAll(except){
+      btns.forEach(function(b){
+        if(b===except) return;
+        b.setAttribute('aria-expanded','false');
+        var tr=document.getElementById(b.getAttribute('aria-controls'));
+        if(tr) tr.hidden=true;
+      });
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var tray=document.getElementById(btn.getAttribute('aria-controls'));
+        if(!tray) return;
+        var open=btn.getAttribute('aria-expanded')==='true';
+        closeAll();
+        if(!open){
+          btn.setAttribute('aria-expanded','true');
+          tray.hidden=false;
+        }
+      });
+    });
+  })();
+
+
+  (function(){
+    var root=document.getElementById('page-solutions-product');
+    if(!root) return;
+    var win=root.querySelector('.connect-win');
+    if(!win) return;
+    var tabs=win.querySelectorAll('[role="tab"]');
+    var panes=win.querySelectorAll('.cn-pane');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click',function(){
+        var id=tab.getAttribute('aria-controls');
+        tabs.forEach(function(tb){ tb.setAttribute('aria-selected', tb===tab ? 'true' : 'false'); });
+        panes.forEach(function(p){ p.hidden = p.id !== id; });
+      });
+    });
+    win.querySelectorAll('.cn-pick').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        win.querySelectorAll('.cn-pick').forEach(function(b){ b.setAttribute('aria-pressed', b===btn ? 'true' : 'false'); });
+      });
+    });
+  })();
+
   show(location.hash||'#home');
 
 })();
