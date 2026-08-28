@@ -311,11 +311,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-table th{font-size:12px;color:var(--mute);font-weight:600}
 .sol-table tr:last-child td{border-bottom:0}
 .sol-caption{font-family:var(--mono);font-size:11px;color:var(--mute);margin:0 0 8px}
-.sol-win{margin:18px 0 28px;background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 20px 50px rgba(23,24,28,.10);overflow:hidden}
-.sol-win-bar{display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#F3F0E8;border-bottom:1px solid var(--hair)}
+.sol-win{margin:18px 0 32px;background:#10243E;border-radius:18px;padding:40px 28px 48px}
+.sol-app{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.28)}
+.sol-win-bar{display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#F7F4EC;border-bottom:1px solid #E8E4DA}
 .sol-win-bar i{width:8px;height:8px;border-radius:50%;background:#C9C4B8;display:block}
 .sol-win-bar span{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--mute)}
-.sol-win-body{padding:18px 16px 16px;background:var(--paper)}
+.sol-win-body{padding:18px 16px 16px;background:#FBFBF8}
 .sol-win-body.ink{background:#17181C;color:#F7F4EC}
 .sol-win-body .disclaim{margin-top:12px}
 
@@ -793,7 +794,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">PMs should not be translating vendor field names. We normalize to Bitlync words. The MSP sees the stack names they already use.</p>
       </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one model</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one model</span></div>
   <div class="sol-win-body">
 <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 360 100" role="img">
@@ -820,6 +822,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </svg>
         </div>
   </div>
+  </div>
 </div>
       <div style="max-width:42rem">
         <h2>You are not babysitting three clients</h2>
@@ -830,7 +833,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">They should not have to build and keep a connect knowledge base (screenshots, click paths, updates). We keep the guide. Today that is a numbered Bitlync click path, kept current.</p>
       </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect</span></div>
   <div class="sol-win-body">
 <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 320 100" role="img">
@@ -870,6 +874,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
     </div>
   </div>
+  </div>
 </div>
       <p class="sol-caption">Example validation. Not a live key.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
@@ -887,7 +892,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · layers</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · layers</span></div>
   <div class="sol-win-body">
 <div class="cake" aria-label="Five layers that ship with every connection">
         <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
@@ -897,11 +903,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
       </div>
   </div>
+  </div>
 </div>
       <div class="inc-grid">
         <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · GET /tickets</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · GET /tickets</span></div>
   <div class="sol-win-body ink">
 <div class="code-shell">
         <div class="code-head">one read — any PSA underneath</div>
@@ -921,6 +929,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 }</pre>
       </div>
   </div>
+  </div>
 </div>
       <div class="dx-notes">
         <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
@@ -929,7 +938,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
     </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · MCP</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · MCP</span></div>
   <div class="sol-win-body ink">
 <div class="mcp-grid">
         <div class="mcp-card bad">
@@ -945,9 +955,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
     </div>
   </div>
+  </div>
 </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one shape</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one shape</span></div>
   <div class="sol-win-body">
 <div class="tix">
         <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
@@ -962,6 +974,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </table>
         </div>
       </div><p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+  </div>
   </div>
 </div>
       <div style="max-width:42rem;margin-top:8px">
@@ -993,7 +1006,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector.</p>
       </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · Connectors</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · Connectors</span></div>
   <div class="sol-win-body">
 <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
@@ -1070,6 +1084,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </a>
       </div>
   </div>
+  </div>
 </div>
       <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
@@ -1088,7 +1103,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connections</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connections</span></div>
   <div class="sol-win-body">
 <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
@@ -1111,12 +1127,15 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div><p class="disclaim">Mockup. Simulated data.</p>
   </div>
+  </div>
 </div>
       <div class="sol-win">
-  <div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect probe</span></div>
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect probe</span></div>
   <div class="sol-win-body">
 <div class="mini-probe" aria-label="Example validation probe output">
             <div class="row p-ok">✓ authentication</div>
+  </div>
   </div>
 </div>
       <p class="sol-caption">Example probe. Not live numbers.</p>
