@@ -353,6 +353,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .inc{min-height:100%}
 .inc-grid{align-items:stretch}
 .tix-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-solutions-developer .code-shell{max-width:920px;width:100%;margin:36px auto 0}
+#page-solutions-developer .code-shell pre{font-size:14.5px;padding:22px 24px}
+#page-solutions-developer .tix{margin-top:36px}
 .grid9{overflow:visible}
 .cell b{white-space:normal}
 @media(min-width:841px){
@@ -888,14 +891,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="card">
           <h3>Hosted, credential-isolated</h3>
           <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
-        </div>
-      
-      <p class="sol-caption">Example validation. Not a live key.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-    </div>
-  </section>
-</div>
-<div class="page" id="page-solutions-developer">
+        </diid="page-solutions-developer">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Developer</p>
@@ -928,25 +924,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>The rest</h2>
         <p class="sub">If we don’t have that call yet, keep it on your old vendor library. A read can still include extra vendor fields. You cannot use those to write a call we have not shipped.</p>
 
-      </div>
-      <div class="cake" aria-label="Five layers that ship with every connection">
-        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
-        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
-        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
-        <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
-        <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
-      </div>
-      <div class="inc-grid">
-        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
-        <div class="inc"><b>Rate-limit handling</b><p>We pace calls to each vendor’s real limits.</p></div>
-        <div class="inc"><b>Retries</b><p>Transient failures are retried. You see one result.</p></div>
-        <div class="inc"><b>Honest delivery status</b><p>No silent drop. A throttle is a real Retry-After.</p></div>
-        <div class="inc"><b>De-duplication</b><p>A retry does not double-create a ticket.</p></div>
-        <div class="inc"><b>Validation</b><p>Checked before they leave. Errors show in your request.</p></div>
-        <div class="inc"><b>Credential vault</b><p>The MSP pastes keys. Your product never holds them.</p></div>
-        <div class="inc"><b>Customer map</b><p>A sure match maps. Ambiguous stays unmatched.</p></div>
-        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held until someone releases them.</p></div>
-        <div class="inc"><b>Health</b><p>Status and an audit log on every connection.</p></div>
+        <h2>The sandbox</h2>
+        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
+
       </div>
       <div class="code-shell">
         <div class="code-head">one read — any PSA underneath</div>
@@ -965,23 +945,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   }]
 }</pre>
       </div>
-      <div class="dx-notes">
-        <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
-        <div class="dx-note"><b>Extra vendor fields on a read</b>They come back with the object. That is not a way to write a missing call.</div>
-        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
-      </div>
-      <div class="mcp-grid">
-        <div class="mcp-card bad">
-          <small>Raw MCP servers</small>
-          <b>Agents pointed straight at vendor APIs</b>
-          <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
-        </div>
-        <div class="mcp-card good">
-          <small>Bitlync MCP</small>
-          <b>Sync-backed and governed</b>
-          <p>Reads come from the same store as the API. Writes use the same checks.</p>
-        </div>
-      </div>
       <div class="tix">
         <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
         <div class="tix-scroll">
@@ -996,6 +959,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    </div>
+  </section>
+</div>
+<div class="page"       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
