@@ -1443,8 +1443,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <p class="note">The MSP pastes keys. You never hold them. REST and MCP use the same model.</p>
 <p class="note">How it behaves — cache, rate limits, retries, vault, routing — lives in <a href="#docs-concepts">Concepts</a>.</p>
 
-    <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
-    <a class="btn ghost" href="#docs-reference" data-docs="docs-reference" style="margin-left:10px">Reference</a>
   </div>
 </div>
 <div class="dpanel" id="d-docs-concepts">
@@ -2125,7 +2123,11 @@ const client = new Client({ apiKey: "blk_…" })
 const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   </article>
 </div>
-      <p style="margin:36px 0 0"><a class="btn" href="#partners" data-nav="partners">Request a key</a></p>
+      <div class="btn-row" style="margin:36px 0 0">
+        <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
+        <a class="btn ghost" href="#docs-reference" data-docs="docs-reference">Reference</a>
+        <a class="btn" href="#partners" data-nav="partners">Request a key</a>
+      </div>
     </div>
     <aside class="docs-rail" id="docsRail" aria-label="Code examples" hidden></aside>
   </div>
