@@ -311,6 +311,15 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-table th{font-size:12px;color:var(--mute);font-weight:600}
 .sol-table tr:last-child td{border-bottom:0}
 .sol-caption{font-family:var(--mono);font-size:11px;color:var(--mute);margin:0 0 8px}
+.sol-win{margin:18px 0 32px;background:#10243E;border-radius:18px;padding:40px 28px 48px}
+.sol-app{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.28)}
+.sol-win-bar{display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#F7F4EC;border-bottom:1px solid #E8E4DA}
+.sol-win-bar i{width:8px;height:8px;border-radius:50%;background:#C9C4B8;display:block}
+.sol-win-bar span{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--mute)}
+.sol-win-body{padding:18px 16px 16px;background:#FBFBF8}
+.sol-win-body.ink{background:#17181C;color:#F7F4EC}
+.sol-win-body .disclaim{margin-top:12px}
+
 .drop .panel-in{background:var(--card);border:1px solid var(--hair);border-radius:16px;
   box-shadow:0 18px 40px rgba(23,24,28,.08);padding:18px 18px 14px}
 .drop .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -774,17 +783,100 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Product</p>
-      <h1 class="sol-h1">Build the product, not the integrations.</h1>
-      <p class="sub">PMs care about a good product experience. For the MSP, Bitlync is that experience: they paste their own keys, they finish connect, and a missing permission is named in the flow. That is what they see. It has to be good.</p>
+      <h1 class="sol-h1">Weeks to ship. Not a quarter per integration.</h1>
+      <p class="sub">Scope one integration. Stop juggling sales requests, vendor docs, and a field-by-field compare. You work in Bitlync words: Ticket, Company, Agreement, Line item, Device. You are not in ConnectWise vs Autotask nomenclature.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap" style="max-width:42rem">
-      <h2>The experience the MSP gets</h2>
-      <p class="sub">They are not waiting on your engineer to type a key. They connect themselves. If a scope is short, the flow says so. They do not bounce into a ticket on your desk to finish setup.</p>
-      <p class="sub">Your roadmap stays on the product. You are not parking sprints on a second and third PSA client every time a deal names one you do not have yet.</p>
-      <h2>What happens without it</h2>
-      <p class="sub">The MSP hits a dead connect. Your team gets the page. The deal waits. The product you wanted to ship sits.</p>
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>One model. The MSP still sees their words.</h2>
+        <p class="sub">PMs should not be translating vendor field names. We normalize to Bitlync words. The MSP sees the stack names they already use.</p>
+      </div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one model</span></div>
+  <div class="sol-win-body">
+<div class="viz" aria-hidden="true">
+          <svg viewBox="0 0 360 100" role="img">
+            <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
+            <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
+              <path d="M180 28 C 180 42, 40 50, 40 64"/>
+              <path d="M180 28 C 180 42, 110 52, 110 64"/>
+              <path d="M180 28 C 180 44, 180 54, 180 64"/>
+              <path d="M180 28 C 180 42, 250 52, 250 64"/>
+              <path d="M180 28 C 180 42, 320 50, 320 64"/>
+            </g>
+            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">
+              <rect x="8" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="284" y="64" width="70" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <text x="40" y="78" text-anchor="middle">ticket</text>
+              <text x="110" y="78" text-anchor="middle">company</text>
+              <text x="180" y="78" text-anchor="middle">contact</text>
+              <text x="250" y="78" text-anchor="middle">device</text>
+              <text x="319" y="78" text-anchor="middle">AGREEMENT</text>
+            </g>
+          </svg>
+        </div>
+  </div>
+  </div>
+</div>
+      <div style="max-width:42rem">
+        <h2>You are not babysitting three clients</h2>
+        <p class="sub">They do not maintain a ConnectWise client, an Autotask client, and a Halo client. If a vendor changes, we own the mapping. You are not the ones staying current on three vendor docs.</p>
+        <h2>The MSP experience is the product</h2>
+        <p class="sub">They link in a guided flow. Connect is Bitlync plus your product. We can make that flow look like yours (your colors, your UI).</p>
+        <p class="sub">They do not get stuck. A numbered click path shows where to click in the vendor. We validate the keys and permissions before it goes live. A missing permission is named in the flow.</p>
+        <p class="sub">They should not have to build and keep a connect knowledge base (screenshots, click paths, updates). We keep the guide. Today that is a numbered Bitlync click path, kept current.</p>
+      </div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect</span></div>
+  <div class="sol-win-body">
+<div class="viz" aria-hidden="true">
+          <svg viewBox="0 0 320 100" role="img">
+            <rect x="6" y="28" width="88" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
+            <text x="50" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">MSP pastes</text>
+            <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#6B6A64">keys</text>
+            <path d="M94 50 H 112" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
+            <polygon points="112,46 120,50 112,54" fill="#8A8680"/>
+            <rect x="120" y="22" width="100" height="56" rx="8" fill="#17181C"/>
+            <text x="170" y="44" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#F7F4EC">names the miss</text>
+            <text x="170" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">re-test here</text>
+            <path d="M220 50 H 238" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
+            <polygon points="238,46 246,50 238,54" fill="#8A8680"/>
+            <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
+            <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
+            <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
+          </svg>
+        </div>\n\n<div class="grid g3">
+        <div class="card">
+          <h3>Guided, in-flow</h3>
+          <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
+        </div>
+        <div class="card">
+          <h3>Validated before it ships</h3>
+          <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
+          <div class="mini-probe" aria-label="Example validation probe output">
+            <div class="row p-ok">✓ authentication</div>
+            <div class="row p-bad">✕ missing: Service Desk — Add</div>
+            <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
+            <div class="row p-ok">✓ all 6 scopes verified</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Hosted, credential-isolated</h3>
+          <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+      <p class="sol-caption">Example validation. Not a live key.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
   </section>
@@ -793,21 +885,107 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Developer</p>
-      <h1 class="sol-h1">One shape. Every PSA you have to live with.</h1>
-      <p class="sub">You should not own a ConnectWise client, an Autotask client, and a Halo client so the same ticket can land in three places. Bitlync is one API. MCP and REST hit the same service.</p>
+      <h1 class="sol-h1">One call. Same shape every time.</h1>
+      <p class="sub">Auth is the <code class="inline">X-API-Key</code> header. Reads come from the store. Caching, retries, validation, and the vault ship with the connection. REST and MCP hit the same service.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap" style="max-width:42rem">
-      <h2>Why this API</h2>
-      <p class="sub">Reads come from the store. You are not paying the vendor rate limit on every list. The throttle is honest: you see what you have left.</p>
-      <p class="sub">Writes take <code class="inline">dry_run</code> first. Same payload in sandbox. If we refuse, you get a stable code and one English sentence, not a vendor HTML error page.</p>
-      <p class="sub">A leftover verb stays on the old client until we have that object. <code class="inline">.raw</code> is extra fields on a read, for the vendor keys you still need. It is not a write pipe.</p>
-      <p class="sub">Connect names a missing permission. Support should not need an engineer to re-run that step.</p>
-      <h2>What this replaces</h2>
-      <p class="sub">Three vendor SDKs. Retry logic you do not trust. A close you cannot prove. A 403 that means "something" and a night of guessing which scope was off.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-      <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+    <div class="wrap">
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · layers</span></div>
+  <div class="sol-win-body">
+<div class="cake" aria-label="Five layers that ship with every connection">
+        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
+        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
+        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
+        <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
+        <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
+      </div>
+  </div>
+  </div>
+</div>
+      <div class="inc-grid">
+        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · GET /tickets</span></div>
+  <div class="sol-win-body ink">
+<div class="code-shell">
+        <div class="code-head">one read — any PSA underneath</div>
+<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
+<span class="c-com">X-API-Key: blk_live_••••••••</span>
+
+<span class="c-kw">200 OK</span>
+{
+  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
+  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
+  <span class="c-str">"data"</span>: [{
+    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
+    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
+    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
+    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
+  }]
+}</pre>
+      </div>
+  </div>
+  </div>
+</div>
+      <div class="dx-notes">
+        <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
+        <div class="dx-note"><b>.raw always rides along</b>The vendor payload stays under <span style="font-family:var(--mono)">.raw</span>.</div>
+        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
+      </div>
+    </div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · MCP</span></div>
+  <div class="sol-win-body ink">
+<div class="mcp-grid">
+        <div class="mcp-card bad">
+          <small>Raw MCP servers</small>
+          <b>Agents pointed straight at vendor APIs</b>
+          <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
+        </div>
+        <div class="mcp-card good">
+          <small>Bitlync MCP</small>
+          <b>Sync-backed and governed</b>
+          <p>Reads come from the same store as the API. Writes use the same checks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · one shape</span></div>
+  <div class="sol-win-body">
+<div class="tix">
+        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
+        <div class="tix-scroll">
+        <table>
+          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
+          <tbody>
+            <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td></tr>
+            <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
+            <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div><p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+  </div>
+  </div>
+</div>
+      <div style="max-width:42rem;margin-top:8px">
+        <h2>What stays honest</h2>
+        <p class="sub">The throttle is a real <code class="inline">Retry-After</code> (HTTP 429). No silent drop.</p>
+        <p class="sub">Writes take <code class="inline">dry_run</code> first. Same payload in sandbox. If we refuse, you get a stable code and one English sentence, not a vendor HTML error page. That is an HTTP 422.</p>
+        <p class="sub">A leftover verb stays on the old client until we have that object. <code class="inline">.raw</code> is extra fields on a read, for the vendor keys you still need. It is not a write pipe.</p>
+        <p class="sub">Every read and write lands in an audit log you can open.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+      </div>
     </div>
   </section>
 </div>
@@ -815,18 +993,102 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Sales</p>
-      <h1 class="sol-h1">You should never have to say we do not integrate.</h1>
-      <p class="sub">This market buys because of integrations. Enterprise coming downmarket, or a startup breaking in: the logos on your site are how an MSP decides you actually care about their channel.</p>
+      <h1 class="sol-h1">Integrations grow revenue.</h1>
+      <p class="sub">Partners buy because of integrations. A major driver for the decision is whether you have the PSA they already run.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap" style="max-width:42rem">
-      <h2>What you can say</h2>
-      <p class="sub">Do you integrate with my PSA? Yes. ConnectWise, Autotask, and Halo are on the Connectors page. They can open it.</p>
-      <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector. Bitlync is how you stay in the room.</p>
-      <h2>What legitimacy looks like</h2>
-      <p class="sub">Integrations that speak to the MSP. Not a generic "we will build it." The stack they already run, on a page they can send to their team.</p>
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>Never lose a deal because you lacked an integration</h2>
+        <p class="sub">Increase win rates. Reduce sales cycles. Stay competitive. Look like you built the product for this market, whether you are an enterprise coming downmarket or a startup breaking in.</p>
+        <p class="sub">You should never have to say we do not integrate. You should never have to say it is on the roadmap. Point them at Connectors. They connect themselves.</p>
+        <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector.</p>
+      </div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · Connectors</span></div>
+  <div class="sol-win-body">
+<div class="grid9">
+        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
+          <ul class="objs">
+            <li>Ticket — pull and push</li>
+            <li>Line item — pull and push</li>
+            <li>Project — pull and push</li>
+            <li>Company — pull</li>
+            <li>Agreement — pull</li>
+            <li>Time — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
+          <ul class="objs">
+            <li>Device — pull</li>
+            <li>Software — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
+          <ul class="objs">
+            <li>Device — pull</li>
+            <li>Software — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
+          <ul class="objs">
+            <li>Action item — pull and push</li>
+            <li>Initiative — pull and push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
+          <ul class="objs">
+            <li>Company — pull and push</li>
+            <li>Product — pull</li>
+            <li>Subscription — pull</li>
+            <li>Invoice — pull</li>
+            <li>Order — push</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
+          <ul class="objs">
+            <li>Document — pull and push</li>
+            <li>Company — pull</li>
+            <li>Configuration — pull</li>
+            <li>Asset — pull</li>
+          </ul>
+        </a>
+        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
+          <ul class="objs">
+            <li>Document — pull and push</li>
+            <li>Company — pull</li>
+            <li>Asset — pull</li>
+          </ul>
+        </a>
+      </div>
+  </div>
+  </div>
+</div>
+      <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
     </div>
   </section>
 </div>
@@ -834,28 +1096,53 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Customer Success</p>
-      <h1 class="sol-h1">When a partner calls, see where they stalled.</h1>
-      <p class="sub">CS cares about the same experience the MSP gets: they paste keys, they finish connect, a missing permission is named in the flow. That should not become a ticket. The dashboard shows who is connected, last seen, errors, and where they stalled.</p>
+      <h1 class="sol-h1">See every connection. Read the log.</h1>
+      <p class="sub">Last synced. What permissions they have. Where it stalled. CS and support close that without paging a developer.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
-    <div class="wrap" style="max-width:52rem">
-      <h2>What you see</h2>
-      <p class="sub">Which partners are connected. When they last connected. What error, if any, stopped them. You should not have to page engineering to find out a key was short or a scope was off.</p>
-      <p class="sol-caption">Example board. Not live numbers.</p>
-      <table class="sol-table">
-        <thead>
-          <tr><th>Partner</th><th>Last connected</th><th>Status</th><th>What stalled</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Northline IT</td><td>2 hours ago</td><td>Connected</td><td>—</td></tr>
-          <tr><td>Harborstack</td><td>Yesterday</td><td>Needs permission</td><td>Connect named a missing ticket-write scope</td></tr>
-          <tr><td>Plainfield Tech</td><td>Never</td><td>Not connected</td><td>MSP has not pasted keys</td></tr>
-        </tbody>
-      </table>
-      <h2>What leaves your queue</h2>
-      <p class="sub">"Can you check if their Autotask key works?" The probe already said. "Did the ticket write?" The audit log did. You are not the person who re-runs connect, and you are not the team that supports the MSP's PSA.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+    <div class="wrap">
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connections</span></div>
+  <div class="sol-win-body">
+<div class="ops-grid">
+        <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
+          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+          <div class="ops-row">
+            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
+            <span class="st ok"><i></i>healthy</span>
+            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+          </div>
+          <div class="ops-row">
+            <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
+            <span class="st ok"><i></i>healthy</span>
+            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+          </div>
+          <div class="ops-row">
+            <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
+            <span class="st deg"><i></i>degraded</span>
+            <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+          </div>
+        </div>
+      </div><p class="disclaim">Mockup. Simulated data.</p>
+  </div>
+  </div>
+</div>
+      <div class="sol-win">
+  <div class="sol-app">
+<div class="sol-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Bitlync · connect probe</span></div>
+  <div class="sol-win-body">
+<div class="mini-probe" aria-label="Example validation probe output">
+            <div class="row p-ok">✓ authentication</div>
+  </div>
+  </div>
+</div>
+      <p class="sol-caption">Example probe. Not live numbers.</p>
+      <div style="max-width:42rem">
+        <p class="sub">The MSP pastes their own keys. A missing permission is named in that flow, so it does not become a ticket. You are not the MSP's PSA helpdesk.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      </div>
     </div>
   </section>
 </div>
