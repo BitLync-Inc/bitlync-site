@@ -353,11 +353,29 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .inc{min-height:100%}
 .inc-grid{align-items:stretch}
 .tix-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#page-solutions-product .walk3{display:grid;gap:8px;margin-top:14px}
-#page-solutions-product .w3{display:flex;align-items:center;gap:10px;border:1px solid #E4DFD4;background:#FBFBF8;border-radius:8px;padding:8px 10px;font-family:var(--mono);font-size:11.5px;color:#17181C}
-#page-solutions-product .w3 b{flex:none;width:16px;font-family:var(--mono);font-size:11px;color:#6B6A64;font-weight:600}
 #page-solutions-product .portal-mock{max-width:100%;margin:14px 0 0}
 #page-solutions-product .card .disclaim{margin:8px 0 0}
+#page-solutions-product .connect-win{margin-top:14px;border:1px solid var(--hair);border-radius:10px;background:var(--card);overflow:hidden}
+#page-solutions-product .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
+#page-solutions-product .term-dots{position:absolute;left:14px;display:flex;align-items:center;gap:6px}
+#page-solutions-product .term-dots i{width:10px;height:10px;border-radius:50%;display:block}
+#page-solutions-product .term-dots .d-red{background:#FF5F57}
+#page-solutions-product .term-dots .d-yel{background:#FEBC2E}
+#page-solutions-product .term-dots .d-grn{background:#28C840}
+#page-solutions-product .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
+#page-solutions-product .cn-tabs{display:flex;border-bottom:1px solid var(--hair)}
+#page-solutions-product .cn-tab{flex:1;border:0;background:transparent;padding:8px 6px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mute);cursor:pointer}
+#page-solutions-product .cn-tab[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 #17181C}
+#page-solutions-product .cn-pane{padding:12px}
+#page-solutions-product .cn-pick{display:block;width:100%;text-align:left;border:1px solid var(--hair);background:#FBFBF8;border-radius:8px;padding:8px 10px;margin:0 0 8px;font-family:var(--mono);font-size:11.5px;cursor:pointer}
+#page-solutions-product .cn-pick:last-child{margin-bottom:0}
+#page-solutions-product .cn-pick[aria-pressed="true"]{border-color:#17181C;background:#F3F0E6}
+#page-solutions-product .cn-field{display:flex;align-items:flex-start;gap:10px;margin:0 0 10px}
+#page-solutions-product .cn-field b{flex:none;width:16px;font-family:var(--mono);font-size:11px;color:#6B6A64;font-weight:600;line-height:28px}
+#page-solutions-product .cn-field label{flex:1;display:block;font-family:var(--mono);font-size:11px;color:var(--mute)}
+#page-solutions-product .cn-field input{display:block;width:100%;margin-top:4px;border:1px solid #E4DFD4;background:#FBFBF8;border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:12px;color:var(--ink)}
+#page-solutions-product .cn-note{margin:4px 0 0;font-family:var(--mono);font-size:11px;color:var(--mute)}
+#page-solutions-product .connect-win .mini-probe{margin-top:0}
 #page-solutions-customer-success .portal-mock{max-width:100%;margin:0}
 #page-solutions-customer-success .pm-block + .pm-block{border-top:1px solid var(--hair)}
 #page-solutions-customer-success .pm-row{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:16px 20px;border-bottom:none}
@@ -860,7 +878,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <div style="max-width:42rem">
         <h2>One model for the stack</h2>
-        <p class="sub">You do not plan a separate project for each tool in the stack. You write to one model.</p>
+        <p class="sub">You do not plan a separate project for each tool in the stack. You write to one model. We normalize to Bitlync words. The MSP still sees the names they already use.</p>
       </div>
       <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 360 100" role="img">
@@ -877,12 +895,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
               <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
               <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="284" y="64" width="70" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
+              <rect x="288" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
               <text x="40" y="78" text-anchor="middle">ticket</text>
               <text x="110" y="78" text-anchor="middle">company</text>
               <text x="180" y="78" text-anchor="middle">contact</text>
               <text x="250" y="78" text-anchor="middle">device</text>
-              <text x="319" y="78" text-anchor="middle">AGREEMENT</text>
+              <text x="320" y="78" text-anchor="middle">agreement</text>
             </g>
           </svg>
         </div>
@@ -890,60 +908,46 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>No vendor program per tool</h2>
         <p class="sub">You do not apply to each vendor, wait on their sandbox, sit in their approval, or pay a program fee just to ship.</p>
 
-        <h2>Names stay the same</h2>
-        <p class="sub">We normalize to Bitlync words. The MSP still sees the names they already use.</p>
-
-        <h2>No per-vendor libraries</h2>
-        <p class="sub">Engineering does not maintain a library per vendor. You do not stay current on each vendor’s docs.</p>
-
         <h2>Guided connect, in your product</h2>
-        <p class="sub">The MSP connects in a guided flow that can look like your product. Help docs show where to click, and we validate keys and permissions before it goes live.</p>
-      </div>
-      <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 320 100" role="img">
-            <rect x="6" y="28" width="88" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="50" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">MSP pastes</text>
-            <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#6B6A64">keys</text>
-            <path d="M94 50 H 112" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="112,46 120,50 112,54" fill="#8A8680"/>
-            <rect x="120" y="22" width="100" height="56" rx="8" fill="#17181C"/>
-            <text x="170" y="44" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#F7F4EC">names the miss</text>
-            <text x="170" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">re-test here</text>
-            <path d="M220 50 H 238" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="238,46 246,50 238,54" fill="#8A8680"/>
-            <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
-            <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
-          </svg>
-        </div>
-      <div style="max-width:42rem">
-        <h2>No more writing and managing integration guides</h2>
-        <p class="sub">We walk the MSP through the connection. Vendor-specific steps live in the setup flow.</p>
-
+        <p class="sub">The MSP connects in a guided flow that can look like your product. We walk them through it. Vendor-specific steps sit beside the fields. We validate keys and permissions before it goes live.</p>
       </div>
       <div class="grid g3">
         <div class="card">
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
-          <div class="walk3" aria-label="Guided connect steps">
-            <div class="w3"><b>1</b><span>Choose the tool</span></div>
-            <div class="w3"><b>2</b><span>Steps sit beside the fields</span></div>
-            <div class="w3"><b>3</b><span>We test the keys</span></div>
+          <div class="connect-win" aria-label="Simulated connect flow">
+            <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connect</span></div>
+            <div class="cn-tabs" role="tablist">
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-tool" aria-selected="true" aria-controls="cn-pane-tool">Tool</button>
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-steps" aria-selected="false" aria-controls="cn-pane-steps">Steps</button>
+              <button class="cn-tab" type="button" role="tab" id="cn-tab-test" aria-selected="false" aria-controls="cn-pane-test">Test</button>
+            </div>
+            <div class="cn-pane" id="cn-pane-tool" role="tabpanel" aria-labelledby="cn-tab-tool">
+              <button class="cn-pick" type="button" aria-pressed="true">PSA</button>
+              <button class="cn-pick" type="button" aria-pressed="false">RMM</button>
+              <button class="cn-pick" type="button" aria-pressed="false">Documentation</button>
+            </div>
+            <div class="cn-pane" id="cn-pane-steps" role="tabpanel" aria-labelledby="cn-tab-steps" hidden>
+              <div class="cn-field"><b>1</b><label>Company ID<input type="text" value="" disabled></label></div>
+              <div class="cn-field"><b>2</b><label>Public key<input type="text" value="" disabled></label></div>
+              <p class="cn-note">steps sit beside the fields</p>
+            </div>
+            <div class="cn-pane" id="cn-pane-test" role="tabpanel" aria-labelledby="cn-tab-test" hidden>
+              <div class="mini-probe" aria-label="Example validation probe output">
+                <div class="row p-ok">✓ authentication</div>
+                <div class="row p-bad">✕ missing: Service Desk — Add</div>
+                <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card">
           <h3>Validated before it ships</h3>
-          <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
-          <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication</div>
-            <div class="row p-bad">✕ missing: Service Desk — Add</div>
-            <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
-            <div class="row p-ok">✓ all 6 scopes verified</div>
-          </div>
+          <p class="quiet" style="margin:0">Each key is tested. Bad setup is caught in the flow.</p>
         </div>
         <div class="card">
-          <h3>Hosted, credential-isolated</h3>
-          <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
+          <h3>Hosted, MSP-managed</h3>
+          <p class="quiet" style="margin:0">Keys stay on Bitlync. The MSP manages and can revoke them. They do not touch your frontend.</p>
           <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
         <div class="pm-head">your connections</div>
         <div class="pm-row">
@@ -961,7 +965,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
           <p class="disclaim">Mockup. Simulated data.</p>
         </div>
-      
+      </div>
       <p class="sol-caption">Example validation. Not a live key.</p>
       <a class="btn" href="#partners" data-nav="partners">Request early access</a>
     </div>
@@ -2249,6 +2253,28 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
           btn.setAttribute('aria-expanded','true');
           tray.hidden=false;
         }
+      });
+    });
+  })();
+
+
+  (function(){
+    var root=document.getElementById('page-solutions-product');
+    if(!root) return;
+    var win=root.querySelector('.connect-win');
+    if(!win) return;
+    var tabs=win.querySelectorAll('[role="tab"]');
+    var panes=win.querySelectorAll('.cn-pane');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click',function(){
+        var id=tab.getAttribute('aria-controls');
+        tabs.forEach(function(tb){ tb.setAttribute('aria-selected', tb===tab ? 'true' : 'false'); });
+        panes.forEach(function(p){ p.hidden = p.id !== id; });
+      });
+    });
+    win.querySelectorAll('.cn-pick').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        win.querySelectorAll('.cn-pick').forEach(function(b){ b.setAttribute('aria-pressed', b===btn ? 'true' : 'false'); });
       });
     });
   })();
