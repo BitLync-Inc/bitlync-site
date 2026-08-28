@@ -362,7 +362,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-developer .term-dots .d-grn{background:#28C840}
 #page-solutions-developer .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
 #page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
-#page-solutions-developer .tix{margin-top:36px}
+#page-solutions-developer .tix{max-width:100%;width:100%;margin:36px auto 0}
 .grid9{overflow:visible}
 .cell b{white-space:normal}
 @media(min-width:841px){
@@ -939,6 +939,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   }]
 }</pre>
       </div>
+      <div style="max-width:42rem">
+        <h2>The sandbox</h2>
+        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>The shape</h2>
+        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
+      </div>
       <div class="tix">
         <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
         <div class="tix-scroll">
@@ -953,17 +965,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
       <div style="max-width:42rem">
-        <h2>The sandbox</h2>
-        <p class="sub">Seeded tenants. First call the same day. Not a production host.</p>
-
-        <h2>The shape</h2>
-        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
-
         <h2>The store</h2>
         <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait. No silent drop. A retry does not create a second ticket.</p>
 
