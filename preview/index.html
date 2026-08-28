@@ -775,15 +775,19 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Product</p>
-      <h1 class="sol-h1">Weeks to ship. Not a quarter per integration.</h1>
-      <p class="sub">Scope one integration. Stop juggling sales requests, vendor docs, and a field-by-field compare. You work in Bitlync words: Ticket, Company, Agreement, Line item, Device. You are not in ConnectWise vs Autotask nomenclature.</p>
+      <h1 class="sol-h1">Ship in weeks, not quarters.</h1>
+      <p class="sub">Scope one integration. You work in Bitlync words: Ticket, Company, and Agreement.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div style="max-width:42rem">
-        <h2>One model. The MSP still sees their words.</h2>
-        <p class="sub">PMs should not be translating vendor field names. We normalize to Bitlync words. The MSP sees the stack names they already use.</p>
+        <h2>Scope one integration</h2>
+        <p class="sub">You do not plan a separate project for each PSA. You scope Bitlync once.</p>
+
+        <h2>Names stay the same</h2>
+        <p class="sub">We normalize names to Ticket, Company, and Agreement. The MSP still sees the names they already use.</p>
+
       </div>
       <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 360 100" role="img">
@@ -808,14 +812,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <text x="319" y="78" text-anchor="middle">AGREEMENT</text>
             </g>
           </svg>
-</div>
+        </div>
       <div style="max-width:42rem">
-        <h2>You are not babysitting three clients</h2>
-        <p class="sub">They do not maintain a ConnectWise client, an Autotask client, and a Halo client. If a vendor changes, we own the mapping. You are not the ones staying current on three vendor docs.</p>
-        <h2>The MSP experience is the product</h2>
-        <p class="sub">They link in a guided flow. Connect is Bitlync plus your product. We can make that flow look like yours (your colors, your UI).</p>
-        <p class="sub">They do not get stuck. A numbered click path shows where to click in the vendor. We validate the keys and permissions before it goes live. A missing permission is named in the flow.</p>
-        <p class="sub">They should not have to build and keep a connect knowledge base (screenshots, click paths, updates). We keep the guide. Today that is a numbered Bitlync click path, kept current.</p>
+        <h2>No per-PSA clients</h2>
+        <p class="sub">Engineering does not maintain a client per PSA. You do not stay current on each vendor’s docs.</p>
+
+        <h2>Guided connect, in your product</h2>
+        <p class="sub">The MSP connects in a guided flow that can look like your product. A numbered click path shows where to click, and we validate keys and permissions before it goes live.</p>
+
+        <h2>You do not write the connect guide</h2>
+        <p class="sub">The click path sits in the flow. Product does not write or keep a separate connect guide.</p>
+
       </div>
       <div class="viz" aria-hidden="true">
           <svg viewBox="0 0 320 100" role="img">
@@ -832,15 +839,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
             <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
             <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
-          </svg>\n\n<div class="grid g3">
+          </svg>
+        </div>
+      <div class="grid g3">
         <div class="card">
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
+        </div>
         <div class="card">
           <h3>Validated before it ships</h3>
           <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
           <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication
+            <div class="row p-ok">✓ authentication</div>
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
             <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
             <div class="row p-ok">✓ all 6 scopes verified</div>
@@ -850,13 +860,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <h3>Hosted, credential-isolated</h3>
           <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
         </div>
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
+      
       <p class="sol-caption">Example validation. Not a live key.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, each PSA is its own integration. Sales sends another request. Product compares fields across vendor docs. Engineering keeps another client. Someone has to write the click path and keep it current.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+      </div>
     </div>
   </section>
 </div>
@@ -864,26 +874,50 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Developer</p>
-      <h1 class="sol-h1">One call. Same shape every time.</h1>
-      <p class="sub">Auth is the <code class="inline">X-API-Key</code> header. Reads come from the store. Caching, retries, validation, and the vault ship with the connection. REST and MCP hit the same service.</p>
+      <h1 class="sol-h1">One call, same shape every time.</h1>
+      <p class="sub">Write against one shape. Cache, rate limits, retries, and the vault ship with the connection.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>One shape</h2>
+        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
+
+        <h2>Cache, rate limits, and retries</h2>
+        <p class="sub">Reads come from the store and do not hit the PSA each time. We pace calls, retry transient failures, and return one result or HTTP 429 with <code class="inline">Retry-After</code>.</p>
+
+        <h2>Vault</h2>
+        <p class="sub">The MSP pastes their keys. Those keys sit in the vault, not in your product.</p>
+
+        <h2>dry_run, then 422 in English</h2>
+        <p class="sub">Writes take <code class="inline">dry_run</code> first. A refusal is HTTP 422, a stable code, and one English sentence.</p>
+
+        <h2>Leftover verbs and .raw</h2>
+        <p class="sub">A leftover verb stays on the old client until we have that object. <code class="inline">.raw</code> is extra fields on a read, not a write pipe.</p>
+
+      </div>
       <div class="cake" aria-label="Five layers that ship with every connection">
-        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span>
-        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span>
-        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span>
+        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
+        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
+        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
         <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
         <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
       </div>
-  </div>
-  </div>
-</div>
       <div class="inc-grid">
         <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
+        <div class="inc"><b>Rate-limit handling</b><p>We pace calls to each vendor’s real limits.</p></div>
+        <div class="inc"><b>Retries</b><p>Transient failures are retried. You see one result.</p></div>
+        <div class="inc"><b>Honest delivery status</b><p>No silent drop. A throttle is a real Retry-After.</p></div>
+        <div class="inc"><b>De-duplication</b><p>A retry does not double-create a ticket.</p></div>
+        <div class="inc"><b>Validation</b><p>Checked before they leave. Errors show in your request.</p></div>
+        <div class="inc"><b>Credential vault</b><p>The MSP pastes keys. Your product never holds them.</p></div>
+        <div class="inc"><b>Customer map</b><p>A sure match maps. Ambiguous stays unmatched.</p></div>
+        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held until someone releases them.</p></div>
+        <div class="inc"><b>Health</b><p>Status and an audit log on every connection.</p></div>
+      
       <div class="code-shell">
-        <div class="code-head">one read — any PSA underneath
+        <div class="code-head">one read — any PSA underneath</div>
 <pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
 <span class="c-com">X-API-Key: blk_live_••••••••</span>
 
@@ -898,29 +932,26 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
   }]
 }</pre>
-  </div>
-</div>
+      </div>
       <div class="dx-notes">
         <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
         <div class="dx-note"><b>.raw always rides along</b>The vendor payload stays under <span style="font-family:var(--mono)">.raw</span>.</div>
         <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
-      </div>
-    </div>
+      
       <div class="mcp-grid">
         <div class="mcp-card bad">
           <small>Raw MCP servers</small>
           <b>Agents pointed straight at vendor APIs</b>
           <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
+        </div>
         <div class="mcp-card good">
           <small>Bitlync MCP</small>
           <b>Sync-backed and governed</b>
           <p>Reads come from the same store as the API. Writes use the same checks.</p>
-    </div>
-  </div>
-  </div>
-</div>
+        </div>
+      
       <div class="tix">
-        <div class="tix-head">normalized tickets — 3 sources, 1 shape
+        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
         <div class="tix-scroll">
         <table>
           <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
@@ -929,16 +960,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
             <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
           </tbody>
-        </table><p class="disclaim">Simulated data — three PSAs, one normalized read</p>
-  </div>
-  </div>
-</div>
-      <div style="max-width:42rem;margin-top:8px">
-        <h2>What stays honest</h2>
-        <p class="sub">The throttle is a real <code class="inline">Retry-After</code> (HTTP 429). No silent drop.</p>
-        <p class="sub">Writes take <code class="inline">dry_run</code> first. Same payload in sandbox. If we refuse, you get a stable code and one English sentence, not a vendor HTML error page. That is an HTTP 422.</p>
-        <p class="sub">A leftover verb stays on the old client until we have that object. <code class="inline">.raw</code> is extra fields on a read, for the vendor keys you still need. It is not a write pipe.</p>
-        <p class="sub">Every read and write lands in an audit log you can open.</p>
+        </table>
+        </div>
+      </div>
+      <p class="disclaim">Simulated data — three PSAs, one normalized read</p>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, each vendor has its own auth, limits, retries, and error pages. You hold MSP keys, and MCP pointed at the vendor spends the shared rate budget on every call.</p>
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
       </div>
@@ -950,16 +978,24 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Sales</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
-      <p class="sub">Partners buy because of integrations. A major driver for the decision is whether you have the PSA they already run.</p>
+      <p class="sub">Partners buy on integrations. They ask if you have the PSA they already run.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
       <div style="max-width:42rem">
-        <h2>Never lose a deal because you lacked an integration</h2>
-        <p class="sub">Increase win rates. Reduce sales cycles. Stay competitive. Look like you built the product for this market, whether you are an enterprise coming downmarket or a startup breaking in.</p>
-        <p class="sub">You should never have to say we do not integrate. You should never have to say it is on the roadmap. Point them at Connectors. They connect themselves.</p>
-        <p class="sub">A missing PSA stalls the cycle. The partner wonders if they have to build it. You can lose that deal to a worse product that already has the connector.</p>
+        <h2>Never lose a deal for a missing PSA</h2>
+        <p class="sub">You should not have to say you do not integrate, or that it is on the roadmap. Point them at Connectors so they can connect themselves.</p>
+
+        <h2>Faster cycles</h2>
+        <p class="sub">They connect the PSA they already run. The cycle does not wait on a custom build.</p>
+
+        <h2>Stay competitive</h2>
+        <p class="sub">Point them at the connectors that exist. A weaker product does not win just because it already has the PSA.</p>
+
+        <h2>Look like you built this for MSPs</h2>
+        <p class="sub">The connect flow is guided and validated. It can look like your product.</p>
+
       </div>
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
@@ -1034,10 +1070,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Asset — pull</li>
           </ul>
         </a>
-</div>
+      </div>
       <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
-      <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-      <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
+      <div style="max-width:42rem">
+        <h2>Pain today</h2>
+        <p class="sub">Without the PSA they run, the deal stalls. Sales sells a roadmap, and the partner asks who will build it.</p>
+        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
+        <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
+      </div>
     </div>
   </section>
 </div>
@@ -1045,19 +1085,31 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap" style="max-width:42rem">
       <p class="kicker">Solutions / Customer Success</p>
-      <h1 class="sol-h1">See every connection. Read the log.</h1>
-      <p class="sub">Last synced. What permissions they have. Where it stalled. CS and support close that without paging a developer.</p>
+      <h1 class="sol-h1">See last sync, permissions, and the log.</h1>
+      <p class="sub">CS and support can resolve a bad connection without a developer.</p>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
+      <div style="max-width:42rem">
+        <h2>Last sync</h2>
+        <p class="sub">Each connection shows when it last synced. You can see if it is healthy or stalled.</p>
+
+        <h2>Permissions</h2>
+        <p class="sub">You can see what permissions they have. A missing permission is named.</p>
+
+        <h2>The log</h2>
+        <p class="sub">Every read and write lands in a log you can open.</p>
+
+      </div>
       <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
-          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span>
+          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
           <div class="ops-row">
-            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small>
+            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
             <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
+          </div>
           <div class="ops-row">
             <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
@@ -1069,16 +1121,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <a class="audit-link" href="#solutions/customer-success" data-nav="solutions">audit log →</a>
           </div>
         </div>
-      </div><p class="disclaim">Mockup. Simulated data.</p>
-  </div>
-  </div>
-</div>
+      </div>
+      <p class="disclaim">Mockup. Simulated data.</p>
+      <div style="max-width:42rem">
+        <h2>Named miss in connect</h2>
+        <p class="sub">The MSP pastes their own keys. If a permission is missing, the flow names it, so it does not become a support ticket.</p>
+
+        <h2>Resolve without a developer</h2>
+        <p class="sub">Last sync, permissions, and the log are enough for CS and support. They do not need a developer for a bad key or a missing permission.</p>
+
+      </div>
       <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication
-</div>
+            <div class="row p-ok">✓ authentication</div>
       <p class="sol-caption">Example probe. Not live numbers.</p>
       <div style="max-width:42rem">
-        <p class="sub">The MSP pastes their own keys. A missing permission is named in that flow, so it does not become a ticket. You are not the MSP's PSA helpdesk.</p>
+        <h2>Pain today</h2>
+        <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. CS cannot see last sync or the log. A developer has to read the vendor error.</p>
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       </div>
     </div>
