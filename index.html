@@ -49,6 +49,8 @@ body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair)}
 body.docs .btn{background:var(--dtext);color:var(--void);border-color:var(--dtext)}
 body.docs .btn.ghost{background:transparent;color:var(--dtext);border-color:var(--dline)}
+#page-docs .btn-row .btn{background:var(--void);color:var(--dtext);border-color:var(--void)}
+#page-docs .btn-row .btn:hover{color:var(--acid)}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 @media(max-width:840px){
@@ -2127,7 +2129,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </div>
       <div class="btn-row" style="margin:36px 0 0">
         <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
-        <a class="btn ghost" href="#docs-reference" data-docs="docs-reference">Reference</a>
+        <a class="btn" href="#docs-reference" data-docs="docs-reference">Reference</a>
         <a class="btn" href="#partners" data-nav="partners">Request a key</a>
       </div>
     </div>
