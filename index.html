@@ -228,6 +228,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .docs-shell{display:grid;gap:28px;padding-top:36px;padding-bottom:80px;grid-template-columns:1fr}
 .docs-tree .docs-grp{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dmute);margin:10px 0 2px;width:100%}
+.docs-folder{width:100%}
+.docs-fold{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:14.5px;font-weight:600;line-height:1.3;color:var(--dtext);padding:8px 0 4px;background:none;border:0;cursor:pointer}
+.docs-fold[aria-expanded="true"]{color:var(--acid)}
+.docs-fold-body{padding:0 0 8px 12px}
+.docs-fold-body[hidden]{display:none}
+.docs-fold-body a{display:block;font-size:12.5px;padding:4px 0}
+@media(max-width:899px){
+.docs-tree .nest{flex-direction:column;flex-wrap:nowrap;gap:0}
+.docs-tree .nest a{display:block}
+.docs-folder{flex:1 1 100%}
+}
+
 .docs-rail{display:none}
 .rail-tabs{display:flex;border-bottom:1px solid var(--dline)}
 .rail-tab{flex:1;border:0;background:transparent;padding:8px 6px;font-family:var(--mono);font-size:11px;color:var(--dmute);cursor:pointer}
@@ -1332,34 +1344,59 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p>Docs</p>
       <a href="#docs" data-docs="docs">Overview</a>
       <a href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
-      <a href="#docs-replace-existing" data-docs="docs-replace-existing">Replace existing integrations</a>
       <a href="#docs-coverage" data-docs="docs-coverage">Coverage</a>
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
-        <p class="docs-grp">Reads</p>
-        <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
-        <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
-        <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
-        <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
-        <p class="docs-grp">Writes</p>
-        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-        <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
-        <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
-        <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
-        <p class="docs-grp">Identity</p>
-        <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
-        <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
-        <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
-        <p class="docs-grp">Trust</p>
-        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
-        <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
-        <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-        <p class="docs-grp">Sandbox</p>
-        <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-reads">Reads</button>
+          <div class="docs-fold-body" id="fold-reads" hidden>
+            <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
+            <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+            <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
+            <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
+          </div>
+        </div>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-writes">Writes</button>
+          <div class="docs-fold-body" id="fold-writes" hidden>
+            <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+            <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
+            <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
+            <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
+          </div>
+        </div>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-identity">Identity</button>
+          <div class="docs-fold-body" id="fold-identity" hidden>
+            <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
+            <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
+            <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+          </div>
+        </div>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-trust">Trust</button>
+          <div class="docs-fold-body" id="fold-trust" hidden>
+            <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+            <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
+            <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
+          </div>
+        </div>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-errors">Errors</button>
+          <div class="docs-fold-body" id="fold-errors" hidden>
+            <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+          </div>
+        </div>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-sandbox">Sandbox</button>
+          <div class="docs-fold-body" id="fold-sandbox" hidden>
+            <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+          </div>
+        </div>
       </div>
       <a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
+      <a href="#docs-replace-existing" data-docs="docs-replace-existing">Migrations</a>
       <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
       <a href="#docs-reference" data-docs="docs-reference">Reference</a>
     </nav>
@@ -2182,6 +2219,34 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(t) setTimeout(function(){ t.scrollIntoView({block:'start'}); }, 30);
     }
 
+  
+  function setDocsFolder(btn, open){
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    var body=document.getElementById(btn.getAttribute('aria-controls'));
+    if(body) body.hidden=!open;
+  }
+  function closeDocsFolders(except){
+    document.querySelectorAll('.docs-fold').forEach(function(b){
+      if(b!==except) setDocsFolder(b, false);
+    });
+  }
+  function openDocsFolderFor(st){
+    var target=null;
+    if(st && st.anchor){
+      var link=document.querySelector('.docs-fold-body a[href="#'+st.anchor+'"]');
+      if(link) target=link.closest('.docs-folder');
+    }
+    document.querySelectorAll('.docs-fold').forEach(function(btn){
+      setDocsFolder(btn, btn.closest('.docs-folder')===target);
+    });
+  }
+  document.querySelectorAll('.docs-fold').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      closeDocsFolders();
+      if(!open) setDocsFolder(btn, true);
+    });
+  });
   function fillDocsRail(){
     var rail=document.getElementById('docsRail');
     if(!rail) return;
@@ -2229,6 +2294,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     codes.forEach(function(c){ rail.appendChild(c.cloneNode(true)); });
   }
     fillDocsRail();
+    openDocsFolderFor(st);
     if(st.connector){
       var tile=document.querySelector('[data-connector="'+st.connector+'"]');
       if(tile) setTimeout(function(){ tile.scrollIntoView({block:'nearest'}); }, 40);
