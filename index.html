@@ -555,8 +555,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <p class="roles-label">By persona</p>
             <div class="sol-rows">
               <a href="#solutions/product" data-nav="solutions">Product</a>
-              <a href="#solutions/developer" data-nav="solutions">Developer</a>
-              <a href="#solutions/sales" data-nav="solutions">Sales</a>
+              <a href="#solutions/developer" data-nav="solutions">Engineering</a>
+              <a href="#solutions/sales" data-nav="solutions">Go to market</a>
               <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a>
               <a href="#msps" data-nav="msps">MSPs</a>
             </div>
@@ -863,7 +863,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap">
       <div class="sol-copy">
-      <p class="kicker">Solutions / Developer</p>
+      <p class="kicker">Solutions / Engineering</p>
       <h1 class="sol-h1">One call, same shape every time.</h1>
       <p class="sub">Write against one shape. Cache, rate limits, retries, and the vault ship with the connection.</p>
       <div style="max-width:42rem">
@@ -933,7 +933,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-solutions-sales">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Sales</p>
+      <p class="kicker">Solutions / Go to market</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
       <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
       <div style="max-width:42rem">
@@ -1053,10 +1053,10 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Tech and platform support</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
-      <p class="sub">Customer success and support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
+      <p class="sub">Support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
-        <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Customer success cannot see last sync or the log. A developer has to read the vendor error.</p>
+        <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Support cannot see last sync or the log. A developer has to read the vendor error.</p>
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       </div>
     </div>
@@ -1200,7 +1200,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="kicker">Contact</p>
       <h2>Contact us.</h2>
       <p class="lede">Bitlync is in stealth. We’re taking a small number of paid design partners ahead of general availability.</p>
-      <p class="sub">You sell software to MSPs. They already picked a stack. A missing PSA integration stalls the deal, or loses it to a worse product that has the connector. We built one API so you write once and connect to many.</p>
       <div class="form-band">
         <form class="ea-form" action="https://formsubmit.co/rburtonprospect@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Bitlync early access">
@@ -1254,52 +1253,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs-coverage" data-docs="docs-coverage">Coverage</a>
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-reads">Reads</button>
-          <div class="docs-fold-body" id="fold-reads" hidden>
-            <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
-            <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
-            <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
-            <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
-          </div>
-        </div>
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-writes">Writes</button>
-          <div class="docs-fold-body" id="fold-writes" hidden>
-            <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-            <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
-            <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
-            <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
-          </div>
-        </div>
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-identity">Identity</button>
-          <div class="docs-fold-body" id="fold-identity" hidden>
-            <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
-            <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
-            <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
-          </div>
-        </div>
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-trust">Trust</button>
-          <div class="docs-fold-body" id="fold-trust" hidden>
-            <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
-            <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
-            <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-          </div>
-        </div>
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-errors">Errors</button>
-          <div class="docs-fold-body" id="fold-errors" hidden>
-            <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-          </div>
-        </div>
-        <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-sandbox">Sandbox</button>
-          <div class="docs-fold-body" id="fold-sandbox" hidden>
-            <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
-          </div>
-        </div>
+        <a href="#docs-concepts-store-served-reads" data-docs="docs-concepts-store-served-reads">Store-served reads</a>
+        <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+        <a href="#docs-concepts-delivery" data-docs="docs-concepts-delivery">Delivery</a>
+        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+        <a href="#docs-concepts-msp-permissions" data-docs="docs-concepts-msp-permissions">MSP permissions</a>
       </div>
       <a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
@@ -1360,25 +1320,16 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <p class="lede">Store reads, pacing, writes, vault, and errors.</p>
   </div>
   <nav class="toc" aria-label="Concepts">
-    <a href="#docs-concepts-caching" data-docs="docs-concepts-caching">Caching</a>
+    <a href="#docs-concepts-store-served-reads" data-docs="docs-concepts-store-served-reads">Store-served reads</a>
     <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
-    <a href="#docs-concepts-retries" data-docs="docs-concepts-retries">Retries</a>
-    <a href="#docs-concepts-honest-delivery" data-docs="docs-concepts-honest-delivery">Honest delivery</a>
-    <a href="#docs-concepts-dedup" data-docs="docs-concepts-dedup">Dedup</a>
-    <a href="#docs-concepts-validation" data-docs="docs-concepts-validation">Validation</a>
-    <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
-    <a href="#docs-concepts-customer-map" data-docs="docs-concepts-customer-map">Customer map</a>
-    <a href="#docs-concepts-identity-hold" data-docs="docs-concepts-identity-hold">Identity hold</a>
-    <a href="#docs-concepts-health" data-docs="docs-concepts-health">Health + audit</a>
-    <a href="#docs-concepts-escape-hatch" data-docs="docs-concepts-escape-hatch">Raw</a>
+    <a href="#docs-concepts-delivery" data-docs="docs-concepts-delivery">Delivery</a>
     <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-    <a href="#docs-concepts-sandbox" data-docs="docs-concepts-sandbox">Sandbox</a>
+    <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
     <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-    <a href="#docs-concepts-permissions" data-docs="docs-concepts-permissions">MSP permission</a>
-    <a href="#docs-concepts-routing" data-docs="docs-concepts-routing">Routing</a>
+    <a href="#docs-concepts-msp-permissions" data-docs="docs-concepts-msp-permissions">MSP permissions</a>
   </nav>
-<article class="concept" id="docs-concepts-caching">
-  <h2>Caching / store-served reads</h2>
+<article class="concept" id="docs-concepts-store-served-reads">
+  <h2>Store-served reads</h2>
   <p class="note">Reads come from the synced store for that MSP tenant. One sync fills the store. Every ISV on that tenant reads the same copy.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The caller asks for tickets, devices, or other listed reads. Bitlync answers from the store. That path does not spend vendor budget. <code class="inline">live=True</code> is an opt-in live read when a store read is not enough.</p>
@@ -1396,6 +1347,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   }]
 }</pre>
   </div>
+  <p class="note">Extra vendor fields on <code class="inline">.raw</code> live on Reference, not here.</p>
 </article>
 <article class="concept" id="docs-concepts-rate-limits">
   <h2>Rate limits</h2>
@@ -1481,8 +1433,8 @@ Retry-After: 12
   </div>
   <p class="note">No silent queue that looks like success.</p>
 </article>
-<article class="concept" id="docs-concepts-retries">
-  <h2>Retries</h2>
+<article class="concept" id="docs-concepts-delivery">
+  <h2>Delivery</h2>
   <p class="note">Transient vendor rate limits (429) and 503 are retried with backoff on the Bitlync side of the write.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The caller sends one write. Bitlync retries the vendor when the failure is transient. The caller is not asked to implement vendor backoff for those hops.</p>
@@ -1498,9 +1450,7 @@ Retry-After: 30
 }</pre>
   </div>
   <p class="note">No hidden swallow of a vendor rate limit (429). No rewrite of a final rate limit into a 200.</p>
-</article>
-<article class="concept" id="docs-concepts-honest-delivery">
-  <h2>Honest delivery</h2>
+
   <p class="note">Delivery status is visible. Nothing is dropped silently.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">A write that was acknowledged cannot double-write. A write that was throttled is a real rate-limit response (429), not a delayed success. Dedup and retries sit on this same rule.</p>
@@ -1513,9 +1463,7 @@ Retry-After: 30
 }</pre>
   </div>
   <p class="note">No silent drop. No “accepted” that later vanishes.</p>
-</article>
-<article class="concept" id="docs-concepts-dedup">
-  <h2>Dedup</h2>
+
   <p class="note">Writes that support it take <code class="inline">idempotency_key</code>. The same key does not open a second ticket.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Send the key on the write. A retry with that key is a replay, not a new vendor create.</p>
@@ -1535,118 +1483,11 @@ Retry-After: 30
 }</pre>
   </div>
   <p class="note">Keys are not implied on every future write. Only writes that already support <code class="inline">idempotency_key</code>.</p>
-</article>
-<article class="concept" id="docs-concepts-validation">
-  <h2>Validation</h2>
-  <p class="note">The payload is checked against that vendor’s rules before it leaves Bitlync.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">A bad field fails on the request you sent. It does not create a ticket.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">HTTP 422. Branch on stable <code class="inline">code</code> <code class="inline">validation</code>.</p>
-    <div class="code">
-    <div class="hd"><b>422 on your request</b><button class="copy" type="button" data-copy="{&quot;status&quot;:422,&quot;code&quot;:&quot;validation&quot;}">Copy</button></div>
-    <pre>HTTP 422
 
-{
-  "status": 422,
-  "code": "validation"
-}</pre>
-  </div>
-  <p class="note">No “send it anyway and let the PSA reject it.”</p>
-</article>
-<article class="concept" id="docs-concepts-credential-vault">
-  <h2>Credential vault</h2>
-  <p class="note">The MSP pastes their own keys. Those keys sit in a per-tenant vault. The ISV never holds them.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">ISVs start with a key that looks like <code class="inline">blk_…</code> and header <code class="inline">X-API-Key</code>. MSP credentials are entered on Bitlync, not in your frontend.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">Your product sends <code class="inline">X-API-Key</code>. It does not send the MSP’s PSA or RMM secret.</p>
-    <div class="code">
-    <div class="hd"><b>ISV auth header</b><button class="copy" type="button" data-copy="X-API-Key: blk_…">Copy</button></div>
-    <pre>X-API-Key: blk_…
-
-# MSP keys are not in this header.
-# They sit in the per-tenant vault.</pre>
-  </div>
-  <p class="note">The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.</p>
-</article>
-<article class="concept" id="docs-concepts-customer-map">
-  <h2>Customer map</h2>
-  <p class="note">A sure match auto-maps. A leftover PSA company with no ISV candidate is an ask: the MSP creates or imports it in the ISV. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">Listed identity routes exist: <code class="inline">GET /tenants/{tenant_id}/identity/mappings</code> and <code class="inline">GET /tenants/{tenant_id}/identity/unmapped</code>.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">Mapped rows when the match is sure. <code class="inline">UNMAPPED</code> when a person has to choose. Creating a leftover PSA company in the ISV returns 501 (OPEN).</p>
-    <div class="code">
-    <div class="hd"><b>unmapped is human</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;UNMAPPED&quot;}">Copy</button></div>
-    <pre>{
-  "status": "UNMAPPED"
-}
-
-HTTP 501
-{
-  "status": 501,
-  "code": "unsupported"
-}</pre>
-  </div>
-  <p class="note">Creating a leftover PSA company in the ISV returns 501. No silent create.</p>
-</article>
-<article class="concept" id="docs-concepts-identity-hold">
-  <h2>Identity hold</h2>
-  <p class="note">Unmatched records can sit in quarantine until someone releases them.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">Hold is a reserved record, not an auto-merge. The reserved shape name is <code class="inline">QuarantinedRecord</code>.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">Unmatched work stays unmatched until release.</p>
-    <div class="code">
-    <div class="hd"><b>reserved name only</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;UNMAPPED&quot;}">Copy</button></div>
-    <pre>{
-  "status": "UNMAPPED"
-}
-
-# Reserved shape: QuarantinedRecord
-# Fields are not documented on this page.</pre>
-  </div>
-
-</article>
-<article class="concept" id="docs-concepts-health">
-  <h2>Health + incidents + audit</h2>
-  <p class="note">Status and an audit log sit on every connection. After the MSP connects, a role connector attaches so the ISV can see that MSP on health and status. Failed auth attaches nothing. Vendors with no role audit unknown, not success. Incidents are a listed read. Not a new connect UI.</p>
-  <p class="note"><code class="inline">GET /incidents</code> can name which ISV, MSP, and field sit on a moved vendor field. Sandbox seeds one open Autotask incident with that list. That is not the same as one MSP connection going degraded. We do not patch the vendor.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note"><code class="inline">GET /tenants/{tenant_id}/audit</code> exists. Also listed: <code class="inline">/status</code>, <code class="inline">/incidents</code>, <code class="inline">/connections</code>, and <code class="inline">/connections/events</code>.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">Audit is a GET on the tenant.</p>
-    <div class="code">
-    <div class="hd"><b>GET audit</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/audit&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div>
-    <pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/audit" \
-  -H "X-API-Key: $BITLYNC_KEY"
-
-GET /tenants/{tenant_id}/audit
-GET /tenants/{tenant_id}/status
-GET /tenants/{tenant_id}/incidents</pre>
-  </div>
-</article>
-<article class="concept" id="docs-concepts-escape-hatch">
-  <h2>Raw</h2>
-  <p class="note">The canonical Bitlync shape is the default. The vendor payload always rides on <code class="inline">raw</code>.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">Normalize <code class="inline">status</code>, <code class="inline">source</code>, and the other Bitlync words. Keep the vendor’s original object under <code class="inline">raw</code>. Never drop it.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">You can stay on the canonical fields. You can read <code class="inline">raw</code> when a vendor word is not in the model.</p>
-    <div class="code">
-    <div class="hd"><b>raw always present</b><button class="copy" type="button" data-copy="{&quot;status&quot;:&quot;in_progress&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;raw&quot;:{}}">Copy</button></div>
-    <pre>{
-  "status": "in_progress",
-  "source": "psa",
-  "raw": {}
-}</pre>
-  </div>
-  <p class="note">No mode that strips <code class="inline">raw</code>. No second public schema that replaces the canonical default.</p>
 </article>
 <article class="concept" id="docs-concepts-writes">
   <h2>Writes</h2>
-  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, close with evidence, or POST hours on that ticket only. Close stays off unless the MSP turns it on. Hours take stated billable and an optional member. No notes on time. Not a time read. Not two-way. Not field-level ticket sync.</p>
+  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, close with evidence, or POST hours on that ticket only. Close stays off unless the MSP turns it on. Hours take stated billable and an optional member. No notes on time. Not field-level ticket sync.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Preview first. Then commit with the same body and an <code class="inline">idempotency_key</code> on writes that support it. If a fan-out is only partial, that failure is explicit. It is never collapsed into a single silent success.</p>
   <p class="lbl">What the caller sees</p>
@@ -1668,30 +1509,40 @@ GET /tenants/{tenant_id}/incidents</pre>
   <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
-</article>
-<article class="concept" id="docs-concepts-sandbox">
-  <h2>Sandbox</h2>
-  <p class="note">Seeded fixtures only: <code class="inline">sandbox-mainstreet</code> and <code class="inline">sandbox-northline</code>. Use <code class="inline">$BITLYNC_BASE</code> as the host placeholder.</p>
+  <p class="lbl">Validation</p>
+  <p class="note">The payload is checked against that vendor’s rules before it leaves Bitlync.</p>
   <p class="lbl">Mechanism</p>
-  <p class="note">Every sandbox response includes <code class="inline">sandbox</code> true. <code class="inline">POST /sandbox/reset</code> with that tenant id clears audit, re-syncs fixtures, and writes one <code class="inline">sandbox_reset</code> event. A production tenant on that route returns 422 <code class="inline">request_invalid</code>.</p>
+  <p class="note">A bad field fails on the request you sent. It does not create a ticket.</p>
   <p class="lbl">What the caller sees</p>
+  <p class="note">HTTP 422. Branch on stable <code class="inline">code</code> <code class="inline">validation</code>.</p>
     <div class="code">
-    <div class="hd"><b>sandbox flag + reset</b><button class="copy" type="button" data-copy="{&quot;tenant_id&quot;:&quot;sandbox-mainstreet&quot;}">Copy</button></div>
-    <pre>{
-  "sandbox": true,
-  "served_from": "store"
-}
+    <div class="hd"><b>422 on your request</b><button class="copy" type="button" data-copy="{&quot;status&quot;:422,&quot;code&quot;:&quot;validation&quot;}">Copy</button></div>
+    <pre>HTTP 422
 
-POST /sandbox/reset
-{ "tenant_id": "sandbox-mainstreet" }
-
-HTTP 422
 {
   "status": 422,
-  "code": "request_invalid"
+  "code": "validation"
 }</pre>
   </div>
-  <p class="note">Seed also includes one open Autotask incident with a fixture affected list. Northline Halo degraded is a separate connection status.</p>
+  <p class="note">No “send it anyway and let the PSA reject it.”</p>
+
+</article>
+<article class="concept" id="docs-concepts-credential-vault">
+  <h2>Credential vault</h2>
+  <p class="note">The MSP pastes their own keys. Those keys sit in a per-tenant vault. The ISV never holds them.</p>
+  <p class="lbl">Mechanism</p>
+  <p class="note">ISVs start with a key that looks like <code class="inline">blk_…</code> and header <code class="inline">X-API-Key</code>. MSP credentials are entered on Bitlync, not in your frontend.</p>
+  <p class="lbl">What the caller sees</p>
+  <p class="note">Your product sends <code class="inline">X-API-Key</code>. It does not send the MSP’s PSA or RMM secret.</p>
+    <div class="code">
+    <div class="hd"><b>ISV auth header</b><button class="copy" type="button" data-copy="X-API-Key: blk_…">Copy</button></div>
+    <pre>X-API-Key: blk_…
+
+# MSP keys are not in this header.
+# They sit in the per-tenant vault.</pre>
+  </div>
+  <p class="note">The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.</p>
+  <p class="note">A sure match auto-maps. A leftover PSA company with no ISV candidate is an ask: the MSP creates or imports it in the ISV. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create.</p>
 </article>
 <article class="concept" id="docs-concepts-errors">
   <h2>Errors</h2>
@@ -1710,9 +1561,10 @@ HTTP 501  { "status": 501, "code": "unsupported" }
 HTTP 500  { "status": 500, "code": "internal_error" }</pre>
   </div>
   <p class="note">500 stays opaque. A parked write is 501, not a generic 500.</p>
+  <p class="note">Health, incidents, and audit are listed reads on Reference, not a new UI.</p>
 </article>
-<article class="concept" id="docs-concepts-permissions">
-  <h2>MSP permission / probe</h2>
+<article class="concept" id="docs-concepts-msp-permissions">
+  <h2>MSP permissions</h2>
   <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
   <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We do not create a company in the PSA and we do not create an agreement.</p>
   <p class="lbl">Mechanism</p>
@@ -1732,27 +1584,6 @@ HTTP 500  { "status": 500, "code": "internal_error" }</pre>
   </div>
   <p class="note">No ISV-side form that collects PSA keys. Partial connect is not collapsed into “failed.”</p>
 </article>
-<article class="concept" id="docs-concepts-routing">
-  <h2>Routing</h2>
-  <p class="note">A finding lands as a PSA ticket until the MSP chooses otherwise. The ISV does not force workflows.</p>
-  <p class="lbl">Mechanism</p>
-  <p class="note">Listed routes: <code class="inline">POST /tenants/{tenant_id}/findings/route</code> and <code class="inline">GET</code> / <code class="inline">PUT /tenants/{tenant_id}/routing</code>. Alert to ticket is the path. Incident and approval sit on that same path.</p>
-  <p class="lbl">What the caller sees</p>
-  <p class="note">The finding becomes a ticket in the PSA the MSP already runs. Routing changes are the MSP’s.</p>
-    <div class="code">
-    <div class="hd"><b>finding to ticket</b><button class="copy" type="button" data-copy="POST /tenants/{tenant_id}/findings/route">Copy</button></div>
-    <pre>POST /tenants/{tenant_id}/findings/route
-GET  /tenants/{tenant_id}/routing
-PUT  /tenants/{tenant_id}/routing
-
-{
-  "source": "psa",
-  "raw": {}
-}</pre>
-  </div>
-
-</article>
-</div>
 <div class="dpanel" id="d-docs-quickstart">
   <div class="docs-hero">
     <p class="kicker">Quickstart</p>
@@ -2201,16 +2032,28 @@ dry_run ticket create is REST-only.</pre>
     </div>
   </section>
 </div>
+<div class="page" id="page-about">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">About</p>
+      <h1>Our origin story.</h1>
+      <p>The founder has spent over a decade helping software vendors of every size go to market in the SMB and MSP channel, from some of the largest ISVs in the world to startups. Some were enterprise products moving downmarket. The products were often a fit. The integrations were not.</p>
+      <p>It is not one connector. It is several, and they take real time. A lot of vendors did not have the people for that. Outsourcing it was expensive and slow. Many never built it. They did not get traction until they did. In this market, integrations are how you get taken seriously. They are a barrier to entry.</p>
+      <p>MSPs run lean. They live on automation, and they do not have a bench to build each vendor hook themselves. They need the vendor to make that easy. Bitlync is one API so a vendor writes once and connects to the stack those MSPs already run.</p>
+    </div>
+  </section>
+</div>
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · stealth · private beta</span>
-    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">Docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">Docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog'];
+  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
+  var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
     'docs-device':'docs-reference','docs-agreement':'docs-reference',
@@ -2225,7 +2068,7 @@ dry_run ticket create is REST-only.</pre>
     h=(h||'').replace('#','');
     if(!h) return {page:'home',docs:'docs',anchor:null,connector:null};
     if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h,connector:null};
-    if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:h,connector:null};
+    if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:conceptAlias[h]||h,connector:null};
     if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null,connector:null};
     if(h==='developers'||h==='guides'||h==='api'||h==='libraries'||h==='dictionary'){
       var map={developers:'docs',guides:'docs-quickstart',api:'docs-reference',libraries:'docs-quickstart',dictionary:'docs-concepts'};
@@ -2264,7 +2107,7 @@ dry_run ticket create is REST-only.</pre>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog' || st.page==='about');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
@@ -2308,6 +2151,7 @@ dry_run ticket create is REST-only.</pre>
       terms:['Customer Terms \u00b7 Bitlync','Customer Terms for Bitlync, Inc.'],
       privacy:['Privacy Notice \u00b7 Bitlync','Privacy Notice for people at an ISV and people at an MSP who paste keys.'],
       'connect-terms':['MSP Connect Terms \u00b7 Bitlync','Terms for the MSP connection and the keys we hold.'],
+      about:['About \u00b7 Bitlync','Our origin story.'],
       changelog:['Changelog \u00b7 Bitlync','What actually shipped. Newest first.']
     };
     var docsMeta={
