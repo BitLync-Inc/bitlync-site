@@ -1,6 +1,29 @@
 {
   "components": {
     "schemas": {
+      "ApproveChargeBody": {
+        "properties": {
+          "dry_run": {
+            "default": true,
+            "description": "Preview the E5 write without marking the row actioned.",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "title": "ApproveChargeBody",
+        "type": "object"
+      },
       "AskBody": {
         "properties": {
           "question": {
@@ -74,10 +97,73 @@
       },
       "CreateCompanyBody": {
         "properties": {
+          "address": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address"
+          },
+          "bill_on_behalf_of_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bill On Behalf Of Enabled"
+          },
+          "contacts": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contacts"
+          },
           "dry_run": {
             "default": true,
             "title": "Dry Run",
             "type": "boolean"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id"
+          },
+          "fan_out": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fan Out"
           },
           "idempotency_key": {
             "anyOf": [
@@ -93,6 +179,50 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "order_approval_required": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Approval Required"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "self_service_allowed": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Self Service Allowed"
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website"
           }
         },
         "required": [
@@ -140,6 +270,18 @@
             "default": "medium",
             "title": "Priority",
             "type": "string"
+          },
+          "project_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Autotask PROJECT write-back: existing project id. CW/Halo mint a project ticket and ignore this.",
+            "title": "Project Source Id"
           },
           "summary": {
             "title": "Summary",
@@ -293,6 +435,18 @@
             "description": "'technical' or 'organizational' (Task 8 router).",
             "title": "Kind",
             "type": "string"
+          },
+          "project_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Autotask PROJECT write-back: existing project id. CW/Halo mint a project ticket and ignore this.",
+            "title": "Project Source Id"
           },
           "severity": {
             "title": "Severity",
@@ -895,7 +1049,7 @@
   "info": {
     "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.54.0",
+    "version": "0.64.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -1071,6 +1225,110 @@
         "tags": [
           "Platform"
         ]
+      }
+    },
+    "/tenants/{tenant_id}/agreements": {
+      "get": {
+        "description": "Canonical PSA agreements from the tenant's connected PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch \u2014 it re-syncs\nthis request against the per-connection vendor budget. Paginated\n(S4): at most `limit` agreements (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "operationId": "list_agreements_tenants__tenant_id__agreements_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "live",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Live",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Agreements Tenants  Tenant Id  Agreements Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Agreements"
       }
     },
     "/tenants/{tenant_id}/applications": {
@@ -1857,6 +2115,247 @@
         ]
       }
     },
+    "/tenants/{tenant_id}/commerce/charges": {
+      "get": {
+        "description": "Pending MSP Approve/Dismiss rows for this ISV. Built from E4\nreconcile findings that have an E3 MAPPED pair and would be fixed\nby an E5 write. UNMAPPED findings never appear.",
+        "operationId": "list_charge_queue_tenants__tenant_id__commerce_charges_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Charge Queue Tenants  Tenant Id  Commerce Charges Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Charge Queue",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/charges/{charge_id}/approve": {
+      "post": {
+        "description": "Approve one pending charge \u2014 runs the existing E5 agreement-line\nwrite. dry_run previews and does not mark the row actioned.",
+        "operationId": "approve_charge_tenants__tenant_id__commerce_charges__charge_id__approve_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "charge_id",
+            "required": true,
+            "schema": {
+              "title": "Charge Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveChargeBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Approve Charge Tenants  Tenant Id  Commerce Charges  Charge Id  Approve Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Approve Charge",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
+    "/tenants/{tenant_id}/commerce/charges/{charge_id}/dismiss": {
+      "post": {
+        "description": "Dismiss one pending charge. No contract change, no E5 write.",
+        "operationId": "dismiss_charge_tenants__tenant_id__commerce_charges__charge_id__dismiss_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "charge_id",
+            "required": true,
+            "schema": {
+              "title": "Charge Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Dismiss Charge Tenants  Tenant Id  Commerce Charges  Charge Id  Dismiss Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Dismiss Charge",
+        "tags": [
+          "Commerce"
+        ]
+      }
+    },
     "/tenants/{tenant_id}/commerce/costs": {
       "get": {
         "description": "ISV-submitted customer/product/period costs for this tenant.\nScoped to the calling ISV's key \u2014 another ISV never sees these rows.\n``aggregate=true`` adds hub-level SUM rollups (many spokes \u2192 one hub).",
@@ -2306,7 +2805,7 @@
     },
     "/tenants/{tenant_id}/companies": {
       "post": {
-        "description": "Create a company record (501 until a connector implements it).",
+        "description": "Match-then-create on a connected distributor (Pax8). PSA fan_out\nis policy-refused (422). Never routes to the PSA.",
         "operationId": "create_company_tenants__tenant_id__companies_post",
         "parameters": [
           {
@@ -3654,7 +4153,7 @@
       "name": "Endpoint"
     },
     {
-      "description": "Customer Success tier \u2014 finding routing to PSA or engagement layer.",
+      "description": "GRC/vCIO tier \u2014 finding routing to PSA or engagement layer.",
       "name": "Engagement"
     },
     {
@@ -3662,7 +4161,7 @@
       "name": "Identity"
     },
     {
-      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, and fixture dry_run agreement-line writes (Track E).",
+      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, fixture dry_run agreement-line writes, and the MSP Approve/Dismiss queue on mapped charges (Track E).",
       "name": "Commerce"
     },
     {
