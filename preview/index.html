@@ -283,7 +283,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-docs .docs-main{min-width:0}
 #page-docs .docs-rail{display:block;position:sticky;top:80px;max-height:calc(100vh - 100px);overflow:auto;background:var(--panel);border:1px solid var(--dline);border-radius:14px}
 #page-docs .docs-rail[hidden]{display:none}
-#page-docs .dpanel .code{display:none}
+/* codes stay in the page; rail clones them when present */
 #page-docs .docs-tree{position:sticky;top:80px}
 }
 @media(max-width:1099px){
@@ -1254,13 +1254,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs-coverage" data-docs="docs-coverage">Coverage</a>
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
-        <a href="#docs-concepts-store-served-reads" data-docs="docs-concepts-store-served-reads">Store-served reads</a>
-        <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
-        <a href="#docs-concepts-delivery" data-docs="docs-concepts-delivery">Delivery</a>
-        <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
-        <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
-        <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
-        <a href="#docs-concepts-msp-permissions" data-docs="docs-concepts-msp-permissions">MSP permissions</a>
+        <div class="docs-folder">
+          <button type="button" class="docs-fold" aria-expanded="true" aria-controls="fold-concepts">Chapters</button>
+          <div class="docs-fold-body" id="fold-concepts">
+            <a href="#docs-concepts-store-served-reads" data-docs="docs-concepts-store-served-reads">Store-served reads</a>
+            <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
+            <a href="#docs-concepts-delivery" data-docs="docs-concepts-delivery">Delivery</a>
+            <a href="#docs-concepts-writes" data-docs="docs-concepts-writes">Writes</a>
+            <a href="#docs-concepts-credential-vault" data-docs="docs-concepts-credential-vault">Credential vault</a>
+            <a href="#docs-concepts-errors" data-docs="docs-concepts-errors">Errors</a>
+            <a href="#docs-concepts-msp-permissions" data-docs="docs-concepts-msp-permissions">MSP permissions</a>
+          </div>
+        </div>
       </div>
       <a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
