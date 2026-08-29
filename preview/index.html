@@ -2003,6 +2003,7 @@ dry_run ticket create is REST-only.</pre>
   <table class="rt">
     <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
     <tbody>
+      <tr id="ref-agreements"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/agreements</code></td><td>Store-served. 501 when the connector does not support agreements. We do not mint a header.</td></tr>
       <tr id="ref-devices"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>Device inventory lives here. It is not a use case.</td></tr>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/applications</code></td><td></td></tr>
       <tr id="ref-audit"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/audit</code></td><td></td></tr>
@@ -2019,7 +2020,6 @@ dry_run ticket create is REST-only.</pre>
     </tbody>
   </table>
   </div>
-  <p class="note">There is no GET /agreements.</p>
   <article class="obj" id="docs-ticket">
     <h3>Ticket</h3>
     <p class="note">GET and POST /tenants/{tenant_id}/tickets. Write-back and hours only on tickets Bitlync created. Time has no notes field.</p>
@@ -2056,14 +2056,14 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-agreement">
     <h3>Agreement</h3>
-    <p class="note">Recurring MSP service billing arrangement. Not “PSA Contract.” There is no GET /agreements.</p>
+    <p class="note">GET /tenants/{tenant_id}/agreements. Recurring MSP service billing arrangement. Not “PSA Contract.” We do not mint an agreement header.</p>
     <div class="fields">
-      <button type="button" data-copy="{&quot;name&quot;:&quot;…&quot;,&quot;monthly_recurring_revenue&quot;:0,&quot;company_name&quot;:&quot;…&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;synced_at&quot;:&quot;…&quot;,&quot;raw&quot;:{}}">source</button>
-      <button type="button" data-copy="{&quot;company_name&quot;:&quot;…&quot;}">company_name</button>
-      <button type="button" data-copy="{&quot;name&quot;:&quot;…&quot;}">name</button>
-      <button type="button" data-copy="{&quot;monthly_recurring_revenue&quot;:0}">monthly_recurring_revenue</button>
-      <button type="button" data-copy="{&quot;synced_at&quot;:&quot;…&quot;,&quot;raw&quot;:{}}">synced_at</button>
-      <button type="button" data-copy="{&quot;raw&quot;:{}}">raw</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;name&quot;:&quot;…&quot;,&quot;monthly_recurring_revenue&quot;:0,&quot;company_name&quot;:&quot;…&quot;,&quot;source&quot;:&quot;psa&quot;,&quot;synced_at&quot;:&quot;…&quot;,&quot;raw&quot;:{}}">source</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;company_name&quot;:&quot;…&quot;}">company_name</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;name&quot;:&quot;…&quot;}">name</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;monthly_recurring_revenue&quot;:0}">monthly_recurring_revenue</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;synced_at&quot;:&quot;…&quot;,&quot;raw&quot;:{}}">synced_at</button>
+      <button type="button" data-goto="ref-agreements" data-copy="{&quot;raw&quot;:{}}">raw</button>
     </div>
   </article>
 </div>
