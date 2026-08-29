@@ -430,6 +430,10 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .skill-card a{text-decoration:underline;color:var(--dtext)}
 
 .sol-copy{max-width:42rem}
+.sol-wins{display:grid;grid-template-columns:1fr;gap:22px 28px;margin:28px 0 0;max-width:none}
+@media(min-width:900px){.sol-wins{grid-template-columns:1fr 1fr 1fr}}
+.sol-wins h2{margin:0 0 8px}
+.sol-wins .sub{margin:0;max-width:none}
 .page[id^="page-solutions"] h2{margin:22px 0 8px}
 .page[id^="page-solutions"] .sol-copy h2:first-of-type{margin-top:8px}
 .inc{min-height:100%}
@@ -927,12 +931,20 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">Without an integration into their stack, the deal stalls. A roadmap does not close it.</p>
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
-        <h2>The question is the deal</h2>
-        <p class="sub">They ask if you integrate with their PSA. The answer is yes. They do not have to build it. You do not lose the room.</p>
-        <h2>Why it matters</h2>
-        <p class="sub">A missing connector stalls the cycle. A weaker product that already has it can take the deal. This market buys on integrations.</p>
-        <h2>Proof</h2>
-        <p class="sub">These tiles are the stack you can say yes to. ConnectWise, HaloPSA, Autotask, NinjaOne, Datto RMM, ScalePad, Pax8, IT Glue, and Hudu. Open a tile for what it covers.</p>
+      </div>
+      <div class="sol-wins">
+        <div>
+          <h2>The question is the deal</h2>
+          <p class="sub">They ask if you integrate with their PSA. The answer is yes. They do not have to build it. You do not lose the room.</p>
+        </div>
+        <div>
+          <h2>Why it matters</h2>
+          <p class="sub">A missing connector stalls the cycle. A weaker product that already has it can take the deal. This market buys on integrations.</p>
+        </div>
+        <div>
+          <h2>Proof</h2>
+          <p class="sub">These tiles are the stack you can say yes to. ConnectWise, HaloPSA, Autotask, NinjaOne, Datto RMM, ScalePad, Pax8, IT Glue, and Hudu. Open a tile for what it covers.</p>
+        </div>
       </div>
     </div>
     </div>
