@@ -219,6 +219,17 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .revoke{border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;font-size:12.5px;color:var(--bad);font-weight:600}
 .form-band{border:1px solid var(--hair);border-radius:16px;padding:24px 24px 8px;background:var(--paper);max-width:42rem;font-family:var(--sans);color:var(--ink)}
 .form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:8px;background:var(--paper);color-scheme:light}
+.ea-form{display:flex;flex-direction:column;gap:0;padding-bottom:16px}
+.ea-form label,.ea-form legend{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin:14px 0 6px}
+.ea-form input[type="text"],.ea-form input[type="email"],.ea-form textarea{
+  width:100%;box-sizing:border-box;border:1px solid var(--hair);border-radius:8px;padding:10px 12px;
+  font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper)}
+.ea-form textarea{min-height:120px;resize:vertical}
+.ea-form fieldset{border:0;padding:0;margin:0}
+.ea-form .ea-intent{display:flex;flex-wrap:wrap;gap:12px 20px;margin:4px 0 8px}
+.ea-form .ea-intent label{display:flex;align-items:center;gap:8px;margin:0;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:15px;color:var(--ink)}
+.ea-form .ea-hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.ea-form .btn{margin-top:18px;align-self:flex-start}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -355,6 +366,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-rows a:hover,.sol-rows a:focus{background:#EFEBE0}
 .sol-hub{max-width:42rem;margin:20px 0 0}
 .sol-hub a{font-size:16px;font-weight:500;line-height:1.35}
+.sol-cards{display:grid;grid-template-columns:1fr;gap:22px;margin:28px 0 0;max-width:56rem}
+@media(min-width:700px){.sol-cards{grid-template-columns:1fr 1fr}}
+.sol-card{display:block;color:inherit;text-decoration:none}
+.sol-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#1a1a1a}
+.sol-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.02em;line-height:1.15;margin:12px 0 6px}
+.sol-card p{margin:0;color:var(--mute);font-size:15px;line-height:1.4}
 .sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
 .sol-table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14px;background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
 .sol-table th,.sol-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair)}
@@ -491,7 +508,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <a href="#solutions/product" data-nav="solutions">Product</a>
               <a href="#solutions/developer" data-nav="solutions">Developer</a>
               <a href="#solutions/sales" data-nav="solutions">Sales</a>
-              <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a>
+              <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a>
               <a href="#msps" data-nav="msps">MSPs</a>
             </div>
           </div>
@@ -661,12 +678,32 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Solutions</p>
       <h1 class="sol-h1">Who is this for.</h1>
-      <div class="sol-rows sol-hub">
-        <a href="#solutions/product" data-nav="solutions">Product — Ship MSP integrations without parking the roadmap.</a>
-        <a href="#solutions/developer" data-nav="solutions">Developer — One call, same shape every time.</a>
-        <a href="#solutions/sales" data-nav="solutions">Sales — The first thing an MSP asks is if you integrate with their PSA.</a>
-        <a href="#solutions/customer-success" data-nav="solutions">Customer Success — Resolve a missing permission without a developer.</a>
-        <a href="#msps" data-nav="msps">MSPs — You own the connection.</a>
+      <div class="sol-cards">
+        <a class="sol-card" href="#solutions/product" data-nav="solutions">
+          <img src="assets/sol-product.jpg" alt="Product">
+          <h3>Product</h3>
+          <p>For product. Ship without parking the roadmap on each PSA.</p>
+        </a>
+        <a class="sol-card" href="#solutions/developer" data-nav="solutions">
+          <img src="assets/sol-engineering.jpg" alt="Engineering">
+          <h3>Engineering</h3>
+          <p>For developers. One call, same shape every time.</p>
+        </a>
+        <a class="sol-card" href="#solutions/customer-success" data-nav="solutions">
+          <img src="assets/sol-support.jpg" alt="Tech and platform support">
+          <h3>Tech and platform support</h3>
+          <p>Name the missing permission in the flow.</p>
+        </a>
+        <a class="sol-card" href="#solutions/sales" data-nav="solutions">
+          <img src="assets/sol-gtm.jpg" alt="Go to market">
+          <h3>Go to market</h3>
+          <p>For sales. The first thing they ask is if you integrate.</p>
+        </a>
+        <a class="sol-card" href="#msps" data-nav="msps">
+          <img src="assets/sol-msp.jpg" alt="MSP">
+          <h3>MSP</h3>
+          <p>You own the connection.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -773,7 +810,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
                   </div>
       </div>
-      <p class="sol-more"><a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
+      <p class="sol-more"><a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
     </div>
   </section>
 </div>
@@ -845,7 +882,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">Writes take <code class="inline">dry_run</code> first. If we refuse, you get a stable code and a sentence you can read.</p>
 
       </div>
-      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
+      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
     </div>
   </section>
 </div>
@@ -949,14 +986,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </a>
       </div>
       <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
-      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
+      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a> <span aria-hidden="true">·</span> <a href="#msps" data-nav="msps">MSPs</a></p>
     </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Customer Success</p>
+      <p class="kicker">Solutions / Tech and platform support</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
       <p class="sub">Customer success and support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
       <div style="max-width:42rem">
@@ -1094,7 +1131,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <button class="revoke" type="button">Revoke</button>
         </div>
       </div>
-      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Customer Success</a></p>
+      <p class="sol-more"><a href="#solutions/product" data-nav="solutions">Product</a> <span aria-hidden="true">·</span> <a href="#solutions/developer" data-nav="solutions">Developer</a> <span aria-hidden="true">·</span> <a href="#solutions/sales" data-nav="solutions">Sales</a> <span aria-hidden="true">·</span> <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a></p>
           </div>
   </section>
 </div>
@@ -1106,7 +1143,28 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h2>Contact us.</h2>
       <p class="sub">We share pricing when we talk. We reply with the keys when you're accepted.</p>
       <div class="form-band">
-        <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Bitlync — Request Early Access"></iframe>
+        <form class="ea-form" action="https://formsubmit.co/rburtonprospect@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Bitlync early access">
+          <input type="text" name="_gotcha" class="ea-hp" tabindex="-1" autocomplete="off">
+          <label for="ea-name">Name</label>
+          <input id="ea-name" name="name" type="text" required>
+          <label for="ea-email">Email</label>
+          <input id="ea-email" name="email" type="email" required>
+          <label for="ea-company">Company</label>
+          <input id="ea-company" name="company" type="text">
+          <fieldset>
+            <legend>Intent</legend>
+            <div class="ea-intent">
+              <label><input type="radio" name="intent" value="Early access" required> Early access</label>
+              <label><input type="radio" name="intent" value="Schedule a call"> Schedule a call</label>
+            </div>
+          </fieldset>
+          <label for="ea-time">Preferred time</label>
+          <input id="ea-time" name="preferred_time" type="text">
+          <label for="ea-msg">Message</label>
+          <textarea id="ea-msg" name="message"></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
       </div>
     </div>
   </section>
@@ -2232,15 +2290,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   show(location.hash||'#home');
 
 })();
-</script>
-<script async src="https://tally.so/widgets/embed.js"></script>
-<script>
-function loadTally(){
-  if(typeof Tally!=='undefined'){Tally.loadEmbeds();return;}
-  document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(f){f.src=f.dataset.tallySrc;});
-}
-if(document.readyState!=='loading')loadTally();
-else document.addEventListener('DOMContentLoaded',loadTally);
 </script>
 </body>
 </html>
