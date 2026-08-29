@@ -384,6 +384,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-card:hover img{outline-color:var(--ink)}
 .sol-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.02em;line-height:1.15;margin:12px 0 6px}
 .sol-card p{margin:0;color:var(--mute);font-size:15px;line-height:1.4}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+.reveal.in{opacity:1;transform:none}
 .sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
 .sol-table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14px;background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
 .sol-table th,.sol-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair)}
@@ -2333,6 +2335,45 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     }
     form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
     sync();
+  })();
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-msps','page-docs'];
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    ids.forEach(function(id){
+      var page=document.getElementById(id);
+      if(!page) return;
+      var seen=[];
+      function add(el){
+        if(!el || seen.indexOf(el)>=0) return;
+        if(el.closest && el.closest('#page-home,#page-solutions,#page-partners')) return;
+        seen.push(el);
+        el.classList.add('reveal');
+        io.observe(el);
+      }
+      if(id==='page-docs'){
+        page.querySelectorAll('.concept, .cov-wrap').forEach(add);
+        return;
+      }
+      var sections=page.querySelectorAll(':scope > section.pad');
+      for(var i=1;i<sections.length;i++){
+        var sec=sections[i];
+        sec.querySelectorAll('.card, .portal-mock, .connect-win, .code-shell, .viz, .grid9, .cov-wrap, .posture').forEach(add);
+        sec.querySelectorAll('h2').forEach(function(h){
+          var block=h.parentElement;
+          if(!block || block===sec) return;
+          if(block.classList.contains('sol-copy')) return;
+          add(block);
+        });
+      }
+    });
   })();
   show(location.hash||'#home');
 
