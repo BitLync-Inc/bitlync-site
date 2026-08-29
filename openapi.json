@@ -1049,7 +1049,7 @@
   "info": {
     "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.64.0",
+    "version": "0.65.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
