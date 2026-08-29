@@ -1190,7 +1190,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <label><input type="radio" name="intent" value="Schedule a call"> Schedule a call</label>
             </div>
           </fieldset>
-          <div id="ea-slot" hidden>
           <label for="ea-day">Preferred day</label>
           <input id="ea-day" name="preferred_day" type="date">
           <label for="ea-when">Time of day</label>
@@ -1200,7 +1199,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <option>Afternoon</option>
             <option>Evening</option>
           </select>
-          </div>
           <label for="ea-msg">Message</label>
           <textarea id="ea-msg" name="message"></textarea>
           <button type="submit" class="btn">Send</button>
@@ -2327,22 +2325,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     });
   })();
 
-  (function(){
-    var form=document.querySelector('.ea-form');
-    if(!form) return;
-    var day=form.querySelector('#ea-day');
-    var when=form.querySelector('#ea-when');
-    var slot=form.querySelector('#ea-slot');
-    function sync(){
-      var call=form.querySelector('input[name="intent"][value="Schedule a call"]');
-      var need=!!(call && call.checked);
-      if(slot) slot.hidden=!need;
-      if(day){ day.required=need; day.disabled=!need; }
-      if(when){ when.required=need; when.disabled=!need; }
-    }
-    form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
-    sync();
-  })();
   (function(){
     if(!('IntersectionObserver' in window)) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
