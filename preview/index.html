@@ -284,7 +284,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-docs .docs-rail{display:block;position:sticky;top:80px;max-height:calc(100vh - 100px);overflow:auto;background:var(--panel);border:1px solid var(--dline);border-radius:14px}
 #page-docs .docs-rail[hidden]{display:none}
 /* codes stay in the page; rail clones them when present */
-#page-docs .docs-tree{position:sticky;top:80px}
+#page-docs .docs-tree{position:sticky;top:80px;max-height:calc(100vh - 100px);overflow:auto}
 }
 @media(max-width:1099px){
 #page-docs .docs-rail{display:none}
@@ -1255,8 +1255,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs-concepts" data-docs="docs-concepts">Concepts</a>
       <div class="nest">
         <div class="docs-folder">
-          <button type="button" class="docs-fold" aria-expanded="true" aria-controls="fold-concepts">Chapters</button>
-          <div class="docs-fold-body" id="fold-concepts">
+          <button type="button" class="docs-fold" aria-expanded="false" aria-controls="fold-concepts">Chapters</button>
+          <div class="docs-fold-body" id="fold-concepts" hidden>
             <a href="#docs-concepts-store-served-reads" data-docs="docs-concepts-store-served-reads">Store-served reads</a>
             <a href="#docs-concepts-rate-limits" data-docs="docs-concepts-rate-limits">Rate limits</a>
             <a href="#docs-concepts-delivery" data-docs="docs-concepts-delivery">Delivery</a>
