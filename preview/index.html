@@ -735,7 +735,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
 </div>
 
-<div class="page" id="page-solutions-product">
+<div class="page" id="page-solutions-product" data-reveal>
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Product</p>
@@ -840,7 +840,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
-<div class="page" id="page-solutions-developer">
+<div class="page" id="page-solutions-developer" data-reveal>
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap">
       <div class="sol-copy">
@@ -912,7 +912,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
-<div class="page" id="page-solutions-sales">
+<div class="page" id="page-solutions-sales" data-reveal>
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Sales</p>
@@ -1016,7 +1016,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
-<div class="page" id="page-solutions-customer-success">
+<div class="page" id="page-solutions-customer-success" data-reveal>
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Tech and platform support</p>
@@ -1076,7 +1076,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
-<div class="page" id="page-msps">
+<div class="page" id="page-msps" data-reveal>
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap center">
       <p class="kicker">For MSPs</p>
@@ -1204,7 +1204,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
-<div class="page" id="page-docs">
+<div class="page" id="page-docs" data-reveal>
   <div class="wrap docs-shell">
     <nav class="docs-tree" aria-label="Docs">
       <p>Docs</p>
@@ -2056,6 +2056,45 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     });
   }
 
+  function bindReveal(page){
+    /* scroll feel: long pages only */
+    var map={
+      'solutions-product':'page-solutions-product',
+      'solutions-developer':'page-solutions-developer',
+      'solutions-sales':'page-solutions-sales',
+      'solutions-customer-success':'page-solutions-customer-success',
+      'msps':'page-msps',
+      'docs':'page-docs'
+    };
+    var id=map[page];
+    if(!id) return;
+    if(!('IntersectionObserver' in window)) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root=document.getElementById(id);
+    if(!root) return;
+    if(!bindReveal.io){
+      bindReveal.io=new IntersectionObserver(function(ents){
+        ents.forEach(function(e){
+          if(!e.isIntersecting) return;
+          e.target.classList.add('in');
+          bindReveal.io.unobserve(e.target);
+        });
+      },{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+    }
+    var io=bindReveal.io;
+    function add(el){
+      if(!el || el.classList.contains('in') || el.classList.contains('sol-card')) return;
+      if(!el.classList.contains('reveal')) el.classList.add('reveal');
+      io.observe(el);
+    }
+    root.querySelectorAll('.card, .portal-mock, .connect-win, .code-shell, .viz, .grid9, .cov-wrap, .concept, .posture').forEach(add);
+    root.querySelectorAll('h2').forEach(function(h){
+      var block=h.parentElement;
+      if(!block || block===root) return;
+      if(block.classList.contains('wrap')) return;
+      add(block);
+    });
+  }
   function show(hash){
     if((hash||'').replace('#','')==='product'){ history.replaceState(null,'','#solutions/product'); hash='#solutions/product'; }
     var st=parse(hash);
@@ -2173,6 +2212,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var tile=document.querySelector('[data-connector="'+st.connector+'"]');
       if(tile) setTimeout(function(){ tile.scrollIntoView({block:'nearest'}); }, 40);
     }
+    bindReveal(st.page);
   }
 
   function fallbackCopy(txt){
@@ -2335,45 +2375,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     }
     form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
     sync();
-  })();
-  (function(){
-    if(!('IntersectionObserver' in window)) return;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-msps','page-docs'];
-    var io=new IntersectionObserver(function(ents){
-      ents.forEach(function(e){
-        if(!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
-    ids.forEach(function(id){
-      var page=document.getElementById(id);
-      if(!page) return;
-      var seen=[];
-      function add(el){
-        if(!el || seen.indexOf(el)>=0) return;
-        if(el.closest && el.closest('#page-home,#page-solutions,#page-partners')) return;
-        seen.push(el);
-        el.classList.add('reveal');
-        io.observe(el);
-      }
-      if(id==='page-docs'){
-        page.querySelectorAll('.concept, .cov-wrap').forEach(add);
-        return;
-      }
-      var sections=page.querySelectorAll(':scope > section.pad');
-      for(var i=1;i<sections.length;i++){
-        var sec=sections[i];
-        sec.querySelectorAll('.card, .portal-mock, .connect-win, .code-shell, .viz, .grid9, .cov-wrap, .posture').forEach(add);
-        sec.querySelectorAll('h2').forEach(function(h){
-          var block=h.parentElement;
-          if(!block || block===sec) return;
-          if(block.classList.contains('sol-copy')) return;
-          add(block);
-        });
-      }
-    });
   })();
   show(location.hash||'#home');
 
