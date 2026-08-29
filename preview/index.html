@@ -46,12 +46,16 @@ nav.main a.on,nav.main a:hover{color:var(--ink)}
 body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
 body.docs nav.main .sol-rows a,body.docs nav.main .sol-rows a:hover,body.docs nav.main .sol-rows a:focus,body.docs nav.main .sol-rows a.on{color:var(--ink)}
 .btn{display:inline-block;border:1px solid var(--ink);color:var(--paper);background:var(--ink);
-  padding:10px 16px;border-radius:999px;font-weight:600;font-size:13.5px}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair)}
+  padding:10px 16px;border-radius:999px;font-weight:600;font-size:13.5px;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease,border-color .15s ease,color .15s ease}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 body.docs .btn{background:var(--dtext);color:var(--void);border-color:var(--dtext)}
 body.docs .btn.ghost{background:transparent;color:var(--dtext);border-color:var(--dline)}
-#page-docs .btn-row .btn{background:var(--void);color:var(--dtext);border-color:var(--void)}
-#page-docs .btn-row .btn:hover{color:var(--acid)}
+.btn:hover{color:var(--acid);transform:translateY(-1px);box-shadow:0 8px 18px rgba(23,24,28,.14)}
+.btn.ghost:hover{background:rgba(23,24,28,.05);border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#page-docs .btn-row .btn{background:var(--void);color:var(--dtext);border:1px solid var(--dtext)}
+#page-docs .btn-row .btn:hover{color:var(--acid);border-color:var(--acid);transform:translateY(-1px)}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 @media(max-width:840px){
@@ -221,10 +225,14 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .form-band iframe{width:100%;max-width:100%;border:none;min-height:560px;border-radius:8px;background:var(--paper);color-scheme:light}
 .ea-form{display:flex;flex-direction:column;gap:0;padding-bottom:16px}
 .ea-form label,.ea-form legend{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin:14px 0 6px}
-.ea-form input[type="text"],.ea-form input[type="email"],.ea-form textarea{
-  width:100%;box-sizing:border-box;border:1px solid var(--hair);border-radius:8px;padding:10px 12px;
-  font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper)}
+.ea-form input[type="text"],.ea-form input[type="email"],.ea-form input[type="date"],.ea-form select,.ea-form textarea{
+  width:100%;box-sizing:border-box;border:1px solid #B7B4A8;border-radius:8px;padding:10px 12px;
+  font-family:var(--sans);font-size:15px;color:var(--ink);background:#fff;
+  transition:border-color .15s ease,box-shadow .15s ease}
 .ea-form textarea{min-height:120px;resize:vertical}
+.ea-form input:hover,.ea-form select:hover,.ea-form textarea:hover{border-color:var(--ink)}
+.ea-form input:focus,.ea-form select:focus,.ea-form textarea:focus{
+  outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(23,24,28,.12)}
 .ea-form fieldset{border:0;padding:0;margin:0}
 .ea-form .ea-intent{display:flex;flex-wrap:wrap;gap:12px 20px;margin:4px 0 8px}
 .ea-form .ea-intent label{display:flex;align-items:center;gap:8px;margin:0;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:15px;color:var(--ink)}
@@ -369,8 +377,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-cards{display:grid;grid-template-columns:1fr;gap:22px;margin:28px 0 0}
 @media(min-width:700px){.sol-cards{grid-template-columns:1fr 1fr}}
 @media(min-width:1100px){.sol-cards{grid-template-columns:1fr 1fr 1fr 1fr}}
-.sol-card{display:block;color:inherit;text-decoration:none}
-.sol-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#1a1a1a}
+.sol-card{display:block;color:inherit;text-decoration:none;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease}
+.sol-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,24,28,.1)}
+.sol-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#1a1a1a;outline:1px solid var(--hair)}
+.sol-card:hover img{outline-color:var(--ink)}
 .sol-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.02em;line-height:1.15;margin:12px 0 6px}
 .sol-card p{margin:0;color:var(--mute);font-size:15px;line-height:1.4}
 .sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
@@ -432,7 +443,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-product .cn-tab{flex:1;border:0;background:transparent;padding:8px 6px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mute);cursor:pointer}
 #page-solutions-product .cn-tab[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 #17181C}
 #page-solutions-product .cn-pane{padding:12px}
-#page-solutions-product .cn-pick{display:block;width:100%;text-align:left;border:1px solid var(--hair);background:#FBFBF8;border-radius:8px;padding:8px 10px;margin:0 0 8px;font-family:var(--mono);font-size:11.5px;cursor:pointer}
+#page-solutions-product .cn-pick{display:block;width:100%;text-align:left;border:1px solid var(--hair);background:#FBFBF8;border-radius:8px;padding:8px 10px;margin:0 0 8px;font-family:var(--mono);font-size:11.5px;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+#page-solutions-product .cn-pick:hover{border-color:var(--ink);background:#F3F0E6;transform:translateY(-1px)}
 #page-solutions-product .cn-pick:last-child{margin-bottom:0}
 #page-solutions-product .cn-pick[aria-pressed="true"]{border-color:#17181C;background:#F3F0E6}
 #page-solutions-product .cn-field{display:flex;align-items:flex-start;gap:10px;margin:0 0 10px}
@@ -454,7 +466,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-customer-success .pm-act{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
 #page-solutions-customer-success .health.warn{color:var(--warn)}
 #page-solutions-customer-success .health.warn i{background:var(--warn)}
-#page-solutions-customer-success .audit-btn{font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;color:var(--ink);cursor:pointer}
+#page-solutions-customer-success .audit-btn{font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;border:1px solid var(--hair);background:var(--paper);border-radius:6px;padding:6px 12px;color:var(--ink);cursor:pointer;text-decoration:none;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+#page-solutions-customer-success .audit-btn:hover{border-color:var(--ink);background:#F3F0E6;transform:translateY(-1px)}
 #page-solutions-customer-success .audit-btn[aria-expanded="true"]{border-color:#17181C;background:#F3F0E6}
 #page-solutions-customer-success .pm-tray{padding:8px 16px 14px 60px;background:#F6F3EA;font-family:var(--mono);font-size:12px}
 #page-solutions-customer-success .pm-log{display:grid;grid-template-columns:72px 1fr;gap:2px 14px;padding:3px 0;color:var(--ink)}
@@ -473,6 +486,21 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-customer-success .pm-vendor{justify-content:flex-start}
 #page-solutions-customer-success .pm-act{justify-content:flex-start;width:100%}
 #page-solutions-customer-success .pm-tray{padding:8px 16px 14px}
+#page-solutions-product .pm-row,
+#page-msps .pm-row{
+  display:grid;grid-template-columns:32px 1fr;gap:8px 12px;align-items:start;
+}
+#page-solutions-product .pm-row i,
+#page-msps .pm-row i{grid-row:1 / span 3}
+#page-solutions-product .pm-row .meta,
+#page-msps .pm-row .meta{min-width:0;grid-column:2}
+#page-solutions-product .pm-row .health,
+#page-msps .pm-row .health{grid-column:2}
+#page-solutions-product .pm-row .revoke,
+#page-msps .pm-row .revoke{grid-column:2;justify-self:start}
+#page-solutions-product .cn-tabs{flex-wrap:wrap}
+#page-solutions-product .cn-pick{min-height:40px}
+#page-solutions-product .cn-field{flex-wrap:wrap}
 }
 #page-solutions-developer .code-shell{max-width:100%;width:100%;margin:28px auto 0;background:#161618;border:1px solid #2A2C34;border-radius:10px}
 #page-solutions-developer .code-head{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#242428;border-bottom:1px solid #2A2C34;color:#8B8B86}
@@ -683,7 +711,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <a class="sol-card" href="#solutions/product" data-nav="solutions">
           <img src="assets/sol-product.jpg" alt="Product">
           <h3>Product</h3>
-          <p>Ship the whole stack.</p>
+          <p>Ship without parking the roadmap.</p>
         </a>
         <a class="sol-card" href="#solutions/developer" data-nav="solutions">
           <img src="assets/sol-engineering.jpg" alt="Engineering">
@@ -1137,7 +1165,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Early access</p>
       <h2>Contact us.</h2>
-      <p class="sub">We share pricing when we talk. We reply with the keys when you're accepted.</p>
+      <p class="sub">Pricing and keys when we talk.</p>
       <div class="form-band">
         <form class="ea-form" action="https://formsubmit.co/rburtonprospect@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Bitlync early access">
@@ -1157,8 +1185,15 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <label><input type="radio" name="intent" value="Schedule a call"> Schedule a call</label>
             </div>
           </fieldset>
-          <label for="ea-time">Preferred time</label>
-          <input id="ea-time" name="preferred_time" type="text">
+          <label for="ea-day">Preferred day</label>
+          <input id="ea-day" name="preferred_day" type="date">
+          <label for="ea-when">Time of day</label>
+          <select id="ea-when" name="preferred_when">
+            <option value=""></option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
           <label for="ea-msg">Message</label>
           <textarea id="ea-msg" name="message"></textarea>
           <button type="submit" class="btn">Send</button>
@@ -2285,6 +2320,20 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     });
   })();
 
+  (function(){
+    var form=document.querySelector('.ea-form');
+    if(!form) return;
+    var day=form.querySelector('#ea-day');
+    var when=form.querySelector('#ea-when');
+    function sync(){
+      var call=form.querySelector('input[name="intent"][value="Schedule a call"]');
+      var need=!!(call && call.checked);
+      if(day) day.required=need;
+      if(when) when.required=need;
+    }
+    form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
+    sync();
+  })();
   show(location.hash||'#home');
 
 })();
