@@ -87,10 +87,6 @@ body.docs .sub{color:var(--dmute)}
 section.pad{padding:72px 0}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
 .card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
-#page-product .card:hover,#page-product .inc:hover{transform:translateY(-5px);border-color:#C9C3B4;box-shadow:0 14px 32px rgba(23,24,28,.09)}
-#page-product .card:hover .viz{background:#EBE6D8}
-#page-product .inc{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-@media(prefers-reduced-motion:reduce){#page-product .card:hover,#page-product .inc:hover{transform:none}}
 
 .logo-scroll{overflow:hidden;margin:22px 0 0;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent);mask-image:linear-gradient(90deg,transparent,black 7%,black 93%,transparent)}
 .logo-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logos 48s linear infinite}
@@ -127,9 +123,6 @@ section.pad{padding:72px 0}
 .inc-grid{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:700px){.inc-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:1000px){.inc-grid{grid-template-columns:1fr 1fr 1fr}}
-.inc{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px;min-width:0}
-.inc b{display:block;font-size:15px;margin:0 0 5px}
-.inc p{margin:0;font-size:13.5px;color:var(--mute)}
 .dark{background:var(--ink);color:#EDEDEA}
 .dark .kicker{color:var(--acid)}
 .dark h2{color:#fff}
@@ -571,247 +564,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
         </div>
       </div>
-    </div>
-  </section>
-</div>
-<div class="page" id="page-product">
-  <section class="pad" style="padding-bottom:28px">
-    <div class="wrap center">
-      <p class="kicker">The product</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,56px);margin:0 0 12px">How Bitlync works</h1>
-      <p class="sub">One model underneath. Your product uses one API. The MSP connects their own tools.</p>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap grid g3">
-      <div class="card">
-        <p class="num">01 — Your product integrates once</p>
-        <h3>One schema, every vendor</h3>
-        <p class="quiet" style="margin:0">Write against one model: ticket, project, company, device, and agreement. No per-vendor branches in your codebase.</p>
-        <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 360 100" role="img">
-            <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
-            <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
-              <path d="M180 28 C 180 42, 40 50, 40 64"/>
-              <path d="M180 28 C 180 42, 110 52, 110 64"/>
-              <path d="M180 28 C 180 44, 180 54, 180 64"/>
-              <path d="M180 28 C 180 42, 250 52, 250 64"/>
-              <path d="M180 28 C 180 42, 320 50, 320 64"/>
-            </g>
-            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">
-              <rect x="8" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="284" y="64" width="70" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <text x="40" y="78" text-anchor="middle">ticket</text>
-              <text x="110" y="78" text-anchor="middle">project</text>
-              <text x="180" y="78" text-anchor="middle">company</text>
-              <text x="250" y="78" text-anchor="middle">device</text>
-              <text x="319" y="78" text-anchor="middle">agreement</text>
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div class="card">
-        <p class="num">02 — Customers connect themselves</p>
-        <h3>Self-serve, guided, validated</h3>
-        <p class="quiet" style="margin:0">The MSP pastes their own keys. You never store them. If a permission is missing, we name it in the flow so you do not take the support ticket.</p>
-        <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 320 100" role="img">
-            <rect x="6" y="28" width="88" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="50" y="48" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">MSP pastes</text>
-            <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#6B6A64">keys</text>
-            <path d="M94 50 H 112" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="112,46 120,50 112,54" fill="#8A8680"/>
-            <rect x="120" y="22" width="100" height="56" rx="8" fill="#17181C"/>
-            <text x="170" y="44" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#F7F4EC">names the miss</text>
-            <text x="170" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">re-test here</text>
-            <path d="M220 50 H 238" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="238,46 246,50 238,54" fill="#8A8680"/>
-            <rect x="246" y="28" width="68" height="44" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="280" y="48" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" font-style="italic" fill="#17181C">vault</text>
-            <text x="280" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">held here</text>
-          </svg>
-        </div>
-      </div>
-      <div class="card">
-        <p class="num">03 — Act through the stack</p>
-        <h3>Read and write, safely</h3>
-        <p class="quiet" style="margin:0">Open a ticket, write back, close it with evidence. On tickets we opened.</p>
-        <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 280 92" role="img">
-            <rect x="8" y="30" width="64" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="40" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">finding</text>
-            <path d="M72 46 H 96" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="96,42 104,46 96,50" fill="#8A8680"/>
-            <rect x="104" y="24" width="78" height="44" rx="8" fill="#17181C"/>
-            <text x="143" y="42" text-anchor="middle" font-family="Instrument Serif,serif" font-size="12" font-style="italic" fill="#F7F4EC">our ticket</text>
-            <text x="143" y="56" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#B9B9B4">we created</text>
-            <path d="M182 46 H 204" fill="none" stroke="#8A8680" stroke-width="1.2" stroke-linecap="round"/>
-            <polygon points="204,42 212,46 204,50" fill="#8A8680"/>
-            <rect x="212" y="30" width="60" height="32" rx="8" fill="#FBFBF8" stroke="#E4DFD4"/>
-            <text x="242" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#17181C">close</text>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Everything that comes with an integration</p>
-        <h2>Every layer you'd otherwise build, bundled</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">Caching, retries, validation, and the vault ship with every connection.</p>
-      </div>
-      <div class="cake" aria-label="Five layers that ship with every connection">
-        <div class="layer" style="width:92%"><b>audit</b><span>every read and write, visible</span></div>
-        <div class="layer" style="width:84%"><b>vault</b><span>MSP keys. Not yours.</span></div>
-        <div class="layer" style="width:76%"><b>preview</b><span>see a write before it lands</span></div>
-        <div class="layer" style="width:68%"><b>pace</b><span>honest, same on every vendor</span></div>
-        <div class="layer store" style="width:60%"><b>store</b><span>reads from here</span></div>
-      </div>
-      <div class="inc-grid">
-        <div class="inc"><b>Caching</b><p>Reads come from our store. They do not hit the PSA each time.</p></div>
-        <div class="inc"><b>Rate-limit handling</b><p>We pace calls to each vendor’s real limits.</p></div>
-        <div class="inc"><b>Retries</b><p>Transient failures are retried. You see one result.</p></div>
-        <div class="inc"><b>Honest delivery status</b><p>No silent drop. A throttle is a real Retry-After.</p></div>
-        <div class="inc"><b>De-duplication</b><p>A retry does not double-create a ticket.</p></div>
-        <div class="inc"><b>Validation</b><p>Checked before they leave. Errors show in your request.</p></div>
-        <div class="inc"><b>Credential vault</b><p>The MSP pastes keys. Your product never holds them.</p></div>
-        <div class="inc"><b>Customer map</b><p>A sure match maps. Ambiguous stays unmatched.</p></div>
-        <div class="inc"><b>Identity hold</b><p>Unmatched records can be held until someone releases them.</p></div>
-        <div class="inc"><b>Health</b><p>Status and an audit log on every connection.</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="dark pad">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Developer experience</p>
-        <h2>One call. Same shape every time.</h2>
-      </div>
-      <div class="code-shell">
-        <div class="code-head">one read — any PSA underneath</div>
-<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
-<span class="c-com">X-API-Key: blk_live_••••••••</span>
-
-<span class="c-kw">200 OK</span>
-{
-  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
-  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
-  <span class="c-str">"data"</span>: [{
-    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
-    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
-    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
-    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
-  }]
-}</pre>
-      </div>
-      <div class="dx-notes">
-        <div class="dx-note"><b>Writes are governed</b>You can preview a write before it lands.</div>
-        <div class="dx-note"><b>.raw always rides along</b>The vendor payload stays under <span style="font-family:var(--mono)">.raw</span>.</div>
-        <div class="dx-note"><b>Same-day sandbox</b>Seeded sandbox. First call the same day.</div>
-      </div>
-    </div>
-  </section>
-  <section class="dark pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Also over MCP</p>
-        <h2>The same model over MCP</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">REST and MCP use the same model.</p>
-      </div>
-      <div class="mcp-grid">
-        <div class="mcp-card bad">
-          <small>Raw MCP servers</small>
-          <b>Agents pointed straight at vendor APIs</b>
-          <p>Every tool call is a live vendor request. It spends the shared rate budget.</p>
-        </div>
-        <div class="mcp-card good">
-          <small>Bitlync MCP</small>
-          <b>Sync-backed and governed</b>
-          <p>Reads come from the same store as the API. The write tools that exist use the same checks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="pad">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">One normalized read</p>
-        <h2>Same status. Every PSA.</h2>
-      </div>
-      <div class="tix">
-        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
-        <div class="tix-scroll">
-        <table>
-          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
-          <tbody>
-            <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td></tr>
-            <tr><td class="src">autotask</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
-            <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-      <p class="disclaim">Three PSAs, one normalized read</p>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">The connect experience</p>
-        <h2>MSPs connect themselves.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">MSPs paste keys in a guided flow. We catch a missing permission before it becomes a ticket on your service desk.</p>
-      </div>
-      <div class="grid g3">
-        <div class="card">
-          <h3>Guided, in-flow</h3>
-          <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
-        </div>
-        <div class="card">
-          <h3>Validated before it ships</h3>
-          <p class="quiet" style="margin:0 0 2px">Each key is tested. Bad setup is caught in the flow.</p>
-          <div class="mini-probe" aria-label="Example validation probe output">
-            <div class="row p-ok">✓ authentication</div>
-            <div class="row p-bad">✕ missing: Service Desk — Add</div>
-            <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
-            <div class="row p-ok">✓ all 6 scopes verified</div>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Hosted, credential-isolated</h3>
-          <p class="quiet" style="margin:0">Keys stay on Bitlync. They do not touch your frontend.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Operated, not just hosted</p>
-        <h2>See every connection. Read the log.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">Health on the MSP. Every read and write in a log you can open.</p>
-      </div>
-      <div class="ops-grid">
-        <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
-          <div class="ops-head"><span>your MSP connections</span></div>
-          <div class="ops-row">
-            <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
-            <span class="st ok"><i></i>healthy</span>
-          </div>
-          <div class="ops-row">
-            <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
-            <span class="st ok"><i></i>healthy</span>
-          </div>
-          <div class="ops-row">
-            <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
-            <span class="st deg"><i></i>degraded</span>
-          </div>
-        </div>
-      </div>
-            <p class="sub" style="margin:22px auto 0;text-align:center"><a class="btn ghost" href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Upvote an issue to vote.</a></p>
     </div>
   </section>
 </div>
@@ -2162,7 +1914,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </footer>
 <script>
 (function(){
-  var pages=['home','product','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
+  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
@@ -2189,6 +1941,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(connectors.indexOf(slug)>=0) return {page:'integrations',docs:'docs',anchor:null,connector:slug};
       return {page:'home',docs:'docs',anchor:null,connector:null};
     }
+    if(h==='product') return {page:'solutions-product',docs:'docs',anchor:null,connector:null};
     if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
     if(h.indexOf('solutions/')===0){
       var slug=h.slice(10);
@@ -2209,6 +1962,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   }
 
   function show(hash){
+    if((hash||'').replace('#','')==='product'){ history.replaceState(null,'','#solutions/product'); hash='#solutions/product'; }
     var st=parse(hash);
     var cur=document.querySelector('.page.on');
     pages.forEach(function(p){
