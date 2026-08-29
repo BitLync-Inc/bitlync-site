@@ -239,6 +239,13 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .ea-form .ea-intent label{display:flex;align-items:center;gap:8px;margin:0;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:15px;color:var(--ink)}
 .ea-form .ea-hp{position:absolute;left:-9999px;height:0;overflow:hidden}
 .ea-form .btn{margin-top:18px;align-self:flex-start}
+.ea-form .ea-agree{display:flex;align-items:flex-start;gap:10px;margin:18px 0 0;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:15px;color:var(--ink);font-weight:400}
+.ea-form .ea-agree a{text-decoration:underline}
+.ea-form .ea-agree input{margin-top:3px;flex:none}
+.legal{max-width:42rem}
+.legal h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:-.02em;line-height:1.1;margin:0 0 20px}
+.legal h2{font-family:var(--sans);font-size:15px;font-weight:600;margin:28px 0 8px;letter-spacing:0}
+.legal p{margin:0 0 12px;line-height:1.55}
 footer{border-top:1px solid var(--hair);padding:28px 0;color:var(--mute);font-size:13px}
 body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -1193,6 +1200,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </div>
           <label for="ea-msg">Message</label>
           <textarea id="ea-msg" name="message"></textarea>
+          <label class="ea-agree">
+            <input type="checkbox" name="agree" required>
+            I agree to the <a href="#terms" data-nav="terms">Customer Terms</a> and <a href="#privacy" data-nav="privacy">Privacy Notice</a>
+          </label>
+          <input type="hidden" name="terms_accepted" value="yes">
           <button type="submit" class="btn">Send</button>
         </form>
       </div>
@@ -2004,15 +2016,178 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   </div>
 </div>
 </main>
+<div class="page" id="page-terms">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">Legal</p>
+      <h1>Customer Terms</h1>
+      <p>These Customer Terms are between Bitlync, Inc., a Delaware corporation (“Bitlync,” “we,” “us”) and the company that accepts them (“Customer,” “you”).</p>
+      <p>You are buying the Service for your own product. You are not a reseller of Bitlync.</p>
+      <p>These Terms are accepted by clickwrap. There is no signature. You accept by checking the box on Contact us, or on any later screen where we issue a key, that says you agree to these Terms and the Privacy Notice. You cannot send that form or receive a key without the box. A click on behalf of a company means that person can bind the company.</p>
+      <p>If you later sign a written order with us, that order wins over this page where they conflict.</p>
+      <p>Early access and sandbox use these Terms. There is no public SLA.</p>
+      <h2>1. Words we use</h2>
+      <p>Customer — the software company (ISV) that embeds Bitlync.</p>
+      <p>Customer Application — your product.</p>
+      <p>MSP — your customer. They run IT for other companies. They paste keys to connect their stack. They are not buying Bitlync from us.</p>
+      <p>End Customer — the MSP’s client, the company in the PSA.</p>
+      <p>Vendor Application — a tool the MSP already runs (a PSA, RMM, documentation tool, distributor, or customer-success tool).</p>
+      <p>Service — our hosted API, store, vault, logs, docs, and site.</p>
+      <p>Customer Data — your account: names, emails, keys we issue, how you call the API.</p>
+      <p>MSP Data — the MSP’s keys, grants, and the tenant objects we sync or write for them.</p>
+      <h2>2. What you get</h2>
+      <p>We grant you a limited, non-exclusive, non-transferable right to use the Service with your Customer Application while these Terms last, as the docs describe.</p>
+      <p>The Service lets your application talk to Vendor Applications through us, so MSP Data can move as the MSP allowed and as you instructed.</p>
+      <p>Coverage is what the docs list today. We do not promise a vendor, object, or write that is not there.</p>
+      <p>Sandbox tenants are fixture data, labeled sandbox. They are not a live MSP.</p>
+      <h2>3. What you may not do</h2>
+      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us; use the Service for fraud or anything illegal.</p>
+      <h2>4. What we do</h2>
+      <p>We host the API. We hold MSP keys in a vault so you do not. We sync into a per-tenant store. We pace writes and keep an append-only log.</p>
+      <p>Support can diagnose. Support cannot change an MSP’s setup or use the vault to act as the MSP.</p>
+      <p>If an MSP revokes, or asks us to stop, we cut that connection and stop using those keys, even if you still have an API key.</p>
+      <h2>5. What you must do</h2>
+      <p>You will tell each MSP, before they paste keys, that Bitlync will hold their credentials and process their tenant data so your product can work.</p>
+      <p>You will only connect MSPs who agreed to that.</p>
+      <p>You will keep your key secret. You are responsible for calls made with it.</p>
+      <p>You will use the Service as the docs say, and as law requires.</p>
+      <h2>6. Data</h2>
+      <p>You grant us a limited right to process Customer Data and MSP Data only to provide the Service.</p>
+      <p>We do not sell MSP Data. We do not aggregate MSP Data to publish or sell. We do not use it to train a public model. We do not share MSP names with vendors to build a marketplace.</p>
+      <p>We do not create the customer in a PSA. The MSP creates them there. That is where their contract lives. We map to a customer that already exists. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+      <p>We do not mint an agreement header. We do not write devices. Close on a ticket we created stays off unless the MSP turns it on.</p>
+      <p>A later DPA, if we issue one, is part of these Terms for MSP Data.</p>
+      <p>Per-tenant encryption. Isolated. SOC 2 is in progress. We do not claim a completed report.</p>
+      <h2>7. Fees</h2>
+      <p>Early access may have no fee. If we charge, we will say the amount in writing first. There is no price on the site today.</p>
+      <p>Fees are exclusive of tax. You pay tax on your purchase unless you give a valid exemption.</p>
+      <h2>8. How long this lasts</h2>
+      <p>These Terms start when you accept or first use a key.</p>
+      <p>You may stop and ask us to revoke your keys at any time.</p>
+      <p>We may suspend or end access if you do not pay a fee that is due, if you breach and do not fix it in 15 days of notice, or immediately for fraud, a security risk, or law.</p>
+      <p>When this ends, your right to call the API ends. On written request we will delete Customer Data and MSP Data we processed for you, except what we must keep for law, security, or a dispute. Backups age out.</p>
+      <h2>9. Confidentiality</h2>
+      <p>Each side keeps the other side’s non-public information confidential and uses it only to perform these Terms. Keys and MSP Data are confidential.</p>
+      <p>This does not cover what is public through no fault of the receiver, what the receiver already had, or what law requires. Give notice if you can when law requires a disclose.</p>
+      <h2>10. Who owns what</h2>
+      <p>We own the Service. You own your product and Customer Data. The MSP owns MSP Data.</p>
+      <p>If you send feedback, we may use it. You do not have to send any.</p>
+      <p>You may not use our name to imply we built your product.</p>
+      <h2>11. Warranties</h2>
+      <p>Each side says it can enter these Terms.</p>
+      <p>You say you have the right to send us Customer Data and to ask an MSP to connect.</p>
+      <p>THE SERVICE IS PROVIDED “AS IS.” WE DISCLAIM IMPLIED WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT, TO THE EXTENT LAW ALLOWS. We do not warrant that the Service is error-free, always up, or a match for a live vendor tenant.</p>
+      <h2>12. Indemnity</h2>
+      <p>We will defend you against a third-party claim that the Service, used as we documented, infringes their IP, and we will pay the damages and reasonable fees finally awarded. We do not cover a claim about data you or an MSP sent, or a mix we did not supply.</p>
+      <p>You will defend us against a third-party claim that arises from a use we forbade, from you lacking the right to connect an MSP, or from a government claim that your instructions broke law.</p>
+      <p>The side being defended will give prompt notice and reasonable help. The defending side runs the defense. No settlement that admits fault or pays the other side’s money without their written OK.</p>
+      <h2>13. Liability</h2>
+      <p>Neither side is liable for indirect, special, or consequential damages, or lost profits, even if told they were possible.</p>
+      <p>Each side’s total liability is the fees you paid us in the twelve months before the claim, or one hundred US dollars, whichever is greater.</p>
+      <h2>14. Changes</h2>
+      <p>We may update these Terms. A material change takes effect 30 days after we email you or post it, unless law or security requires faster. If you do not agree, stop and ask us to delete the account. Use after that date is acceptance.</p>
+      <h2>15. Law</h2>
+      <p>Delaware law, without conflict rules. Courts in Delaware. Either side may seek an injunction where the other is found.</p>
+      <h2>16. Other</h2>
+      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: rburtonprospect@gmail.com until we publish a legal address. Notices to you: the email on your account.</p>
+      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001 · rburtonprospect@gmail.com</p>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-privacy">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">Legal</p>
+      <h1>Privacy Notice</h1>
+      <p>This notice is for people at an ISV who use the site or the API, and people at an MSP who paste keys.</p>
+      <h2>1. Who we are</h2>
+      <p>Bitlync, Inc. is a Delaware company. We sell a hosted API to software companies (ISVs). An MSP connects their own tools. We hold those keys in a vault.</p>
+      <p>Mailing address: 12099 Araglin Ct, Dubuque, Iowa 52001. Email: rburtonprospect@gmail.com until we publish a privacy mailbox.</p>
+      <h2>2. The people in the data</h2>
+      <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
+      <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
+      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. We do not create them in the PSA. We do not sell to them.</p>
+      <h2>3. What we collect and why</h2>
+      <p>Contact and account. Name, email, company, intent, optional day and time, message. Why: early access, a key, an answer.</p>
+      <p>API use. Times, routes, tenant ids, status codes, key id. Why: run the Service, pace writes, audit.</p>
+      <p>Vault. MSP credentials and named permissions. Why: so the ISV never holds the secret, and so a missing permission is named in the connect flow.</p>
+      <p>Tenant data. Objects the MSP granted. Why: store-served reads and the writes the ISV sends.</p>
+      <p>Site. Normal web logs when you load www.bitlync.com. No ad pixel today.</p>
+      <p>We do not take cards on the site today. We do not collect from children on purpose.</p>
+      <h2>4. What we do not do</h2>
+      <p>We do not sell personal data. We do not sell or aggregate tenant data. We do not create a customer in a PSA. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
+      <h2>5. Who we share with</h2>
+      <p>Only as needed to run the Service, as the ISV or MSP instructed, or as law requires.</p>
+      <p>Processors we actually use today: Formsubmit (Contact us mail), GitHub Pages (the website). The production API host is not chosen. We will name it here when it is.</p>
+      <h2>6. How long</h2>
+      <p>Account and form mail: while the ISV is active, then as long as tax, security, or a dispute requires.</p>
+      <p>Vault and tenant data: until the MSP revokes or someone asks us to delete, then until backups age out. The log may keep that a delete happened.</p>
+      <h2>7. Security</h2>
+      <p>Per-tenant encryption. Isolated. Append-only audit. Support is read-only. SOC 2 in progress. Not certified.</p>
+      <p>If we confirm a breach of personal data we hold, we tell the ISV and, where law says so, the people affected, as soon as we reasonably can.</p>
+      <h2>8. Your choices</h2>
+      <p>ISV: email rburtonprospect@gmail.com for a copy, a fix, or a delete of account data.</p>
+      <p>MSP: revoke the grant. That is the main switch. You can also email us.</p>
+      <h2>9. Where the data sits</h2>
+      <p>We are in the United States.</p>
+      <h2>10. Changes</h2>
+      <p>We will date an update. For a material change we email the ISV address we have.</p>
+      <h2>11. Contact</h2>
+      <p>Bitlync, Inc., 12099 Araglin Ct, Dubuque, Iowa 52001. rburtonprospect@gmail.com.</p>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-connect-terms">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">Legal</p>
+      <h1>MSP Connect Terms</h1>
+      <p>You are the MSP. You are connecting your tools so a software company you already use (your Vendor) can work against your stack through Bitlync.</p>
+      <p>You are not buying Bitlync. Your Vendor is. These terms are only about the connection and the keys we hold.</p>
+      <p>These terms are accepted by clickwrap. There is no signature. You accept by checking the box in the connect flow, before you paste keys. You cannot connect without the box. If you do not agree, do not paste keys.</p>
+      <h2>1. Who is who</h2>
+      <p>You — the MSP. You paste keys. You can revoke them.</p>
+      <p>Your Vendor — the ISV whose product you use. They buy Bitlync. They call our API.</p>
+      <p>Bitlync — the service in the middle. We hold your keys in a vault. We copy allowed data into a store so your Vendor can read one shape. We send the writes your Vendor asks for, if you granted that.</p>
+      <p>A Vendor Application — a tool you already run.</p>
+      <p>Your clients — the companies in your PSA. We do not sell to them. We do not create them in your PSA.</p>
+      <h2>2. What we do with your keys and data</h2>
+      <p>When you connect, you give us permission to: hold the credentials you paste, in a vault your Vendor never sees; check that the permission we need is on the key, and name a miss in the flow; copy the objects you granted into our store; let your Vendor read and write those objects through our API, only as you granted; keep an append-only log.</p>
+      <p>We do not use your data for anything else. We do not sell it. We do not aggregate it. We do not train a public model on it.</p>
+      <p>We do not create a customer in your PSA. You create them there. That is where the contract lives. Until they are in the PSA, they are not your customer.</p>
+      <p>We do not mint an agreement. We do not write devices. We do not take over your tickets.</p>
+      <p>Our support can look at a log to diagnose. It cannot change your setup or use your keys.</p>
+      <h2>3. What you must do</h2>
+      <p>You say you have the right to share these keys and this tenant.</p>
+      <p>You will not use the connect flow to break the Service, copy it, or do something illegal.</p>
+      <p>If a key leaks, revoke it here and rotate it there.</p>
+      <h2>4. How you stop</h2>
+      <p>You can revoke a grant at any time. We stop using those keys.</p>
+      <p>The connection also ends if your Vendor’s Bitlync account ends.</p>
+      <p>If you break these terms and do not fix it in 30 days after we tell you, we may cut the connection.</p>
+      <p>After it ends, we delete the vault data and the tenant data for that grant when asked, and otherwise as backups age out.</p>
+      <h2>5. Who owns what</h2>
+      <p>You own your data and your keys. We own the Service. While the connection is on, you let us process your data for your Vendor, as you granted.</p>
+      <h2>6. No extra promises</h2>
+      <p>The connection is provided as is. SOC 2 is in progress. We do not claim we are certified.</p>
+      <p>Your contract for the Vendor’s product is with the Vendor, not with us.</p>
+      <h2>7. Changes</h2>
+      <p>We may change these terms. A material change waits 30 days after we post it or your Vendor tells you, unless security or law requires faster. If you do not agree, revoke.</p>
+      <h2>8. Law</h2>
+      <p>Delaware law. Courts in Delaware.</p>
+      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001 · rburtonprospect@gmail.com</p>
+    </div>
+  </section>
+</div>
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · private beta</span>
-    <span><a href="#docs" data-nav="docs">Docs</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#connect-terms" data-nav="connect-terms">MSP Connect Terms</a> · <a href="#docs" data-nav="docs">Docs</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
+  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
@@ -2067,7 +2242,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
