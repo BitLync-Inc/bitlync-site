@@ -328,7 +328,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   html{scroll-behavior:auto}
 }
 
-.docs-tree .nest{display:flex;flex-direction:column;gap:0;padding:0 0 8px 12px;width:100%;max-width:100%;overflow-x:clip}
+.docs-tree .nest{display:flex;flex-direction:column;gap:0;padding:0 0 8px 12px;width:100%;max-width:100%;overflow:visible}
 .docs-tree .nest a{font-size:12.5px;padding:4px 0;overflow-wrap:anywhere}
 .toc{display:flex;flex-wrap:wrap;gap:8px 16px;margin:8px 0 20px;max-width:100%;overflow-x:clip}@media(max-width:899px){.toc{display:none}}
 .toc a{font-family:var(--mono);font-size:12px;color:var(--dmute);overflow-wrap:anywhere}
@@ -337,9 +337,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .concept h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,3.6vw,30px);letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
 .concept .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--acid);margin:14px 0 6px}
 @media(max-width:899px){
-  .docs-shell,.docs-tree,.dpanel{overflow-x:clip;max-width:100%}
-  .docs-tree .nest{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:2px 14px;padding:0 0 8px}
-  .docs-tree .nest a{display:inline;padding:4px 0}
+  .docs-shell,.docs-tree{overflow:visible;max-width:100%}
+  .dpanel{overflow-x:clip;max-width:100%}
+  .docs-tree .nest{flex:1 1 100%;width:100%;flex-direction:column;flex-wrap:nowrap;gap:0;padding:0 0 8px}
+  .docs-tree .nest a{display:block;padding:4px 0}
+  .docs-folder{flex:1 1 100%;width:100%}
   .concept,.concept .code,.concept pre{overflow-x:clip;max-width:100%}
 }
 
@@ -1101,8 +1103,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad">
     <div class="wrap">
       <p class="kicker">Early access</p>
-      <h2>Build this with us.</h2>
-      <p class="sub">We reply with the keys when you're accepted. We share pricing when we talk.</p>
+      <h2>Contact us.</h2>
+      <p class="sub">We share pricing when we talk. We reply with the keys when you're accepted.</p>
       <div class="form-band">
         <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Bitlync — Request Early Access"></iframe>
       </div>
@@ -2012,12 +2014,15 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var link=document.querySelector('.docs-fold-body a[href="#'+st.anchor+'"]');
       if(link) target=link.closest('.docs-folder');
     }
+    if(!target) return;
     document.querySelectorAll('.docs-fold').forEach(function(btn){
       setDocsFolder(btn, btn.closest('.docs-folder')===target);
     });
   }
   document.querySelectorAll('.docs-fold').forEach(function(btn){
-    btn.addEventListener('click',function(){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
       var open=btn.getAttribute('aria-expanded')==='true';
       closeDocsFolders();
       if(!open) setDocsFolder(btn, true);
