@@ -1951,12 +1951,20 @@ dry_run ticket create is REST-only.</pre>
   <div class="docs-hero">
     <p class="kicker">Use cases</p>
     <h1>The paths.</h1>
-    <p class="lede">Alert to ticket, customer map, time on a linked ticket, close with evidence. Device inventory is not a use case.</p>
+    <p class="lede">The jobs. Alert to ticket through check an asset.</p>
   </div>
-  <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket only. Close stays off unless the MSP turns it on. Not two-way. We do not watch the MSP close or edit. Incident and approval sit on this path.</p></article>
-  <article class="uc"><h3>2. Map customers</h3><p class="note">Sure match auto-maps. A leftover PSA company is an ask. Ambiguous stays unmatched. Creating it in the ISV returns 501.</p></article>
-  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">POST hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
-  <article class="uc"><h3>4. Close with evidence</h3><p class="note">On tickets Bitlync created: append evidence, or close if the MSP turned that on. Close defaults off. Fixtures and dry_run. Not two-way ticketing.</p></article>
+  <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket.</p></article>
+  <article class="uc"><h3>2. Map and create customers</h3><p class="note">Sure match auto-maps. A leftover is an ask. * We do not create the customer in every system.</p></article>
+  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
+  <article class="uc"><h3>4. Billing reconciliation</h3><p class="note">Read agreements and lines. Write lines on an existing agreement.</p></article>
+  <article class="uc"><h3>5. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
+  <article class="uc"><h3>6. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
+  <article class="uc"><h3>7. Add to an existing project</h3><p class="note">Add notes or items on a project that already exists.</p></article>
+  <article class="uc"><h3>8. Create an order</h3><p class="note">Place a third-party licensing order.</p></article>
+  <article class="uc"><h3>9. Write a document</h3><p class="note">Write into the MSP's documentation tool.</p></article>
+  <article class="uc"><h3>10. Read devices</h3><p class="note">Pull the device roster.</p></article>
+  <article class="uc"><h3>11. Software inventory</h3><p class="note">Pull installed software.</p></article>
+  <article class="uc"><h3>12. Check an asset</h3><p class="note">Pull the documented asset.</p></article>
 </div>
 <div class="dpanel" id="d-docs-libraries">
   <div class="docs-hero">
