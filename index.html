@@ -796,6 +796,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <h3>Guided, in-flow</h3>
           <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
           <div class="connect-win" aria-label="Simulated connect flow">
+        <p class="disclaim">Mockup. Simulated data.</p>
             <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connect</span></div>
             <div class="cn-tabs" role="tablist">
               <button class="cn-tab" type="button" role="tab" id="cn-tab-tool" aria-selected="true" aria-controls="cn-pane-tool">Tool</button>
@@ -825,6 +826,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <h3>Hosted, MSP-managed</h3>
           <p class="quiet" style="margin:0">Keys stay on Bitlync. The MSP manages and can revoke them. They do not touch your frontend.</p>
           <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
+        <p class="disclaim">Mockup. Simulated data.</p>
         <div class="pm-head">your connections</div>
         <div class="pm-row">
           <i>CW</i>
@@ -920,26 +922,23 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Sales</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
-      <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
-        <p class="sub">Sellers love to sell a roadmap, but roadmaps do not close deals. Without an integration into their stack, the deal stalls.</p>
+        <p class="sub">Without an integration into their stack, the deal stalls. A roadmap does not close it.</p>
         <a class="btn" href="#partners" data-nav="partners">Request early access</a>
         <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
+        <h2>The question is the deal</h2>
+        <p class="sub">They ask if you integrate with their PSA. The answer is yes. They do not have to build it. You do not lose the room.</p>
+        <h2>Why it matters</h2>
+        <p class="sub">A missing connector stalls the cycle. A weaker product that already has it can take the deal. This market buys on integrations.</p>
+        <h2>Proof</h2>
+        <p class="sub">These tiles are the stack you can say yes to. ConnectWise, HaloPSA, Autotask, NinjaOne, Datto RMM, ScalePad, Pax8, IT Glue, and Hudu. Open a tile for what it covers.</p>
       </div>
     </div>
     </div>
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap">
-      <div style="max-width:42rem">
-        <h2>Faster cycles</h2>
-        <p class="sub">They connect the stack they already run. The cycle does not wait on a custom build.</p>
-
-        <h2>Stay competitive</h2>
-        <p class="sub">Point them at the connectors that exist. A weaker product does not win just because it already has the integration.</p>
-
-      </div>
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
           <ul class="objs">
@@ -1038,6 +1037,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <h2>The log</h2>
       </div>
       <div class="portal-mock" aria-label="Mockup of the connection portal">
+        <p class="disclaim">Mockup. Simulated data.</p>
         <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connections</span></div>
         <div class="pm-block">
           <div class="pm-row">
@@ -1144,6 +1144,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub" style="margin-left:auto;margin-right:auto">A permissions page. Not another app to manage.</p>
       </div>
       <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
+        <p class="disclaim">Mockup. Simulated data.</p>
         <div class="pm-head">your connections</div>
         <div class="pm-row">
           <i>CW</i>
@@ -1167,6 +1168,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Contact</p>
       <h2>Contact us.</h2>
+      <p class="lede">Bitlync is in stealth. We’re taking a small number of paid design partners ahead of general availability.</p>
+      <p class="sub">You sell software to MSPs. They already picked a stack. A missing PSA integration stalls the deal, or loses it to a worse product that has the connector. We built one API so you write once and connect to many.</p>
       <div class="form-band">
         <form class="ea-form" action="https://formsubmit.co/rburtonprospect@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Bitlync early access">
@@ -1270,7 +1273,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a>
       <a href="#docs-use-cases" data-docs="docs-use-cases">Use cases</a>
       <a href="#docs-replace-existing" data-docs="docs-replace-existing">Migrations</a>
-      <a href="#docs-libraries" data-docs="docs-libraries">Libraries</a>
       <a href="#docs-reference" data-docs="docs-reference">Reference</a>
     </nav>
     <div class="docs-main">
@@ -1874,7 +1876,7 @@ dry_run ticket create is REST-only.</pre>
     <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
     <tbody>
       <tr id="ref-agreements"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/agreements</code></td><td>Store-served. 501 when the connector does not support agreements. We do not mint a header.</td></tr>
-      <tr id="ref-devices"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>Device inventory lives here. It is not a use case.</td></tr>
+      <tr id="ref-devices"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>Store-served device list.</td></tr>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/applications</code></td><td></td></tr>
       <tr id="ref-audit"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/audit</code></td><td></td></tr>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/connections</code></td><td></td></tr>
@@ -1915,7 +1917,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-device">
     <h3>Device</h3>
-    <p class="note">GET /tenants/{tenant_id}/devices. Inventory is not a use case. The route lives here.</p>
+    <p class="note">GET /tenants/{tenant_id}/devices.</p>
     <div class="fields">
       <button type="button" data-goto="ref-devices" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/devices&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">source</button>
       <button type="button" data-goto="ref-devices" data-copy="{&quot;hostname&quot;:&quot;front-desk-01&quot;,&quot;online&quot;:true,&quot;source&quot;:&quot;rmm&quot;}">hostname</button>
@@ -1978,35 +1980,7 @@ dry_run ticket create is REST-only.</pre>
   <article class="uc"><h3>11. Software inventory</h3><p class="note">Pull installed software.</p></article>
   <article class="uc"><h3>12. Check an asset</h3><p class="note">Pull the documented asset.</p></article>
 </div>
-<div class="dpanel" id="d-docs-libraries">
-  <div class="docs-hero">
-    <p class="kicker">Libraries</p>
-    <h1>curl, Python, TypeScript.</h1>
-    <p class="lede">curl plus bitlync_client in clients/python (not published) and clients/typescript (not published). Use $BITLYNC_BASE only.</p>
-  </div>
-  <article>
-    <h3 style="font-family:var(--serif);font-size:26px">curl</h3>
-    <div class="code"><div class="hd"><b>curl</b><button class="copy" type="button" data-copy="curl -s &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot;">Copy</button></div><pre>curl -s "$BITLYNC_BASE/tenants/sandbox-mainstreet/tickets" \
-  -H "X-API-Key: $BITLYNC_KEY"</pre></div>
-  </article>
-  <article>
-    <h3 style="font-family:var(--serif);font-size:26px">Python</h3>
-    <p class="note">Package name <code class="inline">bitlync_client</code> in <code class="inline">clients/python</code>. In-repo. Not published.</p>
-    <div class="code"><div class="hd"><b>bitlync_client</b><span>clients/python · not published</span></div><pre>from bitlync_client import Client
-
-client = Client(base="$BITLYNC_BASE", api_key="blk_…")
-tickets = client.tickets.list(tenant_id="sandbox-mainstreet")</pre></div>
-  </article>
-  <article>
-    <h3 style="font-family:var(--serif);font-size:26px">TypeScript</h3>
-    <p class="note">In-repo at <code class="inline">clients/typescript</code>. Not published.</p>
-    <div class="code"><div class="hd"><b>TypeScript</b><span>clients/typescript · not published</span></div><pre>import { Client } from "./clients/typescript"
-
-const client = new Client({ apiKey: "blk_…" })
-const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
-  </article>
-</div>
-      <div class="btn-row" style="margin:36px 0 0">
+<div class="btn-row" style="margin:36px 0 0">
         <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
         <a class="btn" href="#docs-reference" data-docs="docs-reference">Reference</a>
         <a class="btn" href="#partners" data-nav="partners">Request a key</a>
@@ -2180,16 +2154,32 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     </div>
   </section>
 </div>
+<div class="page" id="page-changelog">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">Legal</p>
+      <h1>Changelog</h1>
+      <p>What shipped. Newest first.</p>
+      <h2>2026-08-28</h2>
+      <p>Customer Terms, Privacy Notice, and MSP Connect Terms. Contact us requires the terms box.</p>
+      <p>Docs Use cases: twelve cards. Import, map, and create customers (we do not create the customer in a PSA).</p>
+      <h2>2026-08-26</h2>
+      <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0.</p>
+      <p>Public ScalePad category is Customer Success.</p>
+      <p>Roadmap votes are <a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">GitHub issues labeled roadmap</a> on rburton-84/bitlync-site.</p>
+    </div>
+  </section>
+</div>
 <footer>
   <div class="wrap foot">
-    <span>© 2026 Bitlync · private beta</span>
-    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">Docs</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span>© 2026 Bitlync · stealth · private beta</span>
+    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">Docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms'];
-  var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
+  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog'];
+  var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
     'docs-device':'docs-reference','docs-agreement':'docs-reference',
@@ -2207,7 +2197,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:h,connector:null};
     if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null,connector:null};
     if(h==='developers'||h==='guides'||h==='api'||h==='libraries'||h==='dictionary'){
-      var map={developers:'docs',guides:'docs-quickstart',api:'docs-reference',libraries:'docs-libraries',dictionary:'docs-concepts'};
+      var map={developers:'docs',guides:'docs-quickstart',api:'docs-reference',libraries:'docs-quickstart',dictionary:'docs-concepts'};
       return {page:'docs',docs:map[h],anchor:null,connector:null};
     }
     if(h.indexOf('integrations/')===0){
@@ -2243,7 +2233,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
@@ -2270,6 +2260,40 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     }
 
   
+
+    var homeTitle='Bitlync. Write once. Connect to many.';
+    var homeDesc='Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget.';
+    var pageMeta={
+      home:[homeTitle,homeDesc],
+      integrations:['Connectors \u00b7 Bitlync','Coverage by vendor. What we pull and write today.'],
+      solutions:['Solutions \u00b7 Bitlync','Who Bitlync is for.'],
+      'solutions-product':['Product \u00b7 Bitlync','Ship without parking the roadmap on each PSA.'],
+      'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
+      'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
+      'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
+      msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
+      partners:['Contact us \u00b7 Bitlync','Bitlync is in stealth. Paid design partners ahead of general availability.'],
+      docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
+      terms:['Customer Terms \u00b7 Bitlync','Customer Terms for Bitlync, Inc.'],
+      privacy:['Privacy Notice \u00b7 Bitlync','Privacy Notice for people at an ISV and people at an MSP who paste keys.'],
+      'connect-terms':['MSP Connect Terms \u00b7 Bitlync','Terms for the MSP connection and the keys we hold.'],
+      changelog:['Changelog \u00b7 Bitlync','What actually shipped. Newest first.']
+    };
+    var docsMeta={
+      docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
+      'docs-concepts':['Concepts \u00b7 Bitlync Docs','Reads, writes, identity, trust, errors, sandbox.'],
+      'docs-quickstart':['Quickstart \u00b7 Bitlync Docs','Hosts and keys. Call a seeded tenant.'],
+      'docs-replace-existing':['Migrations \u00b7 Bitlync Docs','Replace existing vendor clients with Bitlync.'],
+      'docs-coverage':['Coverage \u00b7 Bitlync Docs','What each connector pulls and writes.'],
+      'docs-reference':['Reference \u00b7 Bitlync Docs','Routes and objects.'],
+      'docs-what-we-write':['What we write \u00b7 Bitlync Docs','Locks and nevers on writes.'],
+      'docs-use-cases':['Use cases \u00b7 Bitlync Docs','The jobs. Alert to ticket through check an asset.']
+    };
+    var pair=pageMeta[st.page]||[homeTitle,homeDesc];
+    if(st.page==='docs' && docsMeta[st.docs]) pair=docsMeta[st.docs];
+    document.title=pair[0];
+    var descEl=document.querySelector('meta[name="description"]');
+    if(descEl) descEl.setAttribute('content', pair[1]);
   function setDocsFolder(btn, open){
     btn.setAttribute('aria-expanded', open?'true':'false');
     var body=document.getElementById(btn.getAttribute('aria-controls'));
@@ -2318,32 +2342,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     }
     if(!codes.length){ rail.hidden=true; return; }
     rail.hidden=false;
-    if(st.docs==='docs-libraries' && codes.length>1){
-      var tabs=document.createElement('div');
-      tabs.className='rail-tabs';
-      var labels=['curl','Python','TypeScript'];
-      var clones=[];
-      codes.forEach(function(c,i){
-        var b=document.createElement('button');
-        b.type='button';
-        b.className='rail-tab';
-        b.textContent=labels[i]||('tab '+(i+1));
-        b.setAttribute('aria-selected', i===0?'true':'false');
-        tabs.appendChild(b);
-        var cl=c.cloneNode(true);
-        cl.hidden=i!==0;
-        clones.push(cl);
-      });
-      rail.appendChild(tabs);
-      clones.forEach(function(cl){ rail.appendChild(cl); });
-      tabs.querySelectorAll('button').forEach(function(b,i){
-        b.addEventListener('click',function(){
-          tabs.querySelectorAll('button').forEach(function(x,j){ x.setAttribute('aria-selected', j===i?'true':'false'); });
-          clones.forEach(function(cl,j){ cl.hidden=j!==i; });
-        });
-      });
-      return;
-    }
     codes.forEach(function(c){ rail.appendChild(c.cloneNode(true)); });
   }
     fillDocsRail();
