@@ -5,18 +5,17 @@ One API for ISVs. Write once. Connect to many MSPs.
 Human docs: https://www.bitlync.com/#docs
 Site: https://www.bitlync.com/
 
-## Do not invent hosts, keys, or coverage
+## Sandbox
 
-- There is no public sandbox URL on this page.
-- There is no public sandbox host on this page.
-- No public sandbox URL. No production host printed here.
-- Connectors on this site run against a seeded sandbox, not a production AWS tenant.
-- There is no public live-read URL on this page.
-- No public live-read URL. No live-read host on this page.
+- Public sandbox host: https://bitlync-sandbox-demo.onrender.com
+- Demo key is on https://www.bitlync.com/#docs-quickstart
+- Fixture data only. Not a customer tenant. Not production AWS.
+- GET /tenants/sandbox-mainstreet/tickets returns 200 and sandbox: true.
+- There is no public live-read URL for a real MSP.
+- No production host printed here besides the sandbox.
 - This page does not document a vendor daily cap.
 - No public ops host on this page.
 - There is no public MCP host.
-- Use $BITLYNC_BASE as the host placeholder. Hosts and keys are shared when you're accepted.
 - The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.
 
 ## Writes and refusals
