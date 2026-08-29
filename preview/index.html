@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
 <title>Bitlync. Write once. Connect to many.</title>
 <meta name="description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
 <link rel="canonical" href="https://www.bitlync.com/preview/"/>
@@ -2013,6 +2014,7 @@ dry_run ticket create is REST-only.</pre>
       if(connectors.indexOf(slug)>=0) return {page:'integrations',docs:'docs',anchor:null,connector:slug};
       return {page:'home',docs:'docs',anchor:null,connector:null};
     }
+    if(h==='pricing'||h==='contact') return {page:'partners',docs:'docs',anchor:null,connector:null};
     if(h==='product') return {page:'solutions-product',docs:'docs',anchor:null,connector:null};
     if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
     if(h.indexOf('solutions/')===0){

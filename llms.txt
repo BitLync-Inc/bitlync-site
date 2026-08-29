@@ -2,7 +2,7 @@
 
 One API for ISVs. Write once. Connect to many MSPs.
 
-Human docs: https://www.bitlync.com/preview/#docs
+Human docs: https://www.bitlync.com/#docs
 Site: https://www.bitlync.com/
 
 ## Do not invent hosts, keys, or coverage
