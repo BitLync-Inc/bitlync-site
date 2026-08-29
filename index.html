@@ -435,12 +435,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 @media(min-width:900px){.sol-wins{grid-template-columns:1fr 1fr 1fr}}
 .sol-wins h2{margin:0 0 8px}
 .sol-wins .sub{margin:0;max-width:none}
-.sol-cites{max-width:46rem;margin:0 0 28px}
+.sol-cites{margin:0 0 28px}
 .sol-cites h2{margin:0 0 16px}
-.sol-cites .sub{margin:0 0 8px}
-.sol-cites .cite{margin:0 0 16px;font-size:14px;color:var(--mute)}
-.sol-cites .cite a{text-decoration:underline}
-.sol-cites .cite + .sub{margin-top:8px}
+.sol-quotes{display:grid;grid-template-columns:1fr;gap:22px 28px}
+@media(min-width:900px){.sol-quotes{grid-template-columns:1fr 1fr}}
+.sol-quotes blockquote{margin:0;padding:0;border:0}
+.sol-quotes blockquote p{font-family:var(--serif);font-style:normal;font-size:clamp(20px,2.3vw,26px);letter-spacing:-.02em;line-height:1.25;margin:0 0 10px;color:var(--ink)}
+.sol-quotes footer{font-size:13px;color:var(--mute);margin:0}
+.sol-quotes footer a{text-decoration:underline;color:var(--ink)}
 .page[id^="page-solutions"] h2{margin:22px 0 8px}
 .page[id^="page-solutions"] .sol-copy h2:first-of-type{margin-top:8px}
 .inc{min-height:100%}
@@ -960,12 +962,16 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <div class="sol-cites">
         <h2>What buyers look for first.</h2>
-        <p class="sub">“Their number one criteria is integrations. They’ll buy a product, 80% as good as the competitor if it works better in their environment.”</p>
-        <p class="cite">Jay McBain, Canalys (Ultimate Partner, 2025). Millennial buyer. Works in their environment.</p>
-        <p class="cite"><a href="https://theultimatepartner.com/259-tech-trends-and-predictions-for-2025-with-jay-mcbain/">https://theultimatepartner.com/259-tech-trends-and-predictions-for-2025-with-jay-mcbain/</a></p>
-        <p class="sub">“Ease of use and integrations/partner ecosystem ranked as the top two purchasing considerations, while features and price tied for third.”</p>
-        <p class="cite">Syncro, 2024 MSP Tech Stack.</p>
-        <p class="cite"><a href="https://syncrosecure.com/blog/msp-tech-stack-report-syncro/">https://syncrosecure.com/blog/msp-tech-stack-report-syncro/</a></p>
+        <div class="sol-quotes">
+          <blockquote>
+            <p>“Their number one criteria is integrations. They’ll buy a product, 80% as good as the competitor if it works better in their environment.”</p>
+            <footer>Jay McBain, Canalys (Ultimate Partner, 2025). Millennial buyer. Works in their environment. <a href="https://theultimatepartner.com/259-tech-trends-and-predictions-for-2025-with-jay-mcbain/">Source</a></footer>
+          </blockquote>
+          <blockquote>
+            <p>“Ease of use and integrations/partner ecosystem ranked as the top two purchasing considerations, while features and price tied for third.”</p>
+            <footer>Syncro, 2024 MSP Tech Stack. <a href="https://syncrosecure.com/blog/msp-tech-stack-report-syncro/">Source</a></footer>
+          </blockquote>
+        </div>
       </div>
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
