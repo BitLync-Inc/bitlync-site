@@ -1168,9 +1168,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-partners">
   <section class="pad">
     <div class="wrap">
-      <p class="kicker">Early access</p>
+      <p class="kicker">Contact</p>
       <h2>Contact us.</h2>
-      <p class="sub">Pricing and keys when we talk.</p>
       <div class="form-band">
         <form class="ea-form" action="https://formsubmit.co/rburtonprospect@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Bitlync early access">
@@ -1187,9 +1186,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <legend>Intent</legend>
             <div class="ea-intent">
               <label><input type="radio" name="intent" value="Early access" required> Early access</label>
+              <label><input type="radio" name="intent" value="Get a key"> Get a key</label>
               <label><input type="radio" name="intent" value="Schedule a call"> Schedule a call</label>
             </div>
           </fieldset>
+          <div id="ea-slot" hidden>
           <label for="ea-day">Preferred day</label>
           <input id="ea-day" name="preferred_day" type="date">
           <label for="ea-when">Time of day</label>
@@ -1199,6 +1200,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <option>Afternoon</option>
             <option>Evening</option>
           </select>
+          </div>
           <label for="ea-msg">Message</label>
           <textarea id="ea-msg" name="message"></textarea>
           <button type="submit" class="btn">Send</button>
@@ -2326,20 +2328,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
   })();
 
   (function(){
-    var form=document.querySelector('.ea-form');
-    if(!form) return;
-    var day=form.querySelector('#ea-day');
-    var when=form.querySelector('#ea-when');
-    function sync(){
-      var call=form.querySelector('input[name="intent"][value="Schedule a call"]');
-      var need=!!(call && call.checked);
-      if(day) day.required=need;
-      if(when) when.required=need;
-    }
-    form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
-    sync();
-  })();
-  (function(){
     if(!('IntersectionObserver' in window)) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-msps','page-docs'];
@@ -2377,6 +2365,22 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
         });
       }
     });
+  })();
+  (function(){
+    var form=document.querySelector('.ea-form');
+    if(!form) return;
+    var day=form.querySelector('#ea-day');
+    var when=form.querySelector('#ea-when');
+    var slot=form.querySelector('#ea-slot');
+    function sync(){
+      var call=form.querySelector('input[name="intent"][value="Schedule a call"]');
+      var need=!!(call && call.checked);
+      if(slot) slot.hidden=!need;
+      if(day){ day.required=need; day.disabled=!need; }
+      if(when){ when.required=need; when.disabled=!need; }
+    }
+    form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
+    sync();
   })();
   show(location.hash||'#home');
 
