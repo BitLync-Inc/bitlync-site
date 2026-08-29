@@ -432,9 +432,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 
 .sol-copy{max-width:42rem}
 .sol-wins{display:grid;grid-template-columns:1fr;gap:22px 28px;margin:28px 0 0;max-width:none}
-@media(min-width:900px){.sol-wins{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.sol-wins{grid-template-columns:1fr}}
 .sol-wins h2{margin:0 0 8px}
 .sol-wins .sub{margin:0;max-width:none}
+#page-solutions-sales .proof-cta{display:inline-flex;align-items:center;gap:8px;margin-top:12px}
+#page-solutions-sales .proof-cta svg{width:14px;height:14px}
 .sol-cites{margin:0 0 28px}
 .sol-cites h2{margin:0 0 16px}
 .sol-quotes{display:grid;grid-template-columns:1fr;gap:22px 28px}
@@ -556,15 +558,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <div class="sol-rows">
               <a href="#solutions/product" data-nav="solutions">Product</a>
               <a href="#solutions/developer" data-nav="solutions">Engineering</a>
-              <a href="#solutions/sales" data-nav="solutions">Go to market</a>
-              <a href="#solutions/customer-success" data-nav="solutions">Tech and platform support</a>
+              <a href="#solutions/sales" data-nav="solutions">Go-to-market</a>
+              <a href="#solutions/customer-success" data-nav="solutions">Support</a>
               <a href="#msps" data-nav="msps">MSPs</a>
             </div>
           </div>
         </div>
       </div>
       <a href="#integrations" data-nav="integrations">Connectors</a>
-      <a href="#docs" data-nav="docs">Docs</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#partners" data-nav="partners">Contact us</a>
     </nav>
@@ -580,8 +581,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <h1>Write once. Connect to many.</h1>
       <p class="lede">Ship the product. Don’t own the integration stack.</p>
       <div class="btn-row">
-        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-        <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+        <a class="btn ghost" href="#docs" data-nav="docs">API docs</a>
       </div>
       <div class="hub" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
         <svg viewBox="0 0 720 360" role="img">
@@ -740,13 +740,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <p>Stop owning each vendor API.</p>
         </a>
         <a class="sol-card" href="#solutions/customer-success" data-nav="solutions">
-          <img src="assets/sol-support.jpg" alt="Tech and platform support">
-          <h3>Tech and platform support</h3>
+          <img src="assets/sol-support.jpg" alt="Support">
+          <h3>Support</h3>
           <p>Fewer integration tickets.</p>
         </a>
         <a class="sol-card" href="#solutions/sales" data-nav="solutions">
-          <img src="assets/sol-gtm.jpg" alt="Go to market">
-          <h3>Go to market</h3>
+          <img src="assets/sol-gtm.jpg" alt="Go-to-market">
+          <h3>Go-to-market</h3>
           <p>Don’t lose a deal to a missing integration.</p>
         </a>
       </div>
@@ -763,7 +763,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">Without Bitlync, each tool in the stack is its own project. Product compares fields across vendor docs. Engineering maintains another vendor library. Someone has to write the help docs for that integration and keep them current. Each tool also means a vendor relationship to maintain.</p>
-        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       </div>
     </div>
     </div>
@@ -870,8 +869,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">Without Bitlync, each vendor has its own auth, limits, retries, and error pages. You hold MSP keys, and MCP pointed at the vendor spends the shared rate budget on every call.</p>
-        <a class="btn" href="#partners" data-nav="partners">Request a key</a>
-        <a class="btn ghost" href="#docs" data-nav="docs">Docs</a>
+        <a class="btn" href="#docs" data-nav="docs">API docs</a>
       </div>
       </div>
       <div style="max-width:42rem">
@@ -934,14 +932,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-solutions-sales">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Go to market</p>
+      <p class="kicker">Solutions / Go-to-market</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
       <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">If you do not integrate with their stack, the deal stalls. Selling a roadmap will not close it.</p>
-        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
-        <a class="btn ghost" href="#integrations" data-nav="integrations">Connectors</a>
       </div>
       <div class="sol-wins">
         <div>
@@ -950,7 +946,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
         <div>
           <h2>Proof</h2>
-          <p class="sub">These are the products you can say yes to. ConnectWise, HaloPSA, Autotask, NinjaOne, Datto RMM, ScalePad, Pax8, IT Glue, and Hudu. Open a tile for what it covers.</p>
+          <p class="sub">See the products you can say yes to.</p>
+          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
         </div>
       </div>
     </div>
@@ -971,94 +968,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </blockquote>
         </div>
       </div>
-      <div class="grid9">
-        <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
-          <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-                        <li>Time — push</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
-          <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-                        <li>Time — push</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
-          <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-                        <li>Time — push</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
-          <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
-          <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
-          <ul class="objs">
-            <li>Action item — pull and push</li>
-            <li>Initiative — pull and push</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
-          <ul class="objs">
-            <li>Company — pull and push</li>
-            <li>Product — pull</li>
-            <li>Subscription — pull</li>
-            <li>Invoice — pull</li>
-            <li>Order — push</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
-          <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Configuration — pull</li>
-            <li>Asset — pull</li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
-          <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Asset — pull</li>
-          </ul>
-        </a>
-      </div>
-      <p class="sol-caption">Same coverage as Connectors. Open any tile.</p>
-      </div>
+            </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Tech and platform support</p>
+      <p class="kicker">Solutions / Support</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
       <p class="sub">Support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Support cannot see last sync or the log. A developer has to read the vendor error.</p>
-        <a class="btn" href="#partners" data-nav="partners">Request early access</a>
       </div>
     </div>
     </div>
@@ -2059,7 +1980,7 @@ dry_run ticket create is REST-only.</pre>
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · stealth · private beta</span>
-    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#connect-terms" data-nav="connect-terms">Connect terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">Docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span><a href="#terms" data-nav="terms">Terms</a> · <a href="#connect-terms" data-nav="connect-terms">Connect terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#docs" data-nav="docs">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
   </div>
 </footer>
 <script>
@@ -2156,8 +2077,8 @@ dry_run ticket create is REST-only.</pre>
       solutions:['Solutions \u00b7 Bitlync','Who Bitlync is for.'],
       'solutions-product':['Product \u00b7 Bitlync','Ship without parking the roadmap on each PSA.'],
       'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
-      'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
-      'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
+      'solutions-sales':['Go-to-market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
+      'solutions-customer-success':['Support \u00b7 Bitlync','Name the missing permission in the flow.'],
       msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
       partners:['Contact us \u00b7 Bitlync','Bitlync is in stealth. Paid design partners ahead of general availability.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
