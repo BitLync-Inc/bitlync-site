@@ -358,6 +358,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 .sol-rows{display:flex;flex-direction:column;gap:2px;padding:4px 0 2px}
 .sol-rows a{display:block;padding:11px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--ink)}
 .sol-rows a:hover,.sol-rows a:focus{background:#EFEBE0}
+.sol-hub{max-width:42rem;margin:20px 0 0}
+.sol-hub a{font-size:16px;font-weight:500;line-height:1.35}
 .sol-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,52px);letter-spacing:-.03em;line-height:1;margin:0 0 16px}
 .sol-table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14px;background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
 .sol-table th,.sol-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair)}
@@ -486,7 +488,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <nav class="main" id="mainNav">
       <a href="#home" data-nav="home" class="on">Home</a>
       <div class="drop" id="solDrop">
-        <a href="#solutions/product" data-nav="solutions" data-sol-toggle="1">Solutions</a>
+        <a href="#solutions" data-nav="solutions" data-sol-toggle="1">Solutions</a>
         <div class="panel">
           <div class="panel-in">
             <p class="roles-label">By persona</p>
@@ -502,6 +504,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
       <a href="#integrations" data-nav="integrations">Connectors</a>
       <a href="#docs" data-nav="docs">Docs</a>
+      <a href="#partners" data-nav="partners">Pricing</a>
     </nav>
     <a class="btn nav-cta" href="#partners" data-nav="partners">Request early access</a>
     <button class="menu" id="menuBtn" type="button" aria-expanded="false">Menu</button>
@@ -793,21 +796,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       </div>
       <div class="ops-grid">
         <div class="ops" aria-label="Mockup: per-MSP connection status with audit log">
-          <div class="ops-head"><span>your MSP connections</span><span>142 connected</span></div>
+          <div class="ops-head"><span>your MSP connections</span></div>
           <div class="ops-row">
             <div class="grow"><b>Blue Spruce IT</b><small>ConnectWise · synced 3 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
           <div class="ops-row">
             <div class="grow"><b>Harbor Managed Services</b><small>HaloPSA · synced 6 min ago</small></div>
             <span class="st ok"><i></i>healthy</span>
-            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
           <div class="ops-row">
             <div class="grow"><b>Cedar Ridge Technology</b><small>Autotask · retrying</small></div>
             <span class="st deg"><i></i>degraded</span>
-            <a class="audit-link" href="#solutions/product" data-nav="solutions">audit log →</a>
           </div>
         </div>
       </div>
@@ -901,6 +901,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
 </div>
 
+
+<div class="page" id="page-solutions">
+  <section class="pad">
+    <div class="wrap">
+      <p class="kicker">Solutions</p>
+      <h1 class="sol-h1">Who is this for.</h1>
+      <div class="sol-rows sol-hub">
+        <a href="#solutions/product" data-nav="solutions">Product — Ship MSP integrations without parking the roadmap.</a>
+        <a href="#solutions/developer" data-nav="solutions">Developer — One call, same shape every time.</a>
+        <a href="#solutions/sales" data-nav="solutions">Sales — The first thing an MSP asks is if you integrate with their PSA.</a>
+        <a href="#solutions/customer-success" data-nav="solutions">Customer Success — Resolve a missing permission without a developer.</a>
+        <a href="#msps" data-nav="msps">MSPs — You own the connection.</a>
+      </div>
+    </div>
+  </section>
+</div>
 
 <div class="page" id="page-solutions-product">
   <section class="pad" style="padding-bottom:28px">
@@ -1334,7 +1350,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Early access</p>
       <h2>Build this with us.</h2>
-      <p class="sub">We reply with the keys when you're accepted. We'll share pricing.</p>
+      <p class="sub">We reply with the keys when you're accepted. We share pricing when we talk.</p>
       <div class="form-band">
         <iframe data-tally-src="https://tally.so/embed/A75lXk?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Bitlync — Request Early Access"></iframe>
       </div>
@@ -1981,7 +1997,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.54.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.64.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2146,7 +2162,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
 </footer>
 <script>
 (function(){
-  var pages=['home','product','integrations','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
+  var pages=['home','product','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases','docs-libraries'];
   var objHash={
     'docs-ticket':'docs-reference','docs-company':'docs-reference',
@@ -2173,8 +2189,9 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       if(connectors.indexOf(slug)>=0) return {page:'integrations',docs:'docs',anchor:null,connector:slug};
       return {page:'home',docs:'docs',anchor:null,connector:null};
     }
-    if(h==='solutions' || h.indexOf('solutions/')===0){
-      var slug=h==='solutions' ? 'product' : h.slice(10);
+    if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
+    if(h.indexOf('solutions/')===0){
+      var slug=h.slice(10);
       var smap={product:'solutions-product',developer:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
       var sp=smap[slug]||'solutions-product';
       return {page:sp,docs:'docs',anchor:null,connector:null};
@@ -2201,7 +2218,7 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
     document.body.classList.toggle('docs', st.page==='docs');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
-      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page.indexOf('solutions-')===0 || st.page==='msps')));
+      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
     });
     docsIds.forEach(function(id){
       var el=document.getElementById('d-'+id);
@@ -2369,16 +2386,6 @@ const tickets = await client.tickets.list("sandbox-mainstreet")</pre></div>
       history.pushState(null,'',href);
       show(href);
       return;
-    }
-    var tog=e.target.closest('[data-sol-toggle]');
-    if(tog){
-      var drop=tog.closest('.drop');
-      var mobile=window.matchMedia('(max-width:840px)').matches || (nav && nav.classList.contains('open'));
-      if(mobile){
-        e.preventDefault();
-        drop.classList.toggle('open');
-        return;
-      }
     }
     var t=e.target.closest('[data-nav]');
     if(t){ e.preventDefault(); var href=t.getAttribute('href')||('#'+t.getAttribute('data-nav')); if(href.charAt(0)!=='#') href='#'+t.getAttribute('data-nav'); var drop=t.closest('.drop'); if(drop) drop.classList.remove('open'); history.pushState(null,'',href); show(href); return; }
