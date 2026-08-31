@@ -2,13 +2,17 @@
 
 One API for ISVs. Write once. Connect to many MSPs.
 
-Human docs: https://www.bitlync.com/#docs
 Site: https://www.bitlync.com/
+Human docs: https://www.bitlync.com/docs
+Security: https://www.bitlync.com/security
+Legal: https://www.bitlync.com/legal/terms
+Privacy: https://www.bitlync.com/legal/privacy
+MSP connect terms: https://www.bitlync.com/legal/connect-terms
 
 ## Sandbox
 
 - Public sandbox host: https://bitlync-sandbox-demo.onrender.com
-- Demo key is on https://www.bitlync.com/#docs-quickstart
+- Demo key is on https://www.bitlync.com/docs#docs-quickstart
 - Fixture data only. Not a customer tenant. Not production AWS.
 - GET /tenants/sandbox-mainstreet/tickets returns 200 and sandbox: true.
 - There is no public live-read URL for a real MSP.
@@ -29,3 +33,6 @@ Site: https://www.bitlync.com/
 - Close defaults off unless the MSP turns it on.
 - A parked write is 501, not a generic 500.
 
+## MCP
+
+MCP exposes the same read model. Writes stay on REST until the grant and dry-run path is identical.

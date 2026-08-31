@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="robots" content="noindex,nofollow"/>
 <title>Bitlync. Write once. Connect to many.</title>
-<meta name="description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
+<meta name="description" content="One API for ISVs that sell to MSPs. Private beta. Sandbox is live. We are onboarding a small number of paid design partners."/>
 <link rel="canonical" href="https://www.bitlync.com/preview/"/>
 <meta property="og:title" content="Bitlync. Write once. Connect to many."/>
-<meta property="og:description" content="Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget."/>
+<meta property="og:description" content="One API for ISVs that sell to MSPs. Private beta. Sandbox is live. We are onboarding a small number of paid design partners."/>
 <meta property="og:image" content="https://www.bitlync.com/preview/og.png"/>
 <meta property="og:url" content="https://www.bitlync.com/preview/"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -41,7 +41,7 @@ body.docs header{background:var(--void);border-bottom-color:var(--dline)}
 body.docs .brand{color:var(--dtext)}
 .brand .mark{display:block;color:var(--ink)}
 body.docs .brand .mark{color:#E8F0C8}
-nav.main{display:flex;gap:20px;flex:1;justify-content:center;font-size:14px;color:var(--mute);flex-wrap:wrap}
+nav.main{display:flex;gap:16px;flex:1;justify-content:center;font-size:13.5px;color:var(--mute);flex-wrap:nowrap}
 body.docs nav.main{color:var(--dmute)}
 nav.main a.on,nav.main a:hover{color:var(--ink)}
 body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
@@ -60,6 +60,8 @@ body.docs .btn.ghost:hover{color:var(--dtext);background:transparent;border-colo
 #page-docs .btn-row .btn:hover{color:var(--acid);border-color:var(--acid)}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
+.nav-cta{flex:none}
+@media(max-width:1040px){.nav-cta{display:none}}
 @media(max-width:840px){
   nav.main{display:none;position:fixed;inset:64px 0 auto 0;background:var(--paper);flex-direction:column;padding:16px 22px;border-bottom:1px solid var(--hair);gap:2px}
   body.docs nav.main{background:var(--void);border-bottom-color:var(--dline)}
@@ -73,7 +75,7 @@ body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 }
 .page{display:none}.page.on{display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
-.hero{padding:64px 0 40px}
+.hero{padding:36px 0 24px}
 .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,9vw,96px);
   line-height:.94;letter-spacing:-.03em;margin:0 0 18px}
 .hero h1 em{font-style:italic}
@@ -194,6 +196,30 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
 .status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
+.status-chip{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:6px 12px;margin:0 0 18px;width:fit-content}
+.hub.compact{margin-top:28px;padding:10px 8px 6px}
+.home-bullets{display:grid;gap:14px;margin:8px 0 0}
+@media(min-width:820px){.home-bullets{grid-template-columns:1fr 1fr 1fr}}
+.home-bullets .card h3{margin:0 0 6px}
+.home-bullets .card p{margin:0;color:var(--mute);font-size:15px}
+.cov-snap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:8px;width:100%}
+.cov-snap .cell{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 12px;min-width:0}
+.cov-snap .cell img{width:28px;height:28px;object-fit:contain;filter:grayscale(1);opacity:.88}
+.cov-snap .cell b{display:block;font-size:13.5px;font-weight:600;overflow-wrap:anywhere}
+.who-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+@media(min-width:700px){.who-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.who-grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+.who-grid a{display:block;background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 16px;min-width:0}
+.who-grid a:hover{border-color:var(--ink);background:#F3F0E6}
+.who-grid h3{margin:0 0 6px}
+.who-grid p{margin:0;color:var(--mute);font-size:15px}
+.msp-strip{border-top:1px solid var(--hair)}
+.foot a{text-decoration:underline;text-underline-offset:2px}
+@media(max-width:700px){.cov-snap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.nav-cta{flex:none}
+@media(max-width:1040px){.nav-cta{display:none}}
+@media(max-width:840px){.hub.compact{display:none}}
+
 .cell.logo-cell.open{background:#F3F0E6}
 .cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
 .cell.logo-cell.open .objs{display:block}
@@ -536,6 +562,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
 #page-solutions-developer .tix{max-width:100%;width:100%;margin:36px auto 0}
 .grid9{overflow:visible}
+@media(max-width:700px){.grid9{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .cell b{white-space:normal}
 @media(min-width:841px){
   .drop .panel{display:none}
@@ -550,7 +577,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <div class="bar">
     <a class="brand" href="#home" data-nav="home"><svg class="mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><path d="M4.5 7.2C12 7.2 15.2 16 22.4 16"/><path d="M4.5 11.6C11.2 11.6 15 16 22.4 16"/><path d="M4.5 16C12 16 16 16 22.4 16"/><path d="M4.5 20.4C11.2 20.4 15 16 22.4 16"/><path d="M4.5 24.8C12 24.8 15.2 16 22.4 16"/></g><circle cx="24.3" cy="16" r="1.25" fill="currentColor"/></svg> bitlync</a>
     <nav class="main" id="mainNav">
-      <a href="#home" data-nav="home" class="on">Home</a>
       <div class="drop" id="solDrop">
         <a href="#solutions" data-nav="solutions" data-sol-toggle="1">Solutions</a>
         <div class="panel">
@@ -567,10 +593,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div>
       </div>
       <a href="#integrations" data-nav="integrations">Connectors</a>
-      <a href="#about" data-nav="about">About</a>
+      <a href="#docs" data-nav="docs">Docs</a>
+      <a href="#security" data-nav="security">Security</a>
       <a href="#partners" data-nav="partners">Contact us</a>
     </nav>
-    <a class="btn nav-cta" href="#partners" data-nav="partners">Request early access</a>
+    <a class="btn nav-cta" href="#partners" data-nav="partners">Become a design partner</a>
     <button class="menu" id="menuBtn" type="button" aria-expanded="false">Menu</button>
   </div>
 </header>
@@ -580,57 +607,97 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">One API for ISVs</p>
       <h1>Write once. Connect to many.</h1>
-      <p class="lede">Ship the product. Don’t own the integration stack.</p>
-      <div class="hub" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
-        <svg viewBox="0 0 720 360" role="img">
+      <p class="lede">One API for ISVs that sell to MSPs. Private beta. Sandbox is live. We are onboarding a small number of paid design partners.</p>
+      <p class="status-chip">Private beta · sandbox</p>
+      <div class="btn-row">
+        <a class="btn" href="https://docs.bitlync.com/quickstart/">API docs</a>
+        <a class="btn ghost" href="#partners" data-nav="partners">Become a design partner</a>
+      </div>
+      <div class="hub compact" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
+        <svg viewBox="0 0 720 220" role="img">
           <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
-            <rect x="16" y="76" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
-            <rect x="16" y="122" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="16" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="54" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="92" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="130" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
             <rect x="16" y="168" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
-            <rect x="16" y="214" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
-            <rect x="16" y="260" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
-            <text x="82" y="94" text-anchor="middle">PSA</text>
-            <text x="82" y="140" text-anchor="middle">RMM</text>
-            <text x="82" y="186" text-anchor="middle">Commerce</text>
-            <text x="82" y="232" text-anchor="middle">Documentation</text>
-            <text x="82" y="278" text-anchor="middle">Customer Success</text>
+            <text x="82" y="34" text-anchor="middle">PSA</text>
+            <text x="82" y="72" text-anchor="middle">RMM</text>
+            <text x="82" y="110" text-anchor="middle">Commerce</text>
+            <text x="82" y="148" text-anchor="middle">Documentation</text>
+            <text x="82" y="186" text-anchor="middle">Customer Success</text>
           </g>
           <g fill="none" stroke="#8B8E84" stroke-width="1.25">
-            <path class="flow" d="M148 90 C 250 90, 300 176, 392 176"/>
-            <path class="flow" d="M148 136 C 248 136, 304 180, 392 180"/>
-            <path class="flow" d="M148 182 C 246 182, 308 182, 392 182"/>
-            <path class="flow" d="M148 228 C 246 228, 308 184, 392 184"/>
-            <path class="flow" d="M148 274 C 248 274, 304 188, 392 188"/>
+            <path class="flow" d="M148 30 C 250 30, 300 106, 392 106"/>
+            <path class="flow" d="M148 68 C 248 68, 304 108, 392 108"/>
+            <path class="flow" d="M148 106 C 246 106, 308 110, 392 110"/>
+            <path class="flow" d="M148 144 C 246 144, 308 112, 392 112"/>
+            <path class="flow" d="M148 182 C 248 182, 304 114, 392 114"/>
           </g>
-          <circle cx="430" cy="182" r="38" fill="none" stroke="#EDECE6" stroke-width="1.6"/>
-          <text x="430" y="187" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
-          <path class="flow" d="M468 182 H 548" fill="none" stroke="#8B8E84" stroke-width="1.4"/>
-          <rect x="552" y="166" width="148" height="32" rx="14" fill="#16181C" stroke="#3A3D46"/>
-          <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
+          <circle cx="430" cy="110" r="34" fill="none" stroke="#EDECE6" stroke-width="1.6"/>
+          <text x="430" y="115" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
+          <path class="flow" d="M464 110 H 548" fill="none" stroke="#8B8E84" stroke-width="1.4"/>
+          <rect x="552" y="94" width="148" height="32" rx="14" fill="#16181C" stroke="#3A3D46"/>
+          <text x="626" y="114" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
         </svg>
       </div>
-      <div class="logo-scroll" aria-label="Connectors in the sandbox">
-        <div class="logo-track">
-          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
-          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
-          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
-          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
-          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
-          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
-          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
-          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
-          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
-          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
-          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
-          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
-          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
-          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:12px;padding-bottom:36px">
+    <div class="wrap">
+      <div class="home-bullets">
+        <div class="card">
+          <h3>One model</h3>
+          <p>Build against one model. We take on the vendor APIs.</p>
+        </div>
+        <div class="card">
+          <h3>Vault and grants</h3>
+          <p>The MSP pastes keys. You never hold them. They grant what you can do, and they can revoke it.</p>
+        </div>
+        <div class="card">
+          <h3>One sync per tenant</h3>
+          <p>One sync per MSP serves every product, so your reads do not spend the vendor rate budget.</p>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:12px">
+    <div class="wrap">
+      <p class="kicker">Coverage</p>
+      <h2>Sandbox today.</h2>
+      <p class="sub">Logos below are live connectors. Every one is Sandbox. ConnectWise production is not flipped.</p>
+      <div class="cov-snap" aria-label="Connector coverage snapshot. All sandbox.">
+        <div class="cell"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span></div>
+        <div class="cell"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span><span class="status-sandbox">Sandbox</span></div>
+      </div>
+      <p class="quiet"><a href="#docs-coverage" data-docs="docs-coverage">Full coverage table in docs</a></p>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:12px">
+    <div class="wrap">
+      <p class="kicker">Who it is for</p>
+      <h2>Four jobs.</h2>
+      <div class="who-grid">
+        <a href="#solutions/product" data-nav="solutions"><h3>Product</h3><p>Ship without parking the roadmap.</p></a>
+        <a href="#solutions/developer" data-nav="solutions"><h3>Engineering</h3><p>Stop owning each vendor API.</p></a>
+        <a href="#solutions/customer-success" data-nav="solutions"><h3>Support</h3><p>Fewer integration tickets.</p></a>
+        <a href="#solutions/sales" data-nav="solutions"><h3>Go-to-market</h3><p>Don’t lose a deal to a missing integration.</p></a>
+      </div>
+    </div>
+  </section>
+  <section class="pad msp-strip">
+    <div class="wrap center">
+      <p class="kicker">MSPs</p>
+      <h2>Saw “Secured by Bitlync”?</h2>
+      <p class="sub">One of your vendors uses Bitlync to connect to your stack. Here is what that means, and how you stay in control.</p>
+      <a class="btn ghost" href="#msps" data-nav="msps">For MSPs</a>
     </div>
   </section>
 </div>
@@ -639,9 +706,10 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <div class="wrap">
       <p class="kicker">Coverage</p>
       <h2>Connectors.</h2>
-      <p class="sub">Connect to the stacks your MSPs already run.</p>
+      <p class="sub">Connect to the stacks your MSPs already run. Every connector is Sandbox.</p>
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -652,6 +720,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -662,6 +731,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Ticket — pull and push</li>
             <li>Line item — pull and push</li>
@@ -672,24 +742,28 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Device — pull</li>
             <li>Software — pull</li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Device — pull</li>
             <li>Software — pull</li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Action item — pull and push</li>
             <li>Initiative — pull and push</li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Company — pull and push</li>
             <li>Product — pull</li>
@@ -699,6 +773,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Document — pull and push</li>
             <li>Company — pull</li>
@@ -707,6 +782,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
+          <span class="status-sandbox">Sandbox</span>
           <ul class="objs">
             <li>Document — pull and push</li>
             <li>Company — pull</li>
@@ -715,7 +791,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </a>
       </div>
       <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
-      <p class="sub" style="margin:22px auto 0"><a class="btn ghost" href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Upvote an issue to vote.</a></p>
+      <p class="sub" style="margin:22px auto 0"><a class="btn ghost" href="#partners" data-nav="partners">Ask about a connector</a></p>
     </div>
   </section>
 </div>
@@ -756,7 +832,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
       <p class="kicker">Solutions / Product</p>
-      <h1 class="sol-h1">Ship in weeks, not quarters.</h1>
+      <h1 class="sol-h1">Build against one model. We take on the vendor APIs.</h1>
       <p class="sub">Write to one model. We integrate the whole stack. A single integration, on its own, can take quarters.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
@@ -1571,7 +1647,7 @@ tenant_id: sandbox-mainstreet
   -d '{"tenant_id":"sandbox-mainstreet"}'</pre>
   </div>
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
-  <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. Use <code class="inline">$BITLYNC_BASE</code>. </p>
+  <p class="note">MCP exposes the same read model. Writes stay on REST until the grant and dry-run path is identical. Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. Use <code class="inline">$BITLYNC_BASE</code>. </p>
   <div class="code">
     <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
   &quot;mcpServers&quot;: {
@@ -1644,7 +1720,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.70.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.71.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -1869,8 +1945,8 @@ dry_run ticket create is REST-only.</pre>
       <h2>15. Law</h2>
       <p>Delaware law, without conflict rules. Courts in Delaware. Either side may seek an injunction where the other is found.</p>
       <h2>16. Other</h2>
-      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: rburtonprospect@gmail.com until we publish a legal address. Notices to you: the email on your account.</p>
-      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001 · rburtonprospect@gmail.com</p>
+      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: 12099 Araglin Ct, Dubuque, Iowa 52001 until we publish a legal mailbox. Notices to you: the email on your account.</p>
+      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001</p>
     </div>
   </section>
 </div>
@@ -1882,7 +1958,7 @@ dry_run ticket create is REST-only.</pre>
       <p>This notice is for people at an ISV who use the site or the API, and people at an MSP who paste keys.</p>
       <h2>1. Who we are</h2>
       <p>Bitlync, Inc. is a Delaware company. We sell a hosted API to software companies (ISVs). An MSP connects their own tools. We hold those keys in a vault.</p>
-      <p>Mailing address: 12099 Araglin Ct, Dubuque, Iowa 52001. Email: rburtonprospect@gmail.com until we publish a privacy mailbox.</p>
+      <p>Mailing address: 12099 Araglin Ct, Dubuque, Iowa 52001. Until we publish a privacy mailbox, use Contact us.</p>
       <h2>2. The people in the data</h2>
       <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
       <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
@@ -1907,14 +1983,14 @@ dry_run ticket create is REST-only.</pre>
       <p>Per-tenant encryption. Isolated. Append-only audit. Support is read-only. SOC 2 in progress. Not certified.</p>
       <p>If we confirm a breach of personal data we hold, we tell the ISV and, where law says so, the people affected, as soon as we reasonably can.</p>
       <h2>8. Your choices</h2>
-      <p>ISV: email rburtonprospect@gmail.com for a copy, a fix, or a delete of account data.</p>
+      <p>ISV: use Contact us for a copy, a fix, or a delete of account data.</p>
       <p>MSP: revoke the grant. That is the main switch. You can also email us.</p>
       <h2>9. Where the data sits</h2>
       <p>We are in the United States.</p>
       <h2>10. Changes</h2>
       <p>We will date an update. For a material change we email the ISV address we have.</p>
       <h2>11. Contact</h2>
-      <p>Bitlync, Inc., 12099 Araglin Ct, Dubuque, Iowa 52001. rburtonprospect@gmail.com.</p>
+      <p>Bitlync, Inc., 12099 Araglin Ct, Dubuque, Iowa 52001.</p>
     </div>
   </section>
 </div>
@@ -1956,7 +2032,7 @@ dry_run ticket create is REST-only.</pre>
       <p>We may change these terms. A material change waits 30 days after we post it or your Vendor tells you, unless security or law requires faster. If you do not agree, revoke.</p>
       <h2>8. Law</h2>
       <p>Delaware law. Courts in Delaware.</p>
-      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001 · rburtonprospect@gmail.com</p>
+      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001</p>
     </div>
   </section>
 </div>
@@ -1966,6 +2042,8 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-08-31</h2>
+      <p>Homepage is sales only. Docs and legal stay on their own pages. Status chip: Private beta · sandbox. OpenAPI 0.71.0 from core.</p>
       <h2>2026-08-30</h2>
       <p>Device and company events (created, updated). List with GET /tenants/{id}/connections/events or a signed webhook. Grants rmm.device.events and psa.company.events. OpenAPI 0.70.0.</p>
       <p>Reads include vendor.native (same payload as .raw; .raw is read-only). Ticket writes accept optional vendor_native. OpenAPI 0.70.0.</p>
@@ -1980,7 +2058,7 @@ dry_run ticket create is REST-only.</pre>
       <h2>2026-08-26</h2>
       <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0. Current spec is 0.65.0.</p>
       <p>Public ScalePad category is Customer Success.</p>
-      <p>Roadmap votes are <a href="https://github.com/rburton-84/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">GitHub issues labeled roadmap</a> on rburton-84/bitlync-site.</p>
+      <p>Roadmap votes are taken on Contact us. We are not using a personal GitHub repo as the public vote CTA.</p>
     </div>
   </section>
 </div>
@@ -1996,15 +2074,42 @@ dry_run ticket create is REST-only.</pre>
     </div>
   </section>
 </div>
+<div class="page" id="page-security">
+  <section class="pad">
+    <div class="wrap legal">
+      <p class="kicker">Security</p>
+      <h1>How we hold MSP keys and tenant data.</h1>
+      <p>This is the public picture. It is not a certification.</p>
+      <h2>Vault</h2>
+      <p>The MSP pastes keys. The ISV never holds them. The MSP can revoke a grant. We stop using those keys.</p>
+      <h2>Grants</h2>
+      <p>Every grant is shown in plain language before connect, including what a vendor can never do (delete records, change setup tables). Dangerous writes stay off unless the MSP turns them on.</p>
+      <h2>Store and isolation</h2>
+      <p>Reads come from a per-tenant store. One sync per MSP tenant. Per-tenant encryption. Isolated from every other tenant.</p>
+      <h2>Audit</h2>
+      <p>Reads and writes land in an append-only log the MSP can see. Support is read-only. It can diagnose. It cannot change setup or use the vault to act as the MSP.</p>
+      <h2>SOC 2</h2>
+      <p>SOC 2 is in progress. We do not claim a completed report or a certification.</p>
+      <h2>DPA</h2>
+      <p>A data processing agreement is available on request through Contact us. We do not publish invented commercial terms here.</p>
+      <h2>Subprocessors we actually use today</h2>
+      <p>Formsubmit (Contact us mail). GitHub Pages (this website). The production API host is not chosen. We will name it here when it is.</p>
+      <h2>Status</h2>
+      <p>There is no public status page yet. We will not print a fake uptime number.</p>
+      <p>Bitlync, Inc. · 12099 Araglin Ct, Dubuque, Iowa 52001</p>
+      <p><a href="#partners" data-nav="partners">Contact us</a> · <a href="#privacy" data-nav="privacy">Privacy Notice</a> · <a href="#msps" data-nav="msps">For MSPs</a></p>
+    </div>
+  </section>
+</div>
 <footer>
   <div class="wrap foot">
-    <span>© 2026 Bitlync · stealth · private beta</span>
-    <span><a href="#docs" data-nav="docs">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span>© 2026 Bitlync, Inc. · private beta<br>12099 Araglin Ct, Dubuque, Iowa 52001</span>
+    <span><a href="#docs" data-nav="docs">Docs</a> · <a href="#security" data-nav="security">Security</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#terms" data-nav="terms">Customer Terms</a> · <a href="#privacy" data-nav="privacy">Privacy</a> · <a href="#connect-terms" data-nav="connect-terms">MSP Connect Terms</a> · <a href="#about" data-nav="about">About</a></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about'];
+  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about','security'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
@@ -2017,9 +2122,25 @@ dry_run ticket create is REST-only.</pre>
 
   var connectors=['connectwise','halo','autotask','ninjaone','datto','scalepad','pax8','itglue','hudu'];
 
+  var pathMap={'/docs':'docs','/legal/terms':'terms','/legal/privacy':'privacy','/legal/connect-terms':'connect-terms','/security':'security'};
+  function pathPage(){
+    var p=location.pathname||'/';
+    if(p.indexOf('/preview/')===0) p=p.slice(8);
+    else if(p==='/preview') p='/';
+    p=p.replace(/\/index\.html$/,'');
+    p=p.replace(/\/$/,'')||'/';
+    return pathMap[p]||null;
+  }
   function parse(h){
     h=(h||'').replace('#','');
-    if(!h) return {page:'home',docs:'docs',anchor:null,connector:null};
+    if(!h){
+      var fromPath=pathPage();
+      if(fromPath){
+        if(fromPath==='docs') return {page:'docs',docs:'docs',anchor:null,connector:null};
+        return {page:fromPath,docs:'docs',anchor:null,connector:null};
+      }
+      return {page:'home',docs:'docs',anchor:null,connector:null};
+    }
     if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h,connector:null};
     if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:conceptAlias[h]||h,connector:null};
     if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null,connector:null};
@@ -2061,7 +2182,7 @@ dry_run ticket create is REST-only.</pre>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog' || st.page==='about');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog' || st.page==='about' || st.page==='security');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
@@ -2090,7 +2211,7 @@ dry_run ticket create is REST-only.</pre>
   
 
     var homeTitle='Bitlync. Write once. Connect to many.';
-    var homeDesc='Bitlync is one API for ISVs. Write once and connect to many MSPs. One sync per MSP serves every product, so your reads do not spend the vendor rate budget.';
+    var homeDesc='One API for ISVs that sell to MSPs. Private beta. Sandbox is live. We are onboarding a small number of paid design partners.';
     var pageMeta={
       home:[homeTitle,homeDesc],
       integrations:['Connectors \u00b7 Bitlync','Coverage by vendor. What we pull and write today.'],
@@ -2106,7 +2227,8 @@ dry_run ticket create is REST-only.</pre>
       privacy:['Privacy Notice \u00b7 Bitlync','Privacy Notice for people at an ISV and people at an MSP who paste keys.'],
       'connect-terms':['MSP Connect Terms \u00b7 Bitlync','Terms for the MSP connection and the keys we hold.'],
       about:['About \u00b7 Bitlync','Our origin story.'],
-      changelog:['Changelog \u00b7 Bitlync','What actually shipped. Newest first.']
+      changelog:['Changelog \u00b7 Bitlync','What actually shipped. Newest first.'],
+      security:['Security \u00b7 Bitlync','Vault, grants, audit, SOC 2 in progress. Not a certification.']
     };
     var docsMeta={
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
@@ -2384,7 +2506,14 @@ dry_run ticket create is REST-only.</pre>
     form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
     sync();
   })();
-  show(location.hash||'#home');
+  try{
+    var boot=sessionStorage.getItem('bitlync-boot-path');
+    if(boot){
+      sessionStorage.removeItem('bitlync-boot-path');
+      history.replaceState(null,'',boot);
+    }
+  }catch(err){}
+  show(location.hash || (pathPage() ? '#'+pathPage() : '#home'));
 
 })();
 </script>

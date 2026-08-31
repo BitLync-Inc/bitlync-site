@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Not found · Bitlync</title>
 <meta name="description" content="This page is not on www.bitlync.com."/>
-<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -16,9 +16,31 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);f
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:-.02em;line-height:1.1;margin:0 0 16px}
 p{margin:0 0 12px;color:var(--mute)}
 a{color:var(--ink)}
-</style></head>
+</style>
+<script>
+(function(){
+  var raw=location.pathname||'/';
+  var preview=raw.indexOf('/preview')===0;
+  var p=raw;
+  if(preview) p=raw.slice('/preview'.length)||'/';
+  p=p.replace(/\/$/,'');
+  var map={
+    '/docs':'docs',
+    '/security':'security',
+    '/legal/terms':'terms',
+    '/legal/privacy':'privacy',
+    '/legal/connect-terms':'connect-terms'
+  };
+  if(map[p]){
+    var root=preview?'/preview/':'/';
+    try { sessionStorage.setItem('bitlync-boot-path', (preview?'/preview':'')+p); } catch(e){}
+    location.replace(root);
+  }
+})();
+</script>
+</head>
 <body><div class="wrap">
 <p class="kicker">404</p>
 <h1>This page is not here.</h1>
-<p><a href="/">Home</a> · <a href="/#docs">Docs</a> · <a href="/#partners">Contact us</a></p>
+<p><a href="/">Home</a> · <a href="/docs">Docs</a> · <a href="/security">Security</a> · <a href="/#partners">Contact us</a></p>
 </div></body></html>
