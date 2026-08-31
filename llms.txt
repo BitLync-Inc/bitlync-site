@@ -24,6 +24,7 @@ Site: https://www.bitlync.com/
 - We do not mint an agreement header. We do not mint a project header.
 - Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.
 - Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company.
-- Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements.
+- Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.
 - Close defaults off unless the MSP turns it on.
 - A parked write is 501, not a generic 500.
+
