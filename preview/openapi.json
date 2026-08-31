@@ -1,6 +1,331 @@
 {
   "components": {
     "schemas": {
+      "Agreement": {
+        "additionalProperties": false,
+        "properties": {
+          "billing_cycle": {
+            "default": "unknown",
+            "title": "Billing Cycle",
+            "type": "string"
+          },
+          "company_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Name"
+          },
+          "company_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Source Id"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "End Date"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/AgreementLine"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "monthly_recurring_revenue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Monthly Recurring Revenue"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Start Date"
+          },
+          "status": {
+            "default": "unknown",
+            "title": "Status",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "name"
+        ],
+        "title": "Agreement",
+        "type": "object"
+      },
+      "AgreementLine": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_source_id": {
+            "title": "Agreement Source Id",
+            "type": "string"
+          },
+          "effective_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Effective End"
+          },
+          "effective_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Effective Start"
+          },
+          "product_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Product Name"
+          },
+          "product_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Product Source Id"
+          },
+          "quantity": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Quantity"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "unit_cost": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Unit Cost"
+          },
+          "unit_price": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Unit Price"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "agreement_source_id"
+        ],
+        "title": "AgreementLine",
+        "type": "object"
+      },
+      "AgreementList": {
+        "additionalProperties": false,
+        "properties": {
+          "agreements": {
+            "items": {
+              "$ref": "#/components/schemas/Agreement"
+            },
+            "title": "Agreements",
+            "type": "array"
+          },
+          "last_synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Last Synced At"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Cursor"
+          },
+          "sandbox": {
+            "title": "Sandbox",
+            "type": "boolean"
+          },
+          "served_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Served From"
+          }
+        },
+        "required": [
+          "agreements",
+          "sandbox"
+        ],
+        "title": "AgreementList",
+        "type": "object"
+      },
       "ApproveChargeBody": {
         "properties": {
           "dry_run": {
@@ -36,6 +361,72 @@
           "question"
         ],
         "title": "AskBody",
+        "type": "object"
+      },
+      "Company": {
+        "additionalProperties": false,
+        "description": "PSA Company record. No public GET /companies in this release.",
+        "properties": {
+          "identifier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Identifier"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "name"
+        ],
+        "title": "Company",
         "type": "object"
       },
       "CreateAgreementLineMappingBody": {
@@ -404,6 +795,524 @@
         "title": "DeployBody",
         "type": "object"
       },
+      "Device": {
+        "additionalProperties": false,
+        "properties": {
+          "company_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Name"
+          },
+          "company_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Source Id"
+          },
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "needs_attention": {
+            "default": false,
+            "title": "Needs Attention",
+            "type": "boolean"
+          },
+          "online": {
+            "default": true,
+            "title": "Online",
+            "type": "boolean"
+          },
+          "os": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Os"
+          },
+          "patches_pending": {
+            "default": 0,
+            "title": "Patches Pending",
+            "type": "integer"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "hostname"
+        ],
+        "title": "Device",
+        "type": "object"
+      },
+      "DeviceList": {
+        "additionalProperties": false,
+        "properties": {
+          "devices": {
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            },
+            "title": "Devices",
+            "type": "array"
+          },
+          "last_synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Last Synced At"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Cursor"
+          },
+          "sandbox": {
+            "title": "Sandbox",
+            "type": "boolean"
+          },
+          "served_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Served From"
+          }
+        },
+        "required": [
+          "devices",
+          "sandbox"
+        ],
+        "title": "DeviceList",
+        "type": "object"
+      },
+      "Error": {
+        "additionalProperties": false,
+        "description": "Stable caller-facing failure. Branch on `code`, not HTTP status alone.",
+        "properties": {
+          "allowed": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "status_unmapped: vendor statuses the MSP has mapped.",
+            "title": "Allowed"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Additive alias of `message` for existing readers.",
+            "title": "Detail"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional structured extras (needed grant key, allowed statuses).",
+            "title": "Details"
+          },
+          "doc_url": {
+            "title": "Doc Url",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "needed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "grant_missing: the missing grant key. Also in details.needed.",
+            "title": "Needed"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "doc_url"
+        ],
+        "title": "Error",
+        "type": "object"
+      },
+      "Event": {
+        "additionalProperties": false,
+        "description": "Watch event (ticket/device/company) or health two-class feed row.\n\nWatch rows set kind/type to ticket.* / device.* / company.*. Health\nrows use type resolved | attention_needed. Re-read GET /tickets or\nGET /devices for the payload. Company events carry canonical_company_id\n(no GET /companies).",
+        "properties": {
+          "actor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Actor"
+          },
+          "canonical_company_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Canonical Company Id"
+          },
+          "canonical_device_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Canonical Device Id"
+          },
+          "canonical_ticket_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Canonical Ticket Id"
+          },
+          "connection_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Connection Id"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "title": "Detail",
+            "type": "object"
+          },
+          "event_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Event Id"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Id"
+          },
+          "incident_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Incident Id"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Kind"
+          },
+          "new_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "New Status"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Occurred At"
+          },
+          "previous_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Previous Status"
+          },
+          "subject_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Subject Ref"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Summary"
+          },
+          "tenant_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Tenant Id"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Type"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vendor"
+          },
+          "vendor_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vendor Id"
+          },
+          "vendor_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vendor Url"
+          }
+        },
+        "title": "Event",
+        "type": "object"
+      },
+      "EventList": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Cursor"
+          },
+          "sandbox": {
+            "title": "Sandbox",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "events",
+          "sandbox"
+        ],
+        "title": "EventList",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -445,7 +1354,7 @@
             "type": "string"
           },
           "kind": {
-            "description": "'technical' or 'organizational' (Task 8 router).",
+            "description": "'technical' or 'organizational'.",
             "title": "Kind",
             "type": "string"
           },
@@ -755,6 +1664,129 @@
         "title": "SuggestAgreementLineMappingBody",
         "type": "object"
       },
+      "Ticket": {
+        "additionalProperties": false,
+        "properties": {
+          "assigned_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Assigned To"
+          },
+          "company_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Name"
+          },
+          "company_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Company Source Id"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Created At"
+          },
+          "priority": {
+            "title": "Priority",
+            "type": "string"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Updated At"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "summary",
+          "status",
+          "priority"
+        ],
+        "title": "Ticket",
+        "type": "object"
+      },
       "TicketEventWebhookBody": {
         "properties": {
           "url": {
@@ -767,6 +1799,146 @@
           "url"
         ],
         "title": "TicketEventWebhookBody",
+        "type": "object"
+      },
+      "TicketList": {
+        "additionalProperties": false,
+        "properties": {
+          "last_synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Last Synced At"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Cursor"
+          },
+          "sandbox": {
+            "title": "Sandbox",
+            "type": "boolean"
+          },
+          "served_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Served From"
+          },
+          "tickets": {
+            "items": {
+              "$ref": "#/components/schemas/Ticket"
+            },
+            "title": "Tickets",
+            "type": "array"
+          }
+        },
+        "required": [
+          "tickets",
+          "sandbox"
+        ],
+        "title": "TicketList",
+        "type": "object"
+      },
+      "TimeEntry": {
+        "additionalProperties": false,
+        "properties": {
+          "billable": {
+            "title": "Billable",
+            "type": "boolean"
+          },
+          "hours": {
+            "title": "Hours",
+            "type": "number"
+          },
+          "member": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Member"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "description": "Read-only extra vendor fields. Same payload as vendor.native.",
+            "title": "Raw",
+            "type": "object"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "ticket_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ticket Source Id"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "source",
+          "source_id",
+          "hours",
+          "billable"
+        ],
+        "title": "TimeEntry",
         "type": "object"
       },
       "ValidationError": {
@@ -807,6 +1979,32 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VendorEnvelope": {
+        "additionalProperties": false,
+        "description": "Read-only vendor escape hatch on a canonical object.",
+        "properties": {
+          "connector": {
+            "title": "Connector",
+            "type": "string"
+          },
+          "native": {
+            "additionalProperties": true,
+            "description": "Raw vendor object. Read-only extra fields; same payload as `.raw`.",
+            "title": "Native",
+            "type": "object"
+          },
+          "native_id": {
+            "title": "Native Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "connector",
+          "native_id"
+        ],
+        "title": "VendorEnvelope",
         "type": "object"
       },
       "WriteAgreementLineBody": {
@@ -1125,7 +2323,7 @@
   "info": {
     "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant. We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.70.0",
+    "version": "0.71.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -1154,7 +2352,7 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Get Connector Coverage Connectors  Connector Key  Coverage Get",
+                  "title": "Response Get Connector Coverage Connectors Connector Key Coverage Get",
                   "type": "object"
                 }
               }
@@ -1199,6 +2397,96 @@
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "summary": "Error Catalog",
@@ -1221,6 +2509,96 @@
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "summary": "Object Dictionary",
@@ -1243,6 +2621,96 @@
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "summary": "Quickstart",
@@ -1281,6 +2749,56 @@
             },
             "description": "Successful Response"
           },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
           "422": {
             "content": {
               "application/json": {
@@ -1290,6 +2808,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1305,7 +2863,7 @@
     },
     "/tenants/{tenant_id}/agreements": {
       "get": {
-        "description": "Canonical PSA agreements from the tenant's connected PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch \u2014 it re-syncs\nthis request against the per-connection vendor budget. Paginated\n(S4): at most `limit` agreements (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "description": "Canonical PSA agreements from the tenant's connected PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch \u2014 it re-syncs\nthis request against the per-connection vendor budget. Paginated:\nat most `limit` agreements (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
         "operationId": "list_agreements_tenants__tenant_id__agreements_get",
         "parameters": [
           {
@@ -1338,7 +2896,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -1352,7 +2910,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -1380,13 +2938,61 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response List Agreements Tenants  Tenant Id  Agreements Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/AgreementList"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1397,6 +3003,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1478,7 +3124,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -1492,7 +3138,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -1521,12 +3167,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Installed Applications Tenants  Tenant Id  Applications Get",
+                  "title": "Response List Installed Applications Tenants Tenant Id Applications Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1537,6 +3233,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1552,7 +3288,7 @@
     },
     "/tenants/{tenant_id}/assistant/ask": {
       "post": {
-        "description": "Ask the AI support assistant about this tenant's integrations.\nRead-only: it diagnoses from live tenant state + the vendor setup-guide\ncorpus and tells you WHERE TO CLICK \u2014 it never writes to a vendor.\nUngroundable questions come back `escalated: true` (clean handoff),\nnever an improvised fix. Every tool call the assistant makes lands\nin this tenant's audit trail. Abuse controls (Task 9.8): the ask is\nrate-limited per key like every route, and when the assistant is\nwired with a budget manager each ask is metered against hard daily\ntoken + dollar caps (budget-hit replies come back `escalated: true`\nwith the reset time, never a silent failure).",
+        "description": "Ask the AI support assistant about this tenant's integrations.\nRead-only: it diagnoses from live tenant state + the vendor setup-guide\ncorpus and tells you WHERE TO CLICK \u2014 it never writes to a vendor.\nUngroundable questions come back `escalated: true` (clean handoff),\nnever an improvised fix. Every tool call the assistant makes lands\nin this tenant's audit trail. Abuse controls: the ask is\nrate-limited per key like every route, and when the assistant is\nwired with a budget manager each ask is metered against hard daily\ntoken + dollar caps (budget-hit replies come back `escalated: true`\nwith the reset time, never a silent failure).",
         "operationId": "assistant_ask_tenants__tenant_id__assistant_ask_post",
         "parameters": [
           {
@@ -1591,12 +3327,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Assistant Ask Tenants  Tenant Id  Assistant Ask Post",
+                  "title": "Response Assistant Ask Tenants Tenant Id Assistant Ask Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1607,6 +3393,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1622,7 +3448,7 @@
     },
     "/tenants/{tenant_id}/assistant/stats": {
       "get": {
-        "description": "The assistant's deflection value for this tenant (Task 9.14),\naggregated from the append-only audit trail: `asks` (completed\nasks), `resolved` (grounded answers), `escalated` (hand-offs to the\nhuman/ISV queue), `cap_hit_handoffs` (the escalations caused by a\nspend cap \u2014 capacity, not an unanswerable question), and\n`deflection_rate` = resolved / asks (null until there are asks).\nCounting, not asking: in-process state only \u2014 zero vendor calls,\nzero LLM calls. Served even where no assistant is configured (an\nhonest all-zeros trail, never a 501 \u2014 the trail exists regardless).",
+        "description": "The assistant's deflection value for this tenant,\naggregated from the append-only audit trail: `asks` (completed\nasks), `resolved` (grounded answers), `escalated` (hand-offs to the\nhuman/ISV queue), `cap_hit_handoffs` (the escalations caused by a\nspend cap \u2014 capacity, not an unanswerable question), and\n`deflection_rate` = resolved / asks (null until there are asks).\nCounting, not asking: in-process state only \u2014 zero vendor calls,\nzero LLM calls. Served even where no assistant is configured (an\nhonest all-zeros trail, never a 501 \u2014 the trail exists regardless).",
         "operationId": "get_deflection_stats_tenants__tenant_id__assistant_stats_get",
         "parameters": [
           {
@@ -1669,12 +3495,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Get Deflection Stats Tenants  Tenant Id  Assistant Stats Get",
+                  "title": "Response Get Deflection Stats Tenants Tenant Id Assistant Stats Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1685,6 +3561,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1700,7 +3616,7 @@
     },
     "/tenants/{tenant_id}/audit": {
       "get": {
-        "description": "The tenant's append-only operation trail: every read, write, and\nidempotent replay this surface performed, with outcome \u2014 so an\nintegration can be verified by what it DID, not just what it got\nback. Same schema for sandbox and production tenants. Paginated\n(S4), oldest first: the cursor is positional over the append-only\ntrail (history never reorders).",
+        "description": "The tenant's append-only operation trail: every read, write, and\nidempotent replay this surface performed, with outcome \u2014 so an\nintegration can be verified by what it DID, not just what it got\nback. Same schema for sandbox and production tenants. Paginated,\noldest first: the cursor is positional over the append-only\ntrail (history never reorders).",
         "operationId": "list_audit_events_tenants__tenant_id__audit_get",
         "parameters": [
           {
@@ -1723,7 +3639,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -1737,7 +3653,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -1766,12 +3682,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Audit Events Tenants  Tenant Id  Audit Get",
+                  "title": "Response List Audit Events Tenants Tenant Id Audit Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1782,6 +3748,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1885,12 +3891,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Agreement Line Mappings Tenants  Tenant Id  Commerce Agreement Line Mappings Get",
+                  "title": "Response List Agreement Line Mappings Tenants Tenant Id Commerce Agreement Line Mappings Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1901,6 +3957,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -1953,12 +4049,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Create Agreement Line Mapping Tenants  Tenant Id  Commerce Agreement Line Mappings Post",
+                  "title": "Response Create Agreement Line Mapping Tenants Tenant Id Commerce Agreement Line Mappings Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -1969,6 +4115,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2023,12 +4209,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Suggest Agreement Line Mappings Tenants  Tenant Id  Commerce Agreement Line Mappings Suggestions Post",
+                  "title": "Response Suggest Agreement Line Mappings Tenants Tenant Id Commerce Agreement Line Mappings Suggestions Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2039,6 +4275,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2092,12 +4368,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Release Agreement Line Mapping Tenants  Tenant Id  Commerce Agreement Line Mappings  Mapping Id  Release Post",
+                  "title": "Response Release Agreement Line Mapping Tenants Tenant Id Commerce Agreement Line Mappings Mapping Id Release Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2108,6 +4434,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2162,12 +4528,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Write Agreement Line Tenants  Tenant Id  Commerce Agreement Lines Post",
+                  "title": "Response Write Agreement Line Tenants Tenant Id Commerce Agreement Lines Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2178,6 +4594,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2255,12 +4711,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Charge Queue Tenants  Tenant Id  Commerce Charges Get",
+                  "title": "Response List Charge Queue Tenants Tenant Id Commerce Charges Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2271,6 +4777,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2334,12 +4880,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Approve Charge Tenants  Tenant Id  Commerce Charges  Charge Id  Approve Post",
+                  "title": "Response Approve Charge Tenants Tenant Id Commerce Charges Charge Id Approve Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2350,6 +4946,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2403,12 +5039,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Dismiss Charge Tenants  Tenant Id  Commerce Charges  Charge Id  Dismiss Post",
+                  "title": "Response Dismiss Charge Tenants Tenant Id Commerce Charges Charge Id Dismiss Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2419,6 +5105,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2469,7 +5195,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -2483,7 +5209,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -2512,12 +5238,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Isv Costs Tenants  Tenant Id  Commerce Costs Get",
+                  "title": "Response List Isv Costs Tenants Tenant Id Commerce Costs Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2528,6 +5304,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2580,12 +5396,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Submit Isv Cost Tenants  Tenant Id  Commerce Costs Post",
+                  "title": "Response Submit Isv Cost Tenants Tenant Id Commerce Costs Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2596,6 +5462,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2673,12 +5579,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Partner Minimums Tenants  Tenant Id  Commerce Partner Minimums Get",
+                  "title": "Response List Partner Minimums Tenants Tenant Id Commerce Partner Minimums Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2689,6 +5645,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2741,12 +5737,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Submit Partner Minimum Tenants  Tenant Id  Commerce Partner Minimums Post",
+                  "title": "Response Submit Partner Minimum Tenants Tenant Id Commerce Partner Minimums Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2757,6 +5803,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2850,12 +5936,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Reconcile Tenants  Tenant Id  Commerce Reconcile Get",
+                  "title": "Response Reconcile Tenants Tenant Id Commerce Reconcile Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2866,6 +6002,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2920,12 +6096,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Create Company Tenants  Tenant Id  Companies Post",
+                  "title": "Response Create Company Tenants Tenant Id Companies Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2936,6 +6162,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -2977,12 +6243,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Connections Tenants  Tenant Id  Connections Get",
+                  "title": "Response List Connections Tenants Tenant Id Connections Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -2993,6 +6309,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3008,7 +6364,7 @@
     },
     "/tenants/{tenant_id}/connections/events": {
       "get": {
-        "description": "Health two-class feed, or watch events when ``kind`` is set.\n\nDefault (no kind) is unchanged. Ticket/device/company kinds share\nthis feed (BL-P0-02 + device/customer watch): cursor is still\n``since``. Grants ``psa.ticket.events`` / ``rmm.device.events`` /\n``psa.company.events``. Paginated (S4): ``next_cursor`` feeds\n``since``.",
+        "description": "Health two-class feed, or watch events when ``kind`` is set.\n\nDefault (no kind) is unchanged. Ticket/device/company kinds share\nthis feed: cursor is still ``since``. Grants ``psa.ticket.events`` /\n``rmm.device.events`` / ``psa.company.events``. Paginated:\n``next_cursor`` feeds ``since``.",
         "operationId": "list_connection_events_tenants__tenant_id__connections_events_get",
         "parameters": [
           {
@@ -3067,7 +6423,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3081,7 +6437,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -3109,13 +6465,61 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response List Connection Events Tenants  Tenant Id  Connections Events Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/EventList"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3126,6 +6530,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3180,12 +6624,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Deploy Tenants  Tenant Id  Deployments Post",
+                  "title": "Response Deploy Tenants Tenant Id Deployments Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3196,6 +6690,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3244,7 +6778,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3258,7 +6792,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -3286,13 +6820,61 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response List Devices Tenants  Tenant Id  Devices Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/DeviceList"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3303,6 +6885,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3318,7 +6940,7 @@
     },
     "/tenants/{tenant_id}/findings/route": {
       "post": {
-        "description": "Route one finding by kind (Task 8): technical -> the PSA queue,\norganizational -> the engagement layer. Multi-destination routes\nreturn the fan-out envelope with per-target outcomes.",
+        "description": "Route one finding by kind: technical -> the PSA queue,\norganizational -> the engagement layer. Multi-destination routes\nreturn the fan-out envelope with per-target outcomes.",
         "operationId": "route_finding_tenants__tenant_id__findings_route_post",
         "parameters": [
           {
@@ -3366,12 +6988,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Route Finding Tenants  Tenant Id  Findings Route Post",
+                  "title": "Response Route Finding Tenants Tenant Id Findings Route Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3382,6 +7054,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3397,7 +7109,7 @@
     },
     "/tenants/{tenant_id}/identity/mappings": {
       "get": {
-        "description": "ACTIVE customer-identity mappings (CM-0.b). Each item is the\ncaller's visible spoke plus the resolved PSA target when one\nexists \u2014 never the whole hub. Grant-gated per external_party.\nReads only; served from the durable identity store (zero vendor\ncalls).",
+        "description": "ACTIVE customer-identity mappings. Each item is the\ncaller's visible spoke plus the resolved PSA target when one\nexists \u2014 never the whole hub. Grant-gated per external_party.\nReads only; served from the durable identity store (zero vendor\ncalls).",
         "operationId": "list_identity_mappings_tenants__tenant_id__identity_mappings_get",
         "parameters": [
           {
@@ -3420,7 +7132,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3434,7 +7146,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -3463,12 +7175,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Identity Mappings Tenants  Tenant Id  Identity Mappings Get",
+                  "title": "Response List Identity Mappings Tenants Tenant Id Identity Mappings Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3479,6 +7241,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3494,7 +7296,7 @@
     },
     "/tenants/{tenant_id}/identity/unmapped": {
       "get": {
-        "description": "UNMAPPED customer-identity rows (CM-0.b) \u2014 first-class stored\nstate with matched_signals evidence, not an absence. Same\ngrant/visibility posture as /identity/mappings. Reads only.",
+        "description": "UNMAPPED customer-identity rows \u2014 first-class stored\nstate with matched_signals evidence, not an absence. Same\ngrant/visibility posture as /identity/mappings. Reads only.",
         "operationId": "list_identity_unmapped_tenants__tenant_id__identity_unmapped_get",
         "parameters": [
           {
@@ -3517,7 +7319,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3531,7 +7333,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -3560,12 +7362,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Identity Unmapped Tenants  Tenant Id  Identity Unmapped Get",
+                  "title": "Response List Identity Unmapped Tenants Tenant Id Identity Unmapped Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3576,6 +7428,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3591,7 +7483,7 @@
     },
     "/tenants/{tenant_id}/incidents": {
       "get": {
-        "description": "Open VENDOR incidents (visibility spec \u00a71.4) \u2014 the vendor's API\nitself broke, distinct from this tenant's own connection issues\n(those live in /connections and the event feed, linked here via\nincident_id). Platform-wide by design: one vendor break affects\nevery tenant on that vendor, so there is no tenant filtering, only\ntenant-scoped access. Deliberately OUTSIDE the S4 pagination\ncontract: the OPEN-incident list is bounded by how many vendors\ncan be down at once, never by tenant data volume.",
+        "description": "Open VENDOR incidents (visibility spec \u00a71.4) \u2014 the vendor's API\nitself broke, distinct from this tenant's own connection issues\n(those live in /connections and the event feed, linked here via\nincident_id). Platform-wide by design: one vendor break affects\nevery tenant on that vendor, so there is no tenant filtering, only\ntenant-scoped access. Deliberately outside the pagination\ncontract: the OPEN-incident list is bounded by how many vendors\ncan be down at once, never by tenant data volume.",
         "operationId": "list_incidents_tenants__tenant_id__incidents_get",
         "parameters": [
           {
@@ -3620,12 +7512,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response List Incidents Tenants  Tenant Id  Incidents Get",
+                  "title": "Response List Incidents Tenants Tenant Id Incidents Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3636,6 +7578,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3680,12 +7662,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Get Routing Config Tenants  Tenant Id  Routing Get",
+                  "title": "Response Get Routing Config Tenants Tenant Id Routing Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3696,6 +7728,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3748,12 +7820,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Set Routing Config Tenants  Tenant Id  Routing Put",
+                  "title": "Response Set Routing Config Tenants Tenant Id Routing Put",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3764,6 +7886,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3808,12 +7970,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Get Tenant Status Tenants  Tenant Id  Status Get",
+                  "title": "Response Get Tenant Status Tenants Tenant Id Status Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3824,6 +8036,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3839,7 +8091,7 @@
     },
     "/tenants/{tenant_id}/ticket-events/webhook": {
       "post": {
-        "description": "Register an optional push URL for ticket/device/company events.\n\nSame endpoint as BL-P0-02 \u2014 not a second webhook. Secret is\nreturned once. Payloads are HMAC-SHA256 signed\n(Bitlync-Signature: t=<unix>,v1=<hex> over ``{t}.{body}``).\nHTTP 410 disables. Retry with backoff on Deployment.tick().\nRegister with any connected watch-events grant; delivery\nre-checks the grant for that kind.",
+        "description": "Register an optional push URL for ticket/device/company events.\n\nSame endpoint as ticket events \u2014 not a second webhook. Secret is\nreturned once. Payloads are HMAC-SHA256 signed\n(Bitlync-Signature: t=<unix>,v1=<hex> over ``{t}.{body}``).\nHTTP 410 disables. Retry with backoff on Deployment.tick.\nRegister with any connected watch-events grant; delivery\nre-checks the grant for that kind.",
         "operationId": "register_ticket_event_webhook_tenants__tenant_id__ticket_events_webhook_post",
         "parameters": [
           {
@@ -3878,12 +8130,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Register Ticket Event Webhook Tenants  Tenant Id  Ticket Events Webhook Post",
+                  "title": "Response Register Ticket Event Webhook Tenants Tenant Id Ticket Events Webhook Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -3894,6 +8196,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -3909,7 +8251,7 @@
     },
     "/tenants/{tenant_id}/tickets": {
       "get": {
-        "description": "Canonical tickets from the tenant's PSA (synced_at + raw included).\nEach ticket also includes `vendor: {connector, native_id, native}`\nwhere `native` is the raw vendor object (same payload as read-only\n`.raw`). Canonical first. Native escape hatch. We do not guarantee\nevery native field. Store-served with `last_synced_at` where a sync\nengine is wired; `?live=true` is the explicit freshness escape hatch\n\u2014 it re-syncs this request against the per-connection vendor budget.\nPaginated (S4): at most `limit` tickets (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "description": "Canonical tickets from the tenant's PSA (synced_at + raw included).\nEach ticket also includes `vendor: {connector, native_id, native}`\nwhere `native` is the raw vendor object (same payload as read-only\n`.raw`). Canonical first. Native escape hatch. We do not guarantee\nevery native field. Store-served with `last_synced_at` where a sync\nengine is wired; `?live=true` is the explicit freshness escape hatch\n\u2014 it re-syncs this request against the per-connection vendor budget.\nPaginated: at most `limit` tickets (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
         "operationId": "list_tickets_tenants__tenant_id__tickets_get",
         "parameters": [
           {
@@ -3942,7 +8284,7 @@
             }
           },
           {
-            "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+            "description": "Page size, 1..500. Omitted = 100.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3956,7 +8298,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Page size, 1..500 (S4 pagination contract). Omitted = 100.",
+              "description": "Page size, 1..500. Omitted = 100.",
               "title": "Limit"
             }
           },
@@ -3984,13 +8326,61 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response List Tickets Tenants  Tenant Id  Tickets Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/TicketList"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -4001,6 +8391,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -4061,12 +8491,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Create Ticket Tenants  Tenant Id  Tickets Post",
+                  "title": "Response Create Ticket Tenants Tenant Id Tickets Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -4077,6 +8557,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -4131,12 +8651,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Write Time Entry Tenants  Tenant Id  Tickets Time Post",
+                  "title": "Response Write Time Entry Tenants Tenant Id Tickets Time Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -4147,6 +8717,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -4201,12 +8811,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Write Ticket Tenants  Tenant Id  Tickets Write Post",
+                  "title": "Response Write Ticket Tenants Tenant Id Tickets Write Post",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -4217,6 +8877,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -4232,7 +8932,7 @@
     },
     "/tenants/{tenant_id}/usage": {
       "get": {
-        "description": "Daily usage + limit hits for this tenant (Task 9.8 abuse\nvisibility): requests served/rate-limited, assistant token and\ndollar spend, budget/breaker blocks. `day` is YYYY-MM-DD (UTC);\ndefaults to today. Raw data only \u2014 no dashboard.",
+        "description": "Daily usage + limit hits for this tenant (abuse\nvisibility): requests served/rate-limited, assistant token and\ndollar spend, budget/breaker blocks. `day` is YYYY-MM-DD (UTC);\ndefaults to today. Raw data only \u2014 no dashboard.",
         "operationId": "get_usage_summary_tenants__tenant_id__usage_get",
         "parameters": [
           {
@@ -4277,12 +8977,62 @@
               "application/json": {
                 "schema": {
                   "additionalProperties": true,
-                  "title": "Response Get Usage Summary Tenants  Tenant Id  Usage Get",
+                  "title": "Response Get Usage Summary Tenants Tenant Id Usage Get",
                   "type": "object"
                 }
               }
             },
             "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           },
           "422": {
             "content": {
@@ -4293,6 +9043,46 @@
               }
             },
             "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
           }
         },
         "security": [
@@ -4307,6 +9097,12 @@
       }
     }
   },
+  "servers": [
+    {
+      "url": "https://bitlync-sandbox-demo.onrender.com",
+      "description": "Sandbox (fixture-backed demo). Not production MSPs. Fixture data only."
+    }
+  ],
   "tags": [
     {
       "description": "PSA tier \u2014 canonical Ticket reads and ticket write-back.",
@@ -4325,7 +9121,7 @@
       "name": "Identity"
     },
     {
-      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, fixture dry_run agreement-line writes, and the MSP Approve/Dismiss queue on mapped charges (Track E).",
+      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, fixture dry_run agreement-line writes, and the MSP Approve/Dismiss queue on mapped charges.",
       "name": "Commerce"
     },
     {
