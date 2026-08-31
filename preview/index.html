@@ -1819,7 +1819,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Coverage is what the docs list today. We do not promise a vendor, object, or write that is not there.</p>
       <p>Sandbox tenants are fixture data, labeled sandbox. They are not a live MSP.</p>
       <h2>3. What you may not do</h2>
-      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us unless the MSP turned on company create for your grant; use the Service for fraud or anything illegal.</p>
+      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us; use the Service for fraud or anything illegal.</p>
       <h2>4. What we do</h2>
       <p>We host the API. We hold MSP keys in a vault so you do not. We sync into a per-tenant store. We pace writes and keep an append-only log.</p>
       <p>Support can diagnose. Support cannot change an MSP’s setup or use the vault to act as the MSP.</p>
@@ -1832,8 +1832,8 @@ dry_run ticket create is REST-only.</pre>
       <h2>6. Data</h2>
       <p>You grant us a limited right to process Customer Data and MSP Data only to provide the Service.</p>
       <p>We do not sell MSP Data. We do not aggregate MSP Data to publish or sell. We do not use it to train a public model. We do not share MSP names with vendors to build a marketplace.</p>
-      <p>Map customers to companies that already exist. Creating a company is a separate grant. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
-      <p>We do not mint an agreement header. Device write is off unless the MSP turns it on for your grant. Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements. Close on a ticket we created stays off unless the MSP turns it on.</p>
+      <p>We do not create the customer in a PSA. The MSP creates them there. That is where their contract lives. We map to a customer that already exists. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+      <p>We do not mint an agreement header. We do not write devices. Close on a ticket we created stays off unless the MSP turns it on.</p>
       <p>A later DPA, if we issue one, is part of these Terms for MSP Data.</p>
       <p>Per-tenant encryption. Isolated. SOC 2 is in progress. We do not claim a completed report.</p>
       <h2>7. Fees</h2>
@@ -1884,7 +1884,7 @@ dry_run ticket create is REST-only.</pre>
       <h2>2. The people in the data</h2>
       <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
       <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
-      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. Map customers to companies that already exist. Creating a company is a separate grant. We do not sell to them.</p>
+      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. We do not create them in the PSA. We do not sell to them.</p>
       <h2>3. What we collect and why</h2>
       <p>Contact and account. Name, email, company, intent, optional day and time, message. Why: early access, a key, an answer.</p>
       <p>API use. Times, routes, tenant ids, status codes, key id. Why: run the Service, pace writes, audit.</p>
@@ -1893,7 +1893,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Site. Normal web logs when you load www.bitlync.com. No ad pixel today.</p>
       <p>We do not take cards on the site today. We do not collect from children on purpose.</p>
       <h2>4. What we do not do</h2>
-      <p>We do not sell personal data. We do not sell or aggregate tenant data. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
+      <p>We do not sell personal data. We do not sell or aggregate tenant data. We do not create a customer in a PSA. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
       <h2>5. Who we share with</h2>
       <p>Only as needed to run the Service, as the ISV or MSP instructed, or as law requires.</p>
       <p>Processors we actually use today: Formsubmit (Contact us mail), GitHub Pages (the website). The production API host is not chosen. We will name it here when it is.</p>
@@ -1929,12 +1929,12 @@ dry_run ticket create is REST-only.</pre>
       <p>Your Vendor — the ISV whose product you use. They buy Bitlync. They call our API.</p>
       <p>Bitlync — the service in the middle. We hold your keys in a vault. We copy allowed data into a store so your Vendor can read one shape. We send the writes your Vendor asks for, if you granted that.</p>
       <p>A Vendor Application — a tool you already run.</p>
-      <p>Your clients — the companies in your PSA. We do not sell to them. Company create is off unless you turn it on for a vendor’s grant. We always match first. If two records match, we refuse.</p>
+      <p>Your clients — the companies in your PSA. We do not sell to them. We do not create them in your PSA.</p>
       <h2>2. What we do with your keys and data</h2>
       <p>When you connect, you give us permission to: hold the credentials you paste, in a vault your Vendor never sees; check that the permission we need is on the key, and name a miss in the flow; copy the objects you granted into our store; let your Vendor read and write those objects through our API, only as you granted; keep an append-only log.</p>
       <p>We do not use your data for anything else. We do not sell it. We do not aggregate it. We do not train a public model on it.</p>
-      <p>Map customers to companies that already exist. Creating a company is a separate grant. Company create is off unless you turn it on for a vendor’s grant. We always match first. If two records match, we refuse.</p>
-      <p>We do not mint an agreement. Device write is off unless you turn it on. Tickets are two-way when you grant it. The vendor can create, update, and close. The vendor can subscribe to events when you change the ticket in your PSA. We still do not silently create companies or agreements.</p>
+      <p>We do not create a customer in your PSA. You create them there. That is where the contract lives. Until they are in the PSA, they are not your customer.</p>
+      <p>We do not mint an agreement. We do not write devices. We do not take over your tickets.</p>
       <p>Our support can look at a log to diagnose. It cannot change your setup or use your keys.</p>
       <h2>3. What you must do</h2>
       <p>You say you have the right to share these keys and this tenant.</p>
