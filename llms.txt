@@ -25,6 +25,7 @@ Site: https://www.bitlync.com/
 - Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.
 - Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company.
 - Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.
+- When a device or company is created or updated, you can list those events or get a signed webhook.
 - Close defaults off unless the MSP turns it on.
 - A parked write is 501, not a generic 500.
 

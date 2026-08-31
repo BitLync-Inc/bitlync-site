@@ -297,7 +297,7 @@
                 "type": "null"
               }
             ],
-            "description": "Optional vendor-native field bag (CW customFields, Halo types, Autotask UDFs). Grant-checked. Unknown canonical fields are ignored (not 500).",
+            "description": "Optional vendor-native field bag (CW customFields, Halo types, Autotask UDFs). Grant-checked. Not `.raw` (`.raw` is read-only). Unknown canonical fields are ignored (not 500). We do not guarantee every native field.",
             "title": "Vendor Native"
           }
         },
@@ -311,7 +311,7 @@
       "CreateTimeEntryBody": {
         "properties": {
           "billable": {
-            "description": "Caller-stated billable flag — never guessed.",
+            "description": "Caller-stated billable flag \u2014 never guessed.",
             "title": "Billable",
             "type": "boolean"
           },
@@ -440,7 +440,7 @@
             "type": "boolean"
           },
           "idempotency_key": {
-            "description": "The ISV's own stable finding id — replay can never duplicate.",
+            "description": "The ISV's own stable finding id \u2014 replay can never duplicate.",
             "title": "Idempotency Key",
             "type": "string"
           },
@@ -812,7 +812,7 @@
       "WriteAgreementLineBody": {
         "properties": {
           "action": {
-            "description": "new | modify | replace | end — operating grain is the addition.",
+            "description": "new | modify | replace | end \u2014 operating grain is the addition.",
             "title": "Action",
             "type": "string"
           },
@@ -836,7 +836,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for new — must name an existing E2 agreement.",
+            "description": "Required for new \u2014 must name an existing E2 agreement.",
             "title": "Agreement Source Id"
           },
           "cancelled_date": {
@@ -932,7 +932,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for modify/replace/end — resolves the E3 MAPPED pair.",
+            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
             "title": "Vendor Key"
           },
           "vendor_product_ref": {
@@ -944,7 +944,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for modify/replace/end — resolves the E3 MAPPED pair.",
+            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
             "title": "Vendor Product Ref"
           }
         },
@@ -957,7 +957,7 @@
       "WriteTicketBody": {
         "properties": {
           "action": {
-            "description": "update | append_note | close | reopen | close_with_resolution — one write per request. close/reopen use the per-connection status map.",
+            "description": "update | append_note | close | reopen | close_with_resolution \u2014 one write per request. close/reopen use the per-connection status map.",
             "title": "Action",
             "type": "string"
           },
@@ -1101,7 +1101,7 @@
                 "type": "null"
               }
             ],
-            "description": "Optional vendor-native field bag. Grant-checked (psa.ticket.update). Unknown canonical fields are ignored.",
+            "description": "Optional vendor-native field bag. Grant-checked (psa.ticket.update). Not `.raw`. Unknown canonical fields are ignored.",
             "title": "Vendor Native"
           }
         },
@@ -1123,9 +1123,9 @@
     }
   },
   "info": {
-    "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope — partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production — simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). Writes accept optional `vendor_native` after the write grant.\n\n**Developer docs:** [Quickstart](/docs/quickstart) · [Object dictionary](/docs/object-dictionary) · [What we write](/docs/object-dictionary#what-we-write) · [Error codes](/docs/errors) · Try it out below (paste your sandbox API key into Authorize).",
+    "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant. We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.69.0",
+    "version": "0.70.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -1134,7 +1134,7 @@
   "paths": {
     "/connectors/{connector_key}/coverage": {
       "get": {
-        "description": "The generated field-fidelity manifest for one connector\n(coverage/*.json — which canonical fields map at full fidelity,\nwhich are lossy, which don't exist at the vendor). Connector-global\n(the manifest is the same for every tenant) but auth-gated like\nevery route. A catalog connector without a committed manifest\nreturns manifest=null with a note; an unknown key is 404.",
+        "description": "The generated field-fidelity manifest for one connector\n(coverage/*.json \u2014 which canonical fields map at full fidelity,\nwhich are lossy, which don't exist at the vendor). Connector-global\n(the manifest is the same for every tenant) but auth-gated like\nevery route. A catalog connector without a committed manifest\nreturns manifest=null with a note; an unknown key is 404.",
         "operationId": "get_connector_coverage_connectors__connector_key__coverage_get",
         "parameters": [
           {
@@ -1185,7 +1185,7 @@
     },
     "/docs/errors": {
       "get": {
-        "description": "Every deliberate API failure: stable `code`, HTTP status, and what to do next.\nBranch on `code`, not on status alone — two 409 states (`scope_parked` vs\n`scope_narrowed`) need opposite remedies.",
+        "description": "Every deliberate API failure: stable `code`, HTTP status, and what to do next.\nBranch on `code`, not on status alone \u2014 two 409 states (`scope_parked` vs\n`scope_narrowed`) need opposite remedies.",
         "operationId": "error_catalog_docs_errors_get",
         "responses": {
           "200": {
@@ -1305,7 +1305,7 @@
     },
     "/tenants/{tenant_id}/agreements": {
       "get": {
-        "description": "Canonical PSA agreements from the tenant's connected PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch — it re-syncs\nthis request against the per-connection vendor budget. Paginated\n(S4): at most `limit` agreements (default 100, max 500) plus\n`next_cursor` — pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "description": "Canonical PSA agreements from the tenant's connected PSA (synced_at + raw included).\nStore-served with `last_synced_at` where a sync engine is wired;\n`?live=true` is the explicit freshness escape hatch \u2014 it re-syncs\nthis request against the per-connection vendor budget. Paginated\n(S4): at most `limit` agreements (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
         "operationId": "list_agreements_tenants__tenant_id__agreements_get",
         "parameters": [
           {
@@ -1552,7 +1552,7 @@
     },
     "/tenants/{tenant_id}/assistant/ask": {
       "post": {
-        "description": "Ask the AI support assistant about this tenant's integrations.\nRead-only: it diagnoses from live tenant state + the vendor setup-guide\ncorpus and tells you WHERE TO CLICK — it never writes to a vendor.\nUngroundable questions come back `escalated: true` (clean handoff),\nnever an improvised fix. Every tool call the assistant makes lands\nin this tenant's audit trail. Abuse controls (Task 9.8): the ask is\nrate-limited per key like every route, and when the assistant is\nwired with a budget manager each ask is metered against hard daily\ntoken + dollar caps (budget-hit replies come back `escalated: true`\nwith the reset time, never a silent failure).",
+        "description": "Ask the AI support assistant about this tenant's integrations.\nRead-only: it diagnoses from live tenant state + the vendor setup-guide\ncorpus and tells you WHERE TO CLICK \u2014 it never writes to a vendor.\nUngroundable questions come back `escalated: true` (clean handoff),\nnever an improvised fix. Every tool call the assistant makes lands\nin this tenant's audit trail. Abuse controls (Task 9.8): the ask is\nrate-limited per key like every route, and when the assistant is\nwired with a budget manager each ask is metered against hard daily\ntoken + dollar caps (budget-hit replies come back `escalated: true`\nwith the reset time, never a silent failure).",
         "operationId": "assistant_ask_tenants__tenant_id__assistant_ask_post",
         "parameters": [
           {
@@ -1622,7 +1622,7 @@
     },
     "/tenants/{tenant_id}/assistant/stats": {
       "get": {
-        "description": "The assistant's deflection value for this tenant (Task 9.14),\naggregated from the append-only audit trail: `asks` (completed\nasks), `resolved` (grounded answers), `escalated` (hand-offs to the\nhuman/ISV queue), `cap_hit_handoffs` (the escalations caused by a\nspend cap — capacity, not an unanswerable question), and\n`deflection_rate` = resolved / asks (null until there are asks).\nCounting, not asking: in-process state only — zero vendor calls,\nzero LLM calls. Served even where no assistant is configured (an\nhonest all-zeros trail, never a 501 — the trail exists regardless).",
+        "description": "The assistant's deflection value for this tenant (Task 9.14),\naggregated from the append-only audit trail: `asks` (completed\nasks), `resolved` (grounded answers), `escalated` (hand-offs to the\nhuman/ISV queue), `cap_hit_handoffs` (the escalations caused by a\nspend cap \u2014 capacity, not an unanswerable question), and\n`deflection_rate` = resolved / asks (null until there are asks).\nCounting, not asking: in-process state only \u2014 zero vendor calls,\nzero LLM calls. Served even where no assistant is configured (an\nhonest all-zeros trail, never a 501 \u2014 the trail exists regardless).",
         "operationId": "get_deflection_stats_tenants__tenant_id__assistant_stats_get",
         "parameters": [
           {
@@ -1700,7 +1700,7 @@
     },
     "/tenants/{tenant_id}/audit": {
       "get": {
-        "description": "The tenant's append-only operation trail: every read, write, and\nidempotent replay this surface performed, with outcome — so an\nintegration can be verified by what it DID, not just what it got\nback. Same schema for sandbox and production tenants. Paginated\n(S4), oldest first: the cursor is positional over the append-only\ntrail (history never reorders).",
+        "description": "The tenant's append-only operation trail: every read, write, and\nidempotent replay this surface performed, with outcome \u2014 so an\nintegration can be verified by what it DID, not just what it got\nback. Same schema for sandbox and production tenants. Paginated\n(S4), oldest first: the cursor is positional over the append-only\ntrail (history never reorders).",
         "operationId": "list_audit_events_tenants__tenant_id__audit_get",
         "parameters": [
           {
@@ -1797,7 +1797,7 @@
     },
     "/tenants/{tenant_id}/commerce/agreement-line-mappings": {
       "get": {
-        "description": "List vendor-product ↔ PSA agreement-line pairings for this tenant.\nCreates zero mappings. UNMAPPED rows are first-class stored state.",
+        "description": "List vendor-product \u2194 PSA agreement-line pairings for this tenant.\nCreates zero mappings. UNMAPPED rows are first-class stored state.",
         "operationId": "list_agreement_line_mappings_tenants__tenant_id__commerce_agreement_line_mappings_get",
         "parameters": [
           {
@@ -1914,7 +1914,7 @@
         ]
       },
       "post": {
-        "description": "Explicit POST — the only path that creates a pairing (or records\nUNMAPPED). Suggestions, E2 reads, and E1 submits create nothing.",
+        "description": "Explicit POST \u2014 the only path that creates a pairing (or records\nUNMAPPED). Suggestions, E2 reads, and E1 submits create nothing.",
         "operationId": "create_agreement_line_mapping_tenants__tenant_id__commerce_agreement_line_mappings_post",
         "parameters": [
           {
@@ -2286,7 +2286,7 @@
     },
     "/tenants/{tenant_id}/commerce/charges/{charge_id}/approve": {
       "post": {
-        "description": "Approve one pending charge — runs the existing E5 agreement-line\nwrite. dry_run previews and does not mark the row actioned.",
+        "description": "Approve one pending charge \u2014 runs the existing E5 agreement-line\nwrite. dry_run previews and does not mark the row actioned.",
         "operationId": "approve_charge_tenants__tenant_id__commerce_charges__charge_id__approve_post",
         "parameters": [
           {
@@ -2434,7 +2434,7 @@
     },
     "/tenants/{tenant_id}/commerce/costs": {
       "get": {
-        "description": "ISV-submitted customer/product/period costs for this tenant.\nScoped to the calling ISV's key — another ISV never sees these rows.\n``aggregate=true`` adds hub-level SUM rollups (many spokes → one hub).",
+        "description": "ISV-submitted customer/product/period costs for this tenant.\nScoped to the calling ISV's key \u2014 another ISV never sees these rows.\n``aggregate=true`` adds hub-level SUM rollups (many spokes \u2192 one hub).",
         "operationId": "list_isv_costs_tenants__tenant_id__commerce_costs_get",
         "parameters": [
           {
@@ -2772,7 +2772,7 @@
     },
     "/tenants/{tenant_id}/commerce/reconcile": {
       "get": {
-        "description": "Read-only comparison of vendor cost records against mapped PSA\nagreement lines. Returns typed drift rows with both sides' refs\nand numbers. Performs zero writes. This is a comparison of\nsubmitted records and connector reads — not a vendor\nverification of amounts.",
+        "description": "Read-only comparison of vendor cost records against mapped PSA\nagreement lines. Returns typed drift rows with both sides' refs\nand numbers. Performs zero writes. This is a comparison of\nsubmitted records and connector reads \u2014 not a vendor\nverification of amounts.",
         "operationId": "reconcile_tenants__tenant_id__commerce_reconcile_get",
         "parameters": [
           {
@@ -2881,7 +2881,7 @@
     },
     "/tenants/{tenant_id}/companies": {
       "post": {
-        "description": "Match-first company create. PSA requires grant `psa.company.create`\n(missing → `grant_missing`). dry_run defaults true. Ambiguous match\nis `company_match_ambiguous`. Commerce (Pax8) uses fan_out=commerce.",
+        "description": "Match-first company create. PSA requires grant `psa.company.create`\n(missing \u2192 `grant_missing`). dry_run defaults true. Ambiguous match\nis `company_match_ambiguous`. Commerce (Pax8) uses fan_out=commerce.",
         "operationId": "create_company_tenants__tenant_id__companies_post",
         "parameters": [
           {
@@ -2948,7 +2948,7 @@
     },
     "/tenants/{tenant_id}/connections": {
       "get": {
-        "description": "Per-connection health for the tenant's connected vendors:\nstatus (healthy / degraded / attention_needed / dead — or \"unknown\"\nfor a connection with no sync history), the current issue where one\nexists, and `last_synced_at` (staleness is explicit; null = never\nsynced). Served from the in-process health tracker + sync store —\nthis call never touches a vendor.",
+        "description": "Per-connection health for the tenant's connected vendors:\nstatus (healthy / degraded / attention_needed / dead \u2014 or \"unknown\"\nfor a connection with no sync history), the current issue where one\nexists, and `last_synced_at` (staleness is explicit; null = never\nsynced). Served from the in-process health tracker + sync store \u2014\nthis call never touches a vendor.",
         "operationId": "list_connections_tenants__tenant_id__connections_get",
         "parameters": [
           {
@@ -3008,7 +3008,7 @@
     },
     "/tenants/{tenant_id}/connections/events": {
       "get": {
-        "description": "Health two-class feed, or ticket events when ``kind`` is set.\n\nDefault (no kind) is unchanged. Ticket kinds are the PSA→ISV watch\n(BL-P0-02): cursor is still ``since``. Grant ``psa.ticket.events``.\nPaginated (S4): ``next_cursor`` feeds ``since``.",
+        "description": "Health two-class feed, or watch events when ``kind`` is set.\n\nDefault (no kind) is unchanged. Ticket/device/company kinds share\nthis feed (BL-P0-02 + device/customer watch): cursor is still\n``since``. Grants ``psa.ticket.events`` / ``rmm.device.events`` /\n``psa.company.events``. Paginated (S4): ``next_cursor`` feeds\n``since``.",
         "operationId": "list_connection_events_tenants__tenant_id__connections_events_get",
         "parameters": [
           {
@@ -3049,7 +3049,7 @@
             }
           },
           {
-            "description": "Last-seen event id — this feed's cursor; only events after it return. next_cursor feeds this param.",
+            "description": "Last-seen event id \u2014 this feed's cursor; only events after it return. next_cursor feeds this param.",
             "in": "query",
             "name": "since",
             "required": false,
@@ -3062,7 +3062,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Last-seen event id — this feed's cursor; only events after it return. next_cursor feeds this param.",
+              "description": "Last-seen event id \u2014 this feed's cursor; only events after it return. next_cursor feeds this param.",
               "title": "Since"
             }
           },
@@ -3086,7 +3086,7 @@
             }
           },
           {
-            "description": "Ticket lifecycle kind: ticket.created, ticket.updated, ticket.noted, ticket.closed, ticket.reopened. Omit for the health two-class feed. Requires grant psa.ticket.events.",
+            "description": "Watch kind: ticket.created/updated/noted/closed/reopened (grant psa.ticket.events), device.created/updated (grant rmm.device.events), company.created/updated (grant psa.company.events). Omit for the health two-class feed.",
             "in": "query",
             "name": "kind",
             "required": false,
@@ -3099,7 +3099,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Ticket lifecycle kind: ticket.created, ticket.updated, ticket.noted, ticket.closed, ticket.reopened. Omit for the health two-class feed. Requires grant psa.ticket.events.",
+              "description": "Watch kind: ticket.created/updated/noted/closed/reopened (grant psa.ticket.events), device.created/updated (grant rmm.device.events), company.created/updated (grant psa.company.events). Omit for the health two-class feed.",
               "title": "Kind"
             }
           }
@@ -3397,7 +3397,7 @@
     },
     "/tenants/{tenant_id}/identity/mappings": {
       "get": {
-        "description": "ACTIVE customer-identity mappings (CM-0.b). Each item is the\ncaller's visible spoke plus the resolved PSA target when one\nexists — never the whole hub. Grant-gated per external_party.\nReads only; served from the durable identity store (zero vendor\ncalls).",
+        "description": "ACTIVE customer-identity mappings (CM-0.b). Each item is the\ncaller's visible spoke plus the resolved PSA target when one\nexists \u2014 never the whole hub. Grant-gated per external_party.\nReads only; served from the durable identity store (zero vendor\ncalls).",
         "operationId": "list_identity_mappings_tenants__tenant_id__identity_mappings_get",
         "parameters": [
           {
@@ -3494,7 +3494,7 @@
     },
     "/tenants/{tenant_id}/identity/unmapped": {
       "get": {
-        "description": "UNMAPPED customer-identity rows (CM-0.b) — first-class stored\nstate with matched_signals evidence, not an absence. Same\ngrant/visibility posture as /identity/mappings. Reads only.",
+        "description": "UNMAPPED customer-identity rows (CM-0.b) \u2014 first-class stored\nstate with matched_signals evidence, not an absence. Same\ngrant/visibility posture as /identity/mappings. Reads only.",
         "operationId": "list_identity_unmapped_tenants__tenant_id__identity_unmapped_get",
         "parameters": [
           {
@@ -3591,7 +3591,7 @@
     },
     "/tenants/{tenant_id}/incidents": {
       "get": {
-        "description": "Open VENDOR incidents (visibility spec §1.4) — the vendor's API\nitself broke, distinct from this tenant's own connection issues\n(those live in /connections and the event feed, linked here via\nincident_id). Platform-wide by design: one vendor break affects\nevery tenant on that vendor, so there is no tenant filtering, only\ntenant-scoped access. Deliberately OUTSIDE the S4 pagination\ncontract: the OPEN-incident list is bounded by how many vendors\ncan be down at once, never by tenant data volume.",
+        "description": "Open VENDOR incidents (visibility spec \u00a71.4) \u2014 the vendor's API\nitself broke, distinct from this tenant's own connection issues\n(those live in /connections and the event feed, linked here via\nincident_id). Platform-wide by design: one vendor break affects\nevery tenant on that vendor, so there is no tenant filtering, only\ntenant-scoped access. Deliberately OUTSIDE the S4 pagination\ncontract: the OPEN-incident list is bounded by how many vendors\ncan be down at once, never by tenant data volume.",
         "operationId": "list_incidents_tenants__tenant_id__incidents_get",
         "parameters": [
           {
@@ -3651,7 +3651,7 @@
     },
     "/tenants/{tenant_id}/routing": {
       "get": {
-        "description": "This ISV's supported/recommended write-back targets for this\ntenant, plus the MSP's current per-finding-kind routing — an\noverride where one is set, the ISV's recommendation otherwise\n(`routes[kind].overridden` says which). In-process config, zero\nvendor calls.",
+        "description": "This ISV's supported/recommended write-back targets for this\ntenant, plus the MSP's current per-finding-kind routing \u2014 an\noverride where one is set, the ISV's recommendation otherwise\n(`routes[kind].overridden` says which). In-process config, zero\nvendor calls.",
         "operationId": "get_routing_config_tenants__tenant_id__routing_get",
         "parameters": [
           {
@@ -3709,7 +3709,7 @@
         ]
       },
       "put": {
-        "description": "Set (or clear, with null) this tenant's per-finding-kind\nwrite-back target override. Only targets the calling ISV supports\nare accepted — anything else is 422, never a silent fallback.\nReturns the resulting routing view (same shape as the GET).",
+        "description": "Set (or clear, with null) this tenant's per-finding-kind\nwrite-back target override. Only targets the calling ISV supports\nare accepted \u2014 anything else is 422, never a silent fallback.\nReturns the resulting routing view (same shape as the GET).",
         "operationId": "set_routing_config_tenants__tenant_id__routing_put",
         "parameters": [
           {
@@ -3839,7 +3839,7 @@
     },
     "/tenants/{tenant_id}/ticket-events/webhook": {
       "post": {
-        "description": "Register an optional push URL for ticket.* events.\n\nSecret is returned once. Payloads are HMAC-SHA256 signed\n(Bitlync-Signature: t=<unix>,v1=<hex> over ``{t}.{body}``).\nHTTP 410 disables. Retry with backoff on Deployment.tick().\nGrant psa.ticket.events.",
+        "description": "Register an optional push URL for ticket/device/company events.\n\nSame endpoint as BL-P0-02 \u2014 not a second webhook. Secret is\nreturned once. Payloads are HMAC-SHA256 signed\n(Bitlync-Signature: t=<unix>,v1=<hex> over ``{t}.{body}``).\nHTTP 410 disables. Retry with backoff on Deployment.tick().\nRegister with any connected watch-events grant; delivery\nre-checks the grant for that kind.",
         "operationId": "register_ticket_event_webhook_tenants__tenant_id__ticket_events_webhook_post",
         "parameters": [
           {
@@ -3909,7 +3909,7 @@
     },
     "/tenants/{tenant_id}/tickets": {
       "get": {
-        "description": "Canonical tickets from the tenant's PSA (synced_at + raw included).\nEach ticket also includes `vendor: {connector, native_id, native}`\nwhere `native` is the raw vendor object (same payload as\n`.raw`). Canonical first. Native escape hatch. Store-served with `last_synced_at` where a sync\nengine is wired; `?live=true` is the explicit freshness escape hatch\n— it re-syncs this request against the per-connection vendor budget.\nPaginated (S4): at most `limit` tickets (default 100, max 500) plus\n`next_cursor` — pass it back as `cursor` for the next page; null\nmeans this page is the last.",
+        "description": "Canonical tickets from the tenant's PSA (synced_at + raw included).\nEach ticket also includes `vendor: {connector, native_id, native}`\nwhere `native` is the raw vendor object (same payload as read-only\n`.raw`). Canonical first. Native escape hatch. We do not guarantee\nevery native field. Store-served with `last_synced_at` where a sync\nengine is wired; `?live=true` is the explicit freshness escape hatch\n\u2014 it re-syncs this request against the per-connection vendor budget.\nPaginated (S4): at most `limit` tickets (default 100, max 500) plus\n`next_cursor` \u2014 pass it back as `cursor` for the next page; null\nmeans this page is the last.",
         "operationId": "list_tickets_tenants__tenant_id__tickets_get",
         "parameters": [
           {
@@ -4046,7 +4046,7 @@
                 "dry_run": true,
                 "idempotency_key": "dx-quickstart-ticket-001",
                 "priority": "medium",
-                "summary": "Quarterly vCIO review — MFA coverage gap"
+                "summary": "Quarterly vCIO review \u2014 MFA coverage gap"
               },
               "schema": {
                 "$ref": "#/components/schemas/CreateTicketBody"
@@ -4162,7 +4162,7 @@
     },
     "/tenants/{tenant_id}/tickets/write": {
       "post": {
-        "description": "Update, append a note, close, or reopen a linked ticket.\n\ndry_run defaults true. idempotency_key required on commit. Grant\npsa.ticket.update (missing → grant_missing). Unmapped status →\nstatus_unmapped plus the allowed vendor list. close_with_resolution\nstill honors the MSP close flag. Not a new MCP tool. Events are P0-02.",
+        "description": "Update, append a note, close, or reopen a linked ticket.\n\ndry_run defaults true. idempotency_key required on commit. Grant\npsa.ticket.update (missing \u2192 grant_missing). Unmapped status \u2192\nstatus_unmapped plus the allowed vendor list. close_with_resolution\nstill honors the MSP close flag. Not a new MCP tool. Events are P0-02.",
         "operationId": "write_ticket_tenants__tenant_id__tickets_write_post",
         "parameters": [
           {
@@ -4232,7 +4232,7 @@
     },
     "/tenants/{tenant_id}/usage": {
       "get": {
-        "description": "Daily usage + limit hits for this tenant (Task 9.8 abuse\nvisibility): requests served/rate-limited, assistant token and\ndollar spend, budget/breaker blocks. `day` is YYYY-MM-DD (UTC);\ndefaults to today. Raw data only — no dashboard.",
+        "description": "Daily usage + limit hits for this tenant (Task 9.8 abuse\nvisibility): requests served/rate-limited, assistant token and\ndollar spend, budget/breaker blocks. `day` is YYYY-MM-DD (UTC);\ndefaults to today. Raw data only \u2014 no dashboard.",
         "operationId": "get_usage_summary_tenants__tenant_id__usage_get",
         "parameters": [
           {
@@ -4309,23 +4309,23 @@
   },
   "tags": [
     {
-      "description": "PSA tier — canonical Ticket reads and ticket write-back.",
+      "description": "PSA tier \u2014 canonical Ticket reads and ticket write-back.",
       "name": "Service"
     },
     {
-      "description": "RMM tier — canonical Device and InstalledApplication reads.",
+      "description": "RMM tier \u2014 canonical Device and InstalledApplication reads.",
       "name": "Endpoint"
     },
     {
-      "description": "GRC/vCIO tier — finding routing to PSA or engagement layer.",
+      "description": "GRC/vCIO tier \u2014 finding routing to PSA or engagement layer.",
       "name": "Engagement"
     },
     {
-      "description": "Customer-identity map — ACTIVE mappings and UNMAPPED spokes.",
+      "description": "Customer-identity map \u2014 ACTIVE mappings and UNMAPPED spokes.",
       "name": "Identity"
     },
     {
-      "description": "ISV cost rows, vendor-service ↔ agreement-line pairing, read-only reconcile, fixture dry_run agreement-line writes, and the MSP Approve/Dismiss queue on mapped charges (Track E).",
+      "description": "ISV cost rows, vendor-service \u2194 agreement-line pairing, read-only reconcile, fixture dry_run agreement-line writes, and the MSP Approve/Dismiss queue on mapped charges (Track E).",
       "name": "Commerce"
     },
     {
@@ -4333,7 +4333,7 @@
       "name": "Visibility"
     },
     {
-      "description": "Read-only AI support — grounded answers, never writes.",
+      "description": "Read-only AI support \u2014 grounded answers, never writes.",
       "name": "Assistant"
     },
     {
@@ -4341,7 +4341,7 @@
       "name": "Platform"
     },
     {
-      "description": "Error catalog and quickstart — branch on `code`, not HTTP status alone.",
+      "description": "Error catalog and quickstart \u2014 branch on `code`, not HTTP status alone.",
       "name": "Developer"
     }
   ]
