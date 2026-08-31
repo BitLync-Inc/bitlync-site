@@ -2030,7 +2030,7 @@ dry_run ticket create is REST-only.</pre>
     if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
     if(h.indexOf('solutions/')===0){
       var slug=h.slice(10);
-      var smap={product:'solutions-product',developer:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
+      var smap={product:'solutions-product',developer:'solutions-developer',engineering:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
       var sp=smap[slug]||'solutions-product';
       return {page:sp,docs:'docs',anchor:null,connector:null};
     }
