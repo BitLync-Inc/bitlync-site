@@ -17,7 +17,7 @@ The job: they already wrote vendor clients. They change those calls to Bitlync. 
 - Reads first. Then writes. Webhooks only if they already exist in product.
 - Keep the old vendor clients until Bitlync matches in their environment.
 - Use `dry_run` as the shadow pass on writes. Compare shape, do not cut over on a preview.
-- Never mint an agreement header. Never create a company in the PSA. Never write devices. Never auto-create an unmatched company. Never watch the MSP close a ticket or do two-way ticket sync.
+- Never mint an agreement header. Never write devices (not implemented). Never auto-create an unmatched company.
 - Write a line on an existing agreement only. Public word is Agreement, not Contract. Site word for the line is Line item.
 - MSP pastes their own keys. Name a missing permission in the connect flow. Do not claim OAuth unless that vendor actually publishes a partner app.
 - No Rewst (or other vendor) screenshots in anything that ships.
@@ -55,16 +55,16 @@ Keep `.raw` for vendor-only fields they still need. Do not log it. Do not put Hu
 
 Replace create/update only after reads match.
 
-- Tickets: open, update, close with evidence. Linked or created tickets only. Close defaults off until the MSP allows it.
+- Tickets: two-way when the MSP grants it (`psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`). You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Events are not a live PSA watch. Close on a ticket we created stays off unless the MSP turns it on.
 - Line items: on an existing agreement only.
 - Time on a ticket: hours the caller states, on a linked ticket.
-- Company push: ISV → distributors only (Pax8 first). Not into the PSA.
+- Company create is a separate grant (`psa.company.create`). Off unless the MSP turns it on. We always match first. If two records match, we refuse. `dry_run`. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.
 
 Every write: `dry_run` first, then apply. Same payload in sandbox. If they hit a Never, the 422 is a stable code, one English sentence, and a docs URL.
 
 ## Phase 5 — Webhooks
 
-Only if Bitlync already has the webhook. If not, they keep their vendor webhooks. Do not fake a unified event.
+Subscribe with `psa.ticket.events` when the MSP grants it. Events are not a live PSA watch. Do not fake a unified event. If the grant is off, they keep their vendor webhooks.
 
 ## Done when
 

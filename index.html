@@ -1055,7 +1055,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div style="display:grid;gap:8px;font-size:13.5px">
           <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
           <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · create a company in the PSA · create an agreement · write devices · change setup tables</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag next">Off unless you turn it on</span><span>create a company · create an agreement · write devices</span></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · change setup tables</span></div>
         </div>
       </div>
       <div class="card">
@@ -1491,7 +1492,7 @@ HTTP 500  { "status": 500, "code": "internal_error" }</pre>
 <article class="concept" id="docs-concepts-msp-permissions">
   <h2>MSP permissions</h2>
   <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
-  <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We do not create a company in the PSA and we do not create an agreement.</p>
+  <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. Create an agreement is off unless the MSP turns it on for your grant.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The MSP pastes keys in the guided flow. The probe names the permission to fix. The ISV does not paste MSP creds.</p>
   <p class="lbl">What the caller sees</p>
@@ -1613,8 +1614,8 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">The ISV rewrites the calls. The MSP pastes keys once. Connect names a missing permission in the flow.</p>
   <p class="note"><code class="inline">.raw</code> is extra fields on a read. It is not a write pipe. Leftover verbs stay on the old client.</p>
   <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
-  <p class="note">Never: mint an agreement header; create a company in the PSA; write devices; auto-create an unmatched company; two-way tickets or watch the MSP close.</p>
-  <p class="note">Tickets: open, update, close with evidence. Linked or created tickets only. Close defaults off until the MSP allows it. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company push: ISV to a distributor only. Not into the PSA.</p>
+  <p class="note">Never: mint an agreement header; write devices (not implemented); auto-create an unmatched company.</p>
+  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Events are not a live PSA watch. Close on a ticket we created stays off unless the MSP turns it on. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company create is a separate grant. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes.</p>
   <div class="skill-card">
     <p class="kicker">Migrating?</p>
@@ -1695,7 +1696,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. We do not mint a PSA company. Creating a leftover PSA company in the ISV still returns 501.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. Creating a leftover PSA company in the ISV still returns 501.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -1735,7 +1736,9 @@ dry_run ticket create is REST-only.</pre>
   </div>
   <p class="note">ConnectWise, Autotask, and Halo write line items on an existing agreement. Verbs: add, rewrite, end, replace. <code class="inline">dry_run</code> defaults true and returns the same payload. Apply is fixtures and dry_run. A host that is not a fixture returns 501. We do not mint an agreement header.</p>
   <p class="note">You need an active agreement so we can write the line.</p>
-  <p class="note">We never mint an agreement header. We never push a company into the PSA. We never two-way tickets or watch the MSP close. We never write devices. We never auto-create an unmatched company.</p>
+  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements.</p>
+  <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
+  <p class="note">We do not mint an agreement header. We do not write devices. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
   <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">agreement_requires_existing</code> — missing or unknown agreement.</p>
@@ -1744,8 +1747,8 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">project_header_not_supported</code> — they tried to mint a Project header. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">project_not_writable</code> — Baseline cannot take that write.</p>
   <p class="note"><code class="inline">project_company_cannot_update</code> — the project’s company cannot be updated.</p>
-  <p class="note">Pax8 matches companies it already has, then creates the rest. We do not mint a PSA company.</p>
-  <p class="note"><code class="inline">psa_company_create_refused</code> — they aimed create at the PSA. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
+  <p class="note">Pax8 matches companies it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
+  <p class="note"><code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>. When the grant is on we still match first; two matches refuse.</p>
   <p class="note"><code class="inline">company_match_ambiguous</code> — more than one match. We do not create.</p>
   <p class="note"><code class="inline">distributor_required</code> — no connected distributor for this write.</p>
 </div>
@@ -1756,18 +1759,31 @@ dry_run ticket create is REST-only.</pre>
     <p class="lede">The jobs. Alert to ticket through check an asset.</p>
   </div>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket.</p></article>
-  <article class="uc"><h3>2. Import, map, and create customers</h3><p class="note">Sure match auto-maps. A leftover is an ask. * We do not create the customer in a PSA. The partner creates them there, where the contract lives. Until they are in the PSA, they are not a customer.</p></article>
-  <article class="uc"><h3>3. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
-  <article class="uc"><h3>4. Billing reconciliation</h3><p class="note">Read agreements and lines. Write lines on an existing agreement.</p></article>
-  <article class="uc"><h3>5. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
-  <article class="uc"><h3>6. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
-  <article class="uc"><h3>7. Add to an existing project</h3><p class="note">Add notes or items on a project that already exists.</p></article>
-  <article class="uc"><h3>8. Create an order</h3><p class="note">Place a third-party licensing order.</p></article>
-  <article class="uc"><h3>9. Write a document</h3><p class="note">Write into the MSP's documentation tool.</p></article>
-  <article class="uc"><h3>10. Read devices</h3><p class="note">Pull the device roster.</p></article>
-  <article class="uc"><h3>11. Software inventory</h3><p class="note">Pull installed software.</p></article>
-  <article class="uc"><h3>12. Check an asset</h3><p class="note">Pull the documented asset.</p></article>
+  <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Events are not a live PSA watch.</p></article>
+  <article class="uc"><h3>3. Map customers to companies that already exist</h3><p class="note">Map customers to companies that already exist. Creating a company is a separate grant. Grant <code class="inline">psa.company.create</code>, <code class="inline">dry_run</code>, match-first.</p></article>
+  <article class="uc"><h3>4. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
+  <article class="uc"><h3>5. Billing reconciliation</h3><p class="note">Read agreements and lines. Write lines on an existing agreement.</p></article>
+  <article class="uc"><h3>6. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
+  <article class="uc"><h3>7. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
+  <article class="uc"><h3>8. Add to an existing project</h3><p class="note">Add notes or items on a project that already exists.</p></article>
+  <article class="uc"><h3>9. Create an order</h3><p class="note">Place a third-party licensing order.</p></article>
+  <article class="uc"><h3>10. Write a document</h3><p class="note">Write into the MSP's documentation tool.</p></article>
+  <article class="uc"><h3>11. Read devices</h3><p class="note">Pull the device roster.</p></article>
+  <article class="uc"><h3>12. Software inventory</h3><p class="note">Pull installed software.</p></article>
+  <article class="uc"><h3>13. Check an asset</h3><p class="note">Pull the documented asset.</p></article>
 </div>
+<p class="lbl">If you are this kind of ISV</p>
+<p class="note">A Alerting/security — map companies, do not create. Tickets create, update, close, and events. Optional agreement lines for billing counts.</p>
+<p class="note">B Network monitoring — companies must already exist. Two-way tickets. Create-only is not enough.</p>
+<p class="note">C Backup — failed job to ticket, close when it succeeds. Optional usage on agreement lines.</p>
+<p class="note">D Documentation — PSA companies are the source of truth. Document write. No company create.</p>
+<p class="note">E vCIO / QBR — map companies, findings to tickets, add to an existing project.</p>
+<p class="note">F Commerce / distributor — map, plus company-create grant, orders, lines on existing agreements.</p>
+<p class="note">G Quoting — map, company create for a new logo.</p>
+<p class="note">H Time / scheduling — ticket update (status, notes), time write. Not the watch.</p>
+<p class="note">I Identity / comms — full two-way tickets plus time.</p>
+<p class="note">J Onboarding / import — company create is the product. Grant plus match-first.</p>
+<p class="note">K AI copilot — read plus ticket write plus events. Do not lead with creating companies or agreements.</p>
 <div class="btn-row" style="margin:36px 0 0">
         <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
         <a class="btn" href="#docs-reference" data-docs="docs-reference">Reference</a>
@@ -1802,7 +1818,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Coverage is what the docs list today. We do not promise a vendor, object, or write that is not there.</p>
       <p>Sandbox tenants are fixture data, labeled sandbox. They are not a live MSP.</p>
       <h2>3. What you may not do</h2>
-      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us; use the Service for fraud or anything illegal.</p>
+      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us unless the MSP turned on company create for your grant; use the Service for fraud or anything illegal.</p>
       <h2>4. What we do</h2>
       <p>We host the API. We hold MSP keys in a vault so you do not. We sync into a per-tenant store. We pace writes and keep an append-only log.</p>
       <p>Support can diagnose. Support cannot change an MSP’s setup or use the vault to act as the MSP.</p>
@@ -1815,8 +1831,8 @@ dry_run ticket create is REST-only.</pre>
       <h2>6. Data</h2>
       <p>You grant us a limited right to process Customer Data and MSP Data only to provide the Service.</p>
       <p>We do not sell MSP Data. We do not aggregate MSP Data to publish or sell. We do not use it to train a public model. We do not share MSP names with vendors to build a marketplace.</p>
-      <p>We do not create the customer in a PSA. The MSP creates them there. That is where their contract lives. We map to a customer that already exists. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
-      <p>We do not mint an agreement header. We do not write devices. Close on a ticket we created stays off unless the MSP turns it on.</p>
+      <p>Map customers to companies that already exist. Creating a company is a separate grant. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+      <p>We do not mint an agreement header. Device write is off unless the MSP turns it on for your grant. Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. We still do not silently create companies or agreements. Close on a ticket we created stays off unless the MSP turns it on.</p>
       <p>A later DPA, if we issue one, is part of these Terms for MSP Data.</p>
       <p>Per-tenant encryption. Isolated. SOC 2 is in progress. We do not claim a completed report.</p>
       <h2>7. Fees</h2>
@@ -1867,7 +1883,7 @@ dry_run ticket create is REST-only.</pre>
       <h2>2. The people in the data</h2>
       <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
       <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
-      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. We do not create them in the PSA. We do not sell to them.</p>
+      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. Map customers to companies that already exist. Creating a company is a separate grant. We do not sell to them.</p>
       <h2>3. What we collect and why</h2>
       <p>Contact and account. Name, email, company, intent, optional day and time, message. Why: early access, a key, an answer.</p>
       <p>API use. Times, routes, tenant ids, status codes, key id. Why: run the Service, pace writes, audit.</p>
@@ -1876,7 +1892,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Site. Normal web logs when you load www.bitlync.com. No ad pixel today.</p>
       <p>We do not take cards on the site today. We do not collect from children on purpose.</p>
       <h2>4. What we do not do</h2>
-      <p>We do not sell personal data. We do not sell or aggregate tenant data. We do not create a customer in a PSA. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
+      <p>We do not sell personal data. We do not sell or aggregate tenant data. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
       <h2>5. Who we share with</h2>
       <p>Only as needed to run the Service, as the ISV or MSP instructed, or as law requires.</p>
       <p>Processors we actually use today: Formsubmit (Contact us mail), GitHub Pages (the website). The production API host is not chosen. We will name it here when it is.</p>
@@ -1912,12 +1928,12 @@ dry_run ticket create is REST-only.</pre>
       <p>Your Vendor — the ISV whose product you use. They buy Bitlync. They call our API.</p>
       <p>Bitlync — the service in the middle. We hold your keys in a vault. We copy allowed data into a store so your Vendor can read one shape. We send the writes your Vendor asks for, if you granted that.</p>
       <p>A Vendor Application — a tool you already run.</p>
-      <p>Your clients — the companies in your PSA. We do not sell to them. We do not create them in your PSA.</p>
+      <p>Your clients — the companies in your PSA. We do not sell to them. Company create is off unless you turn it on for a vendor’s grant. We always match first. If two records match, we refuse.</p>
       <h2>2. What we do with your keys and data</h2>
       <p>When you connect, you give us permission to: hold the credentials you paste, in a vault your Vendor never sees; check that the permission we need is on the key, and name a miss in the flow; copy the objects you granted into our store; let your Vendor read and write those objects through our API, only as you granted; keep an append-only log.</p>
       <p>We do not use your data for anything else. We do not sell it. We do not aggregate it. We do not train a public model on it.</p>
-      <p>We do not create a customer in your PSA. You create them there. That is where the contract lives. Until they are in the PSA, they are not your customer.</p>
-      <p>We do not mint an agreement. We do not write devices. We do not take over your tickets.</p>
+      <p>Map customers to companies that already exist. Creating a company is a separate grant. Company create is off unless you turn it on for a vendor’s grant. We always match first. If two records match, we refuse.</p>
+      <p>We do not mint an agreement. Device write is off unless you turn it on. Tickets are two-way when you grant it. The vendor can create, update, and close. The vendor can subscribe to events when you change the ticket in your PSA. We still do not silently create companies or agreements.</p>
       <p>Our support can look at a log to diagnose. It cannot change your setup or use your keys.</p>
       <h2>3. What you must do</h2>
       <p>You say you have the right to share these keys and this tenant.</p>
