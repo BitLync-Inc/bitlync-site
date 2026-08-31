@@ -14,7 +14,7 @@ The job: they already wrote vendor clients. They change those calls to Bitlync. 
 ## Rules
 
 - Check coverage against what Bitlync actually ships. Do not invent objects or routes.
-- Reads first. Then writes. Webhooks only if they already exist in product.
+- Reads first. Then writes. Ticket, device, and company events and an optional signed webhook exist.
 - Keep the old vendor clients until Bitlync matches in their environment.
 - Use `dry_run` as the shadow pass on writes. Compare shape, do not cut over on a preview.
 - Never mint an agreement header. Never auto-create an unmatched company.
@@ -55,7 +55,7 @@ Keep `.raw` for vendor-only fields they still need. Do not log it. Do not put Hu
 
 Replace create/update only after reads match.
 
-- Tickets: two-way when the MSP grants it (`psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`). You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Events are not a live PSA watch. Close on a ticket we created stays off unless the MSP turns it on.
+- Tickets: two-way when the MSP grants it (`psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`). You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, `GET /tenants/{id}/connections/events?kind=ticket.closed` (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (`psa.ticket.events`). Missing is `grant_missing`.
 - Line items: on an existing agreement only.
 - Time on a ticket: hours the caller states, on a linked ticket.
 - Company create is a separate grant (`psa.company.create`). Off unless the MSP turns it on. We always match first. If two records match, we refuse. `dry_run`. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.
@@ -65,7 +65,11 @@ Every write: `dry_run` first, then apply. Same payload in sandbox. If they hit a
 
 ## Phase 5 — Webhooks
 
-Subscribe with `psa.ticket.events` when the MSP grants it. Events are not a live PSA watch. Do not fake a unified event. If the grant is off, they keep their vendor webhooks.
+When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, `GET /tenants/{id}/connections/events?kind=ticket.closed` (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (`psa.ticket.events`). Missing is `grant_missing`.
+
+When a device is created or updated, you can list those events or get a signed webhook. After a tenant sync, `GET /tenants/{id}/connections/events?kind=device.updated` (also created). Optional signed webhook. Grant is the connection (`rmm.device.events`). Missing is `grant_missing`.
+
+When a company is created or updated, you can list those events or get a signed webhook. After a tenant sync, `GET /tenants/{id}/connections/events?kind=company.updated` (also created). Optional signed webhook. Grant is the connection (`psa.company.events`). Missing is `grant_missing`.
 
 ## Done when
 
