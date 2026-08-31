@@ -1442,12 +1442,13 @@ Retry-After: 30
   <p class="lbl">What the caller sees</p>
   <p class="note">HTTP 422. Branch on stable <code class="inline">code</code> <code class="inline">validation</code>.</p>
     <div class="code">
-    <div class="hd"><b>422 on your request</b><button class="copy" type="button" data-copy="{&quot;status&quot;:422,&quot;code&quot;:&quot;validation&quot;}">Copy</button></div>
+    <div class="hd"><b>422 on your request</b><button class="copy" type="button" data-copy="{&quot;code&quot;:&quot;validation&quot;,&quot;message&quot;:&quot;The request did not validate.&quot;,&quot;doc_url&quot;:&quot;https://docs.bitlync.com/concepts/errors/&quot;}">Copy</button></div>
     <pre>HTTP 422
 
 {
-  "status": 422,
-  "code": "validation"
+  "code": "validation",
+  "message": "The request did not validate.",
+  "doc_url": "https://docs.bitlync.com/concepts/errors/"
 }</pre>
   </div>
   <p class="note">No “send it anyway and let the PSA reject it.”</p>
@@ -1476,15 +1477,14 @@ Retry-After: 30
   <p class="lbl">Mechanism</p>
   <p class="note">The codes on this page are the codes that exist: 401 <code class="inline">auth</code>, 403 <code class="inline">tenant</code>, 404 unknown tenant, 422 <code class="inline">validation</code> (and <code class="inline">request_invalid</code> on a bad sandbox reset), 429 plus <code class="inline">Retry-After</code>, 501 <code class="inline">unsupported</code> / parked capability, 500 opaque <code class="inline">internal_error</code>.</p>
   <p class="lbl">What the caller sees</p>
+  <p class="note">The body is code, message, and doc_url. details is optional.</p>
     <div class="code">
-    <div class="hd"><b>stable code</b><button class="copy" type="button" data-copy="{&quot;status&quot;:401,&quot;code&quot;:&quot;auth&quot;}">Copy</button></div>
-    <pre>HTTP 401  { "status": 401, "code": "auth" }
-HTTP 403  { "status": 403, "code": "tenant" }
-HTTP 404  { "status": 404 }
-HTTP 422  { "status": 422, "code": "validation" }
-HTTP 429  Retry-After: 12
-HTTP 501  { "status": 501, "code": "unsupported" }
-HTTP 500  { "status": 500, "code": "internal_error" }</pre>
+    <div class="hd"><b>stable code</b><button class="copy" type="button" data-copy="{&quot;code&quot;:&quot;validation&quot;,&quot;message&quot;:&quot;The request did not validate.&quot;,&quot;doc_url&quot;:&quot;https://docs.bitlync.com/concepts/errors/&quot;}">Copy</button></div>
+    <pre>{
+  "code": "validation",
+  "message": "The request did not validate.",
+  "doc_url": "https://docs.bitlync.com/concepts/errors/"
+}</pre>
   </div>
   <p class="note">500 stays opaque. A parked write is 501, not a generic 500.</p>
   <p class="note">Health, incidents, and audit are listed reads on Reference, not a new UI.</p>
@@ -1519,6 +1519,10 @@ HTTP 500  { "status": 500, "code": "internal_error" }</pre>
     <p class="lede">Copy the curl. You should get tickets back with <code class="inline">sandbox: true</code>.</p>
   </div>
   <p class="note">Send the key as <code class="inline">X-API-Key</code>. Host is <code class="inline">bitlync-sandbox-demo.onrender.com</code>.</p>
+  <div class="code">
+    <div class="hd"><b>BITLYNC_BASE</b><button class="copy" type="button" data-copy="export BITLYNC_BASE=https://bitlync-sandbox-demo.onrender.com">Copy</button></div>
+    <pre>export BITLYNC_BASE=https://bitlync-sandbox-demo.onrender.com</pre>
+  </div>
   <div class="code">
     <div class="hd"><b>auth</b><button class="copy" type="button" data-copy="X-API-Key: blk_b27562d334f68281b783571dd8aa2522f2dddb273fd30311">Copy</button></div>
     <pre>X-API-Key: blk_b27562d334f68281b783571dd8aa2522f2dddb273fd30311
@@ -1642,7 +1646,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.70.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.71.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -1739,7 +1743,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
   <p class="note">We do not mint an agreement header. Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
-  <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>.</p>
+  <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>. details is optional.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">agreement_requires_existing</code> — missing or unknown agreement.</p>
   <p class="note">ConnectWise, Autotask, and Halo write on an existing project. We do not mint a Project header. Baseline cannot take that write.</p>
@@ -1964,6 +1968,8 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-08-31</h2>
+      <p>OpenAPI 0.71.0. Public spec servers is the sandbox (https://bitlync-sandbox-demo.onrender.com). Error body is code, message, and doc_url. details is optional.</p>
       <h2>2026-08-30</h2>
       <p>Device and company events (created, updated). List with GET /tenants/{id}/connections/events or a signed webhook. Grants rmm.device.events and psa.company.events. OpenAPI 0.70.0.</p>
       <p>Reads include vendor.native (same payload as .raw; .raw is read-only). Ticket writes accept optional vendor_native. OpenAPI 0.70.0.</p>
