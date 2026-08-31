@@ -57,9 +57,9 @@ Replace create/update only after reads match.
 
 - Tickets: two-way when the MSP grants it (`psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`). You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Events are not a live PSA watch. Close on a ticket we created stays off unless the MSP turns it on.
 - Line items: on an existing agreement only.
-- Device write is off unless the MSP turns it on for your grant.
 - Time on a ticket: hours the caller states, on a linked ticket.
 - Company create is a separate grant (`psa.company.create`). Off unless the MSP turns it on. We always match first. If two records match, we refuse. `dry_run`. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.
+- Device write is off unless the MSP turns it on for your grant.
 
 Every write: `dry_run` first, then apply. Same payload in sandbox. If they hit a Never, the 422 is a stable code, one English sentence, and a docs URL.
 
