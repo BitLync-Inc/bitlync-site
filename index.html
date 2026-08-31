@@ -871,7 +871,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div style="max-width:42rem">
         <h2>The sandbox</h2>
         <p class="sub">Seeded tenants. First call the same day.</p>
-        <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Try the sandbox</a>
+        <a class="btn" href="https://docs.bitlync.com/quickstart/">Try the sandbox</a>
       </div>
       <div class="code-shell">
         <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">sandbox</span></div>
@@ -2029,7 +2029,7 @@ dry_run ticket create is REST-only.</pre>
     if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
     if(h.indexOf('solutions/')===0){
       var slug=h.slice(10);
-      var smap={product:'solutions-product',developer:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
+      var smap={product:'solutions-product',developer:'solutions-developer',engineering:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
       var sp=smap[slug]||'solutions-product';
       return {page:sp,docs:'docs',anchor:null,connector:null};
     }
