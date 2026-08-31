@@ -542,22 +542,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   .drop:hover .panel,.drop:focus-within .panel{display:none}
   .drop.hot .panel{display:block}
 }
-
-#page-home .home-chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:4px 10px;margin:0 0 18px}
-#page-home .home-enable{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;max-width:40rem}
-#page-home .home-enable li{border:1px solid var(--hair);background:var(--card);border-radius:12px;padding:14px 16px}
-#page-home .home-enable strong{display:block;font-family:var(--sans);font-size:14px;margin:0 0 4px;color:var(--ink)}
-#page-home .home-enable span{color:var(--mute);font-size:14.5px}
-#page-home .home-cover{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin:22px 0 14px}
-#page-home .home-cover a{background:var(--card);padding:16px 12px;color:inherit;text-decoration:none;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-#page-home .home-cover img{width:28px;height:28px;object-fit:contain}
-#page-home .home-cover b{font-size:13.5px}
-#page-home .home-sb{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px}
-#page-home .msp-strip{display:block;border:1px solid var(--hair);border-radius:14px;padding:22px 24px;color:inherit;text-decoration:none;background:var(--card)}
-#page-home .msp-strip h2{font-family:var(--serif);font-weight:400;font-size:28px;margin:0 0 6px}
-#page-home .msp-strip p:last-child{margin:0;color:var(--mute)}
-@media(max-width:640px){#page-home .home-cover{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
 </style>
 </head>
 <body>
@@ -594,74 +578,59 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page on" id="page-home">
   <section class="hero">
     <div class="wrap">
+      <p class="kicker">One API for ISVs</p>
       <h1>Write once. Connect to many.</h1>
-      <p class="sub">One API for ISVs that sell to MSPs. Private beta. Sandbox is live. We are onboarding a small number of paid design partners.</p>
-      <p class="home-chip">Private beta · sandbox</p>
-      <div class="btn-row">
-        <a class="btn" href="https://docs.bitlync.com/quickstart/">API docs</a>
-        <a class="btn ghost" href="#partners" data-nav="partners">Become a design partner</a>
+      <p class="lede">Ship the product. Don’t own the integration stack.</p>
+      <div class="hub" aria-label="Diagram: many vendor systems fold through Bitlync into one shape that your product consumes">
+        <svg viewBox="0 0 720 360" role="img">
+          <g font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">
+            <rect x="16" y="76" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="122" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="168" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="214" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <rect x="16" y="260" width="132" height="28" rx="14" fill="#16181C" stroke="#3A3D46"/>
+            <text x="82" y="94" text-anchor="middle">PSA</text>
+            <text x="82" y="140" text-anchor="middle">RMM</text>
+            <text x="82" y="186" text-anchor="middle">Commerce</text>
+            <text x="82" y="232" text-anchor="middle">Documentation</text>
+            <text x="82" y="278" text-anchor="middle">Customer Success</text>
+          </g>
+          <g fill="none" stroke="#8B8E84" stroke-width="1.25">
+            <path class="flow" d="M148 90 C 250 90, 300 176, 392 176"/>
+            <path class="flow" d="M148 136 C 248 136, 304 180, 392 180"/>
+            <path class="flow" d="M148 182 C 246 182, 308 182, 392 182"/>
+            <path class="flow" d="M148 228 C 246 228, 308 184, 392 184"/>
+            <path class="flow" d="M148 274 C 248 274, 304 188, 392 188"/>
+          </g>
+          <circle cx="430" cy="182" r="38" fill="none" stroke="#EDECE6" stroke-width="1.6"/>
+          <text x="430" y="187" text-anchor="middle" font-family="Instrument Serif,serif" font-size="16" font-style="italic" fill="#EDECE6">bitlync</text>
+          <path class="flow" d="M468 182 H 548" fill="none" stroke="#8B8E84" stroke-width="1.4"/>
+          <rect x="552" y="166" width="148" height="32" rx="14" fill="#16181C" stroke="#3A3D46"/>
+          <text x="626" y="186" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#C9CBBF">Your product</text>
+        </svg>
       </div>
-      <ul class="home-enable">
-        <li><strong>One model</strong><span>Build against one model. We take on the vendor APIs.</span></li>
-        <li><strong>Vault/grants</strong><span>The MSP vault holds the keys. Vendors get scoped grants.</span></li>
-        <li><strong>One sync per tenant</strong><span>One sync per MSP serves every product.</span></li>
-      </ul>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <p class="kicker">Coverage</p>
-      <h2>Nine connectors in the sandbox.</h2>
-      <p class="sub">Every logo is sandbox. Full table in the docs.</p>
-      <div class="home-cover">
-        <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="28" height="28"><b>ConnectWise</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="28" height="28"><b>HaloPSA</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="28" height="28"><b>Autotask</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="28" height="28"><b>NinjaOne</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="28" height="28"><b>Datto RMM</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="28" height="28"><b>ScalePad</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="28" height="28"><b>Pax8</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="28" height="28"><b>IT Glue</b><span class="home-sb">Sandbox</span></a>
-        <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="28" height="28"><b>Hudu</b><span class="home-sb">Sandbox</span></a>
+      <div class="logo-scroll" aria-label="Connectors in the sandbox">
+        <div class="logo-track">
+          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
+          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
+          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
+          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
+          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
+          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
+          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
+          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
+          <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
+          <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/autotask"><img src="logos/autotask.png" alt="" width="20" height="20">Autotask</a>
+          <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
+          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
+          <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
+          <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
+          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
+          <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
+        </div>
       </div>
-      <p class="sub"><a href="https://docs.bitlync.com/coverage/">Full coverage table</a> · <a href="#integrations" data-nav="integrations">In-site connectors</a></p>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <p class="kicker">By persona</p>
-      <h2>Who it is for.</h2>
-      <div class="sol-cards">
-        <a class="sol-card" href="#solutions/product" data-nav="solutions">
-          <img src="assets/sol-product.jpg" alt="Product">
-          <h3>Product</h3>
-          <p>Ship without parking the roadmap.</p>
-        </a>
-        <a class="sol-card" href="#solutions/developer" data-nav="solutions">
-          <img src="assets/sol-engineering.jpg" alt="Engineering">
-          <h3>Engineering</h3>
-          <p>Stop owning each vendor API.</p>
-        </a>
-        <a class="sol-card" href="#solutions/customer-success" data-nav="solutions">
-          <img src="assets/sol-support.jpg" alt="Tech and platform support">
-          <h3>Tech and platform support</h3>
-          <p>Fewer integration tickets.</p>
-        </a>
-        <a class="sol-card" href="#solutions/sales" data-nav="solutions">
-          <img src="assets/sol-gtm.jpg" alt="Go to market">
-          <h3>Go to market</h3>
-          <p>Don’t lose a deal to a missing integration.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <a class="msp-strip" href="#msps" data-nav="msps">
-        <p class="kicker">For MSPs</p>
-        <h2>For MSPs.</h2>
-        <p>One of your vendors uses Bitlync to connect to your stack. You stay in control.</p>
-      </a>
     </div>
   </section>
 </div>
