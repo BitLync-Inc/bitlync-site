@@ -9099,8 +9099,8 @@
   },
   "servers": [
     {
-      "description": "Sandbox (fixture-backed demo). Not production MSPs. Fixture data only.",
-      "url": "https://bitlync-sandbox-demo.onrender.com"
+      "url": "https://bitlync-sandbox-demo.onrender.com",
+      "description": "Sandbox (fixture-backed demo). Not production MSPs. Fixture data only." 
     }
   ],
   "tags": [
