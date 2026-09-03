@@ -1126,7 +1126,39 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="lede">Bitlync is in stealth. We’re taking a small number of paid design partners ahead of general availability.</p>
       <p class="lede">Bitlync, Inc. is a Delaware corporation.</p>
       <div class="form-band">
-        <p class="sub" style="margin:0">We do not publish a company mailbox yet. This form is off until we do. If you already have an intro, reply there.</p>
+        <form class="ea-form" action="https://formsubmit.co/hello@bitlync.com" method="POST">
+          <input type="hidden" name="_subject" value="Bitlync early access">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://www.bitlync.com/#partners">
+          <input type="text" name="_gotcha" class="ea-hp" tabindex="-1" autocomplete="off">
+          <label for="ea-name">Name</label>
+          <input id="ea-name" name="name" type="text" required>
+          <label for="ea-email">Email</label>
+          <input id="ea-email" name="email" type="email" required>
+          <label for="ea-company">Company</label>
+          <input id="ea-company" name="company" type="text">
+          <fieldset>
+            <legend>Intent</legend>
+            <div class="ea-intent">
+              <label><input type="radio" name="intent" value="Early access" required> Early access</label>
+              <label><input type="radio" name="intent" value="Schedule a call"> Schedule a call</label>
+            </div>
+          </fieldset>
+          <div id="ea-slot" hidden>
+          <label for="ea-day">Preferred day</label>
+          <input id="ea-day" name="preferred_day" type="date">
+          <label for="ea-when">Time of day</label>
+          <select id="ea-when" name="preferred_when">
+            <option value=""></option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
+          </div>
+          <label for="ea-msg">Message</label>
+          <textarea id="ea-msg" name="message"></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
       </div>
     </div>
   </section>
@@ -1840,8 +1872,8 @@ dry_run ticket create is REST-only.</pre>
       <h2>15. Law</h2>
       <p>Delaware law, without conflict rules. Courts in Delaware. Either side may seek an injunction where the other is found.</p>
       <h2>16. Other</h2>
-      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: use Contact us on this site until we publish a company mailbox and legal address. Notices to you: the email on your account.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Use Contact us on this site until we publish a company mailbox and legal address.</p>
+      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: hello@bitlync.com. Notices to you: the email on your account.</p>
+      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
     </div>
   </section>
 </div>
@@ -1853,7 +1885,7 @@ dry_run ticket create is REST-only.</pre>
       <p>This notice is for people at an ISV who use the site or the API, and people at an MSP who paste keys.</p>
       <h2>1. Who we are</h2>
       <p>Bitlync, Inc. is a Delaware company. We sell a hosted API to software companies (ISVs). An MSP connects their own tools. We hold those keys in a vault.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Use Contact us on this site until we publish a company mailbox and legal address.</p>
+      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
       <h2>2. The people in the data</h2>
       <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
       <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
@@ -1878,14 +1910,14 @@ dry_run ticket create is REST-only.</pre>
       <p>Per-tenant encryption. Isolated. Append-only audit. Support is read-only. SOC 2 in progress. Not certified.</p>
       <p>If we confirm a breach of personal data we hold, we tell the ISV and, where law says so, the people affected, as soon as we reasonably can.</p>
       <h2>8. Your choices</h2>
-      <p>ISV: use Contact us on this site for a copy, a fix, or a delete of account data until we publish a company mailbox.</p>
+      <p>ISV: email hello@bitlync.com for a copy, a fix, or a delete of account data.</p>
       <p>MSP: revoke the grant. That is the main switch. You can also email us.</p>
       <h2>9. Where the data sits</h2>
       <p>We are in the United States.</p>
       <h2>10. Changes</h2>
       <p>We will date an update. For a material change we email the ISV address we have.</p>
       <h2>11. Contact</h2>
-      <p>Bitlync, Inc. is a Delaware corporation. Use Contact us on this site until we publish a company mailbox and legal address.</p>
+      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
     </div>
   </section>
 </div>
@@ -1927,7 +1959,7 @@ dry_run ticket create is REST-only.</pre>
       <p>We may change these terms. A material change waits 30 days after we post it or your Vendor tells you, unless security or law requires faster. If you do not agree, revoke.</p>
       <h2>8. Law</h2>
       <p>Delaware law. Courts in Delaware.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Use Contact us on this site until we publish a company mailbox and legal address.</p>
+      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
     </div>
   </section>
 </div>
@@ -1972,7 +2004,7 @@ dry_run ticket create is REST-only.</pre>
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · stealth · private beta</span>
-    <span><a href="#docs" data-nav="docs">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <span style="font-family:var(--mono);font-size:12px">bitlync.com</span></span>
+    <span><a href="#docs" data-nav="docs">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <a href="mailto:hello@bitlync.com" style="font-family:var(--mono);font-size:12px">hello@bitlync.com</a></span>
   </div>
 </footer>
 <script>
