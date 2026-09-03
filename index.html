@@ -1433,7 +1433,7 @@ Retry-After: 30
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, notes, and time commit when dry_run is false. Ticket create, write-back, and time for ConnectWise and Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. Ticket create, write-back, and time for ConnectWise and Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1739,7 +1739,7 @@ dry_run ticket create is REST-only.</pre>
     <h1>What we write.</h1>
     <p class="lede">Line items on an existing agreement. Locks and refusals.</p>
   </div>
-  <p class="note">ConnectWise, Autotask, and Halo write line items on an existing agreement. Verbs: add, rewrite, end, replace. <code class="inline">dry_run</code> defaults true and returns the same payload. Apply is fixtures and dry_run. A host that is not a fixture returns 501. We do not mint an agreement header.</p>
+  <p class="note">ConnectWise, Autotask, and Halo write line items on an existing agreement. Verbs: add, rewrite, end, replace. <code class="inline">dry_run</code> defaults true and returns the same payload. Halo agreement-line apply commits when dry_run is false. ConnectWise and Autotask apply run on fixtures and dry_run. A ConnectWise or Autotask host that is not a fixture returns 501. We do not mint an agreement header.</p>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
@@ -1972,6 +1972,7 @@ dry_run ticket create is REST-only.</pre>
       <h2>2026-09-03</h2>
       <p>HaloPSA ticket create commits when dry_run is false.</p>
       <p>HaloPSA ticket notes and time entries commit when dry_run is false.</p>
+      <p>HaloPSA ticket update, close, and reopen commit when dry_run is false. Agreement-line apply on an existing agreement commits when dry_run is false.</p>
       <h2>2026-08-31</h2>
       <p>OpenAPI 0.71.0. Public spec servers is the sandbox (https://bitlync-sandbox-demo.onrender.com). Error body is code, message, and doc_url. details is optional.</p>
       <h2>2026-08-30</h2>
