@@ -1434,7 +1434,7 @@ Retry-After: 30
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Ticket create, write-back, and time run on fixtures and dry_run for ConnectWise, Halo, and Autotask. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create commits when dry_run is false. Ticket create for ConnectWise and Autotask, and write-back and time for ConnectWise, Halo, and Autotask, run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. Creating a leftover PSA company in the ISV returns 501. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1970,6 +1970,8 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-09-03</h2>
+      <p>HaloPSA ticket create commits when dry_run is false.</p>
       <h2>2026-08-31</h2>
       <p>OpenAPI 0.71.0. Public spec servers is the sandbox (https://bitlync-sandbox-demo.onrender.com). Error body is code, message, and doc_url. details is optional.</p>
       <h2>2026-08-30</h2>
