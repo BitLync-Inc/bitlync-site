@@ -541,6 +541,50 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   .drop:hover .panel,.drop:focus-within .panel{display:none}
   .drop.hot .panel{display:block}
 }
+/* Use cases hub */
+#page-use-cases .uc-hero{padding:56px 22px 18px}
+#page-use-cases .uc-hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
+#page-use-cases .uc-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;max-width:860px}
+#page-use-cases .uc-tag{font-size:19px;line-height:1.35;margin:0;font-weight:500;max-width:560px;color:var(--ink)}
+#page-use-cases .uc-hint{font-family:var(--mono);font-size:11.5px;color:var(--mute);letter-spacing:.02em;opacity:.85;margin:8px auto 6px;text-align:center;max-width:1180px;padding:0 22px}
+#page-use-cases .uc-wrap{padding:12px 22px 64px}
+#page-use-cases{overflow-x:clip}
+#page-use-cases .uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:840px){
+  #page-use-cases .uc-grid{grid-template-columns:1fr;gap:16px}
+  #page-use-cases .uc-wrap,
+  #page-use-cases .uc-hero{padding-left:28px;padding-right:28px}
+  #page-use-cases .uc-hint.wrap,
+  #page-use-cases .uc-hint{padding-left:28px;padding-right:28px}
+  #page-use-cases .uc-scene{min-height:220px}
+  #page-use-cases .uc-card{min-height:220px}
+}
+#page-use-cases .uc-scene{perspective:1200px;min-height:248px}
+#page-use-cases .uc-card{position:relative;width:100%;height:100%;min-height:248px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1);cursor:pointer;border:0;background:transparent;padding:0;text-align:left;color:inherit;font:inherit}
+#page-use-cases .uc-card.is-flipped{transform:rotateY(180deg)}
+#page-use-cases .uc-card:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:16px}
+#page-use-cases .uc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--hair);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 1px 0 rgba(23,24,28,.04);display:flex;flex-direction:column;transition:box-shadow .2s ease}
+#page-use-cases .uc-card:hover .uc-face.uc-front{box-shadow:0 8px 24px rgba(23,24,28,.06)}
+#page-use-cases .uc-back{transform:rotateY(180deg);background:#101214;color:#EDECE6;border-color:#2C3128}
+#page-use-cases .uc-visual{flex:1;min-height:148px;background:linear-gradient(145deg,#EDECE6 0%,#E8E4DA 100%);border-bottom:1px solid var(--hair);display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+#page-use-cases .uc-card:hover .uc-visual,
+#page-use-cases .uc-card:focus-visible .uc-visual{background:linear-gradient(145deg,#D4CFC3 0%,#C4BDB0 100%)}
+#page-use-cases .uc-visual svg{width:96px;height:72px}
+#page-use-cases .uc-front .uc-body{padding:18px 22px 48px}
+#page-use-cases .uc-front .uc-body h2{margin:0;font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-.015em;line-height:1.15;max-width:18ch}
+#page-use-cases .uc-back .uc-body{padding:22px 22px 48px}
+#page-use-cases .uc-back h2{margin:0 0 10px;font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.015em;color:#EDECE6}
+#page-use-cases .uc-back .uc-lede{margin:0 0 16px;font-size:14.5px;line-height:1.45;color:#C9CBBF}
+#page-use-cases .uc-back .uc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--acid);margin:0 0 10px}
+#page-use-cases .uc-back ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+#page-use-cases .uc-back li{font-size:13.5px;line-height:1.4;color:#C9CBBF;padding-left:14px;position:relative}
+#page-use-cases .uc-back li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--acid)}
+#page-use-cases .uc-flip{position:absolute;right:14px;bottom:14px;width:28px;height:28px;border-radius:999px;border:1px solid var(--hair);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--mute);transition:border-color .15s ease,background .15s ease,color .15s ease}
+#page-use-cases .uc-card:hover .uc-flip,#page-use-cases .uc-card:focus-visible .uc-flip{border-color:var(--ink);color:var(--ink);background:var(--acid)}
+#page-use-cases .uc-flip svg{width:14px;height:14px;display:block}
+#page-use-cases .uc-back .uc-flip{border-color:#2C3128;background:#17181C;color:#C9CBBF}
+#page-use-cases .uc-card:hover .uc-back .uc-flip,#page-use-cases .uc-card:focus-visible .uc-back .uc-flip{border-color:var(--acid);color:var(--ink);background:var(--acid)}
+@media(prefers-reduced-motion:reduce){#page-use-cases .uc-card{transition:none}}
 </style>
 </head>
 <body>
@@ -565,6 +609,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </div>
         </div>
       </div>
+      <a href="#use-cases" data-nav="use-cases">Use cases</a>
       <a href="#integrations" data-nav="integrations">Connectors</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#partners" data-nav="partners">Contact us</a>
@@ -633,6 +678,237 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
 </div>
+<div class="page" id="page-use-cases">
+  <section>
+<div class="wrap uc-hero">
+    <p class="kicker">Use cases</p>
+    <h1>Deliver meaningful value to the MSP ecosystem.</h1>
+    <p class="uc-tag">Stand out with the integrations that matter.</p>
+  </div>
+  <p class="uc-hint wrap">Tap a card for examples</p>
+
+  <div class="wrap uc-wrap">
+    <div class="uc-grid">
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Ticket automation. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <rect x="8" y="14" width="40" height="36" rx="4" stroke="#17181C" stroke-width="2"/>
+                <path d="M16 24h24M16 32h18M16 40h12" stroke="#6B6A64" stroke-width="2"/>
+                <circle cx="62" cy="22" r="10" fill="#C6F04D"/>
+                <path d="M62 17v10M57 22h10" stroke="#17181C" stroke-width="2"/>
+                <path d="M48 38l10 4-10 4" stroke="#17181C" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Ticket automation</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Ticket automation</h2>
+              <p class="uc-lede">Normalize your alerts and create or update a ticket.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Security incident or backup failed — open a ticket</li>
+                <li>Append a note when the finding changes</li>
+                <li>Close with evidence when it clears</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Billing reconciliation. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <rect x="10" y="12" width="48" height="40" rx="4" stroke="#17181C" stroke-width="2"/>
+                <path d="M10 24h48" stroke="#17181C" stroke-width="2"/>
+                <path d="M18 34h16M18 42h24" stroke="#6B6A64" stroke-width="2"/>
+                <circle cx="64" cy="42" r="12" fill="#C6F04D"/>
+                <path d="M64 36v12" stroke="#17181C" stroke-width="2"/>
+                <path d="M60 39c0-2 1.8-3 4-3s4 1 4 3-1.8 2.2-4 2.8-4 1.2-4 3 1.8 3 4 3 4-1 4-3" stroke="#17181C" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Billing reconciliation</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Billing reconciliation</h2>
+              <p class="uc-lede">Push your charges and quantities to the MSP’s agreement.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Push seat count or usage onto an existing agreement line</li>
+                <li>Rewrite a quantity when the count changes</li>
+                <li>End a line when they cancel the product</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Faster onboarding. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <rect x="6" y="10" width="28" height="18" rx="3" stroke="#17181C" stroke-width="2"/>
+                <rect x="38" y="10" width="28" height="18" rx="3" stroke="#17181C" stroke-width="2"/>
+                <rect x="22" y="36" width="32" height="18" rx="3" fill="#C6F04D" stroke="#17181C" stroke-width="2"/>
+                <path d="M20 28v6h36v-6" stroke="#6B6A64" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Faster onboarding</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Faster onboarding</h2>
+              <p class="uc-lede">Pull the MSP’s companies, contacts, and users into your application — less setup time for them, faster go-live for you.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Import companies</li>
+                <li>Import contacts</li>
+                <li>Match companies that already exist in your app</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Provisioning and license automation. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <circle cx="28" cy="22" r="8" stroke="#17181C" stroke-width="2"/>
+                <circle cx="48" cy="22" r="8" stroke="#17181C" stroke-width="2"/>
+                <path d="M14 44c2.5-5 6.5-7.5 14-7.5S39.5 39 42 44" stroke="#17181C" stroke-width="2"/>
+                <path d="M36 44c2.5-5 6.5-7.5 14-7.5" stroke="#6B6A64" stroke-width="2"/>
+                <circle cx="64" cy="40" r="12" fill="#C6F04D"/>
+                <path d="M64 34v12M58 40h12" stroke="#17181C" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Provisioning and license automation</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Provisioning and license automation</h2>
+              <p class="uc-lede">Use the MSP’s user roster to provision and to license.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Read MSP technicians from the PSA as the source of truth</li>
+                <li>Create seats when someone is added</li>
+                <li>Drop a license when they leave</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Actionable recommendations. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <rect x="14" y="8" width="40" height="28" rx="3" stroke="#17181C" stroke-width="2"/>
+                <path d="M24 36v8h20v-8" stroke="#17181C" stroke-width="2"/>
+                <path d="M22 18h16M22 26h24" stroke="#6B6A64" stroke-width="2"/>
+                <circle cx="60" cy="44" r="12" fill="#C6F04D"/>
+                <path d="M55 44l3.5 3.5L66 40" stroke="#17181C" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Actionable recommendations</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Actionable recommendations</h2>
+              <p class="uc-lede">Read device data — software inventory, patch status, and resource consumption — and turn it into a recommendation.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Software inventory — spot shadow AI and shadow IT</li>
+                <li>Unpatched devices — security recommendation</li>
+                <li>Resource consumption — device refresh</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div class="uc-scene">
+        <button type="button" class="uc-card" data-uc-card aria-pressed="false" aria-label="Drive billable work. Tap for examples.">
+          <div class="uc-face uc-front">
+            <div class="uc-visual" aria-hidden="true">
+              <svg viewBox="0 0 84 64" fill="none">
+                <rect x="10" y="10" width="34" height="16" rx="3" stroke="#17181C" stroke-width="2"/>
+                <path d="M27 26v6" stroke="#17181C" stroke-width="2"/>
+                <rect x="10" y="32" width="52" height="22" rx="3" fill="#C6F04D" fill-opacity="0.55" stroke="#17181C" stroke-width="2"/>
+                <path d="M18 40h20M18 48h28" stroke="#17181C" stroke-width="2"/>
+                <circle cx="68" cy="20" r="9" fill="#17181C"/>
+                <path d="M68 15v10" stroke="#C6F04D" stroke-width="2"/>
+                <path d="M65 17.5c0-1.5 1.3-2.2 3-2.2s3 .7 3 2.2-1.3 1.6-3 2-3 .9-3 2.2 1.3 2.2 3 2.2 3-.7 3-2.2" stroke="#C6F04D" stroke-width="1.8" fill="none"/>
+              </svg>
+            </div>
+            <div class="uc-body"><h2>Drive billable work</h2></div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="uc-face uc-back">
+            <div class="uc-body">
+              <h2>Drive billable work</h2>
+              <p class="uc-lede">Open a project or ticket from your finding so the MSP can charge for the fix.</p>
+              <p class="uc-eyebrow">Examples</p>
+              <ul>
+                <li>Finding — ticket the MSP can bill against</li>
+                <li>Finding — add work on an existing project</li>
+                <li>Turn a recommendation into paid remediation</li>
+              </ul>
+            </div>
+            <span class="uc-flip" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 5.5A4.5 4.5 0 0 1 11 4.2M11.5 2.5V5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 8.5A4.5 4.5 0 0 1 3 9.8M2.5 11.5V9H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+    </div>
+
+  </section>
+</div>
+
 <div class="page" id="page-integrations">
   <section class="pad">
     <div class="wrap">
@@ -2013,7 +2289,7 @@ dry_run ticket create is REST-only.</pre>
 </footer>
 <script>
 (function(){
-  var pages=['home','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about'];
+  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
@@ -2029,6 +2305,7 @@ dry_run ticket create is REST-only.</pre>
   function parse(h){
     h=(h||'').replace('#','');
     if(!h) return {page:'home',docs:'docs',anchor:null,connector:null};
+    if(h==='use-cases') return {page:'use-cases',docs:'docs',anchor:null,connector:null};
     if(objHash[h]) return {page:'docs',docs:objHash[h],anchor:h,connector:null};
     if(h.indexOf('docs-concepts-')===0) return {page:'docs',docs:'docs-concepts',anchor:conceptAlias[h]||h,connector:null};
     if(docsIds.indexOf(h)>=0) return {page:'docs',docs:h,anchor:null,connector:null};
@@ -2393,6 +2670,23 @@ dry_run ticket create is REST-only.</pre>
     form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
     sync();
   })();
+(function(){
+    var root=document.getElementById('page-use-cases');
+    if(!root) return;
+    var cards=[].slice.call(root.querySelectorAll('[data-uc-card]'));
+    function setFlip(card,on){
+      card.classList.toggle('is-flipped',on);
+      card.setAttribute('aria-pressed',on?'true':'false');
+    }
+    cards.forEach(function(card){
+      card.addEventListener('click',function(){ setFlip(card,!card.classList.contains('is-flipped')); });
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape') cards.forEach(function(c){ setFlip(c,false); });
+    });
+  })();
+
+
   show(location.hash||'#home');
 
 })();
