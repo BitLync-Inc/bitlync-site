@@ -551,7 +551,18 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-use-cases .uc-hint{font-family:var(--mono);font-size:11.5px;color:var(--mute);letter-spacing:.02em;opacity:.85;margin:8px auto 6px;text-align:center;max-width:1180px;padding:0 22px}
 #page-use-cases .uc-wrap{padding:12px 0 64px}
 #page-use-cases .uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-@media(max-width:720px){#page-use-cases .uc-grid{grid-template-columns:1fr}}
+#page-use-cases{overflow-x:clip}
+@media(max-width:840px){
+  #page-use-cases .uc-hero.wrap,
+  #page-use-cases .uc-wrap,
+  #page-use-cases .uc-hint{
+    padding-left:28px;
+    padding-right:28px;
+  }
+  #page-use-cases .uc-grid{grid-template-columns:1fr;gap:16px}
+  #page-use-cases .uc-scene{min-height:220px}
+  #page-use-cases .uc-card{min-height:220px}
+}
 #page-use-cases .uc-scene{perspective:1200px;min-height:248px}
 #page-use-cases .uc-card{position:relative;width:100%;height:100%;min-height:248px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1);cursor:pointer;border:0;background:transparent;padding:0;text-align:left;color:inherit;font:inherit}
 #page-use-cases .uc-card.is-flipped{transform:rotateY(180deg)}
