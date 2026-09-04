@@ -591,35 +591,37 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 
 /* Origin / About hybrid (preview) */
 #page-about{position:relative;overflow:hidden}
-#page-about .ab-hero{position:relative;padding:56px 0 12px;overflow:hidden}
+#page-about .ab-hero{position:relative;padding:56px 0 12px;overflow:hidden;min-height:168px}
 #page-about .ab-field{position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(ellipse 55% 45% at 88% 18%,rgba(198,240,77,.18),transparent 55%),
-  radial-gradient(ellipse 40% 35% at 12% 70%,rgba(23,24,28,.05),transparent 50%)}
-#page-about .ab-field svg{position:absolute;right:-2%;top:6%;width:min(420px,48%);opacity:.75;max-width:100%}
-@keyframes ab-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-10px,0)}}
-@keyframes ab-glow{0%,100%{box-shadow:0 0 0 0 rgba(198,240,77,.35)}50%{box-shadow:0 0 0 6px rgba(198,240,77,0)}}
-#page-about .ab-drift{animation:ab-drift 5.2s ease-in-out infinite alternate}
-#page-about .ab-pulse{animation:ab-drift 6.4s ease-in-out infinite alternate-reverse}
+  radial-gradient(ellipse 60% 50% at 88% 22%,rgba(198,240,77,.28),transparent 55%),
+  radial-gradient(ellipse 42% 38% at 10% 72%,rgba(23,24,28,.07),transparent 50%)}
+#page-about .ab-field svg{position:absolute;right:-2%;top:4%;width:min(440px,52%);opacity:.95;max-width:100%}
+@keyframes ab-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-24px,0)}}
+@keyframes ab-glow{0%,100%{box-shadow:0 0 0 0 rgba(198,240,77,.55);opacity:1}50%{box-shadow:0 0 0 10px rgba(198,240,77,0);opacity:.55}}
+@keyframes ab-node{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+#page-about .ab-drift{animation:ab-drift 4.8s ease-in-out infinite alternate}
+#page-about .ab-pulse{animation:ab-drift 5.8s ease-in-out infinite alternate-reverse,ab-node 2.6s ease-in-out infinite}
 #page-about .ab-hero .kicker{position:relative;z-index:1}
 #page-about .ab-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;position:relative;z-index:1;max-width:18ch}
 #page-about .ab-chapters{position:relative;z-index:1;padding:0 0 64px;display:flex;flex-direction:column;gap:12px;max-width:42rem}
 #page-about .ab-chapter{
   border:1px solid var(--hair);border-radius:14px;padding:18px 20px 16px;
-  background:rgba(247,244,236,.72);
+  background:var(--card,#EDECE6);
   transition:background .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease;
   outline:none
 }
 #page-about .ab-chapter .ab-mark{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px;transition:color .25s ease}
-#page-about .ab-chapter .ab-mark i{width:8px;height:8px;border-radius:50%;background:var(--acid);display:inline-block;animation:ab-glow 2.8s ease-in-out infinite}
-#page-about .ab-chapter p.ab-body{font-size:15.5px;line-height:1.55;color:var(--mute);margin:0;max-width:38rem}
+#page-about .ab-chapter .ab-mark i{width:8px;height:8px;border-radius:50%;background:var(--acid);display:inline-block;animation:ab-glow 2.4s ease-in-out infinite}
+#page-about .ab-chapter p.ab-body{font-size:15.5px;line-height:1.55;color:var(--ink);margin:0;max-width:38rem;transition:color .25s ease}
 #page-about .ab-chapter:hover,#page-about .ab-chapter:focus-within{
-  background:var(--ink);border-color:var(--ink);box-shadow:0 12px 28px rgba(23,24,28,.18)
+  background:#101214;border-color:#2C3128;box-shadow:0 12px 28px rgba(23,24,28,.22);color:#EDECE6
 }
-#page-about .ab-chapter:hover .ab-mark,#page-about .ab-chapter:focus-within .ab-mark{color:rgba(247,244,236,.55)}
-#page-about .ab-chapter:hover p.ab-body,#page-about .ab-chapter:focus-within p.ab-body{color:rgba(247,244,236,.82)}
+#page-about .ab-chapter:hover .ab-mark,#page-about .ab-chapter:focus-within .ab-mark{color:#C9CBBF}
+#page-about .ab-chapter:hover p.ab-body,#page-about .ab-chapter:focus-within p.ab-body{color:#EDECE6}
+#page-about .ab-chapter:hover .ab-mark i,#page-about .ab-chapter:focus-within .ab-mark i{background:var(--acid)}
 @media(max-width:800px){
-  #page-about .ab-field svg{width:70%;opacity:.45;right:-8%}
-  #page-about .ab-hero{padding-top:40px}
+  #page-about .ab-field svg{width:70%;opacity:.55;right:-8%}
+  #page-about .ab-hero{padding-top:40px;min-height:120px}
 }
 @media(prefers-reduced-motion:reduce){
   #page-about .ab-drift,#page-about .ab-pulse,#page-about .ab-chapter .ab-mark i{animation:none}
