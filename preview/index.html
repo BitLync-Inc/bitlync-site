@@ -588,6 +588,43 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-use-cases .uc-card:hover .uc-back .uc-flip,#page-use-cases .uc-card:focus-visible .uc-back .uc-flip{border-color:var(--acid);color:var(--ink);background:var(--acid)}
 @media(prefers-reduced-motion:reduce){#page-use-cases .uc-card{transition:none}}
 
+
+/* Origin / About hybrid (preview) */
+#page-about{position:relative;overflow:hidden}
+#page-about .ab-hero{position:relative;padding:56px 0 12px;overflow:hidden}
+#page-about .ab-field{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 55% 45% at 88% 18%,rgba(198,240,77,.18),transparent 55%),
+  radial-gradient(ellipse 40% 35% at 12% 70%,rgba(23,24,28,.05),transparent 50%)}
+#page-about .ab-field svg{position:absolute;right:-2%;top:6%;width:min(420px,48%);opacity:.75;max-width:100%}
+@keyframes ab-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-10px,0)}}
+@keyframes ab-glow{0%,100%{box-shadow:0 0 0 0 rgba(198,240,77,.35)}50%{box-shadow:0 0 0 6px rgba(198,240,77,0)}}
+#page-about .ab-drift{animation:ab-drift 5.2s ease-in-out infinite alternate}
+#page-about .ab-pulse{animation:ab-drift 6.4s ease-in-out infinite alternate-reverse}
+#page-about .ab-hero .kicker{position:relative;z-index:1}
+#page-about .ab-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;position:relative;z-index:1;max-width:18ch}
+#page-about .ab-chapters{position:relative;z-index:1;padding:0 0 64px;display:flex;flex-direction:column;gap:12px;max-width:42rem}
+#page-about .ab-chapter{
+  border:1px solid var(--hair);border-radius:14px;padding:18px 20px 16px;
+  background:rgba(247,244,236,.72);
+  transition:background .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease;
+  outline:none
+}
+#page-about .ab-chapter .ab-mark{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px;transition:color .25s ease}
+#page-about .ab-chapter .ab-mark i{width:8px;height:8px;border-radius:50%;background:var(--acid);display:inline-block;animation:ab-glow 2.8s ease-in-out infinite}
+#page-about .ab-chapter p.ab-body{font-size:15.5px;line-height:1.55;color:var(--mute);margin:0;max-width:38rem}
+#page-about .ab-chapter:hover,#page-about .ab-chapter:focus-within{
+  background:var(--ink);border-color:var(--ink);box-shadow:0 12px 28px rgba(23,24,28,.18)
+}
+#page-about .ab-chapter:hover .ab-mark,#page-about .ab-chapter:focus-within .ab-mark{color:rgba(247,244,236,.55)}
+#page-about .ab-chapter:hover p.ab-body,#page-about .ab-chapter:focus-within p.ab-body{color:rgba(247,244,236,.82)}
+@media(max-width:800px){
+  #page-about .ab-field svg{width:70%;opacity:.45;right:-8%}
+  #page-about .ab-hero{padding-top:40px}
+}
+@media(prefers-reduced-motion:reduce){
+  #page-about .ab-drift,#page-about .ab-pulse,#page-about .ab-chapter .ab-mark i{animation:none}
+}
+
 </style>
 </head>
 <body>
@@ -2273,17 +2310,43 @@ dry_run ticket create is REST-only.</pre>
   </section>
 </div>
 <div class="page" id="page-about">
-  <section class="pad">
-    <div class="wrap legal">
+  <section>
+    <div class="wrap ab-hero">
+      <div class="ab-field" aria-hidden="true">
+        <svg class="ab-drift" viewBox="0 0 420 360" fill="none">
+          <circle cx="80" cy="90" r="4" fill="#17181C" opacity=".28"/>
+          <circle cx="160" cy="60" r="3" fill="#17181C" opacity=".2"/>
+          <circle cx="240" cy="110" r="5" fill="#C6F04D"/>
+          <circle cx="300" cy="70" r="3.5" fill="#17181C" opacity=".25"/>
+          <circle cx="340" cy="150" r="4" fill="#17181C" opacity=".22"/>
+          <circle class="ab-pulse" cx="200" cy="180" r="6" fill="#C6F04D" opacity=".8"/>
+          <circle cx="120" cy="200" r="3" fill="#17181C" opacity=".2"/>
+          <circle cx="280" cy="220" r="4" fill="#17181C" opacity=".24"/>
+          <circle cx="360" cy="240" r="5" fill="#C6F04D" opacity=".65"/>
+          <path d="M80 90 L160 60 L240 110 L300 70 L340 150 L280 220 L200 180 L120 200 Z" stroke="#17181C" stroke-width="1" opacity=".14"/>
+          <path d="M240 110 L200 180 L360 240" stroke="#17181C" stroke-width="1.2" opacity=".22"/>
+        </svg>
+      </div>
       <p class="kicker">About</p>
       <h1>Our origin story.</h1>
-      <p>Our founder has spent more than a decade consulting software companies on go-to-market in the SMB and MSP channel. Those companies ranged from innovative startups entering the market for the first time to some of the largest ISVs in the world.</p>
-      <p>Not every vendor had a product that fit, but the ones who did still lacked integrations to the MSP tools. From there it was a long process. Our founder helped them decide what to build first, then documented their requirements. An outside firm or their own developers did the build. That work was slow. Many vendors struggled until they put real resources on it. Once the integrations shipped, they saw tremendous growth.</p>
-      <p>This market is unique. MSPs run lean. They need automation to stay profitable and efficient. They do not have the technical bench to build custom integrations. They rely on vendors who already have them.</p>
-      <p>Bitlync is one API for that: write once, connect to many. We are in stealth with a small number of paid design partners, and we will come out when that work is ready.</p>
+    </div>
+    <div class="wrap ab-chapters">
+      <section class="ab-chapter" tabindex="0">
+        <p class="ab-mark"><i></i> The channel</p>
+        <p class="ab-body">Our founder has spent more than a decade consulting software companies on go-to-market in the SMB and MSP channel. Those companies ranged from innovative startups to some of the largest ISVs in the world. Not every vendor had a product that fit, but the ones who did still lacked integrations to the MSP tools.</p>
+      </section>
+      <section class="ab-chapter" tabindex="0">
+        <p class="ab-mark"><i></i> The hard way</p>
+        <p class="ab-body">Our founder helped them decide what to build first, then documented their requirements. That work was slow. Once the integrations shipped, they saw tremendous growth.</p>
+      </section>
+      <section class="ab-chapter" tabindex="0">
+        <p class="ab-mark"><i></i> Why Bitlync</p>
+        <p class="ab-body">This market is unique. MSPs run lean. They buy from vendors who already integrate with their stack. Building those connections once is doable; keeping them alive as every tool changes is the real work. Bitlync exists so ISVs can deliver meaningful value in that ecosystem and stand out with the integrations that matter.</p>
+      </section>
     </div>
   </section>
 </div>
+
 <footer>
   <div class="wrap foot">
     <span>© 2026 Bitlync · stealth · private beta</span>
@@ -2350,7 +2413,7 @@ dry_run ticket create is REST-only.</pre>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog' || st.page==='about');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
