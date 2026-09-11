@@ -1435,7 +1435,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad" style="padding-top:0">
     <div class="wrap center">
-      <p class="sub">Connecting means you agree to the <a href="#connect-terms" data-nav="connect-terms">MSP Connect Terms</a>. You check the box before any keys persist. We stamp the time. Skip it and we do not store keys.</p>
+      <p class="sub">You paste keys in the connect flow. We stamp when they land in the vault. Skip the connect step and we do not store keys.</p>
     </div>
   </section>
 </div>
@@ -1729,9 +1729,7 @@ Retry-After: 30
 }</pre>
   </div>
   <p class="note">Keys are not implied on every future write. Only writes that already support <code class="inline">idempotency_key</code>.</p>
-  <p class="note">When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=ticket.closed</code> (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (<code class="inline">psa.ticket.events</code>). Missing is <code class="inline">grant_missing</code>.</p>
-  <p class="note">When a device is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=device.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">rmm.device.events</code>). Missing is <code class="inline">grant_missing</code>.</p>
-  <p class="note">When a company is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=company.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">psa.company.events</code>). Missing is <code class="inline">grant_missing</code>.</p>
+  <p class="note">Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>.</p>
 
 </article>
 <article class="concept" id="docs-concepts-writes">
@@ -1755,7 +1753,7 @@ Retry-After: 30
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Ticket create, write-back, and time for Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display. ConnectWise and Halo list members for the time picker; Autotask members are not listed (501). When the ISV book supports company import from PSA, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Ticket create, write-back, and time for Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display. ConnectWise and Halo list members for the time picker; Autotask members are not listed (501). When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1779,7 +1777,7 @@ Retry-After: 30
 </article>
 <article class="concept" id="docs-concepts-credential-vault">
   <h2>Credential vault</h2>
-  <p class="note">The MSP pastes their own keys. Those keys sit in a per-tenant vault. The ISV never holds them. Before keys persist, they check the box on the <a href="#connect-terms" data-nav="connect-terms">MSP Connect Terms</a>. We stamp the time. No box, no keys.</p>
+  <p class="note">The MSP pastes their own keys. Those keys sit in a per-tenant vault. The ISV never holds them. We stamp when keys land. No connect, no keys.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">ISVs start with a key that looks like <code class="inline">blk_…</code> and header <code class="inline">X-API-Key</code>. MSP credentials are entered on Bitlync, not in your frontend.</p>
   <p class="lbl">What the caller sees</p>
@@ -1942,7 +1940,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">.raw</code> is extra vendor fields on a read. It is read-only. <code class="inline">vendor.native</code> is the same payload. Ticket writes accept optional <code class="inline">vendor_native</code>.</p>
   <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
   <p class="note">Never: mint an agreement header; auto-create an unmatched company.</p>
-  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=ticket.closed</code> (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (<code class="inline">psa.ticket.events</code>). Missing is <code class="inline">grant_missing</code>. When a device is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=device.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">rmm.device.events</code>). Missing is <code class="inline">grant_missing</code>. When a company is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=company.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">psa.company.events</code>). Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company create is a separate grant. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company create is a separate grant. Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes.</p>
   <div class="skill-card">
     <p class="kicker">Migrating?</p>
@@ -2023,7 +2021,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. When the ISV book supports company import from PSA, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -2065,14 +2063,14 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
-  <p class="note">We do not mint an agreement header. Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
+  <p class="note">Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
   <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>. details is optional.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Autotask’s API would create one. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">agreement_requires_existing</code> — missing or unknown agreement.</p>
-  <p class="note">ConnectWise, Autotask, and Halo write on an existing project. We do not mint a Project header. Baseline cannot take that write.</p>
+  <p class="note">ConnectWise, Autotask, and Halo write on an existing project. We do not mint a Project header. Some connectors cannot take that write.</p>
   <p class="note"><code class="inline">project_requires_existing</code> — missing or unknown project.</p>
   <p class="note"><code class="inline">project_header_not_supported</code> — they tried to mint a Project header. Bitlync still refuses. That is policy.</p>
-  <p class="note"><code class="inline">project_not_writable</code> — Baseline cannot take that write.</p>
+  <p class="note"><code class="inline">project_not_writable</code> — Some connectors cannot take that write.</p>
   <p class="note"><code class="inline">project_company_cannot_update</code> — the project’s company cannot be updated.</p>
   <p class="note">Pax8 matches companies it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
   <p class="note"><code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>. When the grant is on we still match first; two matches refuse.</p>
@@ -2086,7 +2084,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="lede">The jobs. Alert to ticket through check an asset.</p>
   </div>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket.</p></article>
-  <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=ticket.closed</code> (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (<code class="inline">psa.ticket.events</code>). Missing is <code class="inline">grant_missing</code>. When a device is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=device.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">rmm.device.events</code>). Missing is <code class="inline">grant_missing</code>. When a company is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=company.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">psa.company.events</code>). Missing is <code class="inline">grant_missing</code>.</p></article>
+  <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>.</p></article>
   <article class="uc"><h3>3. Map customers</h3><p class="note">Map customers to companies that already exist. Sure match auto-maps. A leftover is Match, company import from PSA, or Skip.</p></article>
   <article class="uc"><h3>4. Create a company</h3><p class="note">Creating a company is a separate grant. Grant <code class="inline">psa.company.create</code>, <code class="inline">dry_run</code>, match-first.</p></article>
   <article class="uc"><h3>5. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, member from GET /tenants/{id}/members on ConnectWise and Halo (Autotask 501).</p></article>
@@ -2108,7 +2106,7 @@ dry_run ticket create is REST-only.</pre>
 <p class="note">vCIO / QBR — map companies, findings to tickets, add to an existing project.</p>
 <p class="note">Commerce / distributor — map, plus company-create grant, orders, lines on existing agreements.</p>
 <p class="note">Quoting — map, company create for a new logo.</p>
-<p class="note">Time / scheduling — ticket update (status, notes), time write. Not the watch.</p>
+<p class="note">Time / scheduling — ticket update (status, notes), time write. Hours on a linked ticket, not a full timesheet product.</p>
 <p class="note">Identity / comms — full two-way tickets plus time.</p>
 <p class="note">Onboarding / import — company create is the product. Grant plus match-first.</p>
 <p class="note">AI copilot — read plus ticket write plus events. Do not lead with creating companies or agreements.</p>
@@ -2121,170 +2119,6 @@ dry_run ticket create is REST-only.</pre>
   </div>
 </div>
 </main>
-<div class="page" id="page-terms">
-  <section class="pad">
-    <div class="wrap legal">
-      <p class="kicker">Legal</p>
-      <h1>Customer Terms</h1>
-      <p>These Customer Terms are between Bitlync, Inc., a Delaware corporation (“Bitlync,” “we,” “us”) and the company that accepts them (“Customer,” “you”).</p>
-      <p>You are buying the Service for your own product. You are not a reseller of Bitlync.</p>
-      <p>These Terms are accepted by clickwrap. There is no signature. You accept by checking the box on Contact us, or on any later screen where we issue a key, that says you agree to these Terms and the Privacy Notice. You cannot send that form or receive a key without the box. A click on behalf of a company means that person can bind the company.</p>
-      <p>If you later sign a written order with us, that order wins over this page where they conflict.</p>
-      <p>Early access and sandbox use these Terms. There is no public SLA.</p>
-      <h2>1. Words we use</h2>
-      <p>Customer — the software company (ISV) that embeds Bitlync.</p>
-      <p>Customer Application — your product.</p>
-      <p>MSP — your customer. They run IT for other companies. They paste keys to connect their stack. They are not buying Bitlync from us.</p>
-      <p>End Customer — the MSP’s client, the company in the PSA.</p>
-      <p>Vendor Application — a tool the MSP already runs (a PSA, RMM, documentation tool, distributor, or customer-success tool).</p>
-      <p>Service — our hosted API, store, vault, logs, docs, and site.</p>
-      <p>Customer Data — your account: names, emails, keys we issue, how you call the API.</p>
-      <p>MSP Data — the MSP’s keys, grants, and the tenant objects we sync or write for them.</p>
-      <h2>2. What you get</h2>
-      <p>We grant you a limited, non-exclusive, non-transferable right to use the Service with your Customer Application while these Terms last, as the docs describe.</p>
-      <p>The Service lets your application talk to Vendor Applications through us, so MSP Data can move as the MSP allowed and as you instructed.</p>
-      <p>Coverage is what the docs list today. We do not promise a vendor, object, or write that is not there.</p>
-      <p>Sandbox tenants are fixture data, labeled sandbox. They are not a live MSP.</p>
-      <h2>3. What you may not do</h2>
-      <p>You will not: rent the Service, or run it as a bureau for companies who are not your MSPs; resell Bitlync as Bitlync, or say a vendor certified you through us; copy, reverse, or benchmark the Service for a competing product; break security, or use a tenant you were not granted; create a company in a PSA through us; use the Service for fraud or anything illegal.</p>
-      <h2>4. What we do</h2>
-      <p>We host the API. We hold MSP keys in a vault so you do not. We sync into a per-tenant store. We pace writes and keep an append-only log.</p>
-      <p>Support can diagnose. Support cannot change an MSP’s setup or use the vault to act as the MSP.</p>
-      <p>If an MSP revokes, or asks us to stop, we cut that connection and stop using those keys, even if you still have an API key.</p>
-      <h2>5. What you must do</h2>
-      <p>You will tell each MSP, before they paste keys, that Bitlync will hold their credentials and process their tenant data so your product can work.</p>
-      <p>You will only connect MSPs who agreed to that.</p>
-      <p>You will keep your key secret. You are responsible for calls made with it.</p>
-      <p>You will use the Service as the docs say, and as law requires.</p>
-      <h2>6. Data</h2>
-      <p>You grant us a limited right to process Customer Data and MSP Data only to provide the Service.</p>
-      <p>We do not sell MSP Data. We do not aggregate MSP Data to publish or sell. We do not use it to train a public model. We do not share MSP names with vendors to build a marketplace.</p>
-      <p>We do not create the customer in a PSA. The MSP creates them there. That is where their contract lives. We map to a customer that already exists. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
-      <p>We do not mint an agreement header. We do not write devices. Close on a ticket we created stays off unless the MSP turns it on.</p>
-      <p>A later DPA, if we issue one, is part of these Terms for MSP Data.</p>
-      <p>Per-tenant encryption. Isolated. SOC 2 is in progress. We do not claim a completed report.</p>
-      <h2>7. Fees</h2>
-      <p>Early access may have no fee. If we charge, we will say the amount in writing first. There is no price on the site today.</p>
-      <p>Fees are exclusive of tax. You pay tax on your purchase unless you give a valid exemption.</p>
-      <h2>8. How long this lasts</h2>
-      <p>These Terms start when you accept or first use a key.</p>
-      <p>You may stop and ask us to revoke your keys at any time.</p>
-      <p>We may suspend or end access if you do not pay a fee that is due, if you breach and do not fix it in 15 days of notice, or immediately for fraud, a security risk, or law.</p>
-      <p>When this ends, your right to call the API ends. On written request we will delete Customer Data and MSP Data we processed for you, except what we must keep for law, security, or a dispute. Backups age out.</p>
-      <h2>9. Confidentiality</h2>
-      <p>Each side keeps the other side’s non-public information confidential and uses it only to perform these Terms. Keys and MSP Data are confidential.</p>
-      <p>This does not cover what is public through no fault of the receiver, what the receiver already had, or what law requires. Give notice if you can when law requires a disclose.</p>
-      <h2>10. Who owns what</h2>
-      <p>We own the Service. You own your product and Customer Data. The MSP owns MSP Data.</p>
-      <p>If you send feedback, we may use it. You do not have to send any.</p>
-      <p>You may not use our name to imply we built your product.</p>
-      <h2>11. Warranties</h2>
-      <p>Each side says it can enter these Terms.</p>
-      <p>You say you have the right to send us Customer Data and to ask an MSP to connect.</p>
-      <p>THE SERVICE IS PROVIDED “AS IS.” WE DISCLAIM IMPLIED WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT, TO THE EXTENT LAW ALLOWS. We do not warrant that the Service is error-free, always up, or a match for a live vendor tenant.</p>
-      <h2>12. Indemnity</h2>
-      <p>We will defend you against a third-party claim that the Service, used as we documented, infringes their IP, and we will pay the damages and reasonable fees finally awarded. We do not cover a claim about data you or an MSP sent, or a mix we did not supply.</p>
-      <p>You will defend us against a third-party claim that arises from a use we forbade, from you lacking the right to connect an MSP, or from a government claim that your instructions broke law.</p>
-      <p>The side being defended will give prompt notice and reasonable help. The defending side runs the defense. No settlement that admits fault or pays the other side’s money without their written OK.</p>
-      <h2>13. Liability</h2>
-      <p>Neither side is liable for indirect, special, or consequential damages, or lost profits, even if told they were possible.</p>
-      <p>Each side’s total liability is the fees you paid us in the twelve months before the claim, or one hundred US dollars, whichever is greater.</p>
-      <h2>14. Changes</h2>
-      <p>We may update these Terms. A material change takes effect 30 days after we email you or post it, unless law or security requires faster. If you do not agree, stop and ask us to delete the account. Use after that date is acceptance.</p>
-      <h2>15. Law</h2>
-      <p>Delaware law, without conflict rules. Courts in Delaware. Either side may seek an injunction where the other is found.</p>
-      <h2>16. Other</h2>
-      <p>This is the whole agreement for the Service unless a signed order says otherwise. Neither side is the other’s agent or partner. You may not assign without our written consent, except to a buyer of your business. We may assign to a buyer of ours. Notices to us: hello@bitlync.com. Notices to you: the email on your account.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
-    </div>
-  </section>
-</div>
-<div class="page" id="page-privacy">
-  <section class="pad">
-    <div class="wrap legal">
-      <p class="kicker">Legal</p>
-      <h1>Privacy Notice</h1>
-      <p>This notice is for people at an ISV who use the site or the API, and people at an MSP who paste keys.</p>
-      <h2>1. Who we are</h2>
-      <p>Bitlync, Inc. is a Delaware company. We sell a hosted API to software companies (ISVs). An MSP connects their own tools. We hold those keys in a vault.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
-      <h2>2. The people in the data</h2>
-      <p>ISV people — name, work email, company, the Contact us form, API keys, call logs.</p>
-      <p>MSP people — keys they paste, grants, portal email if they have one, the audit of their tenant.</p>
-      <p>The MSP’s clients — names and records that already sit in the PSA and related tools. We see them because the MSP connected. We do not create them in the PSA. We do not sell to them.</p>
-      <h2>3. What we collect and why</h2>
-      <p>Contact and account. Name, email, company, intent, optional day and time, message. Why: early access, a key, an answer.</p>
-      <p>API use. Times, routes, tenant ids, status codes, key id. Why: run the Service, pace writes, audit.</p>
-      <p>Vault. MSP credentials and named permissions. Why: so the ISV never holds the secret, and so a missing permission is named in the connect flow.</p>
-      <p>Tenant data. Objects the MSP granted. Why: store-served reads and the writes the ISV sends.</p>
-      <p>Site. Normal web logs when you load www.bitlync.com. No ad pixel today.</p>
-      <p>We do not take cards on the site today. We do not collect from children on purpose.</p>
-      <h2>4. What we do not do</h2>
-      <p>We do not sell personal data. We do not sell or aggregate tenant data. We do not create a customer in a PSA. We do not use tenant data to train a public model. We do not share MSP names with vendors to grow a marketplace.</p>
-      <h2>5. Who we share with</h2>
-      <p>Only as needed to run the Service, as the ISV or MSP instructed, or as law requires.</p>
-      <p>Processors we actually use today: Formsubmit (Contact us mail), GitHub Pages (the website). The production API host is not chosen. We will name it here when it is.</p>
-      <p>Counsel, accountants, or a buyer of the company may see data under a confidentiality duty if a deal or a claim requires it.</p>
-      <h2>6. How long</h2>
-      <p>Account and form mail: while the ISV is active, then as long as tax, security, or a dispute requires.</p>
-      <p>Vault and tenant data: until the MSP revokes or someone asks us to delete, then until backups age out. The log may keep that a delete happened.</p>
-      <h2>7. Security</h2>
-      <p>Per-tenant encryption. Isolated. Append-only audit. Support is read-only. SOC 2 in progress. Not certified.</p>
-      <p>If we confirm a breach of personal data we hold, we tell the ISV and, where law says so, the people affected, as soon as we reasonably can.</p>
-      <h2>8. Your choices</h2>
-      <p>ISV: email hello@bitlync.com for a copy, a fix, or a delete of account data.</p>
-      <p>MSP: revoke the grant. That is the main switch. You can also email us.</p>
-      <h2>9. Where the data sits</h2>
-      <p>We are in the United States.</p>
-      <h2>10. Changes</h2>
-      <p>We will date an update. For a material change we email the ISV address we have.</p>
-      <h2>11. Contact</h2>
-      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
-    </div>
-  </section>
-</div>
-<div class="page" id="page-connect-terms">
-  <section class="pad">
-    <div class="wrap legal">
-      <p class="kicker">Legal</p>
-      <h1>MSP Connect Terms</h1>
-      <p>You are the MSP. You are connecting your tools so a software company you already use (your Vendor) can work against your stack through Bitlync.</p>
-      <p>You are not buying Bitlync. Your Vendor is. These terms are only about the connection and the keys we hold.</p>
-      <p>These terms are accepted by clickwrap. There is no signature. You accept by checking the box in the connect flow, before you paste keys. You cannot connect without the box. If you do not agree, do not paste keys.</p>
-      <h2>1. Who is who</h2>
-      <p>You — the MSP. You paste keys. You can revoke them.</p>
-      <p>Your Vendor — the ISV whose product you use. They buy Bitlync. They call our API.</p>
-      <p>Bitlync — the service in the middle. We hold your keys in a vault. We copy allowed data into a store so your Vendor can read one shape. We send the writes your Vendor asks for, if you granted that.</p>
-      <p>A Vendor Application — a tool you already run.</p>
-      <p>Your clients — the companies in your PSA. We do not sell to them. We do not create them in your PSA.</p>
-      <h2>2. What we do with your keys and data</h2>
-      <p>When you connect, you give us permission to: hold the credentials you paste, in a vault your Vendor never sees; check that the permission we need is on the key, and name a miss in the flow; copy the objects you granted into our store; let your Vendor read and write those objects through our API, only as you granted; keep an append-only log.</p>
-      <p>We do not use your data for anything else. We do not sell it. We do not aggregate it. We do not train a public model on it.</p>
-      <p>We do not create a customer in your PSA. You create them there. That is where the contract lives. Until they are in the PSA, they are not your customer.</p>
-      <p>We do not mint an agreement. We do not write devices. We do not take over your tickets.</p>
-      <p>Our support can look at a log to diagnose. It cannot change your setup or use your keys.</p>
-      <h2>3. What you must do</h2>
-      <p>You say you have the right to share these keys and this tenant.</p>
-      <p>You will not use the connect flow to break the Service, copy it, or do something illegal.</p>
-      <p>If a key leaks, revoke it here and rotate it there.</p>
-      <h2>4. How you stop</h2>
-      <p>You can revoke a grant at any time. We stop using those keys.</p>
-      <p>The connection also ends if your Vendor’s Bitlync account ends.</p>
-      <p>If you break these terms and do not fix it in 30 days after we tell you, we may cut the connection.</p>
-      <p>After it ends, we delete the vault data and the tenant data for that grant when asked, and otherwise as backups age out.</p>
-      <h2>5. Who owns what</h2>
-      <p>You own your data and your keys. We own the Service. While the connection is on, you let us process your data for your Vendor, as you granted.</p>
-      <h2>6. No extra promises</h2>
-      <p>The connection is provided as is. SOC 2 is in progress. We do not claim we are certified.</p>
-      <p>Your contract for the Vendor’s product is with the Vendor, not with us.</p>
-      <h2>7. Changes</h2>
-      <p>We may change these terms. A material change waits 30 days after we post it or your Vendor tells you, unless security or law requires faster. If you do not agree, revoke.</p>
-      <h2>8. Law</h2>
-      <p>Delaware law. Courts in Delaware.</p>
-      <p>Bitlync, Inc. is a Delaware corporation. Email hello@bitlync.com.</p>
-    </div>
-  </section>
-</div>
 <div class="page" id="page-changelog">
   <section class="pad">
     <div class="wrap legal">
@@ -2292,6 +2126,7 @@ dry_run ticket create is REST-only.</pre>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
       <h2>2026-09-11</h2>
+      <p>Customer Terms, Privacy Notice, and MSP Connect Terms removed from the site pending counsel review. Production badge stays off.</p>
       <p>OpenAPI 0.73.0. GET /tenants/{id}/members lists ConnectWise and Halo people for the time picker. Autotask returns 501. Production badge stays off.</p>
       <h2>2026-09-03</h2>
       <p>HaloPSA ticket create commits when dry_run is false.</p>
@@ -2363,7 +2198,7 @@ dry_run ticket create is REST-only.</pre>
 </footer>
 <script>
 (function(){
-  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','terms','privacy','connect-terms','changelog','about'];
+  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','changelog','about'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
@@ -2421,7 +2256,7 @@ dry_run ticket create is REST-only.</pre>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
-    document.body.classList.toggle('docs', st.page==='docs' || st.page==='terms' || st.page==='privacy' || st.page==='connect-terms' || st.page==='changelog');
+    document.body.classList.toggle('docs', st.page==='docs' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
       a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
@@ -2462,9 +2297,6 @@ dry_run ticket create is REST-only.</pre>
       msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
       partners:['Contact us \u00b7 Bitlync','Bitlync is in stealth. Paid design partners ahead of general availability.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
-      terms:['Customer Terms \u00b7 Bitlync','Customer Terms for Bitlync, Inc.'],
-      privacy:['Privacy Notice \u00b7 Bitlync','Privacy Notice for people at an ISV and people at an MSP who paste keys.'],
-      'connect-terms':['MSP Connect Terms \u00b7 Bitlync','Terms for the MSP connection and the keys we hold.'],
       about:['About \u00b7 Bitlync','Our origin story.'],
       changelog:['Changelog \u00b7 Bitlync','What actually shipped. Newest first.']
     };
