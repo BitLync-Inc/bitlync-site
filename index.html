@@ -1152,6 +1152,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="card">
           <h3>Hosted, MSP-managed</h3>
           <p class="quiet" style="margin:0">Keys stay on Bitlync. The MSP manages and can revoke them. They do not touch your frontend.</p>
+          <p class="quiet" style="margin:8px 0 0">ISV console sign-in is invite-only: magic-link, plus Sign in with Microsoft when Entra is wired. No open signup.</p>
           <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
         <p class="disclaim">Mockup. Simulated data.</p>
         <div class="pm-head">your connections</div>
@@ -1290,6 +1291,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="kicker">Solutions / Support</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
       <p class="sub">Support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
+      <p class="sub">Console access is invite-only — magic-link, and Sign in with Microsoft when Entra is wired. No open signup.</p>
       <div style="max-width:42rem">
         <h2>Pain today</h2>
         <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Support cannot see last sync or the log. A developer has to read the vendor error.</p>
@@ -1777,6 +1779,7 @@ Retry-After: 30
   <p class="note">ISVs start with a key that looks like <code class="inline">blk_…</code> and header <code class="inline">X-API-Key</code>. MSP credentials are entered on Bitlync, not in your frontend.</p>
   <p class="lbl">What the caller sees</p>
   <p class="note">Your product sends <code class="inline">X-API-Key</code>. It does not send the MSP’s PSA or RMM secret.</p>
+  <p class="note">Human console sign-in is invite-only. Magic-link stays. Sign in with Microsoft is available when Entra is wired on that deployment. Unknown emails are refused; there is no open signup and no auto-create org.</p>
     <div class="code">
     <div class="hd"><b>ISV auth header</b><button class="copy" type="button" data-copy="X-API-Key: blk_…">Copy</button></div>
     <pre>X-API-Key: blk_…
@@ -1962,7 +1965,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.74.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.75.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2121,6 +2124,7 @@ dry_run ticket create is REST-only.</pre>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
       <h2>2026-09-11</h2>
+      <p>OpenAPI 0.75.0. ISV console sign-in is invite-only: magic-link, plus Sign in with Microsoft when Entra is wired. No open signup. Production badge stays off.</p>
       <p>OpenAPI 0.74.0. Exact-name auto-Match (never auto-import). Leftover ask is Match / company import from PSA / Skip / Needs match. Ticket create and update accept board, status, and priority list ids on ConnectWise and Halo. Production badge stays off.</p>
       <p>Customer Terms, Privacy Notice, and MSP Connect Terms removed from the site pending counsel review. Production badge stays off.</p>
       <p>OpenAPI 0.73.0. GET /tenants/{id}/members lists ConnectWise and Halo people for the time picker. Autotask returns 501. Production badge stays off.</p>
