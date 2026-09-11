@@ -730,16 +730,9 @@
             "title": "Idempotency Key"
           },
           "member": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Optional technician display name. Live member-id lookup is OPEN.",
-            "title": "Member"
+            "description": "Picker id from GET /tenants/{tenant_id}/members (ConnectWise System Member id or identifier; Halo agent id). Required for ConnectWise live commit. Not a free-text display name for live CW. Not the Bitlync API Member used only for Connect keys.",
+            "title": "Member",
+            "type": "string"
           },
           "ticket_ref": {
             "description": "PSA ticket id from this ISV's link store.",
@@ -750,7 +743,8 @@
         "required": [
           "ticket_ref",
           "hours",
-          "billable"
+          "billable",
+          "member"
         ],
         "title": "CreateTimeEntryBody",
         "type": "object"
@@ -1324,6 +1318,120 @@
           }
         },
         "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Member": {
+        "additionalProperties": false,
+        "description": "PSA technician / agent for the time picker (CW System Members; Halo Agents).\n\n``id`` is what CreateTimeEntryBody.member accepts. Public word is always\nmember \u2014 Halo maps Agents under the hood.",
+        "properties": {
+          "active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "False when vendor marks inactive; omitted/null when unknown.",
+            "title": "Active"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Synced At"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VendorEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "id",
+          "display_name"
+        ],
+        "title": "Member",
+        "type": "object"
+      },
+      "MemberList": {
+        "additionalProperties": false,
+        "properties": {
+          "last_synced_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Last Synced At"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/Member"
+            },
+            "title": "Members",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Cursor"
+          },
+          "sandbox": {
+            "title": "Sandbox",
+            "type": "boolean"
+          },
+          "served_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Served From"
+          }
+        },
+        "required": [
+          "members",
+          "sandbox"
+        ],
+        "title": "MemberList",
         "type": "object"
       },
       "RouteFindingBody": {
@@ -2323,7 +2431,7 @@
   "info": {
     "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant. We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.71.0",
+    "version": "0.73.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -7631,6 +7739,201 @@
         ]
       }
     },
+    "/tenants/{tenant_id}/members": {
+      "get": {
+        "description": "PSA members for the time picker (CW System Members; Halo Agents).\n\nPublic word is always ``member``. Each row's ``id`` is what\nCreateTimeEntryBody.member accepts. Unsupported PSA \u2192 501.\nStore-served with last_synced_at where SyncEngine is wired;\n``?live=true`` re-syncs this request. Empty list is honest \u2014 never\ninvent a member. Permission miss \u2192 English upstream error.",
+        "operationId": "list_members_tenants__tenant_id__members_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "live",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Live",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Page size, 1..500. Omitted = 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page size, 1..500. Omitted = 100.",
+              "title": "Limit"
+            }
+          },
+          {
+            "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque cursor from the previous page's next_cursor. Omit for the first page.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Members",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
     "/tenants/{tenant_id}/routing": {
       "get": {
         "description": "This ISV's supported/recommended write-back targets for this\ntenant, plus the MSP's current per-finding-kind routing \u2014 an\noverride where one is set, the ISV's recommendation otherwise\n(`routes[kind].overridden` says which). In-process config, zero\nvendor calls.",
@@ -9099,8 +9402,8 @@
   },
   "servers": [
     {
-      "url": "https://bitlync-sandbox-demo.onrender.com",
-      "description": "Sandbox (fixture-backed demo). Not production MSPs. Fixture data only."
+      "description": "Sandbox (fixture-backed demo). Not production MSPs. Fixture data only.",
+      "url": "https://bitlync-sandbox-demo.onrender.com"
     }
   ],
   "tags": [

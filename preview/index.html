@@ -966,6 +966,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Agreement — pull</li>
             <li>Company — pull</li>
             <li>Boards, statuses, priorities — list</li>
+            <li>Members — list</li>
                         <li>Time — push</li>
           </ul>
         </a>
@@ -977,6 +978,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li>Agreement — pull</li>
             <li>Company — pull</li>
             <li>Boards, statuses, priorities — list</li>
+            <li>Members — list</li>
                         <li>Time — push</li>
           </ul>
         </a>
@@ -1734,7 +1736,7 @@ Retry-After: 30
 </article>
 <article class="concept" id="docs-concepts-writes">
   <h2>Writes</h2>
-  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, close with evidence, or POST hours on that ticket only. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Hours take stated billable and an optional member. No notes on time. Not field-level ticket sync.</p>
+  <p class="note"><code class="inline">dry_run</code> defaults true. That is a preview with no side effect. Commit by sending <code class="inline">dry_run</code> false. After Bitlync creates a ticket, you can update it, append a note, close with evidence, or POST hours on that ticket only. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Hours take stated billable and a member id from the PSA list. ConnectWise and Halo list members for the time picker; Autotask returns 501 on that list. No notes on time. Not field-level ticket sync.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">Preview first. Then commit with the same body and an <code class="inline">idempotency_key</code> on writes that support it. If a fan-out is only partial, that failure is explicit. It is never collapsed into a single silent success.</p>
   <p class="lbl">What the caller sees</p>
@@ -1753,7 +1755,7 @@ Retry-After: 30
   "idempotency_key": "ticket-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Ticket create, write-back, and time for Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display. When the ISV book supports company import from PSA, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Ticket create, write-back, and time for Autotask run on fixtures and dry_run. dry_run defaults true. Halo pulls agreements and line items, the same objects as ConnectWise and Autotask. ConnectWise, Autotask, and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise, Autotask, and Halo pull the project container and write on an existing project. We do not mint a project header. Baseline cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display. ConnectWise and Halo list members for the time picker; Autotask members are not listed (501). When the ISV book supports company import from PSA, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1967,7 +1969,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default true). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.71.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.73.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2087,7 +2089,7 @@ dry_run ticket create is REST-only.</pre>
   <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=ticket.closed</code> (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (<code class="inline">psa.ticket.events</code>). Missing is <code class="inline">grant_missing</code>. When a device is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=device.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">rmm.device.events</code>). Missing is <code class="inline">grant_missing</code>. When a company is created or updated, you can list those events or get a signed webhook. After a tenant sync, <code class="inline">GET /tenants/{id}/connections/events?kind=company.updated</code> (also created). Optional signed webhook. Grant is the connection (<code class="inline">psa.company.events</code>). Missing is <code class="inline">grant_missing</code>.</p></article>
   <article class="uc"><h3>3. Map customers</h3><p class="note">Map customers to companies that already exist. Sure match auto-maps. A leftover is Match, company import from PSA, or Skip.</p></article>
   <article class="uc"><h3>4. Create a company</h3><p class="note">Creating a company is a separate grant. Grant <code class="inline">psa.company.create</code>, <code class="inline">dry_run</code>, match-first.</p></article>
-  <article class="uc"><h3>5. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, optional member.</p></article>
+  <article class="uc"><h3>5. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, member from GET /tenants/{id}/members on ConnectWise and Halo (Autotask 501).</p></article>
   <article class="uc"><h3>6. Billing reconciliation</h3><p class="note">Read agreements and lines. Write lines on an existing agreement.</p></article>
   <article class="uc"><h3>7. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
   <article class="uc"><h3>8. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
@@ -2289,6 +2291,8 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-09-11</h2>
+      <p>OpenAPI 0.73.0. GET /tenants/{id}/members lists ConnectWise and Halo people for the time picker. Autotask returns 501. Production badge stays off.</p>
       <h2>2026-09-03</h2>
       <p>HaloPSA ticket create commits when dry_run is false.</p>
       <p>HaloPSA ticket notes and time entries commit when dry_run is false.</p>
