@@ -1,0 +1,39 @@
+name: OpenAPI CI
+
+# P1 — spec drift vs bitlync-core lock (and live core pin when token set).
+# P5 — homepage normalized-tickets fields ⊆ Ticket|VendorEnvelope.
+# No sandbox fetch on this PR path; no Render coupling.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: openapi-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  openapi-drift:
+    name: OpenAPI drift (core-canonical)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Assert openapi.json (+ preview) matches core lock / pin
+        env:
+          BITLYNC_CORE_READ_TOKEN: ${{ secrets.BITLYNC_CORE_READ_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/check_openapi_drift.py
+
+  homepage-ticket-schema:
+    name: Homepage ticket schema (P5)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Assert normalized-tickets table ⊆ Ticket|VendorEnvelope
+        run: python3 scripts/check_homepage_ticket_schema.py
