@@ -2866,7 +2866,7 @@
     },
     "/sandbox/reset": {
       "post": {
-        "description": "Re-seed one sandbox tenant: refresh synced reads, clear its audit\ntrail, and record a single sandbox_reset entry as the new first\nevent. Refuses production tenants.",
+        "description": "Re-seed one sandbox tenant: refresh synced reads, clear its audit\ntrail, and record a single sandbox_reset entry as the new first\nevent. Refuses production tenants (422). Disabled on the public\ndemo host (sandbox_reset_disabled, 403) so the published demo key\ncannot empty the demo tenant. When BITLYNC_SANDBOX_RESET_TOKEN is\nset, require X-Bitlync-Sandbox-Reset-Token. Rate-limited to 1 per\n15 minutes per key.",
         "operationId": "reset_sandbox_sandbox_reset_post",
         "requestBody": {
           "content": {
