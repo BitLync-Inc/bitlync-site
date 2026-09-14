@@ -1,0 +1,51 @@
+# preview/ ↔ root consistency allowlist (WO v2 P2)
+#
+# preview/ is a subset mirror of the published site.
+# scripts/check_preview_consistency.py diffs every preview/ file against the
+# same relative path at repo root, and requires must_mirror paths on both sides.
+#
+# Byte-identical unless listed under allow_content_diff.
+# Root-only infra (robots, CNAME, CI, scripts) is not mirrored.
+#
+# Fix drift: open a PR that copies/regenerates preview/ from root for drifted
+# paths. No custom preview generator (v1).
+
+allow_content_diff:
+  - path: index.html
+    reason: "Preview is the noindex draft surface. Intentional diffs: robots noindex/nofollow; canonical, og:url, og:image, and form _next use the /preview/ prefix; CSS comments mark (live) vs (preview). Marketing copy may iterate on preview/ first (Wren PRs); promote to root in a separate PR, not via this checker. Do not drift 404, assets, logos, openapi.json, or llms.txt."
+    require_preview_contains:
+      - '<meta name="robots" content="noindex,nofollow"/>'
+      - 'rel="canonical" href="https://www.bitlync.com/preview/"'
+
+root_only:
+  - path: robots.txt
+    reason: "Live SEO only (Disallow /preview). Not served from preview/."
+  - path: sitemap.xml
+    reason: "Live sitemap; preview is noindex."
+  - path: CNAME
+    reason: "GitHub Pages custom domain for www.bitlync.com."
+  - path: .nojekyll
+    reason: "GitHub Pages flag; repo-root only."
+  - path: .openapi-core-lock.json
+    reason: "P1 OpenAPI lock; not a published page."
+  - path: email/
+    reason: "Email banner assets; not part of the preview tree."
+  - path: eng/
+    reason: "Engineering CI staging and this allowlist; not published pages."
+  - path: scripts/
+    reason: "CI scripts; not published pages."
+  - path: skills/
+    reason: "Cursor skills pack; not published pages."
+
+must_mirror:
+  - index.html
+  - 404.html
+  - llms.txt
+  - openapi.json
+  - favicon.svg
+  - og.png
+  - assets/
+  - logos/
+
+preview_only:
+  # none — a preview-only file is drift unless listed here

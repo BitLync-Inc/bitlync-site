@@ -1,4 +1,4 @@
-# Pending GitHub Actions workflows (P1/P5)
+# Pending GitHub Actions workflows (P1/P5/P2)
 
 These YAML files belong in `.github/workflows/`.
 
@@ -10,9 +10,15 @@ pushed under `.github/workflows/` from this agent. A maintainer with
 mkdir -p .github/workflows
 cp eng/ci-pending/*.yml .github/workflows/
 git add .github/workflows
-git commit -m "P1/P5: activate OpenAPI CI workflows (Badge OFF)"
+git commit -m "P1/P5/P2: activate CI workflows (Badge OFF)"
 git push
 ```
 
 Then delete this `eng/ci-pending/` directory in a follow-up tip.
 Stevie Blind Review on the activated workflows.
+
+| File | Work order |
+| --- | --- |
+| `openapi-ci.yml` | P1 spec drift + P5 homepage ticket schema |
+| `sandbox-liveness.yml` | P5 optional non-gating sandbox probe |
+| `preview-consistency.yml` | P2 preview/ vs root allowlist |
