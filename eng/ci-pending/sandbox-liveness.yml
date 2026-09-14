@@ -1,0 +1,33 @@
+name: Sandbox liveness (non-gating)
+
+# Optional probe against the published demo key. NOT on pull_request.
+# continue-on-error so a Render blip never blocks merges / required checks.
+on:
+  schedule:
+    - cron: "17 */12 * * *"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    name: GET sandbox tickets (published demo key)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Probe bitlync-sandbox-demo
+        run: |
+          set +e
+          code=$(curl -sS -o /tmp/sandbox-probe.json -w "%{http_code}" \
+            -H "X-API-Key: blk_b27562d334f68281b783571dd8aa2522f2dddb273fd30311" \
+            "https://bitlync-sandbox-demo.onrender.com/tenants/sandbox-mainstreet/tickets")
+          echo "HTTP $code"
+          head -c 400 /tmp/sandbox-probe.json; echo
+          if [ "$code" != "200" ]; then
+            echo "::warning::Sandbox liveness probe got HTTP $code (non-gating)"
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json,sys
+          d=json.load(open("/tmp/sandbox-probe.json"))
+          assert d.get("sandbox") is True or d.get("data") is not None, d
+          print("ok: sandbox probe")
+          PY
