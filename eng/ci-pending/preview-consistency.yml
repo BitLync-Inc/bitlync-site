@@ -1,0 +1,24 @@
+name: Preview consistency
+
+# P2 — preview/ vs root with documented allowlist (eng/preview-allowlist.yml).
+# No custom generator. Fail lists drifted paths + copy-from-root fix.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: preview-consistency-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview-consistency:
+    name: preview/ vs root (allowlist)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Assert preview/ matches root outside allowlist
+        run: python3 scripts/check_preview_consistency.py
