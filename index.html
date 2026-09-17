@@ -188,17 +188,28 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .road article{background:var(--card);padding:20px;min-width:0}
 .road b{display:block;font-size:16px;margin:6px 0}
 .road p{margin:0;color:var(--mute);font-size:14px}
-.grid9{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%}
+.grid9{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%;align-items:stretch}
+@media(min-width:520px){.grid9{grid-template-columns:1fr 1fr}}
+@media(min-width:800px){.grid9{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
 .status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
-.cell.logo-cell.open{background:#F3F0E6}
-.cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
-.cell.logo-cell.open .objs{display:block}
-.cell.logo-cell .objs li{font-size:12.5px;color:var(--ink);line-height:1.4;padding:6px 0;border-bottom:1px solid var(--hair);overflow-wrap:anywhere}
-.cell.logo-cell .objs li:last-child{border-bottom:none;padding-bottom:2px}
-.cell.logo-cell .objs i{font-style:normal;font-size:11px;color:var(--mute)}
+/* Accordion: when one opens, remove siblings from grid flow (kills cream stretch slabs). Mobile-first. */
+.grid9:has(> .cell.logo-cell.open){align-items:start}
+.grid9:has(> .cell.logo-cell.open) > .cell.logo-cell:not(.open){display:none}
+.cell.logo-cell.open{background:#F3F0E6;grid-column:1 / -1}
+.cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
+.cell.logo-cell.open .objs{max-height:920px;opacity:1;visibility:visible;margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.cell.logo-cell.open .objs{grid-template-columns:1fr 1fr;gap:10px}}
+/* Option C: mini-cards per object — Read/Write/List pills (not pull/push wording) */
+.cell.logo-cell .objs li{border:1px solid var(--hair);border-radius:12px;padding:12px;background:#FFFcf6;overflow-wrap:anywhere;margin:0}
+.cell.logo-cell .objs .obj-t{display:block;font-weight:700;font-size:14px;line-height:1.25;margin:0 0 8px;color:var(--ink)}
+.cell.logo-cell .objs .pills{display:flex;flex-wrap:wrap;gap:6px}
+.cell.logo-cell .objs .pill{font-size:11px;font-weight:600;border-radius:999px;padding:4px 9px;line-height:1.2}
+.cell.logo-cell .objs .pill.read{background:#D6E4F5;color:#1E3A5F}
+.cell.logo-cell .objs .pill.write{background:#D8F0B0;color:#1F4A1F}
+.cell.logo-cell .objs .pill.list{background:#EDE8DC;color:#5A564C}
 .cell.logo-cell:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
 .quiet{color:var(--mute);font-size:15px;max-width:40rem;margin:16px 0 0}
 .cat-block{margin:40px 0 0}
@@ -534,7 +545,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-developer .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
 #page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
 #page-solutions-developer .tix{max-width:100%;width:100%;margin:36px auto 0}
-.grid9{overflow:visible}
 .cell b{white-space:normal}
 @media(min-width:841px){
   .drop .panel{display:none}
@@ -621,6 +631,34 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 }
 @media(prefers-reduced-motion:reduce){
   #page-about .ab-drift,#page-about .ab-pulse,#page-about .ab-chapter .ab-mark i{animation:none}
+
+
+
+/* GTM pipeline mockup (preview) — Bigin card anatomy, Bitlync cream, no tabs */
+#page-solutions-sales .gtm-mock{max-width:960px;margin:28px 0 0;border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
+#page-solutions-sales .gtm-mock-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px 0;border-bottom:1px solid var(--hair);background:#F6F3EA}
+#page-solutions-sales .gtm-mock-head .gtm-label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin:0 0 10px}
+#page-solutions-sales .gtm-mock-head .disclaim{font-size:11px;text-align:left;margin:0 0 10px;color:var(--mute)}
+#page-solutions-sales .gtm-board{padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start;overflow-x:auto}
+@media(max-width:900px){#page-solutions-sales .gtm-board{grid-template-columns:repeat(4,minmax(200px,1fr));padding-bottom:12px}}
+#page-solutions-sales .gtm-col{background:#F7F4EC;border:1px solid var(--hair);border-radius:10px;padding:10px;min-height:140px;display:flex;flex-direction:column;gap:8px}
+#page-solutions-sales .gtm-col-head{margin:0 0 2px}
+#page-solutions-sales .gtm-col h4{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+#page-solutions-sales .gtm-col .gtm-count{display:block;font-size:11px;color:var(--mute);margin:3px 0 2px}
+#page-solutions-sales .gtm-deal{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:11px 11px 10px;box-shadow:0 1px 0 rgba(23,24,28,.04)}
+#page-solutions-sales .gtm-deal b{display:block;font-size:13.5px;font-weight:700;line-height:1.25;margin:0 0 4px;color:var(--ink)}
+#page-solutions-sales .gtm-deal .gtm-value{display:block;font-size:12.5px;font-weight:500;color:var(--ink);margin:0 0 4px}
+#page-solutions-sales .gtm-deal .gtm-meta{display:block;font-size:11.5px;color:var(--mute);margin:0 0 6px;line-height:1.35}
+#page-solutions-sales .gtm-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+#page-solutions-sales .gtm-chip{display:inline-block;font-family:var(--sans);font-size:10.5px;font-weight:600;line-height:1.2;border-radius:999px;padding:4px 9px;white-space:nowrap}
+#page-solutions-sales .gtm-chip.chip-wait{color:#7A5A12;background:#F5E6A8}
+#page-solutions-sales .gtm-chip.chip-ok{color:#1F4A1F;background:#D8F0B0}
+#page-solutions-sales .gtm-chip.chip-none{color:#7A2E2E;background:#F3D4D4}
+#page-solutions-sales .gtm-chip.chip-psa{color:#1E3A5F;background:#D6E4F5}
+#page-solutions-sales .gtm-chip.chip-won{color:var(--ink);background:var(--acid)}
+#page-solutions-sales .gtm-chip.chip-lost{color:#7A2E2E;background:#F3D4D4}
+#page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
+#page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
 </style>
 </head>
@@ -955,78 +993,78 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-            <li>Boards, statuses, priorities — list</li>
-            <li>Members — list</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Billing line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Boards, statuses, priorities</span><span class="pills"><span class="pill list">List</span></span></li>
+            <li><span class="obj-t">Members</span><span class="pills"><span class="pill list">List</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-            <li>Boards, statuses, priorities — list</li>
-            <li>Members — list</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Billing line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Boards, statuses, priorities</span><span class="pills"><span class="pill list">List</span></span></li>
+            <li><span class="obj-t">Members</span><span class="pills"><span class="pill list">List</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Billing line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
           <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
+            <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
           <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
+            <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
           <ul class="objs">
-            <li>Action item — pull and push</li>
-            <li>Initiative — pull and push</li>
+            <li><span class="obj-t">Action item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Initiative</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
           <ul class="objs">
-            <li>Company — pull and push</li>
-            <li>Product — pull</li>
-            <li>Subscription — pull</li>
-            <li>Invoice — pull</li>
-            <li>Order — push</li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Product</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Subscription</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Invoice</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Order</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
           <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Configuration — pull</li>
-            <li>Asset — pull</li>
+            <li><span class="obj-t">Document</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Configuration</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
           <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Asset — pull</li>
+            <li><span class="obj-t">Document</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
       </div>
@@ -1247,7 +1285,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-solutions-sales">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Go-to-market</p>
+      <p class="kicker">Solutions / Go to market</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
       <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
       <div style="max-width:42rem">
@@ -1259,16 +1297,126 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <h2>Reduced churn</h2>
           <p class="sub">Once you connect to their stack, leaving becomes a project.</p>
         </div>
-        <div>
-          <h2>Connectors</h2>
-          <p class="sub">See the products you can say yes to.</p>
-          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
-        </div>
       </div>
     </div>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="pad" style="padding-top:0;padding-bottom:12px">
+    <div class="wrap">
+      <div class="gtm-mock" aria-label="Mockup of a sales pipeline">
+        <div class="gtm-mock-head">
+          <p class="gtm-label">Pipeline</p>
+          <p class="disclaim">Mockup. Simulated data.</p>
+        </div>
+        <div class="gtm-board">
+          <div class="gtm-col">
+            <div class="gtm-col-head">
+              <h4>Discovery</h4>
+              <span class="gtm-count">3 deals</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Northwind IT Partners</b>
+              <span class="gtm-value">$18,400</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-wait">Waiting on Integration</span>
+              </div>
+            </div>
+            <div class="gtm-deal">
+              <b>Cedar Ridge MSP</b>
+              <span class="gtm-value">$9,750</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Apex Stack Support</b>
+              <span class="gtm-value">$14,200</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-wait">Waiting on Integration</span>
+              </div>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <div class="gtm-col-head">
+              <h4>Solutioning</h4>
+              <span class="gtm-count">3 deals</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Harbor Managed Services</b>
+              <span class="gtm-value">$42,000</span>
+              <span class="gtm-meta">Architecture review</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-wait">Waiting on Integration</span>
+              </div>
+            </div>
+            <div class="gtm-deal">
+              <b>Trailhead Tech Co</b>
+              <span class="gtm-value">$27,600</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Summit Desk Ops</b>
+              <span class="gtm-value">$31,150</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-ok">ConnectWise connected</span>
+              </div>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <div class="gtm-col-head">
+              <h4>Proposal</h4>
+              <span class="gtm-count">2 deals</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Lakeview IT Group</b>
+              <span class="gtm-value">$56,800</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-ok">Halo connected</span>
+              </div>
+            </div>
+            <div class="gtm-deal">
+              <b>Brightline MSP</b>
+              <span class="gtm-value">$38,900</span>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <div class="gtm-col-head">
+              <h4>Closed</h4>
+              <span class="gtm-count">4 deals</span>
+            </div>
+            <div class="gtm-deal is-won">
+              <b>Blue Spruce IT</b>
+              <span class="gtm-value">$64,200</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-won">Closed won</span>
+                <span class="gtm-chip chip-ok">Autotask connected</span>
+              </div>
+            </div>
+            <div class="gtm-deal is-won">
+              <b>Meridian Field Services</b>
+              <span class="gtm-value">$51,400</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-won">Closed won</span>
+              </div>
+            </div>
+            <div class="gtm-deal is-lost">
+              <b>Ironwood Support</b>
+              <span class="gtm-value">$22,500</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
+                <span class="gtm-chip chip-none">No integration</span>
+              </div>
+            </div>
+            <div class="gtm-deal is-lost">
+              <b>Pinecone Networks</b>
+              <span class="gtm-value">$19,800</span>
+              <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
+                <span class="gtm-chip chip-none">No integration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:16px">
     <div class="wrap">
       <div class="sol-cites">
         <div class="sol-quotes">
@@ -1282,7 +1430,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </blockquote>
         </div>
       </div>
-            </div>
+      <div class="sol-wins" style="margin-top:32px">
+        <div>
+          <h2>Connectors</h2>
+          <p class="sub">See the products you can say yes to.</p>
+          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
@@ -2245,12 +2400,21 @@ dry_run ticket create is REST-only.</pre>
     return {page:'home',docs:'docs',anchor:null,connector:null};
   }
 
-  function setConnector(slug){
-    document.querySelectorAll('[data-connector]').forEach(function(el){
-      var on=!!slug && el.getAttribute('data-connector')===slug;
-      el.classList.toggle('open',on);
-      el.setAttribute('aria-expanded',on?'true':'false');
-    });
+  function setConnector(slug, opts){
+    opts=opts||{};
+    function apply(){
+      document.querySelectorAll('[data-connector]').forEach(function(el){
+        var on=!!slug && el.getAttribute('data-connector')===slug;
+        el.classList.toggle('open',on);
+        el.setAttribute('aria-expanded',on?'true':'false');
+      });
+    }
+    if(opts.hold && slug){
+      // Hold expand until integrations page has painted (avoids blank first-expand flash).
+      requestAnimationFrame(function(){ requestAnimationFrame(apply); });
+    } else {
+      apply();
+    }
   }
 
   function show(hash){
@@ -2276,11 +2440,12 @@ dry_run ticket create is REST-only.</pre>
       var on = st.anchor ? href===st.anchor : (dd===st.docs && href===st.docs);
       a.classList.toggle('on', on);
     });
-    setConnector(st.connector);
+    var same=cur && cur.id==='page-'+st.page;
+    var holdConn=!!(st.connector && st.page==='integrations' && !same);
+    setConnector(st.connector, {hold:holdConn});
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
     document.querySelectorAll('.drop').forEach(function(d){ d.classList.remove('open'); d.classList.remove('hot'); });
-    var same=cur && cur.id==='page-'+st.page;
     if(!(st.page==='integrations' && same)) window.scrollTo({top:0,behavior:'auto'});
     if(st.anchor){
       var t=document.getElementById(st.anchor);
