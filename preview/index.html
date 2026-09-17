@@ -201,7 +201,9 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
 .status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
-/* Full-width expand: open tile spans the grid so siblings never stretch / leave cream slabs */
+/* Accordion: when one opens, remove siblings from grid flow (kills cream stretch slabs). Mobile-first. */
+.grid9:has(> .cell.logo-cell.open){align-items:start}
+.grid9:has(> .cell.logo-cell.open) > .cell.logo-cell:not(.open){display:none}
 .cell.logo-cell.open{background:#F3F0E6;grid-column:1 / -1}
 .cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
 .cell.logo-cell.open .objs{max-height:560px;opacity:1;visibility:visible;margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:0}
@@ -661,6 +663,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-chip.chip-none{color:#7A2E2E;background:#F3D4D4}
 #page-solutions-sales .gtm-chip.chip-psa{color:#1E3A5F;background:#D6E4F5}
 #page-solutions-sales .gtm-chip.chip-won{color:var(--ink);background:var(--acid)}
+#page-solutions-sales .gtm-chip.chip-lost{color:#7A2E2E;background:#F3D4D4}
 #page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
 #page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
@@ -1326,23 +1329,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <span class="gtm-value">$18,400</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-wait">Waiting on PSA</span>
-                <span class="gtm-chip chip-psa">ConnectWise</span>
               </div>
             </div>
             <div class="gtm-deal">
               <b>Cedar Ridge MSP</b>
               <span class="gtm-value">$9,750</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-wait">Waiting on PSA</span>
-                <span class="gtm-chip chip-psa">Halo</span>
-              </div>
             </div>
             <div class="gtm-deal">
               <b>Apex Stack Support</b>
               <span class="gtm-value">$14,200</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-wait">Waiting on PSA</span>
-                <span class="gtm-chip chip-psa">Autotask</span>
               </div>
             </div>
           </div>
@@ -1357,23 +1354,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <span class="gtm-meta">Architecture review</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-wait">MSP waiting on PSA integration</span>
-                <span class="gtm-chip chip-psa">ConnectWise</span>
               </div>
             </div>
             <div class="gtm-deal">
               <b>Trailhead Tech Co</b>
               <span class="gtm-value">$27,600</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-wait">Waiting on PSA</span>
-                <span class="gtm-chip chip-psa">Autotask</span>
-              </div>
             </div>
             <div class="gtm-deal">
               <b>Summit Desk Ops</b>
               <span class="gtm-value">$31,150</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-ok">PSA connected</span>
-                <span class="gtm-chip chip-psa">Halo</span>
               </div>
             </div>
           </div>
@@ -1387,21 +1378,16 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <span class="gtm-value">$56,800</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-ok">PSA connected</span>
-                <span class="gtm-chip chip-psa">ConnectWise</span>
               </div>
             </div>
             <div class="gtm-deal">
               <b>Brightline MSP</b>
               <span class="gtm-value">$38,900</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-ok">PSA connected</span>
-                <span class="gtm-chip chip-psa">Halo</span>
-              </div>
             </div>
           </div>
           <div class="gtm-col">
             <div class="gtm-col-head">
-              <h4>Closed won / Closed lost</h4>
+              <h4>Closed</h4>
               <span class="gtm-count">4 deals</span>
             </div>
             <div class="gtm-deal is-won">
@@ -1410,7 +1396,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <div class="gtm-chips">
                 <span class="gtm-chip chip-won">Closed won</span>
                 <span class="gtm-chip chip-ok">PSA connected</span>
-                <span class="gtm-chip chip-psa">ConnectWise</span>
               </div>
             </div>
             <div class="gtm-deal is-won">
@@ -1418,26 +1403,22 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <span class="gtm-value">$51,400</span>
               <div class="gtm-chips">
                 <span class="gtm-chip chip-won">Closed won</span>
-                <span class="gtm-chip chip-ok">PSA connected</span>
-                <span class="gtm-chip chip-psa">Halo</span>
               </div>
             </div>
             <div class="gtm-deal is-lost">
               <b>Ironwood Support</b>
               <span class="gtm-value">$22,500</span>
-              <span class="gtm-meta">Needed ConnectWise before renewal</span>
               <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
                 <span class="gtm-chip chip-none">No PSA integration</span>
-                <span class="gtm-chip chip-psa">ConnectWise</span>
               </div>
             </div>
             <div class="gtm-deal is-lost">
               <b>Pinecone Networks</b>
               <span class="gtm-value">$19,800</span>
-              <span class="gtm-meta">Deal stalled on Autotask gap</span>
               <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
                 <span class="gtm-chip chip-none">No PSA integration</span>
-                <span class="gtm-chip chip-psa">Autotask</span>
               </div>
             </div>
           </div>
