@@ -48,16 +48,21 @@ body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
 body.docs nav.main .sol-rows a,body.docs nav.main .sol-rows a:hover,body.docs nav.main .sol-rows a:focus,body.docs nav.main .sol-rows a.on{color:var(--ink)}
 .btn{display:inline-block;border:1px solid var(--ink);color:var(--paper);background:var(--ink);
   padding:10px 16px;border-radius:999px;font-weight:600;font-size:13.5px;cursor:pointer;
-  transition:background .15s ease,border-color .15s ease,color .15s ease}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  transition:background .15s ease,border-color .15s ease,color .15s ease,box-shadow .15s ease}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
 body.docs .btn{background:var(--dtext);color:var(--void);border-color:var(--dtext)}
 body.docs .btn.ghost{background:transparent;color:var(--dtext);border-color:var(--dline)}
-.btn:hover{color:var(--acid)}
+/* Primary marketing CTA: restrained lime on hover/active only (not wholesale rebrand). */
+.btn:not(.ghost):hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+.btn:not(.ghost):active{color:var(--ink);background:#B8E045;border-color:#B8E045}
 .btn.ghost:hover{color:var(--ink);background:#EFEBE0;border-color:var(--ink)}
 body.docs .btn.ghost:hover{color:var(--dtext);background:transparent;border-color:var(--dtext)}
+body.docs .btn:not(.ghost):hover{color:var(--void);background:var(--acid);border-color:var(--acid)}
+body.docs .btn:not(.ghost):active{color:var(--void);background:#B8E045;border-color:#B8E045}
 .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 #page-docs .btn-row .btn{background:var(--void);color:var(--dtext);border:1px solid var(--dtext)}
-#page-docs .btn-row .btn:hover{color:var(--acid);border-color:var(--acid)}
+#page-docs .btn-row .btn:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+#page-docs .btn-row .btn:active{color:var(--ink);background:#B8E045;border-color:#B8E045}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 @media(max-width:840px){
@@ -195,8 +200,9 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
 .status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
 .cell.logo-cell.open{background:#F3F0E6}
-.cell.logo-cell .objs{display:none;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);list-style:none}
-.cell.logo-cell.open .objs{display:block}
+.grid9{align-items:start}
+.cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
+.cell.logo-cell.open .objs{max-height:480px;opacity:1;visibility:visible;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);pointer-events:auto}
 .cell.logo-cell .objs li{font-size:12.5px;color:var(--ink);line-height:1.4;padding:6px 0;border-bottom:1px solid var(--hair);overflow-wrap:anywhere}
 .cell.logo-cell .objs li:last-child{border-bottom:none;padding-bottom:2px}
 .cell.logo-cell .objs i{font-style:normal;font-size:11px;color:var(--mute)}
@@ -393,7 +399,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   transition:border-color .15s ease,box-shadow .15s ease,background .15s ease}
 .sol-card:hover{border-color:var(--ink);box-shadow:0 3px 10px rgba(23,24,28,.08);background:#F3F0E6}
 .sol-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#1a1a1a}
-.sol-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.02em;line-height:1.15;margin:0;padding:14px 16px 6px}
+.sol-card h3{font-family:var(--serif);font-weight:400;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.02em;line-height:1.2;margin:0;padding:14px 16px 6px}
 .sol-card p{margin:0;color:var(--mute);font-size:15px;line-height:1.4;padding:0 16px 16px}
 .reveal{opacity:.92;transition:opacity .25s ease}
 .reveal.in{opacity:1}
@@ -627,6 +633,27 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   #page-about .ab-drift,#page-about .ab-pulse,#page-about .ab-chapter .ab-mark i{animation:none}
 }
 
+
+/* GTM pipeline mockup (preview) */
+#page-solutions-sales .gtm-mock{max-width:920px;margin:28px 0 0;border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
+#page-solutions-sales .gtm-mock > .disclaim{font-size:11px;text-align:left;margin:10px 16px 8px;color:var(--mute)}
+#page-solutions-sales .gtm-tabs{display:flex;gap:0;border-bottom:1px solid var(--hair);padding:0 8px;background:#F6F3EA}
+#page-solutions-sales .gtm-tab{font-family:var(--mono);font-size:11.5px;font-weight:600;padding:10px 14px;color:var(--mute);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;background:transparent}
+#page-solutions-sales .gtm-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+#page-solutions-sales .gtm-board{padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:800px){#page-solutions-sales .gtm-board{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){#page-solutions-sales .gtm-board{grid-template-columns:1fr}}
+#page-solutions-sales .gtm-col{background:#F7F4EC;border:1px solid var(--hair);border-radius:10px;padding:10px;min-height:120px}
+#page-solutions-sales .gtm-col h4{margin:0 0 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+#page-solutions-sales .gtm-deal{background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:10px 10px 8px;box-shadow:0 1px 0 rgba(23,24,28,.04)}
+#page-solutions-sales .gtm-deal b{display:block;font-size:13.5px;font-weight:600;margin:0 0 4px}
+#page-solutions-sales .gtm-deal .gtm-callout{display:inline-block;font-family:var(--mono);font-size:11px;line-height:1.35;color:#7A6A3A;background:#EFEADF;border-radius:6px;padding:5px 8px;margin-top:6px}
+#page-solutions-sales .gtm-deal.is-cleared .gtm-callout{color:#2F5C3A;background:var(--ok-soft)}
+#page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
+#page-solutions-sales .gtm-deal.is-won b{color:var(--ink)}
+#page-solutions-sales .gtm-deal.is-won .gtm-callout{color:var(--ink);background:var(--acid)}
+#page-solutions-sales .gtm-deal .gtm-meta{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+
 </style>
 </head>
 <body>
@@ -643,9 +670,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <p class="roles-label">By persona</p>
             <div class="sol-rows">
               <a href="#solutions/product" data-nav="solutions">Product</a>
-              <a href="#solutions/developer" data-nav="solutions">Engineering</a>
-              <a href="#solutions/sales" data-nav="solutions">Go-to-market</a>
-              <a href="#solutions/customer-success" data-nav="solutions">Support</a>
+              <a href="#solutions/engineering" data-nav="solutions">Engineering</a>
+              <a href="#solutions/tech-and-platform-support" data-nav="solutions">Tech and platform support</a>
+              <a href="#solutions/go-to-market" data-nav="solutions">Go to market</a>
               <a href="#msps" data-nav="msps">MSPs</a>
             </div>
           </div>
@@ -1051,21 +1078,21 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <a class="sol-card" href="#solutions/product" data-nav="solutions">
           <img src="assets/sol-product.jpg" alt="Product">
           <h3>Product</h3>
-          <p>Ship without parking the roadmap.</p>
+          <p>The hard part is upkeep and vendor programs, not the connect.</p>
         </a>
-        <a class="sol-card" href="#solutions/developer" data-nav="solutions">
+        <a class="sol-card" href="#solutions/engineering" data-nav="solutions">
           <img src="assets/sol-engineering.jpg" alt="Engineering">
           <h3>Engineering</h3>
-          <p>Stop owning each vendor API.</p>
+          <p>One shape. Stop owning each vendor’s auth and library.</p>
         </a>
-        <a class="sol-card" href="#solutions/customer-success" data-nav="solutions">
-          <img src="assets/sol-support.jpg" alt="Support">
-          <h3>Support</h3>
-          <p>Fewer integration tickets.</p>
+        <a class="sol-card" href="#solutions/tech-and-platform-support" data-nav="solutions">
+          <img src="assets/sol-support.jpg" alt="Tech and platform support">
+          <h3>Tech and platform support</h3>
+          <p>Resolve without a developer.</p>
         </a>
-        <a class="sol-card" href="#solutions/sales" data-nav="solutions">
-          <img src="assets/sol-gtm.jpg" alt="Go-to-market">
-          <h3>Go-to-market</h3>
+        <a class="sol-card" href="#solutions/go-to-market" data-nav="solutions">
+          <img src="assets/sol-gtm.jpg" alt="Go to market">
+          <h3>Go to market</h3>
           <p>Don’t lose a deal to a missing integration.</p>
         </a>
       </div>
@@ -1255,7 +1282,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-solutions-sales">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Go-to-market</p>
+      <p class="kicker">Solutions / Go to market</p>
       <h1 class="sol-h1">Integrations grow revenue.</h1>
       <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
       <div style="max-width:42rem">
@@ -1290,13 +1317,53 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </blockquote>
         </div>
       </div>
+      <div class="gtm-mock" aria-label="Mockup of a sales pipeline">
+        <p class="disclaim">Mockup. Simulated data.</p>
+        <div class="gtm-tabs" role="tablist" aria-label="Pipeline state">
+          <button type="button" class="gtm-tab" role="tab" id="gtm-tab-blocked" aria-selected="true" aria-controls="gtm-pane-blocked">Blocked</button>
+          <button type="button" class="gtm-tab" role="tab" id="gtm-tab-cleared" aria-selected="false" aria-controls="gtm-pane-cleared">PSA connected</button>
+        </div>
+        <div class="gtm-board" id="gtm-pane-blocked" role="tabpanel" aria-labelledby="gtm-tab-blocked">
+          <div class="gtm-col"><h4>Discovery</h4></div>
+          <div class="gtm-col">
+            <h4>Solutioning</h4>
+            <div class="gtm-deal">
+              <b>Harbor Managed Services</b>
+              <span class="gtm-meta">PSA not connected</span>
+              <span class="gtm-callout" title="Blocked — partner PSA not connected">MSP waiting on PSA integration</span>
+            </div>
+          </div>
+          <div class="gtm-col"><h4>Negotiation</h4></div>
+          <div class="gtm-col"><h4>Closed</h4></div>
+        </div>
+        <div class="gtm-board" id="gtm-pane-cleared" role="tabpanel" aria-labelledby="gtm-tab-cleared" hidden>
+          <div class="gtm-col"><h4>Discovery</h4></div>
+          <div class="gtm-col"><h4>Solutioning</h4></div>
+          <div class="gtm-col">
+            <h4>Negotiation</h4>
+            <div class="gtm-deal is-cleared">
+              <b>Harbor Managed Services</b>
+              <span class="gtm-meta">Moved forward</span>
+              <span class="gtm-callout">PSA connected</span>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <h4>Closed</h4>
+            <div class="gtm-deal is-won">
+              <b>Blue Spruce IT</b>
+              <span class="gtm-meta">Won</span>
+              <span class="gtm-callout">PSA connected</span>
+            </div>
+          </div>
+        </div>
+      </div>
             </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
   <section class="pad" style="padding-bottom:28px">
     <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Support</p>
+      <p class="kicker">Solutions / Tech and platform support</p>
       <h1 class="sol-h1">Resolve it without a developer.</h1>
       <p class="sub">Support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
       <p class="sub">Console access is invite-only — magic-link, and Sign in with Microsoft when Entra is wired. No open signup.</p>
@@ -2245,25 +2312,60 @@ dry_run ticket create is REST-only.</pre>
     if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
     if(h.indexOf('solutions/')===0){
       var slug=h.slice(10);
-      var smap={product:'solutions-product',developer:'solutions-developer',engineering:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
+      // Canonical hashes + legacy aliases (emailed links must keep working).
+      var smap={
+        product:'solutions-product',
+        engineering:'solutions-developer',
+        developer:'solutions-developer',
+        'go-to-market':'solutions-sales',
+        sales:'solutions-sales',
+        gtm:'solutions-sales',
+        'tech-and-platform-support':'solutions-customer-success',
+        'customer-success':'solutions-customer-success',
+        support:'solutions-customer-success'
+      };
+      var canon={
+        product:'product',
+        engineering:'engineering',
+        developer:'engineering',
+        'go-to-market':'go-to-market',
+        sales:'go-to-market',
+        gtm:'go-to-market',
+        'tech-and-platform-support':'tech-and-platform-support',
+        'customer-success':'tech-and-platform-support',
+        support:'tech-and-platform-support'
+      };
       var sp=smap[slug]||'solutions-product';
-      return {page:sp,docs:'docs',anchor:null,connector:null};
+      var cslug=canon[slug]||(smap[slug]?slug:'product');
+      return {page:sp,docs:'docs',anchor:null,connector:null,personaSlug:slug,personaCanon:cslug};
     }
     if(pages.indexOf(h)>=0) return {page:h,docs:'docs',anchor:null,connector:null};
     return {page:'home',docs:'docs',anchor:null,connector:null};
   }
 
-  function setConnector(slug){
-    document.querySelectorAll('[data-connector]').forEach(function(el){
-      var on=!!slug && el.getAttribute('data-connector')===slug;
-      el.classList.toggle('open',on);
-      el.setAttribute('aria-expanded',on?'true':'false');
-    });
+  function setConnector(slug, opts){
+    opts=opts||{};
+    function apply(){
+      document.querySelectorAll('[data-connector]').forEach(function(el){
+        var on=!!slug && el.getAttribute('data-connector')===slug;
+        el.classList.toggle('open',on);
+        el.setAttribute('aria-expanded',on?'true':'false');
+      });
+    }
+    if(opts.hold && slug){
+      // Hold expand until integrations page has painted (avoids blank first-expand flash).
+      requestAnimationFrame(function(){ requestAnimationFrame(apply); });
+    } else {
+      apply();
+    }
   }
 
   function show(hash){
     if((hash||'').replace('#','')==='product'){ history.replaceState(null,'','#solutions/product'); hash='#solutions/product'; }
     var st=parse(hash);
+    if(st.personaSlug && st.personaCanon && st.personaSlug!==st.personaCanon){
+      history.replaceState(null,'','#solutions/'+st.personaCanon);
+    }
     var cur=document.querySelector('.page.on');
     pages.forEach(function(p){
       var el=document.getElementById('page-'+p);
@@ -2284,11 +2386,12 @@ dry_run ticket create is REST-only.</pre>
       var on = st.anchor ? href===st.anchor : (dd===st.docs && href===st.docs);
       a.classList.toggle('on', on);
     });
-    setConnector(st.connector);
+    var same=cur && cur.id==='page-'+st.page;
+    var holdConn=!!(st.connector && st.page==='integrations' && !same);
+    setConnector(st.connector, {hold:holdConn});
     nav.classList.remove('open');
     if(menuBtn) menuBtn.setAttribute('aria-expanded','false');
     document.querySelectorAll('.drop').forEach(function(d){ d.classList.remove('open'); d.classList.remove('hot'); });
-    var same=cur && cur.id==='page-'+st.page;
     if(!(st.page==='integrations' && same)) window.scrollTo({top:0,behavior:'auto'});
     if(st.anchor){
       var t=document.getElementById(st.anchor);
@@ -2305,8 +2408,8 @@ dry_run ticket create is REST-only.</pre>
       solutions:['Solutions \u00b7 Bitlync','Who Bitlync is for.'],
       'solutions-product':['Product \u00b7 Bitlync','Ship without parking the roadmap on each PSA.'],
       'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
-      'solutions-sales':['Go-to-market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
-      'solutions-customer-success':['Support \u00b7 Bitlync','Name the missing permission in the flow.'],
+      'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
+      'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
       msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
       partners:['Contact us \u00b7 Bitlync','Paid design partners: engineering access, roadmap input, founding pricing.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
@@ -2485,6 +2588,26 @@ dry_run ticket create is REST-only.</pre>
       solDrop.classList.remove('open');
     });
   }
+
+
+  (function(){
+    var root=document.getElementById('page-solutions-sales');
+    if(!root) return;
+    var tabs=root.querySelectorAll('.gtm-tab');
+    var panes={
+      'gtm-pane-blocked':document.getElementById('gtm-pane-blocked'),
+      'gtm-pane-cleared':document.getElementById('gtm-pane-cleared')
+    };
+    tabs.forEach(function(tab){
+      tab.addEventListener('click',function(){
+        var id=tab.getAttribute('aria-controls');
+        tabs.forEach(function(t){ t.setAttribute('aria-selected', t===tab?'true':'false'); });
+        Object.keys(panes).forEach(function(pid){
+          if(panes[pid]) panes[pid].hidden = pid!==id;
+        });
+      });
+    });
+  })();
 
   (function(){
     var root=document.getElementById('page-solutions-customer-success');
