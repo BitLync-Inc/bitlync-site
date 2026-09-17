@@ -646,8 +646,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-mock-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px 0;border-bottom:1px solid var(--hair);background:#F6F3EA}
 #page-solutions-sales .gtm-mock-head .gtm-label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin:0 0 10px}
 #page-solutions-sales .gtm-mock-head .disclaim{font-size:11px;text-align:left;margin:0 0 10px;color:var(--mute)}
-#page-solutions-sales .gtm-board{padding:14px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:start;overflow-x:auto}
-@media(max-width:1100px){#page-solutions-sales .gtm-board{grid-template-columns:repeat(5,minmax(150px,1fr));padding-bottom:12px}}
+#page-solutions-sales .gtm-board{padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start;overflow-x:auto}
+@media(max-width:900px){#page-solutions-sales .gtm-board{grid-template-columns:repeat(4,minmax(200px,1fr));padding-bottom:12px}}
 #page-solutions-sales .gtm-col{background:#F7F4EC;border:1px solid var(--hair);border-radius:10px;padding:10px;min-height:140px;display:flex;flex-direction:column;gap:8px}
 #page-solutions-sales .gtm-col-head{margin:0 0 2px}
 #page-solutions-sales .gtm-col h4{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
@@ -663,6 +663,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-chip.chip-none{color:#7A2E2E;background:#F3D4D4}
 #page-solutions-sales .gtm-chip.chip-psa{color:#1E3A5F;background:#D6E4F5}
 #page-solutions-sales .gtm-chip.chip-won{color:var(--ink);background:var(--acid)}
+#page-solutions-sales .gtm-chip.chip-lost{color:#7A2E2E;background:#F3D4D4}
 #page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
 #page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
@@ -1386,8 +1387,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </div>
           <div class="gtm-col">
             <div class="gtm-col-head">
-              <h4>Closed won</h4>
-              <span class="gtm-count">2 deals</span>
+              <h4>Closed</h4>
+              <span class="gtm-count">4 deals</span>
             </div>
             <div class="gtm-deal is-won">
               <b>Blue Spruce IT</b>
@@ -1404,16 +1405,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
                 <span class="gtm-chip chip-won">Closed won</span>
               </div>
             </div>
-          </div>
-          <div class="gtm-col">
-            <div class="gtm-col-head">
-              <h4>Closed lost</h4>
-              <span class="gtm-count">2 deals</span>
-            </div>
             <div class="gtm-deal is-lost">
               <b>Ironwood Support</b>
               <span class="gtm-value">$22,500</span>
               <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
                 <span class="gtm-chip chip-none">No PSA integration</span>
               </div>
             </div>
@@ -1421,6 +1417,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <b>Pinecone Networks</b>
               <span class="gtm-value">$19,800</span>
               <div class="gtm-chips">
+                <span class="gtm-chip chip-lost">Closed lost</span>
                 <span class="gtm-chip chip-none">No PSA integration</span>
               </div>
             </div>
