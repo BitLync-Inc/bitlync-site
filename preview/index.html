@@ -194,17 +194,23 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .road article{background:var(--card);padding:20px;min-width:0}
 .road b{display:block;font-size:16px;margin:6px 0}
 .road p{margin:0;color:var(--mute);font-size:14px}
-.grid9{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%}
+.grid9{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%;align-items:stretch}
+@media(min-width:520px){.grid9{grid-template-columns:1fr 1fr}}
+@media(min-width:800px){.grid9{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
 .status-sandbox{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 7px;width:fit-content}
-.cell.logo-cell.open{background:#F3F0E6}
-.grid9{align-items:start}
+/* Full-width expand: open tile spans the grid so siblings never stretch / leave cream slabs */
+.cell.logo-cell.open{background:#F3F0E6;grid-column:1 / -1}
 .cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
-.cell.logo-cell.open .objs{max-height:480px;opacity:1;visibility:visible;margin:10px 0 0;padding:2px 0 0;border-top:1px solid var(--hair);pointer-events:auto}
+.cell.logo-cell.open .objs{max-height:560px;opacity:1;visibility:visible;margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:640px){.cell.logo-cell.open .objs{grid-template-columns:1fr 1fr;column-gap:24px}}
 .cell.logo-cell .objs li{font-size:12.5px;color:var(--ink);line-height:1.4;padding:6px 0;border-bottom:1px solid var(--hair);overflow-wrap:anywhere}
 .cell.logo-cell .objs li:last-child{border-bottom:none;padding-bottom:2px}
+@media(min-width:640px){
+  .cell.logo-cell.open .objs li:nth-last-child(2):nth-child(odd){border-bottom:none}
+}
 .cell.logo-cell .objs i{font-style:normal;font-size:11px;color:var(--mute)}
 .cell.logo-cell:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
 .quiet{color:var(--mute);font-size:15px;max-width:40rem;margin:16px 0 0}
@@ -541,7 +547,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-developer .term-title{font-family:var(--mono);font-size:11.5px;color:#8B8B86}
 #page-solutions-developer .code-shell pre{font-size:16px;padding:28px 32px}
 #page-solutions-developer .tix{max-width:100%;width:100%;margin:36px auto 0}
-.grid9{overflow:visible}
 .cell b{white-space:normal}
 @media(min-width:841px){
   .drop .panel{display:none}
@@ -634,21 +639,20 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 }
 
 
-/* GTM pipeline mockup (preview) */
-#page-solutions-sales .gtm-mock{max-width:920px;margin:28px 0 0;border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
-#page-solutions-sales .gtm-mock > .disclaim{font-size:11px;text-align:left;margin:10px 16px 8px;color:var(--mute)}
-#page-solutions-sales .gtm-tabs{display:flex;gap:0;border-bottom:1px solid var(--hair);padding:0 8px;background:#F6F3EA}
-#page-solutions-sales .gtm-tab{font-family:var(--mono);font-size:11.5px;font-weight:600;padding:10px 14px;color:var(--mute);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;background:transparent}
-#page-solutions-sales .gtm-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
-#page-solutions-sales .gtm-board{padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-@media(max-width:800px){#page-solutions-sales .gtm-board{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){#page-solutions-sales .gtm-board{grid-template-columns:1fr}}
-#page-solutions-sales .gtm-col{background:#F7F4EC;border:1px solid var(--hair);border-radius:10px;padding:10px;min-height:120px}
-#page-solutions-sales .gtm-col h4{margin:0 0 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+/* GTM pipeline mockup (preview) — Pipedrive-style kanban, no tabs */
+#page-solutions-sales .gtm-mock{max-width:960px;margin:28px 0 0;border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
+#page-solutions-sales .gtm-mock-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px 0;border-bottom:1px solid var(--hair);background:#F6F3EA}
+#page-solutions-sales .gtm-mock-head .gtm-label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin:0 0 10px}
+#page-solutions-sales .gtm-mock-head .disclaim{font-size:11px;text-align:left;margin:0 0 10px;color:var(--mute)}
+#page-solutions-sales .gtm-board{padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start;overflow-x:auto}
+@media(max-width:900px){#page-solutions-sales .gtm-board{grid-template-columns:repeat(4,minmax(200px,1fr));padding-bottom:12px}}
+#page-solutions-sales .gtm-col{background:#F7F4EC;border:1px solid var(--hair);border-radius:10px;padding:10px;min-height:140px;display:flex;flex-direction:column;gap:8px}
+#page-solutions-sales .gtm-col h4{margin:0 0 2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
 #page-solutions-sales .gtm-deal{background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:10px 10px 8px;box-shadow:0 1px 0 rgba(23,24,28,.04)}
+#page-solutions-sales .gtm-deal + .gtm-deal{margin-top:0}
 #page-solutions-sales .gtm-deal b{display:block;font-size:13.5px;font-weight:600;margin:0 0 4px}
 #page-solutions-sales .gtm-deal .gtm-callout{display:inline-block;font-family:var(--mono);font-size:11px;line-height:1.35;color:#7A6A3A;background:#EFEADF;border-radius:6px;padding:5px 8px;margin-top:6px}
-#page-solutions-sales .gtm-deal.is-cleared .gtm-callout{color:#2F5C3A;background:var(--ok-soft)}
+#page-solutions-sales .gtm-deal.is-lost .gtm-callout{color:#7A3A3A;background:#F0E4E4}
 #page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
 #page-solutions-sales .gtm-deal.is-won b{color:var(--ink)}
 #page-solutions-sales .gtm-deal.is-won .gtm-callout{color:var(--ink);background:var(--acid)}
@@ -1294,16 +1298,88 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <h2>Reduced churn</h2>
           <p class="sub">Once you connect to their stack, leaving becomes a project.</p>
         </div>
-        <div>
-          <h2>Connectors</h2>
-          <p class="sub">See the products you can say yes to.</p>
-          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
-        </div>
       </div>
     </div>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="pad" style="padding-top:0;padding-bottom:12px">
+    <div class="wrap">
+      <div class="gtm-mock" aria-label="Mockup of a sales pipeline">
+        <div class="gtm-mock-head">
+          <p class="gtm-label">Pipeline</p>
+          <p class="disclaim">Mockup. Simulated data.</p>
+        </div>
+        <div class="gtm-board">
+          <div class="gtm-col">
+            <h4>Discovery</h4>
+            <div class="gtm-deal">
+              <b>Northwind IT Partners</b>
+              <span class="gtm-meta">Intro call booked</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Cedar Ridge MSP</b>
+              <span class="gtm-meta">Stack survey in progress</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Apex Stack Support</b>
+              <span class="gtm-meta">Requested PSA coverage list</span>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <h4>Solutioning</h4>
+            <div class="gtm-deal">
+              <b>Harbor Managed Services</b>
+              <span class="gtm-meta">Architecture review</span>
+              <span class="gtm-callout">MSP waiting on PSA integration</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Trailhead Tech Co</b>
+              <span class="gtm-meta">Mapping ticket objects</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Summit Desk Ops</b>
+              <span class="gtm-meta">Sandbox walkthrough</span>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <h4>Negotiation</h4>
+            <div class="gtm-deal">
+              <b>Lakeview IT Group</b>
+              <span class="gtm-meta">Commercials in review</span>
+            </div>
+            <div class="gtm-deal">
+              <b>Brightline MSP</b>
+              <span class="gtm-meta">Security questionnaire</span>
+            </div>
+          </div>
+          <div class="gtm-col">
+            <h4>Closed won / Closed lost</h4>
+            <div class="gtm-deal is-won">
+              <b>Blue Spruce IT</b>
+              <span class="gtm-meta">PSA connected · live</span>
+              <span class="gtm-callout">Closed won</span>
+            </div>
+            <div class="gtm-deal is-won">
+              <b>Meridian Field Services</b>
+              <span class="gtm-meta">PSA connected · live</span>
+              <span class="gtm-callout">Closed won</span>
+            </div>
+            <div class="gtm-deal is-lost">
+              <b>Ironwood Support</b>
+              <span class="gtm-meta">Needed ConnectWise before renewal</span>
+              <span class="gtm-callout">No PSA integration</span>
+            </div>
+            <div class="gtm-deal is-lost">
+              <b>Pinecone Networks</b>
+              <span class="gtm-meta">Deal stalled on Autotask gap</span>
+              <span class="gtm-callout">No PSA integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pad" style="padding-top:16px">
     <div class="wrap">
       <div class="sol-cites">
         <div class="sol-quotes">
@@ -1317,47 +1393,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           </blockquote>
         </div>
       </div>
-      <div class="gtm-mock" aria-label="Mockup of a sales pipeline">
-        <p class="disclaim">Mockup. Simulated data.</p>
-        <div class="gtm-tabs" role="tablist" aria-label="Pipeline state">
-          <button type="button" class="gtm-tab" role="tab" id="gtm-tab-blocked" aria-selected="true" aria-controls="gtm-pane-blocked">Blocked</button>
-          <button type="button" class="gtm-tab" role="tab" id="gtm-tab-cleared" aria-selected="false" aria-controls="gtm-pane-cleared">PSA connected</button>
-        </div>
-        <div class="gtm-board" id="gtm-pane-blocked" role="tabpanel" aria-labelledby="gtm-tab-blocked">
-          <div class="gtm-col"><h4>Discovery</h4></div>
-          <div class="gtm-col">
-            <h4>Solutioning</h4>
-            <div class="gtm-deal">
-              <b>Harbor Managed Services</b>
-              <span class="gtm-meta">PSA not connected</span>
-              <span class="gtm-callout" title="Blocked — partner PSA not connected">MSP waiting on PSA integration</span>
-            </div>
-          </div>
-          <div class="gtm-col"><h4>Negotiation</h4></div>
-          <div class="gtm-col"><h4>Closed</h4></div>
-        </div>
-        <div class="gtm-board" id="gtm-pane-cleared" role="tabpanel" aria-labelledby="gtm-tab-cleared" hidden>
-          <div class="gtm-col"><h4>Discovery</h4></div>
-          <div class="gtm-col"><h4>Solutioning</h4></div>
-          <div class="gtm-col">
-            <h4>Negotiation</h4>
-            <div class="gtm-deal is-cleared">
-              <b>Harbor Managed Services</b>
-              <span class="gtm-meta">Moved forward</span>
-              <span class="gtm-callout">PSA connected</span>
-            </div>
-          </div>
-          <div class="gtm-col">
-            <h4>Closed</h4>
-            <div class="gtm-deal is-won">
-              <b>Blue Spruce IT</b>
-              <span class="gtm-meta">Won</span>
-              <span class="gtm-callout">PSA connected</span>
-            </div>
-          </div>
+      <div class="sol-wins" style="margin-top:32px">
+        <div>
+          <h2>Connectors</h2>
+          <p class="sub">See the products you can say yes to.</p>
+          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
         </div>
       </div>
-            </div>
+    </div>
   </section>
 </div>
 <div class="page" id="page-solutions-customer-success">
@@ -2590,24 +2633,6 @@ dry_run ticket create is REST-only.</pre>
   }
 
 
-  (function(){
-    var root=document.getElementById('page-solutions-sales');
-    if(!root) return;
-    var tabs=root.querySelectorAll('.gtm-tab');
-    var panes={
-      'gtm-pane-blocked':document.getElementById('gtm-pane-blocked'),
-      'gtm-pane-cleared':document.getElementById('gtm-pane-cleared')
-    };
-    tabs.forEach(function(tab){
-      tab.addEventListener('click',function(){
-        var id=tab.getAttribute('aria-controls');
-        tabs.forEach(function(t){ t.setAttribute('aria-selected', t===tab?'true':'false'); });
-        Object.keys(panes).forEach(function(pid){
-          if(panes[pid]) panes[pid].hidden = pid!==id;
-        });
-      });
-    });
-  })();
 
   (function(){
     var root=document.getElementById('page-solutions-customer-success');
