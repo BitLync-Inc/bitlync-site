@@ -206,14 +206,16 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .grid9:has(> .cell.logo-cell.open) > .cell.logo-cell:not(.open){display:none}
 .cell.logo-cell.open{background:#F3F0E6;grid-column:1 / -1}
 .cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
-.cell.logo-cell.open .objs{max-height:560px;opacity:1;visibility:visible;margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:0}
-@media(min-width:640px){.cell.logo-cell.open .objs{grid-template-columns:1fr 1fr;column-gap:24px}}
-.cell.logo-cell .objs li{font-size:12.5px;color:var(--ink);line-height:1.4;padding:6px 0;border-bottom:1px solid var(--hair);overflow-wrap:anywhere}
-.cell.logo-cell .objs li:last-child{border-bottom:none;padding-bottom:2px}
-@media(min-width:640px){
-  .cell.logo-cell.open .objs li:nth-last-child(2):nth-child(odd){border-bottom:none}
-}
-.cell.logo-cell .objs i{font-style:normal;font-size:11px;color:var(--mute)}
+.cell.logo-cell.open .objs{max-height:920px;opacity:1;visibility:visible;margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.cell.logo-cell.open .objs{grid-template-columns:1fr 1fr;gap:10px}}
+/* Option C: mini-cards per object — Read/Write/List pills (not pull/push wording) */
+.cell.logo-cell .objs li{border:1px solid var(--hair);border-radius:12px;padding:12px;background:#FFFcf6;overflow-wrap:anywhere;margin:0}
+.cell.logo-cell .objs .obj-t{display:block;font-weight:700;font-size:14px;line-height:1.25;margin:0 0 8px;color:var(--ink)}
+.cell.logo-cell .objs .pills{display:flex;flex-wrap:wrap;gap:6px}
+.cell.logo-cell .objs .pill{font-size:11px;font-weight:600;border-radius:999px;padding:4px 9px;line-height:1.2}
+.cell.logo-cell .objs .pill.read{background:#D6E4F5;color:#1E3A5F}
+.cell.logo-cell .objs .pill.write{background:#D8F0B0;color:#1F4A1F}
+.cell.logo-cell .objs .pill.list{background:#EDE8DC;color:#5A564C}
 .cell.logo-cell:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
 .quiet{color:var(--mute);font-size:15px;max-width:40rem;margin:16px 0 0}
 .cat-block{margin:40px 0 0}
@@ -1000,78 +1002,78 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="grid9">
         <a class="cell logo-cell" href="#integrations/connectwise" data-connector="connectwise" aria-expanded="false"><img src="logos/connectwise.png" alt=""><b>ConnectWise</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-            <li>Boards, statuses, priorities — list</li>
-            <li>Members — list</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Boards, statuses, priorities</span><span class="pills"><span class="pill list">List</span></span></li>
+            <li><span class="obj-t">Members</span><span class="pills"><span class="pill list">List</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/halo" data-connector="halo" aria-expanded="false"><img src="logos/halopsa.png" alt=""><b>HaloPSA</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-            <li>Boards, statuses, priorities — list</li>
-            <li>Members — list</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Boards, statuses, priorities</span><span class="pills"><span class="pill list">List</span></span></li>
+            <li><span class="obj-t">Members</span><span class="pills"><span class="pill list">List</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/autotask" data-connector="autotask" aria-expanded="false"><img src="logos/autotask.png" alt=""><b>Autotask</b><span class="cat">PSA</span>
           <ul class="objs">
-            <li>Ticket — pull and push</li>
-            <li>Line item — pull and push</li>
-            <li>Project — pull and push</li>
-            <li>Agreement — pull</li>
-            <li>Company — pull</li>
-                        <li>Time — push</li>
+            <li><span class="obj-t">Ticket</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Line item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Project</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+                        <li><span class="obj-t">Time</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
           <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
+            <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
           <ul class="objs">
-            <li>Device — pull</li>
-            <li>Software — pull</li>
+            <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/scalepad" data-connector="scalepad" aria-expanded="false"><img src="logos/scalepad.png" alt=""><b>ScalePad</b><span class="cat">Customer Success</span>
           <ul class="objs">
-            <li>Action item — pull and push</li>
-            <li>Initiative — pull and push</li>
+            <li><span class="obj-t">Action item</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Initiative</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
           <ul class="objs">
-            <li>Company — pull and push</li>
-            <li>Product — pull</li>
-            <li>Subscription — pull</li>
-            <li>Invoice — pull</li>
-            <li>Order — push</li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Product</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Subscription</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Invoice</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Order</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
           <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Configuration — pull</li>
-            <li>Asset — pull</li>
+            <li><span class="obj-t">Document</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Configuration</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
           <ul class="objs">
-            <li>Document — pull and push</li>
-            <li>Company — pull</li>
-            <li>Asset — pull</li>
+            <li><span class="obj-t">Document</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
+            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
+            <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
       </div>
