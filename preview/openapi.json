@@ -2468,7 +2468,7 @@
   "info": {
     "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant. We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.77.0",
+    "version": "0.78.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -7778,7 +7778,7 @@
     },
     "/tenants/{tenant_id}/members": {
       "get": {
-        "description": "PSA members for the time picker (CW System Members; Halo Agents).\n\nPublic word is always ``member``. Each row's ``id`` is what\nCreateTimeEntryBody.member accepts. Unsupported PSA \u2192 501.\nStore-served with last_synced_at where SyncEngine is wired;\n``?live=true`` re-syncs this request. Empty list is honest \u2014 never\ninvent a member. Permission miss \u2192 English upstream error.",
+        "description": "PSA members for the time picker (CW System Members; Halo Agents; Autotask Resources).\n\nPublic word is always ``member``. Each row's ``id`` is what\nCreateTimeEntryBody.member accepts. Unsupported PSA \u2192 501.\nStore-served with last_synced_at where SyncEngine is wired;\n``?live=true`` re-syncs this request. Empty list is honest \u2014 never\ninvent a member. Permission miss \u2192 English upstream error.",
         "operationId": "list_members_tenants__tenant_id__members_get",
         "parameters": [
           {
@@ -8431,7 +8431,7 @@
     },
     "/tenants/{tenant_id}/ticket-boards": {
       "get": {
-        "description": "PSA boards (CW) / teams (Halo) \u2014 ids for CreateTicketBody.board.\n\nFixture or live from connector list_ticket_boards (#124). Unsupported\nPSA \u2192 501. Empty list is honest.",
+        "description": "PSA boards (CW) / teams (Halo) \u2014 ids for CreateTicketBody.board.\n\nFixture or live from connector list_ticket_boards (#124). Autotask\nuses GET \u2026/ticket-queues (never boards) \u2192 501 here. Empty list honest.",
         "operationId": "list_ticket_boards_tenants__tenant_id__ticket_boards_get",
         "parameters": [
           {
@@ -8881,6 +8881,153 @@
           }
         ],
         "summary": "List Ticket Priorities"
+      }
+    },
+    "/tenants/{tenant_id}/ticket-queues": {
+      "get": {
+        "description": "Autotask Queues for ticket routing \u2014 never call these boards.\n\nFixture or live from connector list_ticket_queues. Unsupported PSA\n(CW/Halo use ticket-boards / teams) \u2192 501. Empty list is honest.",
+        "operationId": "list_ticket_queues_tenants__tenant_id__ticket_queues_get",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Ticket Queues Tenants Tenant Id Ticket Queues Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "List Ticket Queues"
       }
     },
     "/tenants/{tenant_id}/ticket-statuses": {
