@@ -1553,7 +1553,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <div class="row p-ok">✓ keys work</div>
             <div class="row p-bad">✕ missing: Service Desk — Add</div>
             <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
-            <div class="row p-ok">✓ keys tested</div>
+            <div class="row p-ok">✓ keys checked</div>
         </div>
       </div>
     </div>
@@ -2302,7 +2302,7 @@ dry_run ticket create is REST-only.</pre>
       <h2>2026-09-18</h2>
       <p>OpenAPI 0.79.0. Company custom-field write ships on POST /tenants/{id}/companies/write via vendor_native (ConnectWise customFields, Halo customfields/cf*, Autotask userDefinedFields). Grant psa.company.update is off by default; on when the MSP enables it. Never creates a company. Autotask capability ships in OpenAPI 0.79 (multi-select and reference UDFs return 422). Production badge stays off.</p>
       <h2>2026-09-11</h2>
-      <p>OpenAPI 0.77.0. E3b Halo Ticket inbound PARTIAL (tickets only; Basic under path token); poll stays; store unchanged; HMAC UNKNOWN; no Autotask/CW inbound parsers; live Halo→Bitlync ingress not proven. Production badge stays off.</p>
+      <p>OpenAPI 0.77.0. Halo ticket inbound supports tickets only with Basic under a path token; polling remains available; the store is unchanged. Production badge stays off.</p>
       <p>OpenAPI 0.76.0. Inbound E3a plumbing only (refuse-unknown + DirtyFlagBoard → sync); no vendor parsers; poll stays; mount-when-wired. Production badge stays off.</p>
       <p>OpenAPI 0.75.0. ISV console sign-in is invite-only: magic-link, plus Sign in with Microsoft when Entra is wired. No open signup. Production badge stays off.</p>
       <p>OpenAPI 0.74.0. Exact-name auto-Match (never auto-import). Leftover ask is Match / company import from PSA / Skip / Needs match. Ticket create and update accept board, status, and priority list ids on ConnectWise and Halo. Production badge stays off.</p>
