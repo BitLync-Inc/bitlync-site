@@ -65,12 +65,21 @@ body.docs .btn:not(.ghost):active{color:var(--void);background:#B8E045;border-co
 #page-docs .btn-row .btn:active{color:var(--ink);background:#B8E045;border-color:#B8E045}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
+.nav-signin{flex:none;font-size:14px;color:var(--mute)}
+.nav-signin:hover{color:var(--ink)}
+body.docs .nav-signin{color:var(--dmute)}
+body.docs .nav-signin:hover{color:var(--dtext)}
+.nav-signin:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
+.nav-signin-m{display:none}
 @media(max-width:840px){
   nav.main{display:none;position:fixed;inset:64px 0 auto 0;background:var(--paper);flex-direction:column;padding:16px 22px;border-bottom:1px solid var(--hair);gap:2px}
   body.docs nav.main{background:var(--void);border-bottom-color:var(--dline)}
   nav.main.open{display:flex}
   .menu{display:block;margin-left:auto}
   .nav-cta{display:none}
+  .bar > .nav-signin{display:none}
+  nav.main .nav-signin-m{display:block;margin-top:8px;padding-top:10px;border-top:1px solid var(--hair)}
+  body.docs nav.main .nav-signin-m{border-top-color:var(--dline)}
   .drop .panel{position:static;transform:none;width:100%;padding-top:6px;display:none}
   .drop.open .panel,.drop:focus-within .panel{display:block}
   .drop .panel-in{box-shadow:none;border:0;padding:0;background:transparent}
@@ -697,7 +706,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <a href="#integrations" data-nav="integrations">Connectors</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#partners" data-nav="partners">Contact us</a>
+      <a class="nav-signin nav-signin-m" href="https://app.bitlync.com/console/login">Sign in</a>
     </nav>
+    <a class="nav-signin" href="https://app.bitlync.com/console/login">Sign in</a>
     <a class="btn nav-cta" href="#partners" data-nav="partners">Request early access</a>
     <button class="menu" id="menuBtn" type="button" aria-expanded="false">Menu</button>
   </div>
