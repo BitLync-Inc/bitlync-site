@@ -2130,7 +2130,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default false; writes are real). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.89.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a></p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2292,7 +2292,8 @@ dry_run ticket create is REST-only.</pre>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
       <h2>2026-10-12</h2>
-      <p>OpenAPI 0.89.0. Writes are real by default: dry_run defaults to false. Optional: dry_run true checks a write against a new MSP's setup without creating a record. Test writes in the sandbox.</p>
+      <p>SDK 2.0.0 (breaking): the generated Python and TypeScript clients now return typed response models where the spec declares one (for example TicketList) instead of plain dicts. Read attributes (listed.sandbox) or call .to_dict().</p>
+      <p>OpenAPI 0.90.0. Writes are real by default: dry_run defaults to false. Optional: dry_run true checks a write against a new MSP's setup without creating a record. Test writes in the sandbox.</p>
       <p>The MSP can turn on "Allow closing tickets with a resolution" per connection on Configure, under Ticketing. It is off by default. Off, the resolution lands as a note and the ticket stays open.</p>
       <p>Halo and ConnectWise company custom fields work live. The field is created once in your stack under the MSP's standing psa.company.field.create grant. The field label shows on Configure.</p>
       <h2>2026-09-18</h2>
