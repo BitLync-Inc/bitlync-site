@@ -527,7 +527,8 @@
             "title": "Contacts"
           },
           "dry_run": {
-            "default": true,
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -652,8 +653,8 @@
             "title": "Description"
           },
           "dry_run": {
-            "default": true,
-            "description": "Preview without side effects (the default).",
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -732,8 +733,8 @@
             "type": "boolean"
           },
           "dry_run": {
-            "default": true,
-            "description": "Preview without side effects (the default).",
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -777,7 +778,8 @@
       "DeployBody": {
         "properties": {
           "dry_run": {
-            "default": true,
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -974,6 +976,31 @@
           "sandbox"
         ],
         "title": "DeviceList",
+        "type": "object"
+      },
+      "EnsureBitlyncContractLinkFieldBody": {
+        "description": "W15 create-or-reuse. Name, type, tab, and entity are constants \u2014 not\naccepted here. extra=ignore so caller injection of those keys is dropped.",
+        "properties": {
+          "dry_run": {
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required on a write. Replay returns the original result.",
+            "title": "Idempotency Key"
+          }
+        },
+        "title": "EnsureBitlyncContractLinkFieldBody",
         "type": "object"
       },
       "Error": {
@@ -1332,6 +1359,143 @@
         "title": "EventList",
         "type": "object"
       },
+      "ExperienceConfigBody": {
+        "description": "ISV MSP-experience config center (Eng #1) \u2014 category templates + branding.\n\nPrimary: ``category_profiles`` keyed by psa/rmm/documentation/grc/commerce\n(ISV labels PSA/RMM/Docs/CS/Commerce). Vendors inherit the category\ntemplate + offerable-verb filter. Optional ``capability_profile`` remains\nfor Advanced per-vendor override / legacy. Access is list[verb]; Never\nexclusive. Badge OFF.",
+        "properties": {
+          "brand_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand Color"
+          },
+          "brand_font": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand Font"
+          },
+          "brand_secondary_color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand Secondary Color"
+          },
+          "brand_website_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand Website Url"
+          },
+          "capability_profile": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Capability Profile"
+          },
+          "category_profiles": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Profiles"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url"
+          },
+          "recommended_grant_defaults": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recommended Grant Defaults"
+          },
+          "supported_categories": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supported Categories"
+          },
+          "supported_vendors": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supported Vendors"
+          }
+        },
+        "title": "ExperienceConfigBody",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -1477,7 +1641,8 @@
             "title": "Description"
           },
           "dry_run": {
-            "default": true,
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -2183,8 +2348,8 @@
             "title": "Cancelled Date"
           },
           "dry_run": {
-            "default": true,
-            "description": "Preview without side effects (the default).",
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -2285,6 +2450,64 @@
         "title": "WriteAgreementLineBody",
         "type": "object"
       },
+      "WriteCompanyBody": {
+        "properties": {
+          "company_ref": {
+            "description": "Existing PSA company / client id. Update never creates a company.",
+            "title": "Company Ref",
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "ensure_custom_field": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional. When set, create this company custom-field definition if it does not already exist, then write the value. Halo: kind richtext, key like CFName, label, optional tab_name (an existing tab; this never creates a tab). ConnectWise: kind url (Hyperlink on Company Overview; never a button), key is the caption (max 25). Absent means value-only. Does not create a company. Autotask is refused.",
+            "title": "Ensure Custom Field"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required on a write. Replay returns the original result.",
+            "title": "Idempotency Key"
+          },
+          "vendor_native": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional vendor-native field bag for company custom fields (Halo Client customfields/cf*, ConnectWise customFields: [{ id, value }], Autotask userDefinedFields: [{ name, value }]). Grant-checked (psa.company.update, default off). Not `.raw` (.raw is read-only). Autotask multi-select and reference UDFs are refused with a clear 422. We do not guarantee every native field.",
+            "title": "Vendor Native"
+          }
+        },
+        "required": [
+          "company_ref"
+        ],
+        "title": "WriteCompanyBody",
+        "type": "object"
+      },
       "WriteTicketBody": {
         "properties": {
           "action": {
@@ -2317,8 +2540,8 @@
             "title": "Done"
           },
           "dry_run": {
-            "default": true,
-            "description": "Preview without side effects (the default).",
+            "default": false,
+            "description": "Optional. true checks the write against this MSP's setup without creating a record. Test in the sandbox.",
             "title": "Dry Run",
             "type": "boolean"
           },
@@ -2343,7 +2566,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required on commit (dry_run=false). Replay returns the original result.",
+            "description": "Required on a write. Replay returns the original result.",
             "title": "Idempotency Key"
           },
           "internal": {
@@ -2355,7 +2578,8 @@
                 "type": "null"
               }
             ],
-            "description": "append_note: true = internal (MSP-only); false = customer-visible.",
+            "default": true,
+            "description": "append_note: true (default) = internal (MSP-only); false = customer-visible. Omitted means internal.",
             "title": "Internal"
           },
           "note": {
@@ -2466,9 +2690,9 @@
     }
   },
   "info": {
-    "description": "Canonical read + act surface over the connected MSP stack. Every write supports dry_run (preview, default) and an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant. We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
+    "description": "Canonical read + act surface over the connected MSP stack. Writes are real; test them in the sandbox. Every write takes an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.update`, `psa.company.field.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` / `psa_company_update_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant on tickets and on `POST /companies/write` (company custom fields; grant `psa.company.update`, default off). We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
-    "version": "0.78.0",
+    "version": "0.89.0",
     "x-error-catalog": "/docs/errors",
     "x-object-dictionary": "/docs/object-dictionary",
     "x-quickstart": "/docs/quickstart"
@@ -2861,6 +3085,262 @@
         "summary": "Quickstart",
         "tags": [
           "Developer"
+        ]
+      }
+    },
+    "/isv/experience-config": {
+      "get": {
+        "description": "ISV capability profile + branding + catalog allowlist (Badge OFF).",
+        "operationId": "get_experience_config_isv_experience_config_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Experience Config Isv Experience Config Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get Experience Config",
+        "tags": [
+          "Platform"
+        ]
+      },
+      "put": {
+        "description": "Save capability profile + recommended grant defaults + thin branding.",
+        "operationId": "set_experience_config_isv_experience_config_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperienceConfigBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Set Experience Config Isv Experience Config Put",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Set Experience Config",
+        "tags": [
+          "Platform"
         ]
       }
     },
@@ -4634,7 +5114,7 @@
     },
     "/tenants/{tenant_id}/commerce/agreement-lines": {
       "post": {
-        "description": "Write one PSA agreement addition (new / modify / replace / end).\n\nFixture / dry_run first. modify/replace/end require a MAPPED E3 pair;\nUNMAPPED refuses with code agreement_line_unmapped. Never deletes an\naddition; never cancels the agreement header. Not a queue.",
+        "description": "Write one PSA agreement addition (new / modify / replace / end).\n\nFixture first. modify/replace/end require a MAPPED E3 pair;\nUNMAPPED refuses with code agreement_line_unmapped. Never deletes an\naddition; never cancels the agreement header. Not a queue.",
         "operationId": "write_agreement_line_tenants__tenant_id__commerce_agreement_lines_post",
         "parameters": [
           {
@@ -6202,7 +6682,7 @@
     },
     "/tenants/{tenant_id}/companies": {
       "post": {
-        "description": "Match-first company create. PSA requires grant `psa.company.create`\n(missing \u2192 `grant_missing`). dry_run defaults true. Ambiguous match\nis `company_match_ambiguous`. Commerce (Pax8) uses fan_out=commerce.",
+        "description": "Match-first company create. PSA requires grant `psa.company.create`\n(missing \u2192 `grant_missing`). Ambiguous match\nis `company_match_ambiguous`. Commerce (Pax8) uses fan_out=commerce.",
         "operationId": "create_company_tenants__tenant_id__companies_post",
         "parameters": [
           {
@@ -6355,6 +6835,320 @@
           }
         ],
         "summary": "Create Company"
+      }
+    },
+    "/tenants/{tenant_id}/companies/fields/bitlync-contract-link": {
+      "post": {
+        "description": "Create or reuse Bitlync's Halo client field `Contract Link`\n(`BitlyncContractLink`). Grant `psa.company.field.create` (default off;\nmissing \u2192 `grant_missing`). Independent of `psa.company.update`.\nField name, type (plain single-line text, type 0), entity (Client /\nusage 2) are hard-coded constants \u2014 the request cannot set them.\nWith optional dry_run=true it only GETs `/FieldInfo`. `tab_id` is omitted\n(Halo Additional Fields). After create, later calls resolve only by\nthe stored id (no auto-recreate). Production Halo only.",
+        "operationId": "ensure_bitlync_contract_link_field_tenants__tenant_id__companies_fields_bitlync_contract_link_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnsureBitlyncContractLinkFieldBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Ensure Bitlync Contract Link Field Tenants Tenant Id Companies Fields Bitlync Contract Link Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Ensure Bitlync Contract Link Field"
+      }
+    },
+    "/tenants/{tenant_id}/companies/write": {
+      "post": {
+        "description": "Update an existing PSA company with custom-field values via\n`vendor_native`. Grant `psa.company.update` (default off; missing \u2192\n`grant_missing`). Never creates a company. dry_run returns the planned\nvendor payload without mutating. On a production PSA connection the\nwrite is refused (`psa_company_update_refused`). On a vendor sandbox\ninstance Bitlync operates (HaloPSA only), the company must exist\n(checked on dry_run too); a commit writes the fields, reads the\ncompany back, and `raw.read_back` lists each field with `matched`.\n`success` is false when any field did not read back as written.\nOptional `ensure_custom_field` creates the field definition when it\nis missing (Halo rich text, ConnectWise URL) and then writes the\nvalue. It does not create a company, a tab, or a pod. ConnectWise\nuses the same sandbox-host allowlist as Halo.",
+        "operationId": "write_company_tenants__tenant_id__companies_write_post",
+        "parameters": [
+          {
+            "examples": {
+              "sandbox-mainstreet": {
+                "summary": "Healthy seeded tenant (ConnectWise + NinjaOne + ScalePad)",
+                "value": "sandbox-mainstreet"
+              },
+              "sandbox-northline": {
+                "summary": "Degraded seeded tenant (HaloPSA scope fix path)",
+                "value": "sandbox-northline"
+              }
+            },
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "title": "Tenant Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteCompanyBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Write Company Tenants Tenant Id Companies Write Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Deliberate API failure. Branch on `code`, not HTTP status alone."
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Write Company"
       }
     },
     "/tenants/{tenant_id}/connections": {
@@ -9558,7 +10352,7 @@
     },
     "/tenants/{tenant_id}/tickets/time": {
       "post": {
-        "description": "Attach hours to a linked ticket as a canonical TimeEntry.\n\nFixture / dry_run first. The ISV may write only tickets in its own\nlink store (same gate as /tickets/write). Not a TicketNote. Not a\nnew MCP tool. Not a third Grant.scope.",
+        "description": "Attach hours to a linked ticket as a canonical TimeEntry.\n\nFixture first. The ISV may write only tickets in its own\nlink store (same gate as /tickets/write). Not a TicketNote. Not a\nnew MCP tool. Not a third Grant.scope.",
         "operationId": "write_time_entry_tenants__tenant_id__tickets_time_post",
         "parameters": [
           {
@@ -9718,7 +10512,7 @@
     },
     "/tenants/{tenant_id}/tickets/write": {
       "post": {
-        "description": "Update, append a note, close, or reopen a linked ticket.\n\ndry_run defaults true. idempotency_key required on commit. Grant\npsa.ticket.update (missing \u2192 grant_missing). Unmapped status \u2192\nstatus_unmapped plus the allowed vendor list. close_with_resolution\nstill honors the MSP close flag. Not a new MCP tool. Events are P0-02.",
+        "description": "Update, append a note, close, or reopen a linked ticket.\n\nidempotency_key required on commit. Grant\npsa.ticket.update (missing \u2192 grant_missing). Unmapped status \u2192\nstatus_unmapped plus the allowed vendor list. close_with_resolution\nstill honors the MSP close flag. Not a new MCP tool. Events are P0-02.",
         "operationId": "write_ticket_tenants__tenant_id__tickets_write_post",
         "parameters": [
           {
