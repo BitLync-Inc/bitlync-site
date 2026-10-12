@@ -1,7 +1,7 @@
 {
   "core_repo": "BitLync-Inc/bitlync-core",
-  "version": "0.89.0",
-  "sha256": "486c01476a15c909594344a0f61f5cbbb06e4bad689b537ca16fa3f69e479793",
-  "pin_path": "docs/openapi/bitlync-openapi-0.89.0.json",
+  "version": "0.90.0",
+  "sha256": "385e36baffdfaadc1d2a3c7f3c7013c07dd84342cfff3a267941af1334e44872",
+  "pin_path": "docs/openapi/bitlync-openapi-0.90.0.json",
   "fix": "bitlync-core owns OpenAPI. Do not hand-edit openapi.json. Fix: from bitlync-core run bash scripts/openapi_sync_consumers.sh (opens PRs to docs + site) or workflow_dispatch openapi-sync. Never push the pin straight to main on consumers."
 }
