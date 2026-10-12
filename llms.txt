@@ -20,7 +20,7 @@ Site: https://www.bitlync.com/
 
 ## Writes and refusals
 
-- dry_run defaults true. A dry run does not create a ticket.
+- dry_run defaults to false, so writes are real. Test writes in the sandbox. Optional: dry_run true checks a write against a new MSP's setup without creating a record.
 - We do not mint an agreement header. We do not mint a project header.
 - Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.
 - Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company.
