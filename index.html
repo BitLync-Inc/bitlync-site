@@ -742,6 +742,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="logo-track">
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
           <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
@@ -750,6 +751,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
           <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
@@ -1163,7 +1165,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <p class="sub">You do not apply to each vendor, wait on their sandbox, or sit in their approval just to ship.</p>
 
         <h2>Branded MSP Connect</h2>
-        <p class="sub">The MSP connects in a flow branded as your product: your name, your colors, and a background pattern, solid color, or image behind it. Five steps: Choose, Connect, Configure, Map companies, Done. Vendor-specific steps sit beside the fields. We validate keys and permissions before it goes live. Map companies matches the sure ones and leaves the rest for the MSP to review; import creates the customer in your product only, never in their stack. One small “Powered by Bitlync” footer sits on every step.</p>
+        <p class="sub">The MSP connects in a flow branded as your product: your name, your colors, and a background pattern, solid color, or image behind it. Five steps: Choose, Connect, Configure, Map companies, Done. Vendor-specific steps sit beside the fields. We validate keys and permissions before it goes live. Map companies matches the sure ones and leaves the rest for the MSP to review; import creates the customer in your product only, never in their stack. Step 1 shows your logo and a one-line tagline (default “Connect your stack to” and your name), which you can turn off. Pick one of eleven patterns, and set primary, secondary, and page background colors with one color picker. One small “Powered by Bitlync” footer sits on every step.</p>
       </div>
       <div class="grid g2">
         <div class="card">
@@ -1917,7 +1919,7 @@ Retry-After: 30
   "idempotency_key": "ticket-check-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When import is available, Import creates the customer in your product only (Import all unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in your stack. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1954,7 +1956,7 @@ Retry-After: 30
 # They sit in the per-tenant vault.</pre>
   </div>
   <p class="note">The ISV does not paste MSP creds. There is no shared-secret path that puts PSA keys in your app.</p>
-  <p class="note">Exact-name auto-Match fills Match when a leftover PSA company name uniquely matches an existing ISV customer — Match only, never auto-import. A leftover ask is Match, company import from PSA, Skip, or Needs match. Bulk unmatched import is available with dry_run preview. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create or auto-import.</p>
+  <p class="note">Exact-name auto-Match fills Match when a leftover PSA company name uniquely matches an existing ISV customer — Match only, never auto-import. Each company gets one choice: Import, Match, or Skip. Exact-name matches are set to Match and counted as decided. A close name arrives as a suggested Match and a likely test company as a suggested Skip. Unchecking a row resets it to Needs review. Bulk actions (Import all unmatched, Skip all flagged test companies) never change decided rows. 25 companies per page. Ambiguous <code class="inline">UNMAPPED</code> is a human match. It is never an auto-create or auto-import.</p>
 </article>
 <article class="concept" id="docs-concepts-errors">
   <h2>Errors</h2>
@@ -2058,40 +2060,6 @@ tenant_id: sandbox-mainstreet
   </div>
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
   <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. Use <code class="inline">$BITLYNC_BASE</code>. </p>
-  <div class="code">
-    <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
-  &quot;mcpServers&quot;: {
-    &quot;bitlync&quot;: {
-      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
-      &quot;headers&quot;: {
-        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
-      }
-    }
-  }
-}">Copy</button></div>
-    <pre>{
-  &quot;mcpServers&quot;: {
-    &quot;bitlync&quot;: {
-      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
-      &quot;headers&quot;: {
-        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
-      }
-    }
-  }
-}</pre>
-  </div>
-  <div class="code">
-    <div class="hd"><b>agent prompt</b><button class="copy" type="button" data-copy="Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
-
-Read with list_tickets, list_devices, or list_installed_applications.
-The write tool is route_finding. Do not create tickets over MCP.
-dry_run ticket create is REST-only.">Copy</button></div>
-    <pre>Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
-
-Read with list_tickets, list_devices, or list_installed_applications.
-The write tool is route_finding. Do not create tickets over MCP.
-dry_run ticket create is REST-only.</pre>
-  </div>
 </div>
 <div class="dpanel" id="d-docs-replace-existing">
   <div class="docs-hero">
@@ -2131,6 +2099,37 @@ dry_run ticket create is REST-only.</pre>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default false; writes are real). Import the OpenAPI file. This page is not the spec.</p>
     <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a></p>
+    <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">More endpoints in the spec</h3>
+    <p class="note">These routes are in <a href="openapi.json">openapi.json</a> with the summaries below. Import the spec for parameters and bodies.</p>
+    <div class="cov-wrap"><table class="cov">
+      <thead><tr><th scope="col">Method</th><th scope="col">Path</th><th scope="col">Summary (from the spec)</th></tr></thead>
+      <tbody>
+      <tr><td><code>GET</code></td><td><code>/connectors/{connector_key}/coverage</code></td><td>Get Connector Coverage. The generated field-fidelity manifest for one connector: which canonical fields map at full fidelity, which are lossy, and which do not exist at the vendor.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/assistant/ask</code></td><td>Assistant Ask. Ask the AI support assistant about this tenant&#x27;s integrations.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/assistant/stats</code></td><td>Get Deflection Stats. The assistant&#x27;s deflection value for this tenant, aggregated from the append-only audit trail.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/commerce/agreement-line-mappings</code></td><td>List Agreement Line Mappings. List vendor-product ↔ PSA agreement-line pairings for this tenant.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/agreement-line-mappings</code></td><td>Create Agreement Line Mapping. Explicit POST — the only path that creates a pairing (or records UNMAPPED).</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/agreement-line-mappings/suggestions</code></td><td>Suggest Agreement Line Mappings. Exact-name / SKU labelled suggestions.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/agreement-line-mappings/{mapping_id}/release</code></td><td>Release Agreement Line Mapping. End-date a pair and leave an UNMAPPED successor.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/agreement-lines</code></td><td>Write Agreement Line. Write one PSA agreement addition (new / modify / replace / end).</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/commerce/charges</code></td><td>List Charge Queue. Pending MSP Approve/Dismiss rows for this ISV.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/charges/{charge_id}/approve</code></td><td>Approve Charge. Approve one pending charge; this writes the agreement line.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/charges/{charge_id}/dismiss</code></td><td>Dismiss Charge. Dismiss one pending charge.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/commerce/costs</code></td><td>List Isv Costs. ISV-submitted customer/product/period costs for this tenant.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/costs</code></td><td>Submit Isv Cost. Submit (or idempotently replace) one ISV direct-channel cost row at the customer/product/period grain.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/commerce/partner-minimums</code></td><td>List Partner Minimums. Partner-level billing floors above customer grain, with unallocated_amount surfaced and never allocated onto customers.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/commerce/partner-minimums</code></td><td>Submit Partner Minimum. Submit (or idempotently replace) one partner-level minimum floor.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/commerce/reconcile</code></td><td>Reconcile. Read-only comparison of vendor cost records against mapped PSA agreement lines.</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/companies/fields/bitlync-contract-link</code></td><td>Ensure Bitlync Contract Link Field. Create or reuse Bitlync&#x27;s Halo client field Contract Link (BitlyncContractLink).</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/deployments</code></td><td>Deploy. Deploy a package via the tenant&#x27;s RMM (501 until a connector implements it).</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/routing</code></td><td>Get Routing Config. This ISV&#x27;s supported/recommended write-back targets for this tenant, plus the MSP&#x27;s current per-finding-kind routing — an override where one is set, the ISV&#x27;s recommendation otherwise (routes[kind].overridden says which).</td></tr>
+      <tr><td><code>PUT</code></td><td><code>/tenants/{tenant_id}/routing</code></td><td>Set Routing Config. Set (or clear, with null) this tenant&#x27;s per-finding-kind write-back target override.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/ticket-queues</code></td><td>List Ticket Queues. Ticket queues for stacks that route by queue (not boards).</td></tr>
+      <tr><td><code>POST</code></td><td><code>/tenants/{tenant_id}/tickets/time</code></td><td>Write Time Entry. Attach hours to a linked ticket as a canonical TimeEntry.</td></tr>
+      <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/usage</code></td><td>Get Usage Summary. Daily usage + limit hits for this tenant (abuse visibility): requests served/rate-limited, assistant token and dollar spend, budget/breaker blocks.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Per-tool Connect fields, regions, and URLs: <a href="https://docs.bitlync.com/quickstart/connector-setup/">Connector setup</a>.</p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2185,7 +2184,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Company custom-field write ships on POST /tenants/{tenant_id}/companies/write via <code class="inline">vendor_native</code> (ConnectWise customFields, Halo customfields/cf*). Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Never creates a company.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. When import is available, Import creates the customer in your product only (Import all unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in your stack. Company custom-field write ships on POST /tenants/{tenant_id}/companies/write via <code class="inline">vendor_native</code> (ConnectWise customFields, Halo customfields/cf*). Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Never creates a company.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -2227,7 +2226,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
-  <p class="note">Company custom-field write ships on an existing company via <code class="inline">vendor_native</code> (ConnectWise, Halo). On Halo and ConnectWise the field works live. It is created once in your stack under the MSP's standing <code class="inline">psa.company.field.create</code> grant, and an existing field with the same label is reused. The field label shows on Configure. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Missing grant is <code class="inline">grant_missing</code>. Leftover <code class="inline">psa_company_update_refused</code> means the grant is on and the connection still refuses the live write. This path never creates a company.</p>
+  <p class="note">Company custom-field write ships on an existing company via <code class="inline">vendor_native</code> (ConnectWise, Halo). On Halo and ConnectWise the field works live. It is created once in your stack under the MSP's standing <code class="inline">psa.company.field.create</code> grant, and an existing field with the same label is reused. The field label shows on Configure. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. In production, the MSP's grant during Connect is the approval: there is no separate operator approval and no expiry. Revoking the grant stops the writes. Missing grant is <code class="inline">grant_missing</code>. Leftover <code class="inline">psa_company_update_refused</code> means the grant is on and the connection still refuses the live write. This path never creates a company.</p>
   <p class="note">Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
   <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>. details is optional.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Bitlync refuses. That is policy.</p>
@@ -2250,7 +2249,7 @@ dry_run ticket create is REST-only.</pre>
   </div>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket.</p></article>
   <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>.</p></article>
-  <article class="uc"><h3>3. Map customers</h3><p class="note">Map customers to companies that already exist. Exact-name auto-Match fills Match only (never auto-import). A leftover is Match, company import from PSA, Skip, or Needs match.</p></article>
+  <article class="uc"><h3>3. Map customers</h3><p class="note">Map customers to companies that already exist. Each company gets one choice: Import, Match, or Skip. Exact-name matches are set to Match; a row not chosen yet shows as Needs review.</p></article>
   <article class="uc"><h3>4. Create a company</h3><p class="note">Creating a company is a separate grant. Grant <code class="inline">psa.company.create</code>, <code class="inline">dry_run</code>, match-first.</p></article>
   <article class="uc"><h3>5. Company custom fields</h3><p class="note">Write custom fields on an existing PSA company via <code class="inline">POST /tenants/{id}/companies/write</code> and <code class="inline">vendor_native</code>. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. ConnectWise and Halo. Never creates a company.</p></article>
   <article class="uc"><h3>6. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, member from GET /tenants/{id}/members on ConnectWise and Halo.</p></article>
@@ -2291,6 +2290,10 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-10-13</h2>
+      <p>Company map: one choice per company (Import, Match, or Skip), suggested defaults, Needs review, one toolbar with bulk actions, 25 companies per page.</p>
+      <p>MSP Connect branding: a tagline you can turn off, eleven patterns, and one color picker for primary, secondary, and page background colors.</p>
+      <p>In production, the MSP's grant during Connect is the approval for company writes. Revoking the grant stops the writes.</p>
       <h2>2026-10-12</h2>
       <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, a company custom field created once in your stack, and billing lines as new draft contracts.</p>
       <p>MSP Connect is branded as your product, with a background pattern, solid color, or image. Five steps: Choose, Connect, Configure, Map companies, Done. One “Powered by Bitlync” footer on every step.</p>
