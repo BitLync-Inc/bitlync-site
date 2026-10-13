@@ -2060,40 +2060,6 @@ tenant_id: sandbox-mainstreet
   </div>
   <h3 style="font-family:var(--serif);font-size:26px;margin:36px 0 8px">MCP</h3>
   <p class="note">Same CanonicalService as REST. Four tools: <code class="inline">list_tickets</code>, <code class="inline">list_devices</code>, <code class="inline">list_installed_applications</code>, <code class="inline">route_finding</code>. <code class="inline">route_finding</code> is the write. Use <code class="inline">$BITLYNC_BASE</code>. </p>
-  <div class="code">
-    <div class="hd"><b>MCP config</b><button class="copy" type="button" data-copy="{
-  &quot;mcpServers&quot;: {
-    &quot;bitlync&quot;: {
-      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
-      &quot;headers&quot;: {
-        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
-      }
-    }
-  }
-}">Copy</button></div>
-    <pre>{
-  &quot;mcpServers&quot;: {
-    &quot;bitlync&quot;: {
-      &quot;url&quot;: &quot;$BITLYNC_BASE&quot;,
-      &quot;headers&quot;: {
-        &quot;X-API-Key&quot;: &quot;$BITLYNC_KEY&quot;
-      }
-    }
-  }
-}</pre>
-  </div>
-  <div class="code">
-    <div class="hd"><b>agent prompt</b><button class="copy" type="button" data-copy="Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
-
-Read with list_tickets, list_devices, or list_installed_applications.
-The write tool is route_finding. Do not create tickets over MCP.
-dry_run ticket create is REST-only.">Copy</button></div>
-    <pre>Use the Bitlync MCP. Tenant sandbox-mainstreet. Send X-API-Key.
-
-Read with list_tickets, list_devices, or list_installed_applications.
-The write tool is route_finding. Do not create tickets over MCP.
-dry_run ticket create is REST-only.</pre>
-  </div>
 </div>
 <div class="dpanel" id="d-docs-replace-existing">
   <div class="docs-hero">
