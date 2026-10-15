@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Subprocessors · Bitlync</title>
+<meta name="description" content="Bitlync subprocessors, from Schedule 2 of the DPA."/>
+<link rel="canonical" href="https://www.bitlync.com/legal/subprocessors/"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --paper:#F7F4EC; --card:#FBFBF8; --ink:#17181C; --mute:#6B6A64; --hair:#E4DFD4;
+  --acid:#C6F04D; --void:#07080A; --panel:#101214; --dline:#2C3128; --dtext:#EDECE6; --dmute:#8B8E84;
+  --ok:#3E7C5A; --ok-soft:#E8F1EB; --warn:#A9702C; --warn-soft:#F6EEDF; --bad:#B24A4A; --bad-soft:#F1E4E4;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:46rem;margin:0 auto;padding:28px 22px 64px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;margin:0 0 36px}
+.top a{text-decoration:none}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+.ver{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 32px}
+.todo{background:#FFF1C2;color:#5A4500;padding:1px 6px;border-radius:4px}
+.legal h2{font-family:var(--sans);font-size:15px;font-weight:600;margin:28px 0 8px;letter-spacing:0}
+.legal p{margin:0 0 12px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.tw{overflow-x:auto;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--hair);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-weight:600}
+footer{margin-top:48px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+footer a{margin-right:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Legal"><a href="/">Bitlync home</a><span><a href="/legal/msp-terms/">MSP Terms</a> · <a href="/legal/isv-terms/">ISV Terms</a> · <a href="/legal/dpa/">DPA</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/subprocessors/">Subprocessors</a> · <a href="/legal/security/">Security</a></span></nav>
+<p class="kicker">Legal</p>
+<h1>Subprocessors</h1>
+<p class="ver">Version 1.0 · Effective date: <span class="todo">TODO: effective date not stated in the document</span></p>
+<main class="legal">
+<p class="ver">From Schedule 2 of the <a href="/legal/dpa/">Data Processing Addendum</a>.</p>
+<p><strong>SCHEDULE 2</strong></p>
+<p><strong>SUB-PROCESSORS AT THE DATE OF THIS ADDENDUM</strong></p>
+<div class="tw"><table>
+<tr><th><strong>Sub-processor</strong></th><th><strong>Purpose</strong></th><th><strong>Location</strong></th><th><strong>Data affected</strong></th></tr>
+<tr><td>Microsoft Corporation (Microsoft Azure)</td><td>Hosting of the API, Vault and sync store</td><td>United States</td><td>MSP Personal Data and Credentials (Credentials encrypted at rest)</td></tr>
+<tr><td>Render Services, Inc.</td><td>Hosting of the public Sandbox</td><td>United States</td><td>Demonstration data only; no MSP Personal Data</td></tr>
+<tr><td>Formsubmit</td><td>Delivery of Contact us form submissions</td><td>Not published by Formsubmit (may be outside the United States)</td><td>Business contact details of persons submitting the form; no MSP Personal Data</td></tr>
+<tr><td>GitHub, Inc. (GitHub Pages)</td><td>Hosting of www.bitlync.com</td><td>United States</td><td>Web server logs; no MSP Personal Data</td></tr>
+<tr><td>Stripe, Inc.</td><td>Invoicing and payment collection from ISVs</td><td>United States</td><td>ISV billing data; no MSP Personal Data</td></tr>
+</table></div>
+</main>
+<footer><a href="/">Back to bitlync.com</a></footer>
+</div>
+</body>
+</html>
