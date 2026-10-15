@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Security Measures · Bitlync</title>
+<meta name="description" content="Bitlync security measures, from Schedule 4 of the DPA."/>
+<link rel="canonical" href="https://www.bitlync.com/legal/security/"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --paper:#F7F4EC; --card:#FBFBF8; --ink:#17181C; --mute:#6B6A64; --hair:#E4DFD4;
+  --acid:#C6F04D; --void:#07080A; --panel:#101214; --dline:#2C3128; --dtext:#EDECE6; --dmute:#8B8E84;
+  --ok:#3E7C5A; --ok-soft:#E8F1EB; --warn:#A9702C; --warn-soft:#F6EEDF; --bad:#B24A4A; --bad-soft:#F1E4E4;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:46rem;margin:0 auto;padding:28px 22px 64px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;margin:0 0 36px}
+.top a{text-decoration:none}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+.ver{font-family:var(--mono);font-size:12px;color:var(--mute);margin:0 0 32px}
+.legal-effective{background:#FFF1C2;color:#5A4500;padding:1px 6px;border-radius:4px}
+.legal h2{font-family:var(--sans);font-size:15px;font-weight:600;margin:28px 0 8px;letter-spacing:0}
+.legal p{margin:0 0 12px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.tw{overflow-x:auto;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--hair);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-weight:600}
+footer{margin-top:48px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+footer a{margin-right:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Legal"><a href="/">Bitlync home</a><span><a href="/legal/msp-terms/">MSP Terms</a> · <a href="/legal/isv-terms/">ISV Terms</a> · <a href="/legal/dpa/">DPA</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/subprocessors/">Subprocessors</a> · <a href="/legal/security/">Security</a></span></nav>
+<p class="kicker">Legal</p>
+<h1>Security Measures</h1>
+<p class="ver">Version 1.0 · Effective date: <span class="legal-effective">TODO</span></p>
+<main class="legal">
+<p class="ver">From Schedule 4 of the <a href="/legal/dpa/">Data Processing Addendum</a>.</p>
+<p><strong>SCHEDULE 4</strong></p>
+<p><strong>TECHNICAL AND ORGANIZATIONAL MEASURES</strong></p>
+<div class="tw"><table>
+<tr><th><strong>Measure</strong></th><th><strong>Description</strong></th></tr>
+<tr><td>Encryption of Credentials</td><td>Credentials are encrypted at rest using AES-256-GCM with encryption keys maintained on a per-tenant basis, and are never disclosed to ISVs.</td></tr>
+<tr><td>Encryption in transit</td><td>All connections to the Service, the API and Connected Systems use TLS.</td></tr>
+<tr><td>Tenant isolation</td><td>Structural tenant isolation: at authorization time, another organization's tenant is indistinguishable from a non-existent one. Machine (API key) access and human console sessions are never merged.</td></tr>
+<tr><td>Access control and least privilege</td><td>ISVs receive scoped, revocable Grants rather than possession of Credentials; each permission is tested before a Grant goes live; the MSP may narrow or revoke at any time. Bitlync support access is read-only.</td></tr>
+<tr><td>Logging and audit</td><td>Append-only Audit Log of API calls, writes, logins, acceptances and Grant changes, visible to the MSP in the MSP Portal.</td></tr>
+<tr><td>Write safety</td><td>Preview (dry_run) then commit; idempotency keys where supported; deletion of records in a Connected System and synchronization or disclosure of documentation passwords or credential objects refused by policy; close-with-resolution disabled by default; creation or updating of companies, contacts, agreements, projects and custom fields, and device and documentation changes, disabled unless enabled by the MSP.</td></tr>
+<tr><td>Data minimization</td><td>Documentation passwords and credential objects held in Connected Systems are never synchronized. Only objects within an approved Grant are served to an ISV.</td></tr>
+<tr><td>Rate governance</td><td>Bitlync paces its calls to each Connected System to a fraction of the vendor's published per-tenant limit to avoid service disruption to the MSP.</td></tr>
+<tr><td>AI Assistant</td><td>Where enabled: structurally read-only (no write tool), tenant-pinned, grounded-or-escalate, spend-capped; MSP Data is not used to train generally available models.</td></tr>
+<tr><td>Personnel</td><td>Confidentiality obligations and data protection training for all personnel with access to MSP Personal Data.</td></tr>
+<tr><td>Vulnerability management</td><td>Regular patching and vulnerability assessment of the Service.</td></tr>
+<tr><td>Business continuity</td><td>Encrypted backups rotated within thirty-five (35) days; connection health and incident reporting published in the MSP Portal.</td></tr>
+<tr><td>Assurance</td><td>SOC 2 examination in progress; no completed report is claimed until confirmed in writing. Report to be made available under paragraph 10.2 when issued.</td></tr>
+<tr><td>Deletion</td><td>Secure deletion of Credentials and MSP Personal Data within ninety (90) days of termination, deletion or revocation, subject to backup rotation.</td></tr>
+</table></div>
+</main>
+<footer><a href="/">Back to bitlync.com</a></footer>
+</div>
+</body>
+</html>
