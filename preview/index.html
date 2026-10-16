@@ -838,7 +838,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <div class="uc-face uc-back">
             <div class="uc-body">
               <h2>Billing reconciliation</h2>
-              <p class="uc-lede">Push your charges and quantities to the MSP’s agreement.</p>
+              <p class="uc-lede">Update quantities on lines you matched in the MSP’s agreement.</p>
               <p class="uc-eyebrow">Examples</p>
               <ul>
                 <li>Update seat count or usage on an existing agreement line you matched</li>
@@ -1041,7 +1041,6 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Company custom fields</span><span class="pills"><span class="pill write">Write</span></span></li>
             <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
-            <li><span class="obj-t">Billing line item</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
@@ -2304,6 +2303,8 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-10-15</h2>
+      <p>SuperOps billing-line writes were removed. Bitlync never creates companies, agreements, or billing lines in an MSP’s PSA. Billing writes only update the quantity on a line the vendor matched on an existing agreement.</p>
       <h2>2026-10-12</h2>
       <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, a company custom field created once in your stack, and billing lines as new draft contracts.</p>
       <p>MSP Connect is branded as your product, with a background pattern, solid color, or image. Five steps: Choose, Connect, Configure, Map companies, Done. One “Powered by Bitlync” footer on every step.</p>
