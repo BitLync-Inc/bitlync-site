@@ -829,12 +829,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <div class="uc-face uc-back">
             <div class="uc-body">
               <h2>Billing reconciliation</h2>
-              <p class="uc-lede">Update quantities on lines you matched in the MSP’s agreement.</p>
+              <p class="uc-lede">Update quantities on lines the MSP matched in their agreement.</p>
               <p class="uc-eyebrow">Examples</p>
               <ul>
-                <li>Update seat count or usage on an existing agreement line you matched</li>
+                <li>Update seat count or usage on an existing agreement line the MSP matched</li>
                 <li>Rewrite a quantity when the count changes</li>
-                <li>End a line when they cancel the product</li>
+                <li>Send quantity 0 to stop billing. Ending a line is refused.</li>
               </ul>
             </div>
             <span class="uc-flip" aria-hidden="true">
@@ -1903,7 +1903,7 @@ Retry-After: 30
   "idempotency_key": "ticket-check-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo update the quantity on a line item you matched on an existing agreement. We never create agreements or line items. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo update the quantity on a line item the MSP matched on an existing agreement. We never create agreements or line items. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve updates the quantity on the matched line of an existing agreement. Dismiss does not change the agreement. ConnectWise and Halo.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -2089,7 +2089,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">.raw</code> is extra vendor fields on a read. It is read-only. <code class="inline">vendor.native</code> is the same payload. Ticket writes accept optional <code class="inline">vendor_native</code>.</p>
   <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
   <p class="note">Never: mint an agreement header; auto-create an unmatched company.</p>
-  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: quantity updates only, on lines you matched on an existing agreement. Public word Agreement. Time: hours the caller states, on a linked ticket. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write ships with grant <code class="inline">psa.company.update</code> off by default; on when the MSP enables it. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: quantity updates only, on lines the MSP matched on an existing agreement. Ending a line is refused. To stop billing, send quantity 0. Public word Agreement. Time: hours the caller states, on a linked ticket. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write ships with grant <code class="inline">psa.company.update</code> off by default; on when the MSP enables it. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes.</p>
   <div class="skill-card">
     <p class="kicker">Migrating?</p>
@@ -2116,7 +2116,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default false; writes are real). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a> is the file on this site. The running spec is 0.94.0.</p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2139,6 +2139,7 @@ dry_run ticket create is REST-only.</pre>
     <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
     <tbody>
       <tr id="ref-agreements"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/agreements</code></td><td>Store-served. 501 when the connector does not support agreements. We do not mint a header.</td></tr>
+      <tr id="ref-billing-quantities"><td><code>POST</code></td><td><code>/tenants/{tenant_id}/billing/quantities</code></td><td>Absolute quantities on lines the MSP matched. Quantity 0 stops billing. Ending a line is refused. A change over the MSP's threshold (default 25%, or off) waits for the MSP.</td></tr>
       <tr id="ref-devices"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>Store-served device list.</td></tr>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/applications</code></td><td></td></tr>
       <tr id="ref-audit"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/audit</code></td><td></td></tr>
@@ -2207,9 +2208,9 @@ dry_run ticket create is REST-only.</pre>
   <div class="docs-hero">
     <p class="kicker">What we write</p>
     <h1>What we write.</h1>
-    <p class="lede">Quantity on line items you matched on an existing agreement. Locks and refusals.</p>
+    <p class="lede">Quantity on lines the MSP matched on an existing agreement. Locks and refusals.</p>
   </div>
-  <p class="note">ConnectWise and Halo: match your product to an existing line item, then <code class="inline">POST /tenants/{tenant_id}/commerce/agreement-lines</code> with <code class="inline">action</code> <code class="inline">modify</code> and an absolute <code class="inline">quantity</code> (0 stops billing). Quantity is the only field you can write. <code class="inline">new</code>, <code class="inline">replace</code>, <code class="inline">end</code>, and price, product, or date fields return 422 <code class="inline">agreement_line_action_not_allowed</code> before any PSA call. Writes are real by default. <code class="inline">dry_run</code> true returns the same payload without creating a record. We never create agreements or line items.</p>
+  <p class="note">ConnectWise and Halo: the MSP matches each service to a line item they already have. You send an absolute quantity with <code class="inline">POST /tenants/{tenant_id}/billing/quantities</code>. Bitlync updates that line. You do not create the line, and you do not send the match yourself. Ending a line is refused. To stop billing, send quantity 0. How often you send quantities: daily or monthly. The MSP sets the threshold (default 25%, or off) and Advanced review (off by default) on the Billing tab. A change over their threshold, or Advanced review, waits for the MSP to review it first. The same quantity as last time comes back unchanged, and nothing new is written. You cannot bypass that review by writing the agreement line yourself. Writes are real by default. <code class="inline">dry_run</code> true returns the same statuses and writes nothing. We never create agreements or line items.</p>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">PSA company create is not supported: companies are created by the MSP. A PSA create returns 403 <code class="inline">company_create_not_supported</code> with no PSA call. Match to an existing company.</p>
@@ -2240,7 +2241,7 @@ dry_run ticket create is REST-only.</pre>
   <article class="uc"><h3>4. Match a company</h3><p class="note">Companies are created by the MSP in their PSA. We never let apps create companies there: a PSA create returns 403 <code class="inline">company_create_not_supported</code>. Match to the existing company instead.</p></article>
   <article class="uc"><h3>5. Company custom fields</h3><p class="note">Write custom fields on an existing PSA company via <code class="inline">POST /tenants/{id}/companies/write</code> and <code class="inline">vendor_native</code>. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. ConnectWise and Halo. Never creates a company.</p></article>
   <article class="uc"><h3>6. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, member from GET /tenants/{id}/members on ConnectWise and Halo.</p></article>
-  <article class="uc"><h3>7. Billing reconciliation</h3><p class="note">Read agreements and lines. Match your product to an existing line, then update its quantity. We never create agreements or lines.</p></article>
+  <article class="uc"><h3>7. Billing reconciliation</h3><p class="note">Read agreements and lines. The MSP matches your product to an existing line. You send an absolute quantity with <code class="inline">POST /tenants/{tenant_id}/billing/quantities</code>. Ending a line is refused. To stop billing, send quantity 0. How often you send quantities: daily or monthly. A change over the MSP's threshold (default 25%, or off), or Advanced review, waits for the MSP. We never create agreements or lines.</p></article>
   <article class="uc"><h3>8. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
   <article class="uc"><h3>9. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
   <article class="uc"><h3>10. Add to an existing project</h3><p class="note">Add notes or items on a project that already exists.</p></article>
@@ -2256,7 +2257,7 @@ dry_run ticket create is REST-only.</pre>
 <p class="note">Backup — failed job to ticket, close when it succeeds. Optional usage on agreement lines.</p>
 <p class="note">Documentation — PSA companies are the source of truth. Document write. No company create.</p>
 <p class="note">vCIO / QBR — map companies, findings to tickets, add to an existing project.</p>
-<p class="note">Commerce / distributor — map, orders, quantity updates on lines you matched on existing agreements.</p>
+<p class="note">Commerce / distributor: map, orders, quantity updates on lines the MSP matched on existing agreements.</p>
 <p class="note">Quoting — map to the company the MSP created for a new logo.</p>
 <p class="note">Time / scheduling — ticket update (status, notes), time write. Hours on a linked ticket, not a full timesheet product.</p>
 <p class="note">Identity / comms — full two-way tickets plus time.</p>
@@ -2278,9 +2279,9 @@ dry_run ticket create is REST-only.</pre>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
       <h2>2026-10-15</h2>
-      <p>SuperOps billing-line writes were removed. Bitlync never creates companies, agreements, or billing lines in an MSP’s PSA. Billing writes only update the quantity on a line the vendor matched on an existing agreement.</p>
+      <p>SuperOps billing-line writes were removed. Bitlync never creates companies, agreements, or billing lines in an MSP’s PSA. Billing writes only update the quantity on a line the MSP matched on an existing agreement. Ending a line is refused. To stop billing, vendors send quantity 0.</p>
       <h2>2026-10-12</h2>
-      <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, a company custom field created once in your stack, and billing lines as new draft contracts.</p>
+      <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, and a company custom field created once in your stack.</p>
       <p>MSP Connect is branded as your product, with a background pattern, solid color, or image. Five steps: Choose, Connect, Configure, Map companies, Done. One “Powered by Bitlync” footer on every step.</p>
       <h2>2026-10-12</h2>
       <p>SDK 2.0.0 (breaking): the generated Python and TypeScript clients now return typed response models where the spec declares one (for example TicketList) instead of plain dicts. Read attributes (listed.sandbox) or call .to_dict().</p>
@@ -2314,7 +2315,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Customer Terms, Privacy Notice, and MSP Connect Terms. Contact us requires the terms box.</p>
       <p>Docs Use cases: twelve cards. Import, map, and create customers (we do not create the customer in a PSA).</p>
       <h2>2026-08-26</h2>
-      <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0. Current spec is 0.65.0.</p>
+      <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0. Current spec is 0.94.0.</p>
       <p>Public ScalePad category is Customer Success.</p>
       <p>Roadmap votes are <a href="https://github.com/BitLync-Inc/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">GitHub issues labeled roadmap</a> on BitLync-Inc/bitlync-site.</p>
     </div>
