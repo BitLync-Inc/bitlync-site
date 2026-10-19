@@ -757,12 +757,14 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="logo-track">
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
           <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
           <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
           <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
@@ -1916,7 +1918,7 @@ Retry-After: 30
   "idempotency_key": "ticket-check-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo update the quantity on a line item the MSP matched on an existing agreement. We never create agreements or line items. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">Halo, ConnectWise, and SuperOps ticket create, update, close, reopen, and notes commit when dry_run is false. ConnectWise and Halo time entries commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo update the quantity on a line item the MSP matched on an existing agreement. We never create agreements or line items. SuperOps reads companies, tickets, and agreements. Billing quantity updates are not available for SuperOps. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
   <p class="note">The MSP can approve or dismiss a mapped line item. Approve updates the quantity on the matched line of an existing agreement. Dismiss does not change the agreement. ConnectWise and Halo.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
@@ -1976,7 +1978,7 @@ Retry-After: 30
 <article class="concept" id="docs-concepts-msp-permissions">
   <h2>MSP permissions</h2>
   <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
-  <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write (grant <code class="inline">psa.company.update</code>) is off by default; on when the MSP enables it. We always match first. If two records match, we refuse.</p>
+  <p class="note">ConnectWise, Halo, and SuperOps connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write (grant <code class="inline">psa.company.update</code>) is off by default; on when the MSP enables it. We always match first. If two records match, we refuse.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The MSP pastes keys in the guided flow. The probe names the permission to fix. The ISV does not paste MSP creds.</p>
   <p class="lbl">What the caller sees</p>
@@ -2224,6 +2226,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="lede">Quantity on lines the MSP matched on an existing agreement. Locks and refusals.</p>
   </div>
   <p class="note">ConnectWise and Halo: the MSP matches each service to a line item they already have. You send an absolute quantity with <code class="inline">POST /tenants/{tenant_id}/billing/quantities</code>. Bitlync updates that line. You do not create the line, and you do not send the match yourself. Ending a line is refused. To stop billing, send quantity 0. How often you send quantities: daily or monthly. The MSP sets the threshold (default 25%, or off) and Advanced review (off by default) on the Billing tab. A change over their threshold, or Advanced review, waits for the MSP to review it first. The same quantity as last time comes back unchanged, and nothing new is written. You cannot bypass that review by writing the agreement line yourself. Writes are real by default. <code class="inline">dry_run</code> true returns the same statuses and writes nothing. We never create agreements or line items.</p>
+  <p class="note">Billing quantity updates are not available for SuperOps. SuperOps reads agreements and does not create, change, or end contracts or billing lines.</p>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
   <p class="note">PSA company create is not supported: companies are created by the MSP. A PSA create returns 403 <code class="inline">company_create_not_supported</code> with no PSA call. Match to an existing company.</p>
