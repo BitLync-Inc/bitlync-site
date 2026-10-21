@@ -686,7 +686,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 /* MSP value page (preview). Scoped so other routes keep their styles. */
 #page-msps .msp-hero{padding-bottom:40px}
 #page-msps .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
-#page-msps .msp-cta{margin-top:0}
+#page-msps .msp-hero .pby{margin:2px 0 0}
 #page-msps .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
 #page-msps .vsplit.rev .scopy{order:2}
 #page-msps .band{border-top:1px solid var(--hair)}
@@ -713,11 +713,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-msps .mini{font-family:var(--mono);font-size:10px;background:#EFEADF;border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute)}
 #page-msps .small h3{font-size:20px}
 #page-msps .small .ui{margin-top:14px;font-size:12px}
-#page-msps .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:56px 28px;text-align:center}
-#page-msps .cta-band h2{color:var(--paper)}
-#page-msps .cta-band .sub{color:#B9B8B0}
+#page-msps .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:48px 28px 44px;text-align:center}
+#page-msps .cta-band h2{color:var(--paper);margin:0}
+#page-msps .cta-band .sub{color:#B9B8B0;margin:12px auto 22px;max-width:36rem}
 #page-msps .cta-band .btn{background:var(--acid);color:var(--ink);border-color:var(--acid)}
-#page-msps .cta-band .btn:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+#page-msps .cta-band .btn:hover{color:var(--ink);background:#B8E045;border-color:#B8E045}
 #page-msps .pby{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;margin-top:6px}
 #page-msps .cn{background:#1F2A44;color:#fff;text-align:center;padding:16px 10px;font-size:13px}
 #page-msps .cn b{display:block;font-family:var(--mono);letter-spacing:.12em;font-size:12px;margin-bottom:4px;color:#BFD0F5}
@@ -1565,7 +1565,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <p class="kicker">For MSPs</p>
       <h1>Your vendor connections,<br>in one place you control.</h1>
       <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
-      <a class="btn msp-cta" href="#msps">[CTA: Ryan to pick]</a> <span class="pby" style="margin-left:10px">Powered by bitlync</span>
+      <span class="pby">Powered by bitlync</span>
       <div class="grid g3">
         <div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
           <div class="rrow" style="grid-template-columns:1fr 110px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
@@ -1662,9 +1662,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad">
     <div class="wrap"><div class="cta-band">
-      <h2>Ask your vendors if they run on Bitlync.</h2>
-      <a class="btn" href="#msps">[CTA: Ryan to pick]</a>
-      <p style="font-family:var(--mono);font-size:12px;color:#B9B8B0;margin:22px 0 0">ConnectWise · Halo · SuperOps · and others</p>
+      <h2>Want this for your other vendors?</h2>
+      <p class="sub">Introduce us.</p>
+      <a class="btn" href="mailto:hello@bitlync.com?subject=Vendor%20recommendation&amp;body=Vendor%3A%0D%0AYour%20contact%20there%20%28name%29%3A%0D%0ATheir%20email%3A%0D%0AYour%20company%3A%0D%0AOK%20to%20mention%20you%20when%20we%20reach%20out%3F%20%28yes%2Fno%29%3A">Recommend a vendor</a>
     </div></div>
   </section>
 </div>
