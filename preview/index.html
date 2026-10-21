@@ -725,6 +725,21 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-msps .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
 #page-msps .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
 #page-msps .msp-hero .grid{margin-top:34px;text-align:left}
+#page-msps .qty{display:inline-grid;font-variant-numeric:tabular-nums}
+#page-msps .qty-hold,#page-msps .qty-n{grid-area:1 / 1}
+#page-msps .qty-hold{visibility:hidden}
+#page-msps .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
+#page-msps .card.small{transition:transform 220ms ease,box-shadow 220ms ease,border-color 220ms ease}
+@media (prefers-reduced-motion: no-preference){
+  #page-msps.msp-arm .msp-rise:not(.in){opacity:0;transform:translateY(16px)}
+  #page-msps.msp-arm .msp-fade:not(.in){opacity:0}
+  #page-msps.msp-arm .msp-rise.in,#page-msps.msp-arm .msp-fade.in{opacity:1;transform:none;transition:opacity 420ms ease,transform 420ms ease}
+  #page-msps.msp-arm .msp-fade.in{transition:opacity 420ms ease}
+  #page-msps.msp-arm .lag.in{transition-delay:160ms}
+  #page-msps.msp-arm .msp-saved{opacity:0}
+  #page-msps.msp-arm .msp-saved.show{opacity:1;transition:opacity 320ms ease}
+  #page-msps .card.small:hover{transform:translateY(-3px);box-shadow:0 10px 24px -16px rgba(23,24,28,.5)}
+}
 @media(max-width:860px){
   #page-msps .vsplit{grid-template-columns:1fr}
   #page-msps .vsplit.rev .scopy{order:0}
@@ -1562,11 +1577,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 <div class="page" id="page-msps">
   <section class="pad msp-hero">
     <div class="wrap center">
-      <p class="kicker">For MSPs</p>
-      <h1>Your vendor connections,<br>in one place you control.</h1>
-      <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
-      <span class="pby">Powered by bitlync</span>
-      <div class="grid g3">
+      <div class="msp-rise">
+        <p class="kicker">For MSPs</p>
+        <h1>Your vendor connections,<br>in one place you control.</h1>
+        <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
+        <span class="pby">Powered by bitlync</span>
+      </div>
+      <div class="grid g3 msp-rise lag">
         <div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
           <div class="rrow" style="grid-template-columns:1fr 110px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
           <div class="rrow" style="grid-template-columns:1fr 110px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
@@ -1586,25 +1603,25 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad band" id="v3">
     <div class="wrap"><div class="vsplit rev">
-      <div class="scopy"><span class="vtag">No babysitting</span><span class="vtag">Billing</span><h2>Simplify billing reconciliation</h2><p class="sub">Match each vendor service once, and quantities update automatically in your PSA.</p></div>
-      <div><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Your stack</span></div><div class="ub">
+      <div class="scopy msp-rise"><span class="vtag">No babysitting</span><span class="vtag">Billing</span><h2>Simplify billing reconciliation</h2><p class="sub">Match each vendor service once, and quantities update automatically in your PSA.</p></div>
+      <div class="msp-rise lag msp-bill"><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Your stack</span></div><div class="ub">
         <div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">Acme Security bills on your peak count each month.</div>
         <table class="bt"><tr><th>Customer</th><th>Service</th><th>Current</th><th>Peak so far</th><th>Next update</th></tr>
-        <tr><td>Northwind Logistics</td><td>Acme Endpoint</td><td>48</td><td>52</td><td>Oct 20</td></tr>
-        <tr><td>Northwind Logistics</td><td>Acme Identity</td><td>123</td><td>127</td><td>Oct 20</td></tr>
-        <tr><td>Harbor Clinic <span class="mini">Trial</span></td><td>Acme Endpoint</td><td>54</td><td>-</td><td>Not billed</td></tr>
-        <tr><td>Bluepeak Tech</td><td>Acme Endpoint</td><td>60</td><td>64</td><td>Oct 20</td></tr>
-        <tr><td>Pine Ridge Schools</td><td>Acme Identity</td><td>135</td><td>141</td><td>Oct 20</td></tr></table>
+        <tr><td>Northwind Logistics</td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">48</span><span class="qty-n" data-n="48">48</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">52</span><span class="qty-n" data-n="52">52</span></span></td><td>Oct 20</td></tr>
+        <tr><td>Northwind Logistics</td><td>Acme Identity</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">123</span><span class="qty-n" data-n="123">123</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">127</span><span class="qty-n" data-n="127">127</span></span></td><td>Oct 20</td></tr>
+        <tr><td>Harbor Clinic <span class="mini">Trial</span></td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">54</span><span class="qty-n" data-n="54">54</span></span></td><td>-</td><td>Not billed</td></tr>
+        <tr><td>Bluepeak Tech</td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">60</span><span class="qty-n" data-n="60">60</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">64</span><span class="qty-n" data-n="64">64</span></span></td><td>Oct 20</td></tr>
+        <tr><td>Pine Ridge Schools</td><td>Acme Identity</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">135</span><span class="qty-n" data-n="135">135</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">141</span><span class="qty-n" data-n="141">141</span></span></td><td>Oct 20</td></tr></table>
         <div style="font-size:12px;color:var(--mute);margin-top:10px">Example data only.</div>
       </div></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v4">
     <div class="wrap"><div class="vsplit">
-      <div class="scopy"><span class="vtag">Control</span><span class="vtag">Alerts and tickets</span><h2>You decide where vendor messages go.</h2><p class="sub">A critical alert can open a ticket, a billing or subscription notice can go to email, the rest can wait for your monthly digest, or any mix you want. Renewal and trial notices go where you route them.</p></div>
-      <div><div class="ui"><div class="uh"><span>Send Acme Security alerts to your stack</span><span style="color:var(--ok)">Saved ✓</span></div><div class="ub">
+      <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Alerts and tickets</span><h2>You decide where vendor messages go.</h2><p class="sub">A critical alert can open a ticket, a billing or subscription notice can go to email, the rest can wait for your monthly digest, or any mix you want. Renewal and trial notices go where you route them.</p></div>
+      <div class="msp-rise lag msp-ticket"><div class="ui"><div class="uh"><span>Send Acme Security alerts to your stack</span><span class="msp-saved" style="color:var(--ok)">Saved ✓</span></div><div class="ub">
         <div class="rrow" style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-transform:uppercase"><span>Alert</span><span>Severity</span><span>Send to</span></div>
-        <div class="rrow"><span>Critical product alert</span><span class="sev"><i></i>Critical</span><span><span class="chip on">Ticket</span></span></div>
+        <div class="rrow"><span>Critical product alert</span><span class="sev"><i></i>Critical</span><span><span class="chip on msp-route" data-from="Email" data-to="Ticket">Ticket</span></span></div>
         <div class="rrow"><span>Subscription renewal</span><span class="sev l"><i></i>Low</span><span><span class="chip on">Email</span></span></div>
         <div class="rrow"><span>Policy updated</span><span class="sev l"><i></i>Info</span><span><span class="chip on">Monthly digest</span></span></div>
         <div class="rrow"><span>Trial ending <small style="color:var(--mute)">7 days before</small></span><span class="sev m"><i></i>Medium</span><span><span class="chip on">Ticket</span> <span class="chip on">Email</span></span></div>
@@ -1620,26 +1637,26 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
   <section class="pad band" id="v1">
     <div class="wrap"><div class="vsplit rev">
-      <div class="scopy"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
-      <div><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
+      <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
+      <div class="msp-rise lag"><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v7">
     <div class="wrap"><div class="vsplit">
-      <div class="scopy"><span class="vtag">Proof of value</span><span class="vtag">Monthly digest</span><h2>See what each vendor did for you this month.</h2><p class="sub">One monthly email with product alerts, trial expirations, upcoming renewals and pricing and packaging changes for your customers.</p></div>
-      <div><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
+      <div class="scopy msp-rise"><span class="vtag">Proof of value</span><span class="vtag">Monthly digest</span><h2>See what each vendor did for you this month.</h2><p class="sub">One monthly email with product alerts, trial expirations, upcoming renewals and pricing and packaging changes for your customers.</p></div>
+      <div class="msp-fade lag"><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v2">
     <div class="wrap"><div class="vsplit rev">
-      <div class="scopy"><span class="vtag">Save time</span><h2>Your customers, matched and imported for you.</h2><p class="sub">Bitlync matches the vendor's customers to the companies in your stack, so you review a list instead of mapping by hand.</p></div>
-      <div><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
+      <div class="scopy msp-rise"><span class="vtag">Save time</span><h2>Your customers, matched and imported for you.</h2><p class="sub">Bitlync matches the vendor's customers to the companies in your stack, so you review a list instead of mapping by hand.</p></div>
+      <div class="msp-rise lag"><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
     </div></div>
   </section>
   <section class="pad band">
     <div class="wrap">
-      <div class="center" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, taken care of.</h2></div>
-      <div class="grid g3">
+      <div class="center msp-rise" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, taken care of.</h2></div>
+      <div class="grid g3 msp-rise lag">
         <div class="card small"><h3>Send a test ticket. Close it from Bitlync.</h3><p class="quiet" style="margin:0;font-size:14px">Creates a low-priority “[Bitlync test]” ticket where you routed it, so you can check it before real alerts arrive.</p><div class="ui"><div class="uh"><span>Tickets go to</span></div><div class="ub">
           <div style="font-size:12px">Board: Alerts · Type: Vendor alert</div>
           <div class="saved">Created #1234 ✓ · Priority: Low</div>
@@ -1661,7 +1678,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     </div>
   </section>
   <section class="pad">
-    <div class="wrap"><div class="cta-band">
+    <div class="wrap"><div class="cta-band msp-rise">
       <h2>Want this for your other vendors?</h2>
       <p class="sub">Introduce us.</p>
       <a class="btn" href="mailto:hello@bitlync.com?subject=Vendor%20recommendation&amp;body=Vendor%3A%0D%0AYour%20contact%20there%20%28name%29%3A%0D%0ATheir%20email%3A%0D%0AYour%20company%3A%0D%0AOK%20to%20mention%20you%20when%20we%20reach%20out%3F%20%28yes%2Fno%29%3A">Recommend a vendor</a>
@@ -2532,6 +2549,86 @@ dry_run ticket create is REST-only.</pre>
     }
   }
 
+  var mspMotionArmed=false;
+  function armMspMotion(){
+    if(mspMotionArmed) return;
+    var page=document.getElementById('page-msps');
+    if(!page) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(!('IntersectionObserver' in window)) return;
+    mspMotionArmed=true;
+    var route=page.querySelector('.msp-route');
+    if(route) route.textContent=route.getAttribute('data-from')||'Email';
+    page.classList.add('msp-arm');
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    },{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+    function inFocus(el){
+      var r=el.getBoundingClientRect();
+      var vh=window.innerHeight||800;
+      if(r.height<8) return false;
+      if(r.bottom<vh*0.3 || r.top>vh*0.72) return false;
+      var visible=Math.min(r.bottom, vh*0.85)-Math.max(r.top, vh*0.12);
+      return visible>140;
+    }
+    function focusDemos(){
+      var bill=page.querySelector('.msp-bill');
+      var ticket=page.querySelector('.msp-ticket');
+      if(bill && !bill.dataset.played && inFocus(bill)){
+        bill.dataset.played='1';
+        runBillCount(page);
+      }
+      if(ticket && !ticket.dataset.played && inFocus(ticket)){
+        ticket.dataset.played='1';
+        runTicket(page);
+      }
+    }
+    var settle;
+    window.addEventListener('scroll', function(){
+      clearTimeout(settle);
+      settle=setTimeout(focusDemos, 140);
+    }, {passive:true});
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        page.querySelectorAll('.msp-rise,.msp-fade').forEach(function(el){ io.observe(el); });
+        focusDemos();
+      });
+    });
+  }
+  function runBillCount(page){
+    page.querySelectorAll('#v3 .qty-n').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-n'),10);
+      if(!isFinite(target)) return;
+      var t0=performance.now();
+      var dur=560;
+      function tick(now){
+        var p=Math.min(1,(now-t0)/dur);
+        var eased=1-Math.pow(1-p,3);
+        el.textContent=String(Math.round(eased*target));
+        if(p<1) requestAnimationFrame(tick);
+        else el.textContent=String(target);
+      }
+      el.textContent='0';
+      requestAnimationFrame(tick);
+    });
+  }
+  function runTicket(page){
+    var chip=page.querySelector('.msp-route');
+    var saved=page.querySelector('.msp-saved');
+    if(!chip) return;
+    setTimeout(function(){
+      chip.style.opacity='0';
+      setTimeout(function(){
+        chip.textContent=chip.getAttribute('data-to')||'Ticket';
+        chip.style.opacity='1';
+        setTimeout(function(){ if(saved) saved.classList.add('show'); }, 220);
+      }, 200);
+    }, 160);
+  }
   function show(hash){
     if((hash||'').replace('#','')==='product'){ history.replaceState(null,'','#solutions/product'); hash='#solutions/product'; }
     var st=parse(hash);
@@ -2543,6 +2640,7 @@ dry_run ticket create is REST-only.</pre>
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
+    if(st.page==='msps') armMspMotion();
     document.body.classList.toggle('docs', st.page==='docs' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
@@ -2821,7 +2919,7 @@ dry_run ticket create is REST-only.</pre>
   (function(){
     if(!('IntersectionObserver' in window)) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-msps','page-docs'];
+    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-docs'];
     var io=new IntersectionObserver(function(ents){
       ents.forEach(function(e){
         if(!e.isIntersecting) return;
