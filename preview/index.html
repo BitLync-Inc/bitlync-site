@@ -683,6 +683,55 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
 #page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
+/* MSP value page (preview). Scoped so other routes keep their styles. */
+#page-msps .msp-hero{padding-bottom:40px}
+#page-msps .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+#page-msps .msp-cta{margin-top:0}
+#page-msps .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
+#page-msps .vsplit.rev .scopy{order:2}
+#page-msps .band{border-top:1px solid var(--hair)}
+#page-msps .vtag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 9px;margin:0 6px 10px 0}
+#page-msps .ui{background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 18px 40px -28px rgba(23,24,28,.35);overflow:hidden;font-size:13.5px;text-align:left}
+#page-msps .ui .uh{font-family:var(--mono);font-size:11.5px;color:var(--mute);padding:10px 16px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+#page-msps .ui .ub{padding:14px 16px;overflow-x:auto}
+#page-msps .ui img{display:block;width:100%;height:auto}
+#page-msps .rrow{display:grid;grid-template-columns:1fr 90px 150px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair)}
+#page-msps .rrow:last-child{border-bottom:none}
+#page-msps .sev{font-size:12.5px;color:var(--mute)}
+#page-msps .sev i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:#B24A4A}
+#page-msps .sev.m i{background:#A9702C}
+#page-msps .sev.l i{background:#8B8E84}
+#page-msps .chip{display:inline-block;border:1px solid var(--hair);background:#fff;border-radius:6px;padding:4px 10px;font-size:12.5px}
+#page-msps .chip.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+#page-msps .picker{margin-top:12px;border:1px solid var(--hair);border-radius:10px;padding:12px 14px;background:#fff}
+#page-msps .picker .f{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:12.5px;color:var(--mute)}
+#page-msps .picker .sel{border:1px solid var(--hair);border-radius:6px;padding:5px 9px;color:var(--ink);background:var(--card)}
+#page-msps .saved{color:var(--ok);font-size:12.5px;margin-top:8px}
+#page-msps table.bt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:280px}
+#page-msps table.bt th{font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:left;font-weight:500;padding:6px 6px;border-bottom:1px solid var(--hair);text-transform:uppercase}
+#page-msps table.bt td{padding:8px 6px;border-bottom:1px solid var(--hair);vertical-align:top}
+#page-msps .mini{font-family:var(--mono);font-size:10px;background:#EFEADF;border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute)}
+#page-msps .small h3{font-size:20px}
+#page-msps .small .ui{margin-top:14px;font-size:12px}
+#page-msps .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:56px 28px;text-align:center}
+#page-msps .cta-band h2{color:var(--paper)}
+#page-msps .cta-band .sub{color:#B9B8B0}
+#page-msps .cta-band .btn{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+#page-msps .cta-band .btn:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+#page-msps .pby{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;margin-top:6px}
+#page-msps .cn{background:#1F2A44;color:#fff;text-align:center;padding:16px 10px;font-size:13px}
+#page-msps .cn b{display:block;font-family:var(--mono);letter-spacing:.12em;font-size:12px;margin-bottom:4px;color:#BFD0F5}
+#page-msps .steps{display:flex;gap:6px;justify-content:center;padding:10px;font-size:10.5px;color:var(--mute);flex-wrap:wrap}
+#page-msps .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
+#page-msps .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
+#page-msps .msp-hero .grid{margin-top:34px;text-align:left}
+@media(max-width:860px){
+  #page-msps .vsplit{grid-template-columns:1fr}
+  #page-msps .vsplit.rev .scopy{order:0}
+  #page-msps .rrow{grid-template-columns:1fr}
+  #page-msps .rrow .sev{justify-self:start}
+}
+
 </style>
 </head>
 <body>
@@ -1511,94 +1560,112 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
 </div>
 <div class="page" id="page-msps">
-  <section class="pad" style="padding-bottom:28px">
+  <section class="pad msp-hero">
     <div class="wrap center">
       <p class="kicker">For MSPs</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,52px);margin:0 0 12px">Saw “Powered by Bitlync”<br>in a connect screen?</h1>
-      <p class="sub">One of your vendors uses Bitlync to connect to your stack. Here is what that means, and how you stay in control.</p>
-      <div class="secured" role="img" aria-label="Powered by Bitlync footer">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
-        <div><b>Powered by Bitlync</b><div class="quiet" style="margin:0">Your credentials stay here. Your vendor never sees them.</div></div>
+      <h1>Your vendor connections,<br>in one place you control.</h1>
+      <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
+      <a class="btn msp-cta" href="#msps">[CTA: Ryan to pick]</a> <span class="pby" style="margin-left:10px">Powered by bitlync</span>
+      <div class="grid g3">
+        <div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
+          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Low and info alerts</span><span class="chip on">Monthly digest</span></div>
+        </div></div>
+        <div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub">
+          <div style="font-size:17px;font-weight:600;line-height:1.3">October summary for 9 customers.</div>
+          <div class="s" style="font-size:12px;color:var(--mute);margin-top:10px">Example data only</div>
+        </div></div>
+        <div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
+          <table class="bt"><tr><th>Customer</th><th>Count</th><th>Next update</th></tr>
+          <tr><td>Northwind Logistics</td><td>48</td><td>Oct 20</td></tr>
+          <tr><td>Harbor Clinic</td><td>123</td><td>Oct 20</td></tr></table>
+        </div></div>
       </div>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap grid g3">
-      <div class="card">
-        <p class="kicker">Grants, not shared credentials</p>
-        <h3>You own the connection. Vendors get grants.</h3>
-        <p class="quiet" style="margin:0">You connect once. Each vendor gets a scoped grant. Keys stay in your vault. Revoke a grant and that vendor is gone.</p>
-      </div>
-      <div class="card">
-        <p class="kicker">What a vendor can touch</p>
-        <h3>You see the scope before you connect</h3>
-        <p class="quiet">Every grant is shown in plain language, including what they can never do:</p>
-        <div style="display:grid;gap:8px;font-size:13.5px">
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag next">Off unless you turn it on</span><span>company custom fields · write devices</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · change setup tables</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <p class="kicker">Checked in the flow</p>
-        <h3>We test the keys in the flow</h3>
-        <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test.</p>
-        <div class="mini-probe" aria-label="Example permission check">
-            <div class="row p-ok">✓ keys work</div>
-            <div class="row p-bad">✕ missing: Service Desk — Add</div>
-            <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
-            <div class="row p-ok">✓ keys checked</div>
-        </div>
-      </div>
-    </div>
+  <section class="pad band" id="v3">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy"><span class="vtag">No babysitting</span><span class="vtag">Billing</span><h2>Simplify billing reconciliation</h2><p class="sub">Match each vendor service once, and quantities update automatically in your PSA.</p></div>
+      <div><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Your stack</span></div><div class="ub">
+        <div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">Acme Security bills on your peak count each month.</div>
+        <table class="bt"><tr><th>Customer</th><th>Service</th><th>Current</th><th>Peak so far</th><th>Next update</th></tr>
+        <tr><td>Northwind Logistics</td><td>Acme Endpoint</td><td>48</td><td>52</td><td>Oct 20</td></tr>
+        <tr><td>Northwind Logistics</td><td>Acme Identity</td><td>123</td><td>127</td><td>Oct 20</td></tr>
+        <tr><td>Harbor Clinic <span class="mini">Trial</span></td><td>Acme Endpoint</td><td>54</td><td>-</td><td>Not billed</td></tr>
+        <tr><td>Bluepeak Tech</td><td>Acme Endpoint</td><td>60</td><td>64</td><td>Oct 20</td></tr>
+        <tr><td>Pine Ridge Schools</td><td>Acme Identity</td><td>135</td><td>141</td><td>Oct 20</td></tr></table>
+        <div style="font-size:12px;color:var(--mute);margin-top:10px">Example data only.</div>
+      </div></div></div>
+    </div></div>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="pad band" id="v4">
+    <div class="wrap"><div class="vsplit">
+      <div class="scopy"><span class="vtag">Control</span><span class="vtag">Alerts and tickets</span><h2>You decide where vendor messages go.</h2><p class="sub">A critical alert can open a ticket, a billing or subscription notice can go to email, the rest can wait for your monthly digest, or any mix you want. Renewal and trial notices go where you route them.</p></div>
+      <div><div class="ui"><div class="uh"><span>Send Acme Security alerts to your stack</span><span style="color:var(--ok)">Saved ✓</span></div><div class="ub">
+        <div class="rrow" style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-transform:uppercase"><span>Alert</span><span>Severity</span><span>Send to</span></div>
+        <div class="rrow"><span>Critical product alert</span><span class="sev"><i></i>Critical</span><span><span class="chip on">Ticket</span></span></div>
+        <div class="rrow"><span>Subscription renewal</span><span class="sev l"><i></i>Low</span><span><span class="chip on">Email</span></span></div>
+        <div class="rrow"><span>Policy updated</span><span class="sev l"><i></i>Info</span><span><span class="chip on">Monthly digest</span></span></div>
+        <div class="rrow"><span>Trial ending <small style="color:var(--mute)">7 days before</small></span><span class="sev m"><i></i>Medium</span><span><span class="chip on">Ticket</span> <span class="chip on">Email</span></span></div>
+        <div class="picker"><div style="font-size:11.5px;color:var(--mute);margin-bottom:4px">Tickets go to · ConnectWise</div>
+          <div class="f"><span>Board</span><span class="sel">Alerts</span></div>
+          <div class="f"><span>Type</span><span class="sel">Vendor alert</span></div>
+          <div class="f"><span>Subtype</span><span class="sel">None</span></div>
+          <div class="saved">✓ Saved</div>
+        </div>
+        <div style="font-size:12px;color:var(--mute);margin-top:10px">Send to options: Ticket · Email · Daily digest · Monthly digest · Off</div>
+      </div></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v1">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
+      <div><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v7">
+    <div class="wrap"><div class="vsplit">
+      <div class="scopy"><span class="vtag">Proof of value</span><span class="vtag">Monthly digest</span><h2>See what each vendor did for you this month.</h2><p class="sub">One monthly email with product alerts, trial expirations, upcoming renewals and pricing and packaging changes for your customers.</p></div>
+      <div><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v2">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy"><span class="vtag">Save time</span><h2>Your customers, matched and imported for you.</h2><p class="sub">Bitlync matches the vendor's customers to the companies in your stack, so you review a list instead of mapping by hand.</p></div>
+      <div><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band">
     <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Our data posture</p>
-        <h2>Plainly stated</h2>
+      <div class="center" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, taken care of.</h2></div>
+      <div class="grid g3">
+        <div class="card small"><h3>Send a test ticket. Close it from Bitlync.</h3><p class="quiet" style="margin:0;font-size:14px">Creates a low-priority “[Bitlync test]” ticket where you routed it, so you can check it before real alerts arrive.</p><div class="ui"><div class="uh"><span>Tickets go to</span></div><div class="ub">
+          <div style="font-size:12px">Board: Alerts · Type: Vendor alert</div>
+          <div class="saved">Created #1234 ✓ · Priority: Low</div>
+          <div style="margin-top:8px;font-size:12px"><b>[Bitlync test]</b> ticket</div>
+          <div style="margin-top:8px"><span class="chip">Close test ticket</span></div>
+        </div></div></div>
+        <div class="card small"><h3>Vendor info on each company record.</h3><p class="quiet" style="margin:0;font-size:14px">A vendor can write a field, like a contract link, onto each company in your stack, and Bitlync adds the field if it isn't there yet.</p><div class="ui"><div class="uh"><span>Company</span><span>Your stack</span></div><div class="ub">
+          <div style="font-weight:600;font-size:14px;margin-bottom:8px">Northwind Logistics</div>
+          <div style="font-size:11.5px;color:var(--mute);margin-bottom:2px">Contract Link</div>
+          <div style="font-size:12.5px;color:#2F5FC4;text-decoration:underline;white-space:nowrap">https://acme.example/contracts/NW-1042</div>
+          <div style="font-size:11.5px;color:var(--mute);margin-top:8px">Added by Acme Security via Bitlync</div>
+          <div style="font-size:11px;color:var(--mute);margin-top:6px">Example data only</div>
+        </div></div></div>
+        <div class="card small"><h3>Branded as your vendor.</h3><p class="quiet" style="margin:0;font-size:14px">The Connect flow, tickets and emails carry your vendor's brand, with a “Powered by bitlync” footer.</p><div class="ui"><div class="cn"><b>ACME SECURITY</b>Connect your stack to Acme Security</div>
+          <div class="steps"><span>Choose</span><span>Connect</span><span>Configure</span><span>Map companies</span><span>Done</span></div>
+          <div class="pf">Powered by bitlync</div>
+        </div></div>
       </div>
-      <div class="posture">
-        <div class="pos"><b>Synced once per tenant</b><p>One sync serves every vendor you granted.</p></div>
-        <div class="pos"><b>Encrypted per-tenant</b><p>Per-tenant keys. Isolated from every other tenant.</p></div>
-        <div class="pos"><b>Owned by you</b><p>Revoke a grant in one click. Delete your data on request.</p></div>
-        <div class="pos"><b>Audited, append-only</b><p>Every read and write lands in a log you can see. It cannot be edited.</p></div>
-        <div class="pos"><b>Support that can't touch your data</b><p>Support is read-only. It can diagnose. It cannot change your setup.</p></div>
-        <div class="pos"><b>Never resold</b><p>Your operational data is not sold. Not aggregated.</p></div>
-      </div>
-      <p class="disclaim">SOC 2 Type II — in preparation.</p>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Your portal</p>
-        <h2>See it. Scope it. Revoke it.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">A permissions page. Not another app to manage.</p>
-      </div>
-      <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
-        <p class="disclaim">Mockup. Simulated data.</p>
-        <div class="pm-head">your connections</div>
-        <div class="pm-row">
-          <i>CW</i>
-          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
-          <span class="health"><i></i>healthy · synced 4 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-        <div class="pm-row">
-          <i>NJ</i>
-          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
-          <span class="health"><i></i>healthy · synced 11 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-      </div>
-      </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap center">
-      <p class="sub">You paste keys in the connect flow. We stamp when they land in the vault. Skip the connect step and we do not store keys.</p>
-    </div>
+  <section class="pad">
+    <div class="wrap"><div class="cta-band">
+      <h2>Ask your vendors if they run on Bitlync.</h2>
+      <a class="btn" href="#msps">[CTA: Ryan to pick]</a>
+      <p style="font-family:var(--mono);font-size:12px;color:#B9B8B0;margin:22px 0 0">ConnectWise · Halo · SuperOps · and others</p>
+    </div></div>
   </section>
 </div>
 
@@ -2377,7 +2444,7 @@ dry_run ticket create is REST-only.</pre>
 
 <footer>
   <div class="wrap foot">
-    <span>© 2026 Bitlync · stealth · private beta · SOC 2 Type II — in preparation</span>
+    <span id="footNote">© 2026 Bitlync · stealth · private beta · SOC 2 Type II — in preparation</span>
     <span><a href="https://docs.bitlync.com/">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <a href="mailto:hello@bitlync.com" style="font-family:var(--mono);font-size:12px">hello@bitlync.com</a></span>
   </div>
 </footer>
@@ -2515,7 +2582,7 @@ dry_run ticket create is REST-only.</pre>
       'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
       'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
       'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
-      msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
+      msps:['For MSPs \u00b7 Bitlync','Billing that stays current and vendor alerts that land as tickets, in a stack you control.'],
       partners:['Contact us \u00b7 Bitlync','Paid design partners: engineering access, roadmap input, founding pricing.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
       about:['About \u00b7 Bitlync','Our origin story.'],
@@ -2536,6 +2603,13 @@ dry_run ticket create is REST-only.</pre>
     document.title=pair[0];
     var descEl=document.querySelector('meta[name="description"]');
     if(descEl) descEl.setAttribute('content', pair[1]);
+    var footNote=document.getElementById('footNote');
+    if(footNote){
+      if(!footNote.hasAttribute('data-default')) footNote.setAttribute('data-default', footNote.textContent);
+      footNote.textContent = st.page==='msps'
+        ? '\u00a9 2026 Bitlync \u00b7 Powered by bitlync'
+        : footNote.getAttribute('data-default');
+    }
     fillDocsRail(st);
     openDocsFolderFor(st);
     if(st.connector){
