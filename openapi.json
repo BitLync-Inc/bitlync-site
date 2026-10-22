@@ -1441,6 +1441,17 @@
             ],
             "title": "Display Name"
           },
+          "logo_light_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Light Url"
+          },
           "logo_url": {
             "anyOf": [
               {
@@ -2306,9 +2317,10 @@
         "type": "object"
       },
       "WriteAgreementLineBody": {
+        "additionalProperties": true,
         "properties": {
           "action": {
-            "description": "new | modify | replace | end \u2014 operating grain is the addition.",
+            "description": "modify only: an absolute quantity on an existing PSA line this vendor matched. new / replace / end are refused (agreement_line_action_not_allowed); to stop billing send quantity 0.",
             "title": "Action",
             "type": "string"
           },
@@ -2332,7 +2344,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for new \u2014 must name an existing E2 agreement.",
+            "description": "Ignored for modify (the mapped pair names the agreement).",
             "title": "Agreement Source Id"
           },
           "cancelled_date": {
@@ -2344,7 +2356,7 @@
                 "type": "null"
               }
             ],
-            "description": "ISO-8601; required for end and for replace's cancel half.",
+            "description": "Refused: to stop billing send quantity 0.",
             "title": "Cancelled Date"
           },
           "dry_run": {
@@ -2362,6 +2374,7 @@
                 "type": "null"
               }
             ],
+            "description": "Refused: dates are set by the MSP in the PSA.",
             "title": "Effective Date"
           },
           "idempotency_key": {
@@ -2384,6 +2397,7 @@
                 "type": "null"
               }
             ],
+            "description": "Refused: billing writes are quantity-only.",
             "title": "Product Source Id"
           },
           "quantity": {
@@ -2395,6 +2409,7 @@
                 "type": "null"
               }
             ],
+            "description": "Required: absolute quantity >= 0 (0 stops billing).",
             "title": "Quantity"
           },
           "unit_cost": {
@@ -2406,6 +2421,7 @@
                 "type": "null"
               }
             ],
+            "description": "Refused: prices are set by the MSP in the PSA.",
             "title": "Unit Cost"
           },
           "unit_price": {
@@ -2417,6 +2433,7 @@
                 "type": "null"
               }
             ],
+            "description": "Refused: prices are set by the MSP in the PSA.",
             "title": "Unit Price"
           },
           "vendor_key": {
@@ -2428,7 +2445,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
+            "description": "Required \u2014 resolves this vendor's own MAPPED pair (the line to update).",
             "title": "Vendor Key"
           },
           "vendor_product_ref": {
@@ -2440,7 +2457,7 @@
                 "type": "null"
               }
             ],
-            "description": "Required for modify/replace/end \u2014 resolves the E3 MAPPED pair.",
+            "description": "Required \u2014 resolves this vendor's own MAPPED pair (the line to update).",
             "title": "Vendor Product Ref"
           }
         },
@@ -2690,7 +2707,7 @@
     }
   },
   "info": {
-    "description": "Canonical read + act surface over the connected MSP stack. Writes are real; test them in the sandbox. Every write takes an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.create`, `psa.company.update`, `psa.company.field.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.agreement.create`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete` and `never.setup_tables` always refuse. A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_create_refused` / `psa_company_update_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant on tickets and on `POST /companies/write` (company custom fields; grant `psa.company.update`, default off). We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
+    "description": "Canonical read + act surface over the connected MSP stack. Writes are real; test them in the sandbox. Every write takes an idempotency_key (replay never duplicates). Fan-out writes return an explicit per-target envelope \u2014 partial is a first-class outcome. Every tenant-scoped response carries a top-level `sandbox` boolean: true means the tenant's connected stack is simulated (fixture-backed sandbox), false means production \u2014 simulated data is never mistakable for real.\n\n**Grant keys** (connect UI, MSP permissions, this contract): `psa.company.read`, `psa.company.update`, `psa.company.field.create`, `psa.company.events`, `psa.contact.read`, `psa.contact.create`, `psa.ticket.read`, `psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`, `psa.time.write`, `psa.agreement.read`, `psa.agreement.line.write`, `psa.project.read`, `psa.project.write`, `psa.project.create`, `psa.opportunity.write`, `psa.config.read`, `psa.config.write`, `rmm.device.read`, `rmm.device.events`, `rmm.device.write`, `docs.document.read`, `docs.document.write`, plus existing `commerce` read/write. `never.delete`, `never.setup_tables`, `psa.company.create` and `psa.agreement.create` always refuse: vendors never create PSA companies, agreements or billing lines; `psa.agreement.line.write` only updates quantities on existing PSA lines the vendor matched (via the mapping API). A write without the grant returns `grant_missing` with `needed`, one English sentence, and `doc_url`. Leftover `psa_company_update_refused` means the grant is present and policy still refused.\n\n**Escape hatch:** Canonical first. Every canonical object includes `vendor: {connector, native_id, native}` on reads (`native` is the raw vendor object; `.raw` is the same payload). `.raw` and `vendor.native` are read-only extra fields. Writes accept optional `vendor_native` after the write grant on tickets and on `POST /companies/write` (company custom fields; grant `psa.company.update`, default off). We do not guarantee every native field.\n\n**Developer docs:** [Quickstart](/docs/quickstart) \u00b7 [Object dictionary](/docs/object-dictionary) \u00b7 [What we write](/docs/object-dictionary#what-we-write) \u00b7 [Error codes](/docs/errors) \u00b7 Try it out below (paste your sandbox API key into Authorize).",
     "title": "Bitlync API",
     "version": "0.90.0",
     "x-error-catalog": "/docs/errors",
@@ -5114,7 +5131,7 @@
     },
     "/tenants/{tenant_id}/commerce/agreement-lines": {
       "post": {
-        "description": "Write one PSA agreement addition (new / modify / replace / end).\n\nFixture first. modify/replace/end require a MAPPED E3 pair;\nUNMAPPED refuses with code agreement_line_unmapped. Never deletes an\naddition; never cancels the agreement header. Not a queue.",
+        "description": "Set the quantity on an existing PSA billing line this vendor matched.\n\nQuantity-only `modify` on a MAPPED pair (ConnectWise PATCH addition\nquantity; HaloPSA updatelines). `new` / `replace` / `end`, and price,\nproduct or cancel fields, are refused with 422\n`agreement_line_action_not_allowed` before any PSA call: vendors\nnever create agreements or billing lines (send quantity 0 to stop\nbilling). UNMAPPED \u2192 409 `agreement_line_unmapped`. Not a queue.",
         "operationId": "write_agreement_line_tenants__tenant_id__commerce_agreement_lines_post",
         "parameters": [
           {
@@ -6682,7 +6699,8 @@
     },
     "/tenants/{tenant_id}/companies": {
       "post": {
-        "description": "Match-first company create. PSA requires grant `psa.company.create`\n(missing \u2192 `grant_missing`). Ambiguous match\nis `company_match_ambiguous`. Commerce (Pax8) uses fan_out=commerce.",
+        "deprecated": true,
+        "description": "PSA company creation is not supported: vendors never create\ncompanies in the PSA; companies are created by the MSP. Any PSA\nfan-out (the default) returns 403 `company_create_not_supported`\nwith no PSA call. Match to an existing company instead;\n`/companies/write` updates custom fields on existing companies.\nDistributor create (Pax8, `fan_out=[\"commerce\"]`) is unchanged.",
         "operationId": "create_company_tenants__tenant_id__companies_post",
         "parameters": [
           {

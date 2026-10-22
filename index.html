@@ -14,7 +14,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400..700&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --paper:#F7F4EC; --card:#FBFBF8; --ink:#17181C; --mute:#6B6A64; --hair:#E4DFD4;
@@ -47,16 +47,21 @@ body.docs nav.main a.on,body.docs nav.main a:hover{color:var(--dtext)}
 body.docs nav.main .sol-rows a,body.docs nav.main .sol-rows a:hover,body.docs nav.main .sol-rows a:focus,body.docs nav.main .sol-rows a.on{color:var(--ink)}
 .btn{display:inline-block;border:1px solid var(--ink);color:var(--paper);background:var(--ink);
   padding:10px 16px;border-radius:999px;font-weight:600;font-size:13.5px;cursor:pointer;
-  transition:background .15s ease,border-color .15s ease,color .15s ease}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  transition:background .15s ease,border-color .15s ease,color .15s ease,box-shadow .15s ease}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
 body.docs .btn{background:var(--dtext);color:var(--void);border-color:var(--dtext)}
 body.docs .btn.ghost{background:transparent;color:var(--dtext);border-color:var(--dline)}
-.btn:hover{color:var(--acid)}
+/* Primary marketing CTA: restrained lime on hover/active only (not wholesale rebrand). */
+.btn:not(.ghost):hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+.btn:not(.ghost):active{color:var(--ink);background:#B8E045;border-color:#B8E045}
 .btn.ghost:hover{color:var(--ink);background:#EFEBE0;border-color:var(--ink)}
 body.docs .btn.ghost:hover{color:var(--dtext);background:transparent;border-color:var(--dtext)}
+body.docs .btn:not(.ghost):hover{color:var(--void);background:var(--acid);border-color:var(--acid)}
+body.docs .btn:not(.ghost):active{color:var(--void);background:#B8E045;border-color:#B8E045}
 .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 #page-docs .btn-row .btn{background:var(--void);color:var(--dtext);border:1px solid var(--dtext)}
-#page-docs .btn-row .btn:hover{color:var(--acid);border-color:var(--acid)}
+#page-docs .btn-row .btn:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+#page-docs .btn-row .btn:active{color:var(--ink);background:#B8E045;border-color:#B8E045}
 .menu{display:none;border:1px solid var(--hair);padding:8px 12px;border-radius:8px;min-width:44px;min-height:40px}
 body.docs .menu{border-color:var(--dline);color:var(--dtext)}
 .nav-signin{flex:none;font-size:14px;color:var(--mute)}
@@ -198,8 +203,12 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 .road b{display:block;font-size:16px;margin:6px 0}
 .road p{margin:0;color:var(--mute);font-size:14px}
 .grid9{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:28px;width:100%;align-items:stretch}
-@media(min-width:520px){.grid9{grid-template-columns:1fr 1fr}}
+@media(min-width:520px){.grid9{grid-template-columns:1fr 1fr}.cell.more-cell{grid-column:2 / -1}}
 @media(min-width:800px){.grid9{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.cell.more-cell{display:flex;align-items:center;justify-content:center;text-align:center;transition:background .2s ease}
+.cell.more-cell:hover{background:#F3F0E6}
+.cell.more-cell:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
+.cell.more-cell b{white-space:normal}
 .cell{background:var(--card);padding:16px 12px;min-width:0}
 .cell b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow-wrap:normal}
 .cell .cat{display:block;color:var(--mute);font-size:12px;margin:6px 0 0}
@@ -207,6 +216,7 @@ pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size
 /* Accordion: when one opens, remove siblings from grid flow (kills cream stretch slabs). Mobile-first. */
 .grid9:has(> .cell.logo-cell.open){align-items:start}
 .grid9:has(> .cell.logo-cell.open) > .cell.logo-cell:not(.open){display:none}
+.grid9:has(> .cell.logo-cell.open) > .cell.more-cell{display:none}
 .cell.logo-cell.open{background:#F3F0E6;grid-column:1 / -1}
 .cell.logo-cell .objs{display:block;max-height:0;opacity:0;overflow:hidden;visibility:hidden;margin:0;padding:0;border-top:0 solid transparent;list-style:none;pointer-events:none}
 .cell.logo-cell.open .objs{max-height:920px;opacity:1;visibility:visible;margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--hair);pointer-events:auto;display:grid;grid-template-columns:1fr;gap:10px}
@@ -412,7 +422,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   transition:border-color .15s ease,box-shadow .15s ease,background .15s ease}
 .sol-card:hover{border-color:var(--ink);box-shadow:0 3px 10px rgba(23,24,28,.08);background:#F3F0E6}
 .sol-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#1a1a1a}
-.sol-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.02em;line-height:1.15;margin:0;padding:14px 16px 6px}
+.sol-card h3{font-family:var(--serif);font-weight:400;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.02em;line-height:1.2;margin:0;padding:14px 16px 6px}
 .sol-card p{margin:0;color:var(--mute);font-size:15px;line-height:1.4;padding:0 16px 16px}
 .reveal{opacity:.92;transition:opacity .25s ease}
 .reveal.in{opacity:1}
@@ -560,7 +570,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   .drop:hover .panel,.drop:focus-within .panel{display:none}
   .drop.hot .panel{display:block}
 }
-/* Use cases hub */
+
+/* Use cases hub (preview) */
 #page-use-cases .uc-hero{padding:56px 22px 18px}
 #page-use-cases .uc-hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
 #page-use-cases .uc-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;max-width:860px}
@@ -604,7 +615,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-use-cases .uc-back .uc-flip{border-color:#2C3128;background:#17181C;color:#C9CBBF}
 #page-use-cases .uc-card:hover .uc-back .uc-flip,#page-use-cases .uc-card:focus-visible .uc-back .uc-flip{border-color:var(--acid);color:var(--ink);background:var(--acid)}
 @media(prefers-reduced-motion:reduce){#page-use-cases .uc-card{transition:none}}
-/* Origin / About hybrid (live) */
+
+
+/* Origin / About hybrid (preview) */
 #page-about{position:relative;overflow:hidden}
 #page-about .ab-hero{position:relative;padding:56px 0 12px;overflow:hidden;min-height:168px}
 #page-about .ab-field{position:absolute;inset:0;pointer-events:none;background:
@@ -642,6 +655,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   #page-about .ab-drift,#page-about .ab-pulse,#page-about .ab-chapter .ab-mark i{animation:none}
 }
 
+
 /* GTM pipeline mockup (preview) — Bigin card anatomy, Bitlync cream, no tabs */
 #page-solutions-sales .gtm-mock{max-width:960px;margin:28px 0 0;border:1px solid var(--hair);border-radius:14px;background:var(--card);overflow:hidden}
 #page-solutions-sales .gtm-mock-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px 0;border-bottom:1px solid var(--hair);background:#F6F3EA}
@@ -668,6 +682,654 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-deal.is-won{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid)}
 #page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
+/* MSP value page (preview). Scoped so other routes keep their styles. */
+#page-msps .msp-hero{padding-bottom:48px}
+#page-msps .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+#page-msps .msp-collage{width:min(1520px, calc(100vw - 28px));margin:6px auto 0}
+#page-msps .msp-collage .ui{height:100%;display:flex;flex-direction:column;font-size:15px}
+#page-msps .msp-collage .ui .uh{font-size:12.5px;padding:13px 18px}
+#page-msps .msp-collage .ui .ub{flex:1;padding:16px 18px 18px}
+#page-msps .msp-collage .rrow{padding:13px 0;font-size:15px}
+#page-msps .msp-collage .chip{font-size:14px;padding:6px 12px}
+#page-msps .msp-collage table.bt{font-size:14.5px}
+#page-msps .msp-collage table.bt th{padding:8px 8px}
+#page-msps .msp-collage table.bt td{padding:11px 8px}
+#page-msps .dig-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px;line-height:1.35}
+#page-msps .dig-row:last-of-type{border-bottom:none}
+#page-msps .dig-k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+#page-msps .dig-note{font-size:12px;color:var(--mute);margin:12px 0 0}
+#page-msps .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
+#page-msps .vsplit.rev .scopy{order:2}
+#page-msps .band{border-top:1px solid var(--hair)}
+#page-msps .vtag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 9px;margin:0 6px 10px 0}
+#page-msps .ui{background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 18px 40px -28px rgba(23,24,28,.35);overflow:hidden;font-size:13.5px;text-align:left}
+#page-msps .ui .uh{font-family:var(--mono);font-size:11.5px;color:var(--mute);padding:10px 16px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+#page-msps .ui .ub{padding:14px 16px;overflow-x:auto}
+#page-msps .ui img{display:block;width:100%;height:auto}
+#page-msps .rrow{display:grid;grid-template-columns:1fr 90px 150px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair)}
+#page-msps .rrow:last-child{border-bottom:none}
+#page-msps .sev{font-size:12.5px;color:var(--mute)}
+#page-msps .sev i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:#B24A4A}
+#page-msps .sev.m i{background:#A9702C}
+#page-msps .sev.l i{background:#8B8E84}
+#page-msps .chip{display:inline-block;border:1px solid var(--hair);background:#fff;border-radius:6px;padding:4px 10px;font-size:12.5px}
+#page-msps .chip.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+#page-msps .picker{margin-top:12px;border:1px solid var(--hair);border-radius:10px;padding:12px 14px;background:#fff}
+#page-msps .picker .f{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:12.5px;color:var(--mute)}
+#page-msps .picker .sel{border:1px solid var(--hair);border-radius:6px;padding:5px 9px;color:var(--ink);background:var(--card)}
+#page-msps .saved{color:var(--ok);font-size:12.5px;margin-top:8px}
+#page-msps table.bt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:280px}
+#page-msps table.bt th{font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:left;font-weight:500;padding:6px 6px;border-bottom:1px solid var(--hair);text-transform:uppercase}
+#page-msps table.bt td{padding:8px 6px;border-bottom:1px solid var(--hair);vertical-align:top}
+#page-msps .mini{font-family:var(--mono);font-size:10px;background:#EFEADF;border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute)}
+#page-msps .small h3{font-size:20px}
+#page-msps .small .ui{margin-top:14px;font-size:12px}
+#page-msps .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:48px 28px 44px;text-align:center}
+#page-msps .cta-band h2{color:var(--paper);margin:0}
+#page-msps .cta-band .sub{color:#B9B8B0;margin:12px auto 22px;max-width:36rem}
+#page-msps .cta-band .btn{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+#page-msps .cta-band .btn:hover{color:var(--ink);background:#B8E045;border-color:#B8E045}
+#page-msps .pby{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;margin-top:6px}
+#page-msps .cn{background:#1F2A44;color:#fff;text-align:center;padding:16px 10px;font-size:13px}
+#page-msps .cn b{display:block;font-family:var(--mono);letter-spacing:.12em;font-size:12px;margin-bottom:4px;color:#BFD0F5}
+#page-msps .steps{display:flex;gap:6px;justify-content:center;padding:10px;font-size:10.5px;color:var(--mute);flex-wrap:wrap}
+#page-msps .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
+#page-msps .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
+#page-msps .msp-collage .grid{text-align:left;gap:16px}
+#page-msps .msp-hero-stage{width:100%}
+#page-msps .msp-tile{height:100%}
+#page-msps .msp-cue{
+  display:flex;align-items:center;justify-content:center;
+  width:42px;height:42px;margin:22px auto 0;color:var(--mute);
+  border:1px solid var(--hair);border-radius:999px;background:rgba(247,244,236,.8)
+}
+#page-msps .msp-cue:hover{color:var(--ink);border-color:#B7B2A6}
+#page-msps .msp-cue:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#page-msps #v1 .wrap{max-width:1560px}
+@media(min-width:861px){
+  #page-msps #v1 .vsplit{grid-template-columns:minmax(0,1.7fr) minmax(300px,.78fr);gap:32px 44px}
+}
+#page-msps section[id]{scroll-margin-top:76px}
+@media(max-width:720px){
+  #page-msps .dig-row{grid-template-columns:1fr;gap:2px;padding:10px 0}
+  #page-msps .msp-collage{width:min(1520px, calc(100vw - 20px))}
+}
+@media(min-width:900px){
+  #page-msps .msp-hero{
+    box-sizing:border-box;
+    min-height:calc(100vh - 64px);
+    min-height:calc(100svh - 64px);
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:20px 0 76px
+  }
+  #page-msps .msp-cue{
+    position:absolute;left:50%;bottom:18px;margin:0;
+    transform:translateX(-50%)
+  }
+}
+#page-msps .qty{display:inline-grid;font-variant-numeric:tabular-nums}
+#page-msps .qty-hold,#page-msps .qty-n{grid-area:1 / 1}
+#page-msps .qty-hold{visibility:hidden}
+#page-msps td:has(> .qty){white-space:nowrap}
+#page-msps .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
+#page-msps .card.small,#page-msps .msp-tile .ui,#page-msps .vsplit .ui{transition:transform 240ms ease,box-shadow 240ms ease,border-color 240ms ease}
+@media (prefers-reduced-motion: no-preference){
+  #page-msps.msp-arm .msp-rise:not(.in){opacity:0;transform:translateY(16px)}
+  #page-msps.msp-arm .msp-fade:not(.in){opacity:0}
+  #page-msps.msp-arm .msp-tile.msp-rise:not(.in){opacity:0;transform:translateY(24px)}
+  #page-msps.msp-arm .msp-shot:not(.in){opacity:0;transform:translateY(36px)}
+  #page-msps.msp-arm .msp-rise.in,#page-msps.msp-arm .msp-fade.in{opacity:1;transform:none;transition:opacity 420ms ease,transform 420ms ease}
+  #page-msps.msp-arm .msp-fade.in{transition:opacity 420ms ease}
+  #page-msps.msp-arm .msp-shot.in{opacity:1;transform:none;transition:opacity 740ms ease,transform 740ms cubic-bezier(.16,.84,.32,1)}
+  #page-msps.msp-arm .lag.in{transition-delay:160ms}
+  #page-msps.msp-arm .msp-shot.lag.in{transition-delay:200ms}
+  #page-msps.msp-arm .msp-tile.in{
+    opacity:1;transform:none;
+    animation:mspFloat 12s ease-in-out infinite;
+    animation-delay:720ms
+  }
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(1).in{transition-delay:70ms;animation-delay:680ms;animation-duration:11s}
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(2).in{transition-delay:190ms;animation-delay:860ms;animation-duration:13.5s}
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(3).in{transition-delay:310ms;animation-delay:1020ms;animation-duration:10s}
+  #page-msps.msp-arm .msp-saved{opacity:0}
+  #page-msps.msp-arm .msp-saved.show{opacity:1;transition:opacity 320ms ease}
+  #page-msps .card.small:hover,#page-msps .msp-tile .ui:hover,#page-msps .vsplit .ui:hover{transform:translateY(-5px);box-shadow:0 18px 36px -18px rgba(23,24,28,.48)}
+  #page-msps .msp-cue{animation:mspCueFlow 1.9s ease-in-out infinite}
+  @keyframes mspFloat{
+    0%,100%{transform:translate3d(0,var(--py,0px),0)}
+    50%{transform:translate3d(0,calc(var(--py,0px) - 7px),0)}
+  }
+  @keyframes mspCueFlow{
+    0%,100%{transform:translateY(0);opacity:.62}
+    50%{transform:translateY(7px);opacity:1}
+  }
+  @keyframes mspCueDock{
+    0%,100%{transform:translate(-50%,0);opacity:.62}
+    50%{transform:translate(-50%,7px);opacity:1}
+  }
+}
+@media(min-width:900px) and (prefers-reduced-motion:no-preference){
+  #page-msps .msp-cue{animation-name:mspCueDock}
+}
+@media(prefers-reduced-motion:reduce){
+  #page-msps .msp-cue,#page-msps .msp-tile,#page-msps .card.small,#page-msps .vsplit .ui{animation:none;transition:none}
+}
+@media(max-width:860px){
+  #page-msps .vsplit{grid-template-columns:1fr}
+  #page-msps .vsplit.rev .scopy{order:0}
+  #page-msps .rrow{grid-template-columns:1fr}
+  #page-msps .rrow .sev{justify-self:start}
+}
+
+
+/* Products page (ISV audience, preview). Mirrors the MSP page styles. */
+/* MSP value page (preview). Scoped so other routes keep their styles. */
+#page-product .msp-hero{padding-bottom:48px}
+#page-product .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+#page-product .msp-collage{width:min(1520px, calc(100vw - 28px));margin:6px auto 0}
+#page-product .msp-collage .ui{height:100%;display:flex;flex-direction:column;font-size:15px}
+#page-product .msp-collage .ui .uh{font-size:12.5px;padding:13px 18px}
+#page-product .msp-collage .ui .ub{flex:1;padding:16px 18px 18px}
+#page-product .msp-collage .rrow{padding:13px 0;font-size:15px}
+#page-product .msp-collage .chip{font-size:14px;padding:6px 12px}
+#page-product .msp-collage table.bt{font-size:14.5px}
+#page-product .msp-collage table.bt th{padding:8px 8px}
+#page-product .msp-collage table.bt td{padding:11px 8px}
+#page-product .dig-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px;line-height:1.35}
+#page-product .dig-row:last-of-type{border-bottom:none}
+#page-product .dig-k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+#page-product .dig-note{font-size:12px;color:var(--mute);margin:12px 0 0}
+#page-product .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
+#page-product .vsplit.rev .scopy{order:2}
+#page-product .band{border-top:1px solid var(--hair)}
+#page-product .vtag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 9px;margin:0 6px 10px 0}
+#page-product .ui{background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 18px 40px -28px rgba(23,24,28,.35);overflow:hidden;font-size:13.5px;text-align:left}
+#page-product .ui .uh{font-family:var(--mono);font-size:11.5px;color:var(--mute);padding:10px 16px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+#page-product .ui .ub{padding:14px 16px;overflow-x:auto}
+#page-product .ui img{display:block;width:100%;height:auto}
+#page-product .rrow{display:grid;grid-template-columns:1fr 90px 150px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair)}
+#page-product .rrow:last-child{border-bottom:none}
+#page-product .sev{font-size:12.5px;color:var(--mute)}
+#page-product .sev i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:#B24A4A}
+#page-product .sev.m i{background:#A9702C}
+#page-product .sev.l i{background:#8B8E84}
+#page-product .chip{display:inline-block;border:1px solid var(--hair);background:#fff;border-radius:6px;padding:4px 10px;font-size:12.5px}
+#page-product .chip.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+#page-product .picker{margin-top:12px;border:1px solid var(--hair);border-radius:10px;padding:12px 14px;background:#fff}
+#page-product .picker .f{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:12.5px;color:var(--mute)}
+#page-product .picker .sel{border:1px solid var(--hair);border-radius:6px;padding:5px 9px;color:var(--ink);background:var(--card)}
+#page-product .saved{color:var(--ok);font-size:12.5px;margin-top:8px}
+#page-product table.bt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:280px}
+#page-product table.bt th{font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:left;font-weight:500;padding:6px 6px;border-bottom:1px solid var(--hair);text-transform:uppercase}
+#page-product table.bt td{padding:8px 6px;border-bottom:1px solid var(--hair);vertical-align:top}
+#page-product .mini{font-family:var(--mono);font-size:10px;background:#EFEADF;border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute)}
+#page-product .small h3{font-size:20px}
+#page-product .small .ui{margin-top:14px;font-size:12px}
+#page-product .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:48px 28px 44px;text-align:center}
+#page-product .cta-band h2{color:var(--paper);margin:0}
+#page-product .cta-band .sub{color:#B9B8B0;margin:12px auto 22px;max-width:36rem}
+#page-product .cta-band .btn{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+#page-product .cta-band .btn:hover{color:var(--ink);background:#B8E045;border-color:#B8E045}
+#page-product .pby{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;margin-top:6px}
+#page-product .cn{background:#1F2A44;color:#fff;text-align:center;padding:16px 10px;font-size:13px}
+#page-product .cn b{display:block;font-family:var(--mono);letter-spacing:.12em;font-size:12px;margin-bottom:4px;color:#BFD0F5}
+#page-product .steps{display:flex;gap:6px;justify-content:center;padding:10px;font-size:10.5px;color:var(--mute);flex-wrap:wrap}
+#page-product .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
+#page-product .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
+#page-product .msp-collage .grid{text-align:left;gap:16px}
+#page-product .msp-hero-stage{width:100%}
+#page-product .msp-tile{height:100%}
+#page-product .msp-cue{
+  display:flex;align-items:center;justify-content:center;
+  width:42px;height:42px;margin:22px auto 0;color:var(--mute);
+  border:1px solid var(--hair);border-radius:999px;background:rgba(247,244,236,.8)
+}
+#page-product .msp-cue:hover{color:var(--ink);border-color:#B7B2A6}
+#page-product .msp-cue:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#page-product #v1 .wrap{max-width:1560px}
+@media(min-width:861px){
+  #page-product #v1 .vsplit{grid-template-columns:minmax(0,1.7fr) minmax(300px,.78fr);gap:32px 44px}
+}
+#page-product section[id]{scroll-margin-top:76px}
+@media(max-width:720px){
+  #page-product .dig-row{grid-template-columns:1fr;gap:2px;padding:10px 0}
+  #page-product .msp-collage{width:min(1520px, calc(100vw - 20px))}
+}
+@media(min-width:900px){
+  #page-product .msp-hero{
+    box-sizing:border-box;
+    min-height:calc(100vh - 64px);
+    min-height:calc(100svh - 64px);
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:20px 0 76px
+  }
+  #page-product .msp-cue{
+    position:absolute;left:50%;bottom:18px;margin:0;
+    transform:translateX(-50%)
+  }
+}
+#page-product .qty{display:inline-grid;font-variant-numeric:tabular-nums}
+#page-product .qty-hold,#page-product .qty-n{grid-area:1 / 1}
+#page-product .qty-hold{visibility:hidden}
+#page-product .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
+#page-product .card.small,#page-product .msp-tile .ui,#page-product .vsplit .ui{transition:transform 240ms ease,box-shadow 240ms ease,border-color 240ms ease}
+@media (prefers-reduced-motion: no-preference){
+  #page-product.msp-arm .msp-rise:not(.in){opacity:0;transform:translateY(16px)}
+  #page-product.msp-arm .msp-fade:not(.in){opacity:0}
+  #page-product.msp-arm .msp-tile.msp-rise:not(.in){opacity:0;transform:translateY(24px)}
+  #page-product.msp-arm .msp-shot:not(.in){opacity:0;transform:translateY(36px)}
+  #page-product.msp-arm .msp-rise.in,#page-product.msp-arm .msp-fade.in{opacity:1;transform:none;transition:opacity 420ms ease,transform 420ms ease}
+  #page-product.msp-arm .msp-fade.in{transition:opacity 420ms ease}
+  #page-product.msp-arm .msp-shot.in{opacity:1;transform:none;transition:opacity 740ms ease,transform 740ms cubic-bezier(.16,.84,.32,1)}
+  #page-product.msp-arm .lag.in{transition-delay:160ms}
+  #page-product.msp-arm .msp-shot.lag.in{transition-delay:200ms}
+  #page-product.msp-arm .msp-tile.in{
+    opacity:1;transform:none;
+    animation:mspFloat 12s ease-in-out infinite;
+    animation-delay:720ms
+  }
+  #page-product.msp-arm .msp-collage .msp-tile:nth-child(1).in{transition-delay:70ms;animation-delay:680ms;animation-duration:11s}
+  #page-product.msp-arm .msp-collage .msp-tile:nth-child(2).in{transition-delay:190ms;animation-delay:860ms;animation-duration:13.5s}
+  #page-product.msp-arm .msp-collage .msp-tile:nth-child(3).in{transition-delay:310ms;animation-delay:1020ms;animation-duration:10s}
+  #page-product.msp-arm .msp-saved{opacity:0}
+  #page-product.msp-arm .msp-saved.show{opacity:1;transition:opacity 320ms ease}
+  #page-product .card.small:hover,#page-product .msp-tile .ui:hover,#page-product .vsplit .ui:hover{transform:translateY(-5px);box-shadow:0 18px 36px -18px rgba(23,24,28,.48)}
+  #page-product .msp-cue{animation:mspCueFlow 1.9s ease-in-out infinite}
+  @keyframes mspFloat{
+    0%,100%{transform:translate3d(0,var(--py,0px),0)}
+    50%{transform:translate3d(0,calc(var(--py,0px) - 7px),0)}
+  }
+  @keyframes mspCueFlow{
+    0%,100%{transform:translateY(0);opacity:.62}
+    50%{transform:translateY(7px);opacity:1}
+  }
+  @keyframes mspCueDock{
+    0%,100%{transform:translate(-50%,0);opacity:.62}
+    50%{transform:translate(-50%,7px);opacity:1}
+  }
+}
+@media(min-width:900px) and (prefers-reduced-motion:no-preference){
+  #page-product .msp-cue{animation-name:mspCueDock}
+}
+@media(prefers-reduced-motion:reduce){
+  #page-product .msp-cue,#page-product .msp-tile,#page-product .card.small,#page-product .vsplit .ui{animation:none;transition:none}
+}
+@media(max-width:860px){
+  #page-product .vsplit{grid-template-columns:1fr}
+  #page-product .vsplit.rev .scopy{order:0}
+  #page-product .rrow{grid-template-columns:1fr}
+  #page-product .rrow .sev{justify-self:start}}
+
+#page-product .msp-tile .tilt{transform:rotate(var(--rot,0deg));transform-origin:50% 60%;height:100%}
+#page-product .msp-collage .msp-tile:nth-child(1){--rot:-2.2deg}
+#page-product .msp-collage .msp-tile:nth-child(2){--rot:.8deg}
+#page-product .msp-collage .msp-tile:nth-child(3){--rot:2.4deg}
+#page-product .msp-collage{margin-top:30px}
+#page-product .mstrip{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--card);border:1px solid var(--hair);border-radius:18px;padding:26px 28px}
+#page-product .mstrip h3{font-size:26px;margin:0;max-width:36rem}
+#page-product .mlist{margin:0 0 4px;padding:0 0 0 1.1em;color:var(--mute);font-size:15px}#page-product .mlist li{margin:4px 0}
+#page-product .wide .ui{max-width:1100px;margin:0 auto}
+#page-product .draftbar{background:#17181C;color:#C6F04D;font-family:'JetBrains Mono',monospace;font-size:11.5px;text-align:center;padding:6px 10px}
+@media(max-width:820px){#page-product .msp-collage .msp-tile{--rot:0deg!important;margin-top:0!important}}
+@media(prefers-reduced-motion:reduce){#page-product .msp-tile .tilt{transition:none}}
+
+.ui.brand-stack{background:none!important;border:0!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}.ui img.brand-front{display:none!important}@media (max-width:640px){.ui.brand-stack picture img{border:1px solid #E1DCCF;border-radius:12px;filter:brightness(.96)}.ui img.brand-front{display:block!important;width:84%;margin:-20% 0 0 auto;position:relative;border-radius:12px;border:1px solid rgba(23,24,28,.22);box-shadow:0 22px 44px -8px rgba(20,24,30,.42),0 6px 14px rgba(20,24,30,.18)}}
+#page-product .hx-stage{position:relative;max-width:1180px}
+#page-product .hx-glow{position:absolute;inset:-40px -20px -30px;z-index:0;pointer-events:none;background:radial-gradient(40% 60% at 22% 55%,rgba(63,184,175,.30),transparent 70%),radial-gradient(35% 55% at 52% 40%,rgba(242,153,74,.22),transparent 70%),radial-gradient(40% 60% at 80% 60%,rgba(124,108,242,.24),transparent 70%);filter:blur(8px)}
+#page-product .hx-stage .grid{position:relative;z-index:1;gap:22px;align-items:start}
+#page-product .hx-card{background:#fff;border:1px solid rgba(23,24,28,.14);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -22px rgba(12,40,44,.45),0 8px 18px -8px rgba(20,24,30,.18);text-align:left;font-family:Inter,system-ui,sans-serif;color:#17191C}
+#page-product .hx-band{display:flex;align-items:center;gap:9px;padding:13px 16px;color:#fff;background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 64%,#0A3F43 100%);font-size:14px}
+#page-product .hx-a{width:24px;height:24px;border-radius:6px;background:#fff;color:#0C6B70;display:grid;place-items:center;font-weight:700;font-size:13px}
+#page-product .hx-tag{margin-left:auto;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--acc);color:#10181A}
+#page-product .hx-body{padding:16px 16px 18px}
+#page-product .hx-h{margin:0 0 12px;font-weight:650;font-size:15px}
+#page-product .hx-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#page-product .hx-tool{position:relative;border:1px solid #E6E7EA;border-radius:11px;padding:12px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+#page-product .hx-tool img{height:30px;width:auto;max-width:80px;object-fit:contain}
+#page-product .hx-tool b{font-size:12.5px}#page-product .hx-tool small{font-size:11px;color:#6B6E75}
+#page-product .hx-tool.on{border:2px solid #0C6B70;background:#F0F8F7;padding:11px 5px 9px}
+#page-product .hx-tick{position:absolute;top:5px;right:5px;width:16px;height:16px;border-radius:50%;background:#0C6B70;color:#fff;font-size:10px;font-style:normal;display:grid;place-items:center}
+#page-product .hx-ok{font-size:10.5px;font-weight:600;color:#0C6B70}
+#page-product .hx-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #EFEDE7;font-size:14px}
+#page-product .hx-sev{font-size:11.5px;font-weight:650;padding:3px 10px;border-radius:999px}
+#page-product .hx-sev.crit{background:#FDE3E1;color:#B4231A}#page-product .hx-sev.high{background:#FDEBD8;color:#A85413}#page-product .hx-sev.low{background:#E4F2F0;color:#0C6B70}
+#page-product .hx-route{margin:10px 0 0;font-size:12px;color:#5C5F66;display:flex;align-items:center;gap:6px}
+#page-product .hx-bill{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid #EFEDE7;font-size:14px}
+#page-product .hx-q{display:flex;align-items:center;gap:6px;font-size:13px}#page-product .hx-q s{color:#8A8C92}#page-product .hx-q i{font-style:normal;color:#7C6CF2}
+#page-product .hx-q b{background:#EEEBFE;color:#4B3CC4;padding:2px 8px;border-radius:999px;font-weight:650}
+#page-product .hx-dot{width:7px;height:7px;border-radius:50%;background:#3FB8AF}
+#page-product .hx-note{position:relative;z-index:1;margin:14px auto 0;width:max-content;font:11px Inter,system-ui,sans-serif;color:#8A8C92;background:#FFFEFA;border:1px solid #E5E0D4;border-radius:999px;padding:2px 10px}
+#page-product .hx-stage .msp-tile:nth-child(2){margin-top:26px}
+#page-product .hx-stage .msp-tile:nth-child(1) .tilt{transform:rotate(-2deg) translateX(14px)}
+#page-product .hx-stage .msp-tile:nth-child(3) .tilt{transform:rotate(2deg) translateX(-14px)}
+#page-product .hx-stage .msp-tile:nth-child(2){position:relative;z-index:2}
+@keyframes hxFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+#page-product .hx-card{animation:hxFloat 7s ease-in-out infinite}
+#page-product .msp-tile:nth-child(2) .hx-card{animation-delay:-2.3s;animation-duration:8.5s}
+#page-product .msp-tile:nth-child(3) .hx-card{animation-delay:-4.6s;animation-duration:7.6s}
+@media(prefers-reduced-motion:reduce){#page-product .hx-card{animation:none}}
+@media(max-width:820px){#page-product .hx-stage .msp-tile:nth-child(n) .tilt{transform:none}#page-product .hx-stage .msp-tile:nth-child(2){margin-top:0}#page-product .hx-stage .grid{gap:16px}}
+</style>
+<style id="splash-v1">
+/* ---- shared splash tokens (Acme teal + three accents, as on the Product hero) ---- */
+:root{--sx-teal:#0C6B70;--sx-a1:#3FB8AF;--sx-a2:#F2994A;--sx-a3:#7C6CF2}
+@keyframes sxFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
+@media(prefers-reduced-motion:reduce){.sx-float,#page-msps .msp-collage .ui,#page-integrations .logo-cell{animation:none!important}}
+
+/* 01 Home hub diagram: colored lanes, glowing core, teal product node (visual only) */
+#page-home .hub{position:relative;background:#08090B!important;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+#page-home .hub svg g:first-of-type rect:nth-of-type(1){stroke:var(--sx-a1);fill:#16181C}
+#page-home .hub svg g:first-of-type rect:nth-of-type(2){stroke:var(--sx-a2);fill:#16181C}
+#page-home .hub svg g:first-of-type rect:nth-of-type(3){stroke:var(--sx-a3);fill:#16181C}
+#page-home .hub svg g:first-of-type rect:nth-of-type(4){stroke:#5AA9E6;fill:#16181C}
+#page-home .hub svg g:first-of-type rect:nth-of-type(5){stroke:#E36D9C;fill:#16181C}
+#page-home .hub svg g:first-of-type{fill:#F2F1EA}
+#page-home .hub svg path.flow:nth-of-type(1){stroke:var(--sx-a1)}#page-home .hub svg path.flow:nth-of-type(2){stroke:var(--sx-a2)}
+#page-home .hub svg path.flow:nth-of-type(3){stroke:var(--sx-a3)}#page-home .hub svg path.flow:nth-of-type(4){stroke:#5AA9E6}#page-home .hub svg path.flow:nth-of-type(5){stroke:#E36D9C}
+#page-home .hub svg path.flow{stroke-width:1.8}
+#page-home .hub svg circle{stroke:#7FD6CF}
+#page-home .hub svg>rect:last-of-type,#page-home .hub svg g:last-of-type rect{fill:var(--sx-teal);stroke:#7FD6CF}
+#page-home .logo-track a img{filter:none!important;opacity:1!important}
+#page-home .logo-track a{color:#3A3D44!important;opacity:1!important}
+
+/* 02 MSP hero tiles: branded headers, colored chips, glow, float */
+#page-msps .msp-collage{position:relative}
+#page-msps .msp-collage:before{content:"";position:absolute;inset:-30px 0 -20px;z-index:0;pointer-events:none;background:radial-gradient(35% 60% at 20% 55%,rgba(63,184,175,.30),transparent 70%),radial-gradient(30% 55% at 50% 45%,rgba(242,153,74,.22),transparent 70%),radial-gradient(35% 60% at 80% 55%,rgba(124,108,242,.24),transparent 70%);filter:blur(8px)}
+#page-msps .msp-collage .grid{position:relative;z-index:1}
+#page-msps .msp-collage .ui{background:#fff!important;border:1px solid rgba(23,24,28,.14)!important;box-shadow:0 30px 60px -22px rgba(12,40,44,.45),0 8px 18px -8px rgba(20,24,30,.18)!important;animation:sxFloat 7s ease-in-out infinite}
+#page-msps .msp-collage .msp-tile:nth-child(2) .ui{animation-duration:8.5s;animation-delay:-2.3s}#page-msps .msp-collage .msp-tile:nth-child(3) .ui{animation-duration:7.6s;animation-delay:-4.6s}
+#page-msps .msp-collage .ui .uh{background:linear-gradient(120deg,var(--sx-teal) 0%,var(--sx-teal) 64%,#0A3F43 100%);color:#fff!important;font-family:Inter,system-ui,sans-serif!important;border:0!important}
+#page-msps .msp-collage .msp-tile:nth-child(1) .chip.on{background:#E4F2F0;color:var(--sx-teal);border-color:transparent}
+#page-msps .msp-collage .msp-tile:nth-child(1) .rrow:nth-child(1) .chip.on{background:#FDE3E1;color:#B4231A}
+#page-msps .msp-collage .msp-tile:nth-child(1) .rrow:nth-child(2) .chip.on{background:#FDEBD8;color:#A85413}
+#page-msps .msp-collage .msp-tile:nth-child(1) .rrow:nth-child(3) .chip.on{background:#EEEBFE;color:#4B3CC4}
+#page-msps .msp-collage .dig-k{color:var(--sx-teal)!important;font-weight:600}
+#page-msps .msp-collage table.bt td:nth-child(2){font-weight:650;color:#4B3CC4}
+#page-msps .msp-collage table.bt th{color:#6B6E75}
+
+/* 03 Use cases: saturated brand gradients */
+#page-use-cases .uc-visual{background:linear-gradient(135deg,#0C6B70,#3FB8AF)!important}
+#page-use-cases .uc-scene:nth-child(2) .uc-visual{background:linear-gradient(135deg,#4B3CC4,#7C6CF2)!important}
+#page-use-cases .uc-scene:nth-child(3) .uc-visual{background:linear-gradient(135deg,#D9731F,#F2994A)!important}
+#page-use-cases .uc-scene:nth-child(4) .uc-visual{background:linear-gradient(135deg,#1F6AA5,#5AA9E6)!important}
+#page-use-cases .uc-scene:nth-child(5) .uc-visual{background:linear-gradient(135deg,#A8335F,#E36D9C)!important}
+#page-use-cases .uc-scene:nth-child(6) .uc-visual{background:linear-gradient(135deg,#0C6B70,#4B3CC4)!important}
+#page-use-cases .uc-visual svg{background:#fff;border-radius:18px;padding:10px 14px;box-shadow:0 12px 26px -8px rgba(0,0,0,.35);box-sizing:content-box}
+#page-use-cases .uc-card{box-shadow:0 26px 50px -26px rgba(12,40,44,.45),0 6px 14px -8px rgba(20,24,30,.16)!important}
+
+/* 04 Connectors: clean logo tiles like the app's Choose a tool grid (fl-t3), real logos full color */
+#page-integrations .grid9{border:0!important;background:none!important;box-shadow:none!important;gap:14px!important}
+#page-integrations .grid9>.cell{background:#fff!important;border:1px solid #E6E7EA!important;border-radius:14px!important;box-shadow:0 1px 2px rgba(17,24,39,.04);display:flex!important;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:30px 18px 24px!important;transition:border-color .15s,box-shadow .15s,transform .15s}
+#page-integrations .grid9>.cell:hover{border-color:#C9CBD0!important;box-shadow:0 10px 24px rgba(17,24,39,.10);transform:translateY(-2px)}
+#page-integrations .logo-cell img{width:auto!important;height:56px!important;max-width:150px;object-fit:contain;filter:none!important;opacity:1!important}
+#page-integrations .logo-cell b{font-size:16.5px;font-weight:750;letter-spacing:-.01em;color:#17181C}
+#page-integrations .logo-cell .cat{font-size:12px;color:#6b6e76;font-weight:600;background:none!important}
+@media(prefers-reduced-motion:reduce){#page-integrations .grid9>.cell{transition:none}#page-integrations .grid9>.cell:hover{transform:none}}
+
+/* ---- glow-only wins (no new art): colored halo shadows, varied mix ---- */
+/* 06 MSP value screenshots */
+#page-msps .vsplit .ui{box-shadow:-40px 30px 90px -10px rgba(63,184,175,.38),40px -20px 90px -10px rgba(90,169,230,.30),0 18px 40px -24px rgba(23,24,28,.35)!important}
+#page-msps .vsplit.rev .ui{box-shadow:40px 30px 90px -10px rgba(242,153,74,.34),-40px -20px 90px -10px rgba(227,109,156,.26),0 18px 40px -24px rgba(23,24,28,.35)!important}
+/* 08 About story cards: cool teal and blue */
+#page-about .ab-chapter{box-shadow:-30px 20px 80px -14px rgba(63,184,175,.32),30px 20px 80px -14px rgba(90,169,230,.26),0 10px 24px -16px rgba(23,24,28,.3)!important}
+
+#page-integrations [data-connector=pax8] img{filter:none!important;opacity:1!important;mix-blend-mode:normal!important}
+
+.hx-stage{position:relative;max-width:1180px}
+.hx-glow{position:absolute;inset:-40px -20px -30px;z-index:0;pointer-events:none;background:radial-gradient(40% 60% at 22% 55%,rgba(63,184,175,.30),transparent 70%),radial-gradient(35% 55% at 52% 40%,rgba(242,153,74,.22),transparent 70%),radial-gradient(40% 60% at 80% 60%,rgba(124,108,242,.24),transparent 70%);filter:blur(8px)}
+.hx-stage .grid{position:relative;z-index:1;gap:22px;align-items:start}
+.hx-card{background:#fff;border:1px solid rgba(23,24,28,.14);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -22px rgba(12,40,44,.45),0 8px 18px -8px rgba(20,24,30,.18);text-align:left;font-family:Inter,system-ui,sans-serif;color:#17191C}
+.hx-band{display:flex;align-items:center;gap:9px;padding:13px 16px;color:#fff;background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 64%,#0A3F43 100%);font-size:14px}
+.hx-a{width:24px;height:24px;border-radius:6px;background:#fff;color:#0C6B70;display:grid;place-items:center;font-weight:700;font-size:13px}
+.hx-tag{margin-left:auto;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--acc);color:#10181A}
+.hx-body{padding:16px 16px 18px}
+.hx-h{margin:0 0 12px;font-weight:650;font-size:15px}
+.hx-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hx-tool{position:relative;border:1px solid #E6E7EA;border-radius:11px;padding:12px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.hx-tool img{height:30px;width:auto;max-width:80px;object-fit:contain}
+.hx-tool b{font-size:12.5px}.hx-tool small{font-size:11px;color:#6B6E75}
+.hx-tool.on{border:2px solid #0C6B70;background:#F0F8F7;padding:11px 5px 9px}
+.hx-tick{position:absolute;top:5px;right:5px;width:16px;height:16px;border-radius:50%;background:#0C6B70;color:#fff;font-size:10px;font-style:normal;display:grid;place-items:center}
+.hx-ok{font-size:10.5px;font-weight:600;color:#0C6B70}
+.hx-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #EFEDE7;font-size:14px}
+.hx-sev{font-size:11.5px;font-weight:650;padding:3px 10px;border-radius:999px}
+.hx-sev.crit{background:#FDE3E1;color:#B4231A}.hx-sev.high{background:#FDEBD8;color:#A85413}.hx-sev.low{background:#E4F2F0;color:#0C6B70}
+.hx-route{margin:10px 0 0;font-size:12px;color:#5C5F66;display:flex;align-items:center;gap:6px}
+.hx-bill{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid #EFEDE7;font-size:14px}
+.hx-q{display:flex;align-items:center;gap:6px;font-size:13px}.hx-q s{color:#8A8C92}.hx-q i{font-style:normal;color:#7C6CF2}
+.hx-q b{background:#EEEBFE;color:#4B3CC4;padding:2px 8px;border-radius:999px;font-weight:650}
+.hx-dot{width:7px;height:7px;border-radius:50%;background:#3FB8AF}
+.hx-note{position:relative;z-index:1;margin:14px auto 0;width:max-content;font:11px Inter,system-ui,sans-serif;color:#8A8C92;background:#FFFEFA;border:1px solid #E5E0D4;border-radius:999px;padding:2px 10px}
+@keyframes hxFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+.hx-card{animation:hxFloat 7s ease-in-out infinite}
+.sx-tile:nth-child(2) .hx-card{animation-delay:-2.3s;animation-duration:8.5s}
+.sx-tile:nth-child(3) .hx-card{animation-delay:-4.6s;animation-duration:7.6s}
+@media(prefers-reduced-motion:reduce){.hx-card{animation:none}}
+@media(max-width:820px){.hx-stage .grid{gap:16px}}
+
+.sx-hero{padding-top:72px;padding-bottom:64px}
+.sx-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+.sx-hero .sub{max-width:640px;margin:0 auto}
+.sx-stage{position:relative;max-width:1180px;margin:36px auto 0;padding:0 20px}
+.sx-glow{position:absolute;inset:-40px -10px -30px;z-index:0;pointer-events:none;background:radial-gradient(40% 60% at 22% 55%,rgba(63,184,175,.30),transparent 70%),radial-gradient(35% 55% at 52% 40%,rgba(242,153,74,.22),transparent 70%),radial-gradient(40% 60% at 80% 60%,rgba(124,108,242,.24),transparent 70%);filter:blur(8px)}
+.sx-row{position:relative;z-index:1;display:grid;gap:22px;align-items:start}
+.sx-row.n3{grid-template-columns:repeat(3,1fr)}.sx-row.n2{grid-template-columns:1.1fr 1fr}.sx-row.n1{grid-template-columns:1fr}
+.sx-row.n3 .sx-tile:nth-child(1) .sx-tilt{transform:rotate(-2deg) translateX(14px)}
+.sx-row.n3 .sx-tile:nth-child(2){margin-top:26px;position:relative;z-index:2}
+.sx-row.n3 .sx-tile:nth-child(3) .sx-tilt{transform:rotate(2deg) translateX(-14px)}
+.sx-row.n2 .sx-tile:nth-child(1) .sx-tilt{transform:rotate(-1.5deg)}
+.sx-row.n2 .sx-tile:nth-child(2){margin:60px 0 0 -60px;position:relative;z-index:2}
+.sx-row.n2 .sx-tile:nth-child(2) .sx-tilt{transform:rotate(1.5deg)}
+.sx-row.n1 .sx-tilt{transform:rotate(-1deg)}
+.sx-sec{padding:72px 0}
+.sx-split{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:center}
+.sx-split.rev .sx-copy{order:2}.sx-split.solo{grid-template-columns:1fr;max-width:720px}
+.sx-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,42px);line-height:1.05;margin:10px 0 12px}
+.sx-art .sx-stage{margin:0;padding:0}.sx-art .hx-note{display:none}
+/* varied glow mixes per section */
+.sx-sec:nth-of-type(odd) .sx-glow{background:radial-gradient(45% 55% at 30% 40%,rgba(63,184,175,.32),transparent 70%),radial-gradient(40% 50% at 75% 70%,rgba(90,169,230,.24),transparent 70%)}
+.sx-sec:nth-of-type(even) .sx-glow{background:radial-gradient(45% 55% at 70% 35%,rgba(242,153,74,.28),transparent 70%),radial-gradient(40% 50% at 25% 70%,rgba(124,108,242,.24),transparent 70%)}
+/* extra mini-UI parts */
+.hx-steps{list-style:none;margin:0 0 12px;padding:0;display:flex;gap:5px;flex-wrap:wrap}
+.hx-steps li{font-size:10.5px;border:1px solid #E5E0D4;border-radius:999px;padding:2px 7px;color:#6B6E75}.hx-steps li b{margin-right:3px}
+.hx-steps li.on{border-color:#0C6B70;color:#0C6B70;font-weight:600}.hx-steps li.done{background:#E4F2F0;color:#0C6B70;border-color:transparent}
+.hx-sev.info{background:#EEEBFE;color:#4B3CC4}
+.hx-conn{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #EFEDE7}
+.hx-lg{width:34px;height:34px;border-radius:9px;border:1px solid #E6E7EA;display:grid;place-items:center;background:#fff}.hx-lg img{max-width:24px;max-height:24px}
+.hx-cn{display:flex;flex-direction:column;min-width:0}.hx-cn b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hx-cn small{font-size:11.5px;color:#6B6E75}
+.hx-log div{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:8px 0;border-top:1px solid #EFEDE7;font-size:13px}.hx-log time{font-family:var(--mono);font-size:11.5px;color:#0C6B70}
+.hx-code{margin:0;font:12px/1.55 var(--mono);background:#0E1A1B;color:#D8E6E4;border-radius:10px;padding:14px;white-space:pre;overflow:hidden}.hx-code .k{color:#7FD6CF}.hx-code .ok{color:#C6F04D}
+.hx-err{border:1px solid #F4C7C2;background:#FDF1EF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.hx-err b{font-family:var(--mono);font-size:12.5px;color:#B4231A}.hx-err span{font-size:13px}
+.hx-mini{border:1px solid #E6E7EA;border-radius:12px;overflow:hidden}.hx-mini-band{display:flex;align-items:center;gap:8px;padding:16px;color:#fff;font-weight:600;font-size:14px;background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 62%,#000 62%)}
+.hx-sw{display:flex;align-items:center;gap:6px;padding:12px 14px;font-size:12px;color:#5C5F66}.hx-sw i{width:22px;height:22px;border-radius:6px;border:1px solid #E5E0D4}.hx-sw span{margin-left:auto}
+.sx-quotes{display:grid;grid-template-columns:1fr 1fr;gap:28px;position:relative}
+.sx-q{margin:0;padding:26px 28px;border-top:5px solid #F2994A}.sx-q.q2{border-top-color:#7C6CF2;transform:translateY(24px)}
+.sx-q p{font-family:var(--serif);font-size:22px;line-height:1.25;margin:0 0 12px}.sx-q cite{font-style:normal;font-size:12.5px;color:#6B6E75}
+@media(prefers-reduced-motion:reduce){.hx-card{animation:none}}
+@media(max-width:820px){.hx-stage .grid{gap:16px}}
+
+.sx-hero{padding-top:72px;padding-bottom:64px}
+.sx-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+.sx-hero .sub{max-width:640px;margin:0 auto}
+.sx-stage{position:relative;max-width:1180px;margin:36px auto 0;padding:0 20px}
+.sx-glow{position:absolute;inset:-40px -10px -30px;z-index:0;pointer-events:none;background:radial-gradient(40% 60% at 22% 55%,rgba(63,184,175,.30),transparent 70%),radial-gradient(35% 55% at 52% 40%,rgba(242,153,74,.22),transparent 70%),radial-gradient(40% 60% at 80% 60%,rgba(124,108,242,.24),transparent 70%);filter:blur(8px)}
+.sx-row{position:relative;z-index:1;display:grid;gap:22px;align-items:start}
+.sx-row.n3{grid-template-columns:repeat(3,1fr)}.sx-row.n2{grid-template-columns:1.1fr 1fr}.sx-row.n1{grid-template-columns:1fr}
+.sx-row.n3 .sx-tile:nth-child(1) .sx-tilt{transform:rotate(-2deg) translateX(14px)}
+.sx-row.n3 .sx-tile:nth-child(2){margin-top:26px;position:relative;z-index:2}
+.sx-row.n3 .sx-tile:nth-child(3) .sx-tilt{transform:rotate(2deg) translateX(-14px)}
+.sx-row.n2 .sx-tile:nth-child(1) .sx-tilt{transform:rotate(-1.5deg)}
+.sx-row.n2 .sx-tile:nth-child(2){margin:60px 0 0 -60px;position:relative;z-index:2}
+.sx-row.n2 .sx-tile:nth-child(2) .sx-tilt{transform:rotate(1.5deg)}
+.sx-row.n1 .sx-tilt{transform:rotate(-1deg)}
+.sx-sec{padding:72px 0}
+.sx-split{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:center}
+.sx-split.rev .sx-copy{order:2}.sx-split.solo{grid-template-columns:1fr;max-width:720px}
+.sx-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,42px);line-height:1.05;margin:10px 0 12px}
+.sx-art .sx-stage{margin:0;padding:0}.sx-art .hx-note{display:none}
+/* varied glow mixes per section */
+.sx-sec:nth-of-type(odd) .sx-glow{background:radial-gradient(45% 55% at 30% 40%,rgba(63,184,175,.32),transparent 70%),radial-gradient(40% 50% at 75% 70%,rgba(90,169,230,.24),transparent 70%)}
+.sx-sec:nth-of-type(even) .sx-glow{background:radial-gradient(45% 55% at 70% 35%,rgba(242,153,74,.28),transparent 70%),radial-gradient(40% 50% at 25% 70%,rgba(124,108,242,.24),transparent 70%)}
+/* extra mini-UI parts */
+.hx-steps{list-style:none;margin:0 0 12px;padding:0;display:flex;gap:5px;flex-wrap:wrap}
+.hx-steps li{font-size:10.5px;border:1px solid #E5E0D4;border-radius:999px;padding:2px 7px;color:#6B6E75}.hx-steps li b{margin-right:3px}
+.hx-steps li.on{border-color:#0C6B70;color:#0C6B70;font-weight:600}.hx-steps li.done{background:#E4F2F0;color:#0C6B70;border-color:transparent}
+.hx-sev.info{background:#EEEBFE;color:#4B3CC4}
+.hx-conn{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #EFEDE7}
+.hx-lg{width:34px;height:34px;border-radius:9px;border:1px solid #E6E7EA;display:grid;place-items:center;background:#fff}.hx-lg img{max-width:24px;max-height:24px}
+.hx-cn{display:flex;flex-direction:column;min-width:0}.hx-cn b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hx-cn small{font-size:11.5px;color:#6B6E75}
+.hx-log div{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:8px 0;border-top:1px solid #EFEDE7;font-size:13px}.hx-log time{font-family:var(--mono);font-size:11.5px;color:#0C6B70}
+.hx-code{margin:0;font:12px/1.55 var(--mono);background:#0E1A1B;color:#D8E6E4;border-radius:10px;padding:14px;white-space:pre;overflow:hidden}.hx-code .k{color:#7FD6CF}.hx-code .ok{color:#C6F04D}
+.hx-err{border:1px solid #F4C7C2;background:#FDF1EF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.hx-err b{font-family:var(--mono);font-size:12.5px;color:#B4231A}.hx-err span{font-size:13px}
+.hx-mini{border:1px solid #E6E7EA;border-radius:12px;overflow:hidden}.hx-mini-band{display:flex;align-items:center;gap:8px;padding:16px;color:#fff;font-weight:600;font-size:14px;background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 62%,#000 62%)}
+.hx-sw{display:flex;align-items:center;gap:6px;padding:12px 14px;font-size:12px;color:#5C5F66}.hx-sw i{width:22px;height:22px;border-radius:6px;border:1px solid #E5E0D4}.hx-sw span{margin-left:auto}
+.sx-quotes{display:grid;grid-template-columns:1fr 1fr;gap:28px;position:relative}
+.sx-q{margin:0;padding:26px 28px;border-top:5px solid #F2994A}.sx-q.q2{border-top-color:#7C6CF2;transform:translateY(24px)}
+.sx-q p{font-family:var(--serif);font-size:22px;line-height:1.25;margin:0 0 12px}.sx-q cite{font-style:normal;font-size:12.5px;color:#6B6E75}
+/* solutions index */
+.sx-pstage{position:relative;margin-top:28px}
+.sx-pcs{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sx-pc{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(23,24,28,.12);border-radius:16px;overflow:visible;text-decoration:none;color:#17191C;box-shadow:0 26px 60px -22px color-mix(in srgb,var(--acc) 70%,transparent),0 8px 18px -10px rgba(20,24,30,.22);transition:transform .2s}
+.sx-pc:hover{transform:translateY(-4px)}
+.sx-ph{position:relative;display:block}.sx-ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px 16px 0 0}
+.sx-ph:after{content:"";position:absolute;inset:0;border-radius:16px 16px 0 0;background:linear-gradient(180deg,transparent 40%,color-mix(in srgb,var(--acc) 45%,transparent))}
+.sx-chip{position:absolute;z-index:1;right:-10px;bottom:-16px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(23,24,28,.14);border-radius:12px;padding:8px 12px 8px 8px;box-shadow:0 14px 28px -10px rgba(12,40,44,.45);font-size:12px;transform:rotate(-2deg)}
+.sx-chip .hx-a{background:#0C6B70;color:#fff;width:24px;height:24px}.sx-chip b{font-size:12px}.sx-chip small{color:#6B6E75;border-left:2px solid var(--acc);padding-left:7px}
+.sx-pb{display:flex;flex-direction:column;gap:6px;padding:26px 18px 18px}.sx-pb b{font-family:var(--serif);font-weight:400;font-size:22px}.sx-pb small{font-size:14px;color:#5C5F66}
+@media(prefers-reduced-motion:reduce){.hx-card{animation:none!important}.sx-pc{transition:none}}
+@media(max-width:820px){
+ .sx-row.n3,.sx-row.n2{grid-template-columns:1fr}.sx-row .sx-tile:nth-child(n) .sx-tilt{transform:none!important}.sx-row .sx-tile:nth-child(n){margin:0!important}
+ .sx-split,.sx-split.rev{grid-template-columns:1fr;gap:28px}.sx-split.rev .sx-copy{order:0}
+ .sx-pcs{grid-template-columns:1fr 1fr;gap:16px}.sx-quotes{grid-template-columns:1fr}.sx-q.q2{transform:none}.sx-sec{padding:44px 0}.sx-hero{padding-top:36px}
+ .sx-chip{right:6px}}
+@media(max-width:480px){.sx-pcs{grid-template-columns:1fr}}
+
+/* shared */
+.sx-head{max-width:720px;margin-bottom:28px}.sx-head h2,.sx-two h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,42px);line-height:1.05;margin:10px 0 12px}
+.sx-tgrid{display:grid;gap:36px 48px}.sx-tgrid.c3{grid-template-columns:repeat(3,1fr)}.sx-tgrid.c2{grid-template-columns:1fr 1fr}
+.sx-t h3{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;margin:10px 0 8px}.sx-t p{margin:0;color:#5C5F66;font-size:15.5px;line-height:1.55}
+.sx-t{border-top:1px solid #E1DCCF;padding-top:18px}
+@keyframes sxF{0%,100%{translate:0 0}50%{translate:0 -6px}}
+/* product teams */
+.sx-ph-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.sx-phero h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5vw,62px);line-height:1.02;margin:8px 0 14px}
+.sx-shot{position:relative}.sx-shot:before{content:"";position:absolute;inset:-40px;z-index:-1;filter:blur(10px);background:radial-gradient(45% 50% at 35% 40%,rgba(63,184,175,.30),transparent 70%),radial-gradient(40% 45% at 75% 75%,rgba(124,108,242,.26),transparent 70%)}
+.sx-shot img{width:100%;display:block;animation:sxF 9s ease-in-out infinite}
+.sx-band{background:#FBFAF6;border-top:1px solid #EAE5D9;border-bottom:1px solid #EAE5D9}
+.sx-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
+.sx-fs{background:#fff;border:1px solid #E6E7EA;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:0 10px 24px -18px rgba(12,40,44,.4)}
+.sx-fs b{width:26px;height:26px;border-radius:50%;background:#E4F2F0;color:#0C6B70;display:grid;place-items:center;font-size:13px}
+.sx-fs span{font-weight:650}.sx-fs small{color:#6B6E75;font-size:12.5px}
+.sx-fs.on{border:2px solid #0C6B70}.sx-fs.on b{background:#0C6B70;color:#fff}
+.sx-flowcard{max-width:520px;margin:24px 0 0;transform:rotate(-1deg)}
+/* engineering */
+.sx-dark{background:#0B1213;color:#EDECE6;padding:84px 0 96px;position:relative;overflow:hidden}
+.sx-dark:before{content:"";position:absolute;inset:auto 10% -30% 10%;height:70%;filter:blur(30px);background:radial-gradient(40% 60% at 35% 50%,rgba(63,184,175,.35),transparent 70%),radial-gradient(35% 55% at 70% 50%,rgba(90,169,230,.25),transparent 70%)}
+.sx-dark h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5vw,62px);margin:8px 0 14px}.sx-dark .sub,.sx-dark .kicker{color:#A9B3B1}
+.sx-apistage{position:relative;max-width:860px;margin:44px auto 0;text-align:left}
+.sx-term{background:#0E1A1B;border:1px solid #1F3436;border-radius:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden}
+.sx-term-h{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid #1F3436;font:12px var(--mono);color:#7FA19E}
+.sx-term-h i{width:10px;height:10px;border-radius:50%;background:#2A4446}.sx-term-h span{margin-left:8px}
+.sx-term pre{margin:0;padding:20px 22px;font:13.5px/1.6 var(--mono);color:#D8E6E4;white-space:pre;overflow:auto}
+.sx-term .k{color:#7FD6CF}.sx-term .ok{color:#C6F04D}.sx-term .c{color:#5E7C79}
+.sx-refuse{position:absolute;right:-60px;bottom:-40px;width:340px;background:#fff;color:#17191C;border-radius:14px;border:1px solid rgba(23,24,28,.15);box-shadow:0 30px 60px -20px rgba(0,0,0,.6);overflow:hidden;transform:rotate(1.5deg);animation:sxF 8s ease-in-out infinite}
+.sx-refuse .sx-term-h{color:#5C5F66;border-color:#EFEDE7;background:#FAF8F3}
+.sx-r-b{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center}.sx-r-b code{font:12.5px var(--mono);color:#B4231A}.sx-r-b p{grid-column:1/-1;margin:0;font-size:13.5px}
+.sx-pain{max-width:900px}.sx-big{font-family:var(--serif);font-size:clamp(24px,2.8vw,34px);line-height:1.2;margin:12px 0 0}
+/* go to market */
+.sx-sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:36px}
+.sx-shero h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5vw,62px);line-height:1.02;margin:8px 0 0}
+.sx-board,.sx-health{background:#fff;border:1px solid rgba(23,24,28,.12);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -36px rgba(75,60,196,.45),0 10px 22px -12px rgba(20,24,30,.2)}
+.sx-health{box-shadow:0 40px 80px -36px rgba(12,107,112,.5),0 10px 22px -12px rgba(20,24,30,.2)}
+.sx-board-h{display:flex;align-items:center;gap:10px;padding:14px 18px;background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 70%,#0A3F43);color:#fff;font-size:14px}
+.sx-board-h>span:not(.hx-a){opacity:.85}.sx-board-h small{margin-left:auto;font-size:11px;opacity:.75}
+.sx-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px;background:#FAF8F3}
+.sx-col p{margin:0 0 10px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;color:#5C5F66}.sx-col p small{color:#9A9CA2}
+.sx-deal{background:#fff;border:1px solid #E6E7EA;border-radius:10px;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:4px}
+.sx-deal b{font-size:13.5px}.sx-deal>span{font-size:12.5px;color:#6B6E75}
+.sx-dtag{display:inline-flex;align-items:center;gap:6px;width:max-content;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;margin-top:4px}
+.sx-dtag img{width:14px;height:14px;object-fit:contain}.sx-dtag.ok{background:#E4F2F0;color:#0C6B70}.sx-dtag.wait{background:#FDEBD8;color:#A85413}.sx-dtag.lost{background:#F1F0EC;color:#6B6E75}
+.sx-quotes2{display:grid;grid-template-columns:1fr 1fr;gap:56px}.sx-quotes2 blockquote{margin:0;border-left:3px solid #F2994A;padding-left:22px}.sx-quotes2 blockquote+blockquote{border-color:#7C6CF2}
+.sx-quotes2 p{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.2;margin:0 0 12px}.sx-quotes2 cite{font-style:normal;font-size:13px;color:#6B6E75}
+.sx-logos{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.sx-lt{background:#fff;border:1px solid #E6E7EA;border-radius:14px;padding:22px 10px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.sx-lt img{height:40px;width:auto;max-width:100px;object-fit:contain}.sx-lt b{font-size:14px}.sx-lt small{font-size:11.5px;color:#6B6E75}
+/* support */
+.sx-chero h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5vw,62px);margin:8px 0 14px}.sx-chero .sub{max-width:640px;margin:0 auto 40px}
+.sx-health{max-width:1000px;margin:0 auto}
+.sx-ch,.sx-cr{display:grid;grid-template-columns:40px 1.4fr 1fr 1fr .8fr auto;gap:14px;align-items:center;padding:12px 20px}
+.sx-ch{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:#8A8C92;border-bottom:1px solid #EFEDE7}
+.sx-cr{border-bottom:1px solid #EFEDE7;font-size:14px}.sx-cr b{font-weight:600}.sx-tool,.sx-sync{color:#5C5F66;font-size:13px}.sx-link{font-size:12.5px;color:#0C6B70;font-weight:600}
+.sx-cr.open{background:#FFFBF5;border-left:3px solid #F2994A;padding-left:17px}
+.sx-exp{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.3fr;gap:16px;padding:6px 0 4px}
+.sx-perm,.sx-exp .hx-log{background:#fff;border:1px solid #EFE6D8;border-radius:12px;padding:12px 14px}
+.sx-perm p,.sx-exp .hx-log p{margin:0 0 6px;font-weight:650;font-size:13px}.sx-perm div{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid #EFEDE7;font-size:13px}
+.sx-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+/* solutions index: plain cards, chip beside the text */
+.sx-pcs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:28px}
+.sx-pc{display:flex;flex-direction:column;background:var(--card,#FBFBF8);border:1px solid #E5E0D4;border-radius:14px;overflow:hidden;text-decoration:none;color:#17191C;transition:transform .2s,box-shadow .2s}
+.sx-pc:hover{transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(23,24,28,.4)}
+.sx-pc>img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.sx-pb{display:flex;flex-direction:column;gap:6px;padding:16px 16px 18px;flex:1}.sx-pb>b{font-family:var(--serif);font-weight:400;font-size:22px}.sx-pb>small{font-size:14px;color:#5C5F66}
+.sx-chip{margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:8px;font-size:12px}
+.sx-chip .hx-a{background:#0C6B70;color:#fff;width:22px;height:22px;font-size:12px}.sx-chip b{font-size:12px}.sx-chip small{color:#6B6E75;border-left:1px solid #D9D4C8;padding-left:8px}
+@media(prefers-reduced-motion:reduce){.sx-shot img,.sx-refuse{animation:none}.sx-pc{transition:none}}
+@media(max-width:820px){
+ .sx-ph-grid,.sx-sh-grid,.sx-two,.sx-quotes2,.sx-tgrid.c3,.sx-tgrid.c2{grid-template-columns:1fr;gap:28px}
+ .sx-flow{grid-template-columns:1fr}.sx-flowcard{transform:none}
+ .sx-refuse{position:relative;right:auto;bottom:auto;width:auto;margin:-24px 12px 0;transform:none}
+ .sx-term pre{font-size:11px;padding:14px}
+ .sx-cols{grid-template-columns:1fr 1fr}.sx-logos{grid-template-columns:repeat(2,1fr)}
+ .sx-ch{display:none}.sx-cr{grid-template-columns:36px 1fr auto;gap:8px 10px}.sx-tool,.sx-sync,.sx-link{grid-column:2/-1}.sx-exp{grid-template-columns:1fr}
+ .sx-pcs{grid-template-columns:1fr 1fr;gap:14px}.sx-dark{padding:48px 0 56px}}
+@media(max-width:480px){.sx-pcs{grid-template-columns:1fr}.sx-cols{grid-template-columns:1fr}}
+.sx-pc{box-shadow:none;overflow:hidden}.sx-pc:hover{box-shadow:0 14px 30px -20px rgba(23,24,28,.4)}
+.sx-pcs .sx-chip{position:static!important;transform:none!important;background:none!important;border:0!important;box-shadow:none!important;padding:12px 0 0!important;right:auto!important;bottom:auto!important;border-top:1px solid #ECE7DC!important;margin-top:auto}
+.sx-cr .hx-sev{width:max-content}
+.sx-pcs .sx-chip b{font-family:Inter,system-ui,sans-serif!important;font-size:12px!important;font-weight:650!important}.sx-pcs .sx-chip small{white-space:nowrap;border-top:0!important}
+.sx-pcs .sx-chip2{margin-top:auto;display:flex;align-items:center;gap:7px;max-width:100%;width:max-content;box-sizing:border-box;border:1px solid #E1DCCF;background:#fff;border-radius:999px;padding:4px 11px 4px 5px;font:12px/1.2 Inter,system-ui,sans-serif;color:#17191C;white-space:nowrap;overflow:hidden}
+.sx-pcs .sx-pb{gap:6px}.sx-pcs .sx-pb>small{margin-bottom:14px}
+.sx-chip2 svg{flex:none;width:20px;height:20px;padding:3px;box-sizing:border-box;border-radius:50%;background:#0C6B70;stroke:#fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sx-chip2 em{font-style:normal;font-weight:650;letter-spacing:0}
+.sx-chip2 span{color:#6B6E75;overflow:hidden;text-overflow:ellipsis;border-left:1px solid #E1DCCF;padding-left:7px}
+.sx-workart{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:36px 0 8px}
+.sx-workart .sx-stage{margin:0;padding:0}.sx-workart .hx-note{display:none}
+.sx-workart .sx-row.n2 .sx-tile:nth-child(2){margin:44px 0 0 -40px}
+.sx-tg{width:34px;height:20px;border-radius:999px;background:#D9D4C8;position:relative;flex:none}.sx-tg i{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.sx-tg.on{background:#0C6B70}.sx-tg.on i{left:16px}
+.sx-work{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.sx-w{background:#fff;border:1px solid #E6E7EA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;border-left:3px solid #0C6B70}
+.sx-w b{font-size:14.5px}.sx-w span{font-size:13px;color:#5C5F66;line-height:1.45}
+.sx-w:nth-child(4n+2){border-left-color:#F2994A}.sx-w:nth-child(4n+3){border-left-color:#7C6CF2}.sx-w:nth-child(4n){border-left-color:#5AA9E6}
+@media(max-width:820px){.sx-workart{grid-template-columns:1fr}.sx-work{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.sx-work{grid-template-columns:1fr}}
+.sx-workart .hx-band{white-space:nowrap}.sx-workart .hx-band b{overflow:hidden;text-overflow:ellipsis}
+
+@media(max-width:840px){.drop .panel{position:static!important;box-shadow:none!important;width:auto!important}}.sx-caret{font-size:.7em;margin-left:2px;opacity:.6}.sx-dd-sep{display:block;height:1px;background:var(--hair,#E5E0D4);margin:6px 0}
+</style>
+<style id="product-glow">
+#page-product .vsplit .msp-shot{position:relative;isolation:isolate}
+#page-product .vsplit .msp-shot:before{content:"";position:absolute;inset:-48px -36px;z-index:-1;pointer-events:none;filter:blur(14px);background:radial-gradient(45% 55% at 70% 35%,rgba(242,153,74,0.38),transparent 70%),radial-gradient(40% 50% at 25% 70%,rgba(227,109,156,0.29),transparent 70%)}
+#page-product .vsplit.rev .msp-shot:before{background:radial-gradient(45% 55% at 30% 40%,rgba(63,184,175,0.42),transparent 70%),radial-gradient(40% 50% at 75% 70%,rgba(90,169,230,0.32),transparent 70%)}
+#page-product #s3 .vsplit .msp-shot:before,#page-product #s7 .vsplit .msp-shot:before{background:radial-gradient(45% 55% at 30% 60%,rgba(63,184,175,0.38),transparent 70%),radial-gradient(40% 50% at 72% 30%,rgba(124,108,242,0.29),transparent 70%)}
+#page-product #s4 .vsplit .msp-shot:before,#page-product #s8 .vsplit .msp-shot:before{background:radial-gradient(45% 55% at 68% 62%,rgba(242,153,74,0.35),transparent 70%),radial-gradient(40% 50% at 28% 30%,rgba(124,108,242,0.26),transparent 70%)}
+</style>
+<style id="msp-recon">
+#v3 .ui{font-family:Inter,system-ui,sans-serif}
+#v3 .ui .uh{background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 64%,#0A3F43 100%);color:#fff;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:12.5px;border-bottom:0}
+#v3 .ui .uh span:last-child{opacity:.8;font-weight:400}
+#v3 table.bt{font-family:Inter,system-ui,sans-serif}
+#v3 table.bt th{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#6B6E75}
+#v3 table.bt td{color:#3A3D44}
+#v3 table.bt td:first-child{font-weight:650;color:#17191C}
+#v3 .svc{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+#v3 tr.dev .svc{background:#E4F2F0;color:#0C6B70}#v3 tr.usr .svc{background:#EEEBFE;color:#4B3CC4}
+#v3 td.cur{font-weight:650;color:#17191C}
+#v3 td.cur .u,#v3 td.pk .u{font-weight:500;color:#6B6E75}
+#v3 td.pk>span.pkv{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:650}
+#v3 tr.dev td.pk>span.pkv{background:#E4F2F0;color:#0C6B70}#v3 tr.usr td.pk>span.pkv{background:#EEEBFE;color:#4B3CC4}
+v3 tr.dev td.pk .u,#v3 tr.usr td.pk .u{color:inherit;font-weight:500}
+#v3 td.pk,#v3 td.cur{white-space:nowrap}#v3 td.pk>span.pkv{padding:1px 7px}#v3 table.bt td:first-child{max-width:130px}
 </style>
 </head>
 <body>
@@ -677,17 +1339,19 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
     <a class="brand" href="#home" data-nav="home"><svg class="mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><path d="M4.5 7.2C12 7.2 15.2 16 22.4 16"/><path d="M4.5 11.6C11.2 11.6 15 16 22.4 16"/><path d="M4.5 16C12 16 16 16 22.4 16"/><path d="M4.5 20.4C11.2 20.4 15 16 22.4 16"/><path d="M4.5 24.8C12 24.8 15.2 16 22.4 16"/></g><circle cx="24.3" cy="16" r="1.25" fill="currentColor"/></svg> bitlync</a>
     <nav class="main" id="mainNav">
       <a href="#home" data-nav="home" class="on">Home</a>
+      <a href="#product" data-nav="product">Product</a>
       <div class="drop" id="solDrop">
-        <a href="#solutions" data-nav="solutions" data-sol-toggle="1">Solutions</a>
+        <a href="#solutions/product" data-nav="solutions" data-sol-toggle="1" aria-haspopup="true" aria-expanded="false">Solutions <span class="sx-caret" aria-hidden="true">&#9662;</span></a>
         <div class="panel">
           <div class="panel-in">
             <p class="roles-label">By persona</p>
             <div class="sol-rows">
-              <a href="#solutions/product" data-nav="solutions">Product</a>
-              <a href="#solutions/developer" data-nav="solutions">Engineering</a>
-              <a href="#solutions/sales" data-nav="solutions">Go-to-market</a>
-              <a href="#solutions/customer-success" data-nav="solutions">Support</a>
-              <a href="#msps" data-nav="msps">MSPs</a>
+              <a href="#solutions/product" data-nav="solutions">Product teams</a>
+              <a href="#solutions/engineering" data-nav="solutions">Engineering</a>
+              <a href="#solutions/go-to-market" data-nav="solutions">Go to market</a>
+              <a href="#solutions/tech-and-platform-support" data-nav="solutions">Tech and platform support</a>
+              <span class="sx-dd-sep" aria-hidden="true"></span>
+              <a href="#msps" data-nav="msps">For MSPs</a>
             </div>
           </div>
         </div>
@@ -742,19 +1406,17 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         <div class="logo-track">
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
           <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
           <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
           <a href="#integrations/connectwise"><img src="logos/connectwise.png" alt="" width="20" height="20">ConnectWise</a>
           <a href="#integrations/halo"><img src="logos/halopsa.png" alt="" width="20" height="20">HaloPSA</a>
+          <a href="#integrations/superops"><img src="logos/superops.png" alt="" width="20" height="20">SuperOps</a>
           <a href="#integrations/ninjaone"><img src="logos/ninjaone.png" alt="" width="20" height="20">NinjaOne</a>
-          <a href="#integrations/datto"><img src="logos/datto.png" alt="" width="20" height="20">Datto RMM</a>
           <a href="#integrations/scalepad"><img src="logos/scalepad.png" alt="" width="20" height="20">ScalePad</a>
           <a href="#integrations/pax8"><img src="logos/pax8.png" alt="" width="20" height="20">Pax8</a>
-          <a href="#integrations/itglue"><img src="logos/itglue.png" alt="" width="20" height="20">IT Glue</a>
           <a href="#integrations/hudu"><img src="logos/hudu.png" alt="" width="20" height="20">Hudu</a>
         </div>
       </div>
@@ -828,12 +1490,12 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
           <div class="uc-face uc-back">
             <div class="uc-body">
               <h2>Billing reconciliation</h2>
-              <p class="uc-lede">Push your charges and quantities to the MSP’s agreement.</p>
+              <p class="uc-lede">Update quantities on lines the MSP matched in their agreement.</p>
               <p class="uc-eyebrow">Examples</p>
               <ul>
-                <li>Push seat count or usage onto an existing agreement line</li>
+                <li>Update seat count or usage on an existing agreement line the MSP matched</li>
                 <li>Rewrite a quantity when the count changes</li>
-                <li>End a line when they cancel the product</li>
+                <li>Send quantity 0 to stop billing. Ending a line is refused.</li>
               </ul>
             </div>
             <span class="uc-flip" aria-hidden="true">
@@ -1031,16 +1693,9 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Company custom fields</span><span class="pills"><span class="pill write">Write</span></span></li>
             <li><span class="obj-t">Agreement</span><span class="pills"><span class="pill read">Read</span></span></li>
-            <li><span class="obj-t">Billing line item</span><span class="pills"><span class="pill write">Write</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/ninjaone" data-connector="ninjaone" aria-expanded="false"><img src="logos/ninjaone.png" alt=""><b>NinjaOne</b><span class="cat">RMM</span>
-          <ul class="objs">
-            <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
-            <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/datto" data-connector="datto" aria-expanded="false"><img src="logos/datto.png" alt=""><b>Datto RMM</b><span class="cat">RMM</span>
           <ul class="objs">
             <li><span class="obj-t">Device</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Software</span><span class="pills"><span class="pill read">Read</span></span></li>
@@ -1052,21 +1707,13 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li><span class="obj-t">Initiative</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
           </ul>
         </a>
-        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8.png" alt=""><b>Pax8</b><span class="cat">Commerce</span>
+        <a class="cell logo-cell" href="#integrations/pax8" data-connector="pax8" aria-expanded="false"><img src="logos/pax8_solid.png?v=4" alt=""><b>Pax8</b><span class="cat">Commerce</span>
           <ul class="objs">
             <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
             <li><span class="obj-t">Product</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Subscription</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Invoice</span><span class="pills"><span class="pill read">Read</span></span></li>
             <li><span class="obj-t">Order</span><span class="pills"><span class="pill write">Write</span></span></li>
-          </ul>
-        </a>
-        <a class="cell logo-cell" href="#integrations/itglue" data-connector="itglue" aria-expanded="false"><img src="logos/itglue.png" alt=""><b>IT Glue</b><span class="cat">Documentation</span>
-          <ul class="objs">
-            <li><span class="obj-t">Document</span><span class="pills"><span class="pill read">Read</span><span class="pill write">Write</span></span></li>
-            <li><span class="obj-t">Company</span><span class="pills"><span class="pill read">Read</span></span></li>
-            <li><span class="obj-t">Configuration</span><span class="pills"><span class="pill read">Read</span></span></li>
-            <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
         <a class="cell logo-cell" href="#integrations/hudu" data-connector="hudu" aria-expanded="false"><img src="logos/hudu.png" alt=""><b>Hudu</b><span class="cat">Documentation</span>
@@ -1076,531 +1723,187 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
             <li><span class="obj-t">Asset</span><span class="pills"><span class="pill read">Read</span></span></li>
           </ul>
         </a>
+        <a class="cell more-cell" href="https://github.com/BitLync-Inc/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap"><b>More coming, vote on the roadmap</b></a>
       </div>
       <p class="quiet">One sync per MSP, so several products do not burn the same PSA budget.</p>
-      <p class="sub" style="margin:22px auto 0"><a class="btn ghost" href="https://github.com/BitLync-Inc/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">See the roadmap. Upvote an issue to vote.</a></p>
     </div>
   </section>
 </div>
 
-
-<div class="page" id="page-solutions">
-  <section class="pad">
-    <div class="wrap">
-      <p class="kicker">Solutions</p>
-      <h1 class="sol-h1">Who is this for.</h1>
-      <div class="sol-cards">
-        <a class="sol-card" href="#solutions/product" data-nav="solutions">
-          <img src="assets/sol-product.jpg" alt="Product">
-          <h3>Product</h3>
-          <p>Ship without parking the roadmap.</p>
-        </a>
-        <a class="sol-card" href="#solutions/developer" data-nav="solutions">
-          <img src="assets/sol-engineering.jpg" alt="Engineering">
-          <h3>Engineering</h3>
-          <p>Stop owning each vendor API.</p>
-        </a>
-        <a class="sol-card" href="#solutions/customer-success" data-nav="solutions">
-          <img src="assets/sol-support.jpg" alt="Support">
-          <h3>Support</h3>
-          <p>Fewer integration tickets.</p>
-        </a>
-        <a class="sol-card" href="#solutions/sales" data-nav="solutions">
-          <img src="assets/sol-gtm.jpg" alt="Go-to-market">
-          <h3>Go-to-market</h3>
-          <p>Don’t lose a deal to a missing integration.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
 
 <div class="page" id="page-solutions-product">
-  <section class="pad" style="padding-bottom:28px">
-    <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Product</p>
-      <h1 class="sol-h1">Ship in weeks, not quarters.</h1>
-      <p class="sub">Write to one model. We integrate the whole stack. A single integration, on its own, can take quarters.</p>
-      <div style="max-width:42rem">
-        <h2>Pain today</h2>
-        <p class="sub">Without Bitlync, each tool in the stack is its own project. Product compares fields across vendor docs. Engineering maintains another vendor library. Someone has to write the help docs for that integration and keep them current. Each tool also means a vendor relationship to maintain.</p>
-      </div>
-    </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div style="max-width:42rem">
-        <h2>One model for the stack</h2>
-        <p class="sub">You do not plan a separate project for each tool in the stack. You write to one model. We normalize to Bitlync words. The MSP still sees the names they already use.</p>
-      </div>
-      <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 360 100" role="img">
-            <text x="180" y="22" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" font-style="italic" fill="#17181C">one model</text>
-            <g fill="none" stroke="#8A8680" stroke-width="1.1" stroke-linecap="round">
-              <path d="M180 28 C 180 42, 40 50, 40 64"/>
-              <path d="M180 28 C 180 42, 110 52, 110 64"/>
-              <path d="M180 28 C 180 44, 180 54, 180 64"/>
-              <path d="M180 28 C 180 42, 250 52, 250 64"/>
-              <path d="M180 28 C 180 42, 320 50, 320 64"/>
-            </g>
-            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#6B6A64">
-              <rect x="8" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="78" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="148" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="218" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <rect x="288" y="64" width="64" height="22" rx="11" fill="#FBFBF8" stroke="#E4DFD4"/>
-              <text x="40" y="78" text-anchor="middle">ticket</text>
-              <text x="110" y="78" text-anchor="middle">project</text>
-              <text x="180" y="78" text-anchor="middle">company</text>
-              <text x="250" y="78" text-anchor="middle">device</text>
-              <text x="320" y="78" text-anchor="middle">agreement</text>
-            </g>
-          </svg>
-        </div>
-      <div style="max-width:42rem">
-        <h2>No vendor program per tool</h2>
-        <p class="sub">You do not apply to each vendor, wait on their sandbox, or sit in their approval just to ship.</p>
-
-        <h2>Branded MSP Connect</h2>
-        <p class="sub">The MSP connects in a flow branded as your product: your name, your colors, and a background pattern, solid color, or image behind it. Five steps: Choose, Connect, Configure, Map companies, Done. Vendor-specific steps sit beside the fields. We validate keys and permissions before it goes live. Map companies matches the sure ones and leaves the rest for the MSP to review; import creates the customer in your product only, never in their stack. One small “Powered by Bitlync” footer sits on every step.</p>
-      </div>
-      <div class="grid g2">
-        <div class="card">
-          <h3>Guided, in-flow</h3>
-          <p class="quiet" style="margin:0">Guides sit beside the fields. Permissions stay in the flow.</p>
-          <div class="connect-win" aria-label="Simulated connect flow">
-        <p class="disclaim">Mockup. Simulated data.</p>
-            <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connect</span></div>
-            <p class="cn-note" aria-label="Connect steps">Choose → Connect → Configure → Map companies → Done</p>
-            <div class="cn-tabs" role="tablist">
-              <button class="cn-tab" type="button" role="tab" id="cn-tab-tool" aria-selected="true" aria-controls="cn-pane-tool">Choose</button>
-              <button class="cn-tab" type="button" role="tab" id="cn-tab-steps" aria-selected="false" aria-controls="cn-pane-steps">Connect</button>
-              <button class="cn-tab" type="button" role="tab" id="cn-tab-test" aria-selected="false" aria-controls="cn-pane-test">Test</button>
-            </div>
-            <div class="cn-pane" id="cn-pane-tool" role="tabpanel" aria-labelledby="cn-tab-tool">
-              <button class="cn-pick" type="button" aria-pressed="true">PSA</button>
-              <button class="cn-pick" type="button" aria-pressed="false">RMM</button>
-              <button class="cn-pick" type="button" aria-pressed="false">Documentation</button>
-            </div>
-            <div class="cn-pane" id="cn-pane-steps" role="tabpanel" aria-labelledby="cn-tab-steps" hidden>
-              <div class="cn-field"><b>1</b><label>Company ID<input type="text" value="" disabled></label></div>
-              <div class="cn-field"><b>2</b><label>Public key<input type="text" value="" disabled></label></div>
-              <p class="cn-note">steps sit beside the fields</p>
-            </div>
-            <div class="cn-pane" id="cn-pane-test" role="tabpanel" aria-labelledby="cn-tab-test" hidden>
-              <div class="mini-probe" aria-label="Example validation probe output">
-                <div class="row p-ok">✓ authentication</div>
-                <div class="row p-bad">✕ missing: Service Desk — Add</div>
-                <div class="row" style="color:var(--mute)">→ fix shown · re-test in place</div>
-              </div>
-              <p class="cn-note">Powered by Bitlync</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Hosted, MSP-managed</h3>
-          <p class="quiet" style="margin:0">Keys stay on Bitlync. The MSP manages and can revoke them. They do not touch your frontend.</p>
-          <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
-        <p class="disclaim">Mockup. Simulated data.</p>
-        <div class="pm-head">your connections</div>
-        <div class="pm-row">
-          <i>CW</i>
-          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
-          <span class="health"><i></i>healthy · synced 4 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-        <div class="pm-row">
-          <i>NJ</i>
-          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
-          <span class="health"><i></i>healthy · synced 11 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-      </div>
-                  </div>
-      </div>
-      </div>
-  </section>
+<section class="pad sx-phero"><div class="wrap sx-ph-grid"><div><p class="kicker">Solutions / Product teams</p><h1>Ship in weeks, not quarters.</h1><p class="sub">Write to one model and reach your MSPs’ stacks. A single integration on its own can take quarters.</p><div class="btn-row"><a class="btn" href="#partners">Talk to us</a></div></div><div class="sx-shot"><img src="assets/prod_branding.png?v=2" srcset="assets/prod_branding.png?v=2 1x, assets/prod_branding@2x.png?v=2 2x" alt="Branding settings with the Connect screen your MSPs see"></div></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-tgrid c3"><div class="sx-t"><span class="vtag">Pain today</span><h3>Each tool is its own project.</h3><p>Without Bitlync, product compares fields across vendor docs, engineering maintains another vendor library, someone writes and updates the help docs, and each tool adds a vendor relationship.</p></div><div class="sx-t"><span class="vtag">One model</span><h3>One model for the stack</h3><p>Write to one model instead of planning a project per tool. We normalize to Bitlync words, and the MSP still sees the names they already use.</p></div><div class="sx-t"><span class="vtag">No vendor program</span><h3>No vendor program per tool</h3><p>No need to apply to each vendor, wait on their sandbox or sit in their approval queue just to ship.</p></div></div></div></section><section class="pad sx-sec sx-band"><div class="wrap"><div class="sx-head"><span class="vtag">Around the integration</span><h2>More than an API call.</h2><p class="sub">An integration is more than the call. Someone has to check the connection, let each MSP set it up, map companies and keep it healthy. Bitlync handles that work for you. Not just billing and ticketing, the whole thing.</p></div><div class="sx-flow"><div class="sx-fs on"><b>1</b><span>Guided setup</span><small>Instructions beside each field</small></div><div class="sx-fs"><b>2</b><span>Connection check</span><small>Keys and permissions tested before go-live</small></div><div class="sx-fs"><b>3</b><span>MSP configuration</span><small>Each MSP turns on what fits</small></div><div class="sx-fs"><b>4</b><span>Company mapping</span><small>Exact and close names matched, the rest for review</small></div><div class="sx-fs"><b>5</b><span>Health over time</span><small>Integration health alerts when something breaks</small></div></div><div class="sx-workart"><div class="sx-stage"><div class="sx-glow" aria-hidden="true"></div><div class="sx-row n2"><div class="sx-tile"><div class="sx-tilt"><div class="hx-card "><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#F2994A">Check</span></div><div class="hx-body"><p class="hx-h">Permission check &middot; Halo</p><div class="hx-row"><span>Read tickets</span><span class="hx-sev low">Granted</span></div><div class="hx-row"><span>Create tickets</span><span class="hx-sev low">Granted</span></div><div class="hx-row"><span>Agreement lines</span><span class="hx-sev crit">Missing</span></div><p class="hx-route">Named before the connection goes live.</p></div></div></div></div><div class="sx-tile"><div class="sx-tilt"><div class="hx-card "><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#3FB8AF">Configure</span></div><div class="hx-body"><p class="hx-h">Features</p><div class="hx-row"><span>Send alerts to MSP tickets</span><span class="sx-tg on"><i></i></span></div><div class="hx-row"><span>Update MSP billing quantities</span><span class="sx-tg on"><i></i></span></div><p class="hx-route">Disabled features are hidden from MSPs at Connect.</p></div></div></div></div></div><div class="hx-note">Example data</div></div><div class="sx-stage"><div class="sx-glow" aria-hidden="true"></div><div class="sx-row n2"><div class="sx-tile"><div class="sx-tilt"><div class="hx-card "><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#7C6CF2">Mapping</span></div><div class="hx-body"><p class="hx-h">Auto-matched 2 &middot; review the rest</p><div class="hx-row"><span>Northwind Clinic</span><span class="hx-sev low">Exact name</span></div><div class="hx-row"><span>Cedar Health Group</span><span class="hx-sev high">Close name</span></div><div class="hx-row"><span>Test Co</span><span class="hx-sev info">Possible test</span></div></div></div></div></div><div class="sx-tile"><div class="sx-tilt"><div class="hx-card "><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#5AA9E6">Health</span></div><div class="hx-body"><p class="hx-h">Connections</p><div class="hx-conn"><span class="hx-lg"><img src="logos/connectwise.png?v=4" alt="ConnectWise logo"></span><span class="hx-cn"><b>Blue Spruce IT</b><small>ConnectWise &middot; synced 3 min ago</small></span><span class="hx-sev low">Healthy</span></div><div class="hx-conn"><span class="hx-lg"><img src="logos/superops.png?v=4" alt="SuperOps logo"></span><span class="hx-cn"><b>Cedar Ridge Technology</b><small>SuperOps &middot; synced 18 min ago</small></span><span class="hx-sev high">Missing permission</span></div></div></div></div></div></div><div class="hx-note">Example data</div></div></div><div class="sx-work"><div class="sx-w"><b>Connection and permission checks</b><span>Keys tested and missing permissions named before go-live.</span></div><div class="sx-w"><b>MSP configuration</b><span>Feature toggles and settings each MSP sets in the flow.</span></div><div class="sx-w"><b>Company mapping</b><span>Auto-matches clear names and leaves the rest for review.</span></div><div class="sx-w"><b>Billing quantities</b><span>Quantities update automatically in the MSP’s PSA.</span></div><div class="sx-w"><b>Alerts and ticketing</b><span>Your alert types routed to a ticket, email or digest.</span></div><div class="sx-w"><b>Communication</b><span>Daily and monthly digests, routing and subscription renewal alerts.</span></div><div class="sx-w"><b>Ticket deflection</b><span>Guided setup, permission checks and integration health.</span></div><div class="sx-w"><b>Your brand</b><span>The flow and portal carry your name, colors and theme.</span></div></div></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-tgrid c2"><div class="sx-t"><span class="vtag">MSP-managed</span><h3>The MSP stays in control</h3><p>The MSP manages each connection and can revoke it anytime.</p></div><div class="sx-t"><span class="vtag">Your product only</span><h3>Import where you want it</h3><p>Import creates the customer in your product only. A small “Powered by bitlync” footer sits on each step.</p></div></div></div></section><section class="pad"><div class="wrap center"><div class="btn-row" style="justify-content:center"><a class="btn" href="#partners">Talk to us</a></div></div></section>
 </div>
+
 <div class="page" id="page-solutions-developer">
-  <section class="pad" style="padding-bottom:28px">
-    <div class="wrap">
-      <div class="sol-copy">
-      <p class="kicker">Solutions / Engineering</p>
-      <h1 class="sol-h1">One call, same shape every time.</h1>
-      <p class="sub">Write against one shape. Cache, rate limits, retries, and the vault ship with the connection.</p>
-      <div style="max-width:42rem">
-        <h2>Pain today</h2>
-        <p class="sub">Without Bitlync, each vendor has its own auth, limits, retries, and error pages. You hold MSP keys, and MCP pointed at the vendor spends the shared rate budget on every call.</p>
-      </div>
-      </div>
-      <div style="max-width:42rem">
-        <h2>The sandbox</h2>
-        <p class="sub">Seeded tenants. First call the same day.</p>
-        <a class="btn" href="https://docs.bitlync.com/quickstart/">API docs</a>
-      </div>
-      <div class="code-shell">
-        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">sandbox</span></div>
-<pre><span class="c-kw">GET</span> /tenants/{msp}/tickets
-<span class="c-com">X-API-Key: blk_live_••••••••</span>
-
-<span class="c-kw">200 OK</span>
+<section class="sx-dark"><div class="wrap center"><p class="kicker">Solutions / Engineering</p><h1>One call, one shape.</h1><p class="sub">Write against one shape. Caching, rate limits and retries come with the connection.</p><div class="sx-apistage"><div class="sx-term"><div class="sx-term-h"><i></i><i></i><i></i><span>sandbox</span></div><pre><span class="k">GET</span> /tenants/{msp}/tickets
+<span class="ok">200 OK</span>
 {
-  <span class="c-str">"served_from"</span>: <span class="c-str">"store"</span>,            <span class="c-com">// read from our synced store — zero vendor budget spent</span>
-  <span class="c-str">"last_synced_at"</span>: <span class="c-str">"2026-07-11T14:03:22Z"</span>,
-  <span class="c-str">"data"</span>: [{
-    <span class="c-str">"id"</span>: <span class="c-str">"tkt_8f31"</span>,
-    <span class="c-str">"status"</span>: <span class="c-str">"in_progress"</span>,       <span class="c-com">// normalized across every PSA</span>
-    <span class="c-str">"summary"</span>: <span class="c-str">"VPN drops every few minutes"</span>,
-    <span class="c-str">"raw"</span>: { <span class="c-com">…</span> }                    <span class="c-com">// the vendor's original payload, always there</span>
+  "served_from": "store",            <span class="c">// read from the synced store</span>
+  "last_synced_at": "2026-07-11T14:03:22Z",
+  "data": [{
+    "id": "tkt_8f31",
+    "source": "superops",
+    "status": "in_progress",         <span class="c">// normalized across tools</span>
+    "summary": "VPN keeps dropping",
+    "raw": { ... }                    <span class="c">// the vendor’s original payload</span>
   }]
-}</pre>
-      </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div style="max-width:42rem">
-        <h2>The shape</h2>
-        <p class="sub">Reads and writes use one model. REST and MCP use the same service.</p>
-      </div>
-      <div class="tix">
-        <div class="tix-head">normalized tickets — 3 sources, 1 shape</div>
-        <div class="tix-scroll">
-        <table>
-          <thead><tr><th>source</th><th>status</th><th>priority</th><th>summary</th></tr></thead>
-          <tbody>
-            <tr><td class="src">connectwise</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Server room UPS reporting battery fault</td></tr>
-            <tr><td class="src">superops</td><td><span class="tag built">in progress</span></td><td><span class="tag write">high</span></td><td>VPN drops every few minutes</td></tr>
-            <tr><td class="src">halopsa</td><td><span class="tag next">waiting</span></td><td><span class="tag never">critical</span></td><td>Phishing report — possible compromise</td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-      <p class="disclaim">Three PSAs, one normalized read</p>
-      <div style="max-width:42rem">
-        <h2>The store</h2>
-        <p class="sub">Reads come from our store. They do not hit the vendor each time. You see one Bitlync rate limit, the same on every vendor. We do not hide a throttle. We pace calls, retry transient failures, and return one result or tell you to wait. No silent drop. A retry does not create a second ticket.</p>
-
-        <h2>The vault</h2>
-        <p class="sub">Keys stay out of your product. The MSP connects their own tools. Those credentials live with us, not in your app. They can manage and revoke them.</p>
-
-        <h2>The preview</h2>
-        <p class="sub">Writes are real by default; test them in the sandbox. If we refuse, you get a stable code and a sentence you can read.</p>
-
-      </div>
-      </div>
-  </section>
+}</pre></div><div class="sx-refuse"><div class="sx-term-h"><span>POST /tenants/{msp}/tickets</span></div><div class="sx-r-b"><span class="hx-sev crit">403</span><code>missing_permission</code><p>The MSP has not granted Service Desk for this connection.</p></div></div></div></div></section><section class="pad sx-sec"><div class="wrap sx-pain"><span class="vtag">Pain today</span><p class="sx-big">Without Bitlync, each vendor has its own auth, limits, retries and error pages, and MCP pointed at the vendor spends the shared rate budget on each call.</p></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-tgrid c3"><div class="sx-t"><span class="vtag">The sandbox</span><h3>First call the same day</h3><p>Seeded tenants and API docs, so you can make your first call the same day.</p></div><div class="sx-t"><span class="vtag">The shape</span><h3>Three tools, one normalized read</h3><p>Reads and writes use one model. REST and MCP use the same service.</p></div><div class="sx-t"><span class="vtag">The store</span><h3>One rate limit you can see</h3><p>Reads come from our synced store, not the vendor each time. We pace calls, retry transient failures and return one result or tell you to wait. A retry does not create a second ticket.</p></div><div class="sx-t"><span class="vtag">MSP-managed</span><h3>Connections the MSP controls</h3><p>The MSP connects their own tools and can manage or revoke each connection, so there is nothing to handle in your app.</p></div><div class="sx-t"><span class="vtag">The preview</span><h3>Readable refusals</h3><p>Writes are real by default, so test them in the sandbox. If we refuse a write, you get a stable code and a sentence you can read.</p></div></div></div></section><section class="pad"><div class="wrap center"><div class="btn-row" style="justify-content:center"><a class="btn" href="https://docs.bitlync.com/reference" target="_blank" rel="noopener">API docs</a></div></div></section>
 </div>
+
 <div class="page" id="page-solutions-sales">
-  <section class="pad" style="padding-bottom:28px">
-    <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Go to market</p>
-      <h1 class="sol-h1">Integrations grow revenue.</h1>
-      <p class="sub">Integrations are a major part of the decision-making process. The first thing an MSP typically asks is if you're integrated with their PSA.</p>
-      <div style="max-width:42rem">
-        <h2>Pain today</h2>
-        <p class="sub">If you do not integrate with their stack, the deal stalls. Selling a roadmap will not close it.</p>
-      </div>
-      <div class="sol-wins">
-        <div>
-          <h2>Reduced churn</h2>
-          <p class="sub">Once you connect to their stack, leaving becomes a project.</p>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0;padding-bottom:12px">
-    <div class="wrap">
-      <div class="gtm-mock" aria-label="Mockup of a sales pipeline">
-        <div class="gtm-mock-head">
-          <p class="gtm-label">Pipeline</p>
-          <p class="disclaim">Mockup. Simulated data.</p>
-        </div>
-        <div class="gtm-board">
-          <div class="gtm-col">
-            <div class="gtm-col-head">
-              <h4>Discovery</h4>
-              <span class="gtm-count">3 deals</span>
-            </div>
-            <div class="gtm-deal">
-              <b>Northwind IT Partners</b>
-              <span class="gtm-value">$18,400</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-wait">Waiting on Integration</span>
-              </div>
-            </div>
-            <div class="gtm-deal">
-              <b>Cedar Ridge MSP</b>
-              <span class="gtm-value">$9,750</span>
-            </div>
-            <div class="gtm-deal">
-              <b>Apex Stack Support</b>
-              <span class="gtm-value">$14,200</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-wait">Waiting on Integration</span>
-              </div>
-            </div>
-          </div>
-          <div class="gtm-col">
-            <div class="gtm-col-head">
-              <h4>Solutioning</h4>
-              <span class="gtm-count">3 deals</span>
-            </div>
-            <div class="gtm-deal">
-              <b>Harbor Managed Services</b>
-              <span class="gtm-value">$42,000</span>
-              <span class="gtm-meta">Architecture review</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-wait">Waiting on Integration</span>
-              </div>
-            </div>
-            <div class="gtm-deal">
-              <b>Trailhead Tech Co</b>
-              <span class="gtm-value">$27,600</span>
-            </div>
-            <div class="gtm-deal">
-              <b>Summit Desk Ops</b>
-              <span class="gtm-value">$31,150</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-ok">ConnectWise connected</span>
-              </div>
-            </div>
-          </div>
-          <div class="gtm-col">
-            <div class="gtm-col-head">
-              <h4>Proposal</h4>
-              <span class="gtm-count">2 deals</span>
-            </div>
-            <div class="gtm-deal">
-              <b>Lakeview IT Group</b>
-              <span class="gtm-value">$56,800</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-ok">Halo connected</span>
-              </div>
-            </div>
-            <div class="gtm-deal">
-              <b>Brightline MSP</b>
-              <span class="gtm-value">$38,900</span>
-            </div>
-          </div>
-          <div class="gtm-col">
-            <div class="gtm-col-head">
-              <h4>Closed</h4>
-              <span class="gtm-count">4 deals</span>
-            </div>
-            <div class="gtm-deal is-won">
-              <b>Blue Spruce IT</b>
-              <span class="gtm-value">$64,200</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-won">Closed won</span>
-                <span class="gtm-chip chip-ok">SuperOps connected</span>
-              </div>
-            </div>
-            <div class="gtm-deal is-won">
-              <b>Meridian Field Services</b>
-              <span class="gtm-value">$51,400</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-won">Closed won</span>
-              </div>
-            </div>
-            <div class="gtm-deal is-lost">
-              <b>Ironwood Support</b>
-              <span class="gtm-value">$22,500</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-lost">Closed lost</span>
-                <span class="gtm-chip chip-none">No integration</span>
-              </div>
-            </div>
-            <div class="gtm-deal is-lost">
-              <b>Pinecone Networks</b>
-              <span class="gtm-value">$19,800</span>
-              <div class="gtm-chips">
-                <span class="gtm-chip chip-lost">Closed lost</span>
-                <span class="gtm-chip chip-none">No integration</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:16px">
-    <div class="wrap">
-      <div class="sol-cites">
-        <div class="sol-quotes">
-          <blockquote>
-            <p>“Ease of use and integrations/partner ecosystem ranked as the top two purchasing considerations, while features and price tied for third.”</p>
-            <footer>Syncro, 2024 MSP Tech Stack Report. <a href="https://syncromsp.com/blog/msp-tech-stack-report-syncro/">Source</a></footer>
-          </blockquote>
-          <blockquote>
-            <p>“82% of buyers say it is important for the software they buy to integrate with tools they already have.”</p>
-            <footer>G2, 2023 Software Buyer Behavior Report. 1,704 buyers. <a href="https://research.g2.com/hubfs/Buyer-Behavior-Report-2023.pdf">Source</a></footer>
-          </blockquote>
-        </div>
-      </div>
-      <div class="sol-wins" style="margin-top:32px">
-        <div>
-          <h2>Connectors</h2>
-          <p class="sub">See the products you can say yes to.</p>
-          <a class="btn proof-cta" href="#integrations" data-nav="integrations"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/></svg>Connectors</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="pad sx-shero"><div class="wrap"><p class="kicker">Solutions / Go to market</p><div class="sx-sh-grid"><h1>Integrations grow revenue.</h1><p class="sub">Integrations weigh heavily in the buying decision. Often the first thing an MSP asks is whether you work with their stack.</p></div><div class="sx-board"><div class="sx-board-h"><span class="hx-a">A</span><b>Acme Security</b><span>Pipeline</span><small>Simulated data</small></div><div class="sx-cols"><div class="sx-col"><p>Discovery <small>2</small></p><div class="sx-deal"><b>Northwind IT Partners</b><span>$18,400</span><span class="sx-dtag wait">Waiting on integration</span></div><div class="sx-deal"><b>Cedar Ridge MSP</b><span>$9,750</span></div></div><div class="sx-col"><p>Solutioning <small>2</small></p><div class="sx-deal"><b>Harbor Managed Services</b><span>$42,000</span><span class="sx-dtag wait">Waiting on integration</span></div><div class="sx-deal"><b>Summit Desk Ops</b><span>$31,150</span><span class="sx-dtag ok"><img src='logos/connectwise.png?v=4' alt=''>ConnectWise connected</span></div></div><div class="sx-col"><p>Proposal <small>2</small></p><div class="sx-deal"><b>Lakeview IT Group</b><span>$56,800</span><span class="sx-dtag ok"><img src='logos/halopsa.png?v=4' alt=''>Halo connected</span></div><div class="sx-deal"><b>Brightline MSP</b><span>$38,900</span></div></div><div class="sx-col"><p>Closed <small>2</small></p><div class="sx-deal"><b>Blue Spruce IT</b><span>$64,200</span><span class="sx-dtag ok"><img src='logos/superops.png?v=4' alt=''>SuperOps connected</span></div><div class="sx-deal"><b>Pinecone Networks</b><span>$19,800</span><span class="sx-dtag lost">Closed lost, no integration</span></div></div></div></div></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-tgrid c2"><div class="sx-t"><span class="vtag">Pain today</span><h3>No integration, no deal.</h3><p>If you do not integrate with their stack, the deal stalls. Selling a roadmap will not close it.</p></div><div class="sx-t"><span class="vtag">Reduced churn</span><h3>Connected customers stay</h3><p>Once you connect to their stack, leaving becomes a project.</p></div></div></div></section><section class="pad sx-sec"><div class="wrap sx-quotes2"><blockquote><p>“Ease of use and integrations/partner ecosystem ranked as the top two purchasing considerations, while features and price tied for third.”</p><cite>Syncro, 2024 MSP Tech Stack Report</cite></blockquote><blockquote><p>“82% of buyers say it is important for the software they buy to integrate with tools they already have.”</p><cite>G2, 2023 Software Buyer Behavior Report. 1,704 buyers.</cite></blockquote></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-head"><span class="vtag">Connectors</span><h2>See what you can say yes to.</h2><p class="sub">See the products you can say yes to.</p></div><div class="sx-logos"><div class="sx-lt"><img src="logos/connectwise.png?v=4" alt="ConnectWise logo"><b>ConnectWise</b><small>PSA</small></div><div class="sx-lt"><img src="logos/halopsa.png?v=4" alt="HaloPSA logo"><b>HaloPSA</b><small>PSA</small></div><div class="sx-lt"><img src="logos/superops.png?v=4" alt="SuperOps logo"><b>SuperOps</b><small>PSA &amp; RMM</small></div><div class="sx-lt"><img src="logos/ninjaone.png?v=4" alt="NinjaOne logo"><b>NinjaOne</b><small>RMM</small></div><div class="sx-lt"><img src="logos/scalepad.png?v=4" alt="ScalePad logo"><b>ScalePad</b><small>Customer Success</small></div><div class="sx-lt"><img src="logos/pax8_solid.png?v=4" alt="Pax8 logo"><b>Pax8</b><small>Commerce</small></div><div class="sx-lt"><img src="logos/hudu.png?v=4" alt="Hudu logo"><b>Hudu</b><small>Documentation</small></div></div></div></section><section class="pad"><div class="wrap center"><div class="btn-row" style="justify-content:center"><a class="btn" href="#partners">Talk to us</a></div></div></section>
 </div>
+
 <div class="page" id="page-solutions-customer-success">
-  <section class="pad" style="padding-bottom:28px">
-    <div class="wrap"><div class="sol-copy">
-      <p class="kicker">Solutions / Support</p>
-      <h1 class="sol-h1">Resolve it without a developer.</h1>
-      <p class="sub">Support can see last sync, permissions, and the log. They do not need a developer for a bad key or a missing permission.</p>
-      <div style="max-width:42rem">
-        <h2>Pain today</h2>
-        <p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Support cannot see last sync or the log. A developer has to read the vendor error.</p>
-      </div>
-    </div>
-    </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div style="max-width:42rem">
-        <h2>The log</h2>
-      </div>
-      <div class="portal-mock" aria-label="Mockup of the connection portal">
-        <p class="disclaim">Mockup. Simulated data.</p>
-        <div class="code-head"><span class="term-dots" aria-hidden="true"><i class="d-red"></i><i class="d-yel"></i><i class="d-grn"></i></span><span class="term-title">connections</span></div>
-        <div class="pm-block">
-          <div class="pm-row">
-            <div class="pm-who"><i>CW</i><b>Blue Spruce IT</b></div>
-            <div class="pm-mid"><div class="pm-vendor"><img src="logos/connectwise.png" alt="" width="20" height="20"><b>ConnectWise</b></div><small>scopes verified</small></div>
-            <div class="pm-act"><span class="health"><i></i>healthy · synced 3 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-blue-spruce">audit log →</button></div>
-          </div>
-          <div class="pm-tray" id="cs-tray-blue-spruce" hidden>
-            <div class="pm-log"><time>2:03 PM</time><span>read tickets · from the store</span></div>
-            <div class="pm-log"><time>1:58 PM</time><span>opened ticket tkt_8f31 · VPN drops every few minutes</span></div>
-          </div>
-        </div>
-        <div class="pm-block">
-          <div class="pm-row">
-            <div class="pm-who"><i>HA</i><b>Harbor Managed Services</b></div>
-            <div class="pm-mid"><div class="pm-vendor"><img src="logos/halopsa.png" alt="" width="20" height="20"><b>HaloPSA</b></div><small>scopes verified</small></div>
-            <div class="pm-act"><span class="health"><i></i>healthy · synced 6 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-harbor">audit log →</button></div>
-          </div>
-          <div class="pm-tray" id="cs-tray-harbor" hidden>
-            <div class="pm-log"><time>1:56 PM</time><span>read companies · from the store</span></div>
-            <div class="pm-log"><time>1:51 PM</time><span>read tickets · from the store</span></div>
-          </div>
-        </div>
-        <div class="pm-block">
-          <div class="pm-row">
-            <div class="pm-who"><i>SO</i><b>Cedar Ridge Technology</b></div>
-            <div class="pm-mid"><div class="pm-vendor"><b>SuperOps</b></div><small>missing: Service Desk — Add</small></div>
-            <div class="pm-act"><span class="health warn"><i></i>degraded · synced 18 min ago</span><button class="audit-btn" type="button" aria-expanded="false" aria-controls="cs-tray-cedar">audit log →</button></div>
-          </div>
-          <div class="pm-tray" id="cs-tray-cedar" hidden>
-            <div class="pm-log"><time>2:04 PM</time><span>read tickets · from the store</span></div>
-            <div class="pm-log"><time>2:04 PM</time><span>write refused · missing: Service Desk — Add</span></div>
-            <div class="pm-log"><time>2:04 PM</time><span>named in the row · waiting on the MSP</span></div>
-          </div>
-        </div>
-      </div>
-            </div>
-  </section>
+<section class="pad sx-chero"><div class="wrap center"><p class="kicker">Solutions / Tech and platform support</p><h1>Resolve it without a developer.</h1><p class="sub">Support can see last sync, permissions and the activity log, so a missing permission does not need a developer.</p></div><div class="wrap"><div class="sx-health"><div class="sx-board-h"><span class="hx-a">A</span><b>Acme Security</b><span>Connections</span><small>Example data</small></div><div class="sx-ch"><span></span><span>Customer</span><span>Tool</span><span>Status</span><span>Last sync</span><span></span></div><div class="sx-cr"><span class="hx-lg"><img src="logos/connectwise.png?v=4" alt=""></span><b>Blue Spruce IT</b><span class="sx-tool">ConnectWise</span><span class="hx-sev low">Healthy</span><span class="sx-sync">3 min ago</span><span class="sx-link">Activity log &rarr;</span></div><div class="sx-cr"><span class="hx-lg"><img src="logos/halopsa.png?v=4" alt=""></span><b>Harbor Managed Services</b><span class="sx-tool">Halo</span><span class="hx-sev low">Healthy</span><span class="sx-sync">6 min ago</span><span class="sx-link">Activity log &rarr;</span></div><div class="sx-cr open"><span class="hx-lg"><img src="logos/superops.png?v=4" alt=""></span><b>Cedar Ridge Technology</b><span class="sx-tool">SuperOps</span><span class="hx-sev high">Missing permission</span><span class="sx-sync">18 min ago</span><span class="sx-link">Activity log &rarr;</span><div class="sx-exp"><div class="sx-perm"><p>Permission check</p><div><span>Read tickets</span><span class="hx-sev low">Granted</span></div><div><span>Read companies</span><span class="hx-sev low">Granted</span></div><div><span>Service Desk</span><span class="hx-sev crit">Missing</span></div></div><div class="hx-log"><p>Activity log</p><div><time>2:04 PM</time><span>Read tickets from the store</span></div><div><time>2:04 PM</time><span>Write refused: missing Service Desk</span></div><div><time>2:04 PM</time><span>Named in the row, waiting on the MSP</span></div></div></div></div></div></div></section><section class="pad sx-sec"><div class="wrap sx-two"><div><span class="vtag">Pain today</span><h2>Permission problems become tickets.</h2></div><p class="sub">Without Bitlync, a missing permission arrives as a support ticket. Support cannot see last sync or the log, and a developer has to read the vendor error.</p></div></section><section class="pad sx-sec"><div class="wrap"><div class="sx-tgrid c2"><div class="sx-t"><span class="vtag">Connections</span><h3>Health for each connection</h3><p>Last sync and status for each MSP connection, with the missing permission named in the row.</p></div><div class="sx-t"><span class="vtag">The log</span><h3>What happened, and when</h3><p>Each read, write and refusal is in the activity log with a time, so support can tell the MSP exactly what to add.</p></div></div></div></section><section class="pad"><div class="wrap center"><div class="btn-row" style="justify-content:center"><a class="btn" href="#partners">Talk to us</a></div></div></section>
 </div>
+
 <div class="page" id="page-msps">
-  <section class="pad" style="padding-bottom:28px">
+  <section class="pad msp-hero">
+    <div class="msp-hero-stage">
     <div class="wrap center">
-      <p class="kicker">For MSPs</p>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,52px);margin:0 0 12px">Saw “Powered by Bitlync”<br>in a connect screen?</h1>
-      <p class="sub">One of your vendors uses Bitlync to connect to your stack. Here is what that means, and how you stay in control.</p>
-      <div class="secured" role="img" aria-label="Powered by Bitlync footer">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
-        <div><b>Powered by Bitlync</b><div class="quiet" style="margin:0">Your credentials stay here. Your vendor never sees them.</div></div>
+      <div class="msp-rise">
+        <h1>Your vendors,<br>connected on your terms.</h1>
+        <p class="sub">Billing that stays current and vendor alerts routed your way, in a stack you control.</p>
       </div>
     </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap grid g3">
-      <div class="card">
-        <p class="kicker">Grants, not shared credentials</p>
-        <h3>You own the connection. Vendors get grants.</h3>
-        <p class="quiet" style="margin:0">You connect once. Each vendor gets a scoped grant. Keys stay in your vault. Revoke a grant and that vendor is gone.</p>
-      </div>
-      <div class="card">
-        <p class="kicker">What a vendor can touch</p>
-        <h3>You see the scope before you connect</h3>
-        <p class="quiet">Every grant is shown in plain language, including what they can never do:</p>
-        <div style="display:grid;gap:8px;font-size:13.5px">
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag read">Read</span><span>service tickets, companies, configurations</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag write">Write</span><span>create tickets on a board you approve</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag next">Off unless you turn it on</span><span>create a company · company custom fields · create an agreement · write devices</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap"><span class="tag never">Never</span><span>delete records · change setup tables</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <p class="kicker">Checked in the flow</p>
-        <h3>We test the keys in the flow</h3>
-        <p class="quiet" style="margin:0 0 2px">If a permission is missing, we name it. You fix it and re-test.</p>
-        <div class="mini-probe" aria-label="Example permission check">
-            <div class="row p-ok">✓ keys work</div>
-            <div class="row p-bad">✕ missing: Service Desk — Add</div>
-            <div class="row" style="color:var(--mute)">→ fix shown · re-test here</div>
-            <div class="row p-ok">✓ keys checked</div>
-        </div>
+    <div class="msp-collage">
+      <div class="grid g3">
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Low and info alerts</span><span class="chip on">Monthly digest</span></div>
+        </div></div></div>
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub">
+          <div class="dig-row"><span class="dig-k">Product alert</span><span>Acme Endpoint critical update</span></div>
+          <div class="dig-row"><span class="dig-k">Trial ending</span><span>Harbor Clinic, Oct 28</span></div>
+          <div class="dig-row"><span class="dig-k">Renewal</span><span>Northwind Logistics, Nov 15</span></div>
+          <div class="dig-row"><span class="dig-k">Price change</span><span>Acme Mail Defense $3.00 to $3.50</span></div>
+          <div class="dig-note">Example data</div>
+        </div></div></div>
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
+          <table class="bt"><tr><th>Customer</th><th>Count</th><th>Next update</th></tr>
+          <tr><td>Northwind Logistics</td><td>48 devices</td><td>Oct 20</td></tr>
+          <tr><td>Harbor Clinic</td><td>123 users</td><td>Oct 20</td></tr></table>
+        </div></div></div>
       </div>
     </div>
+    </div>
+    <a class="msp-cue" href="#v3" aria-label="Scroll down"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M5.5 8.5l5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </section>
-  <section class="pad" style="padding-top:0">
+  <section class="pad band" id="v3">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy msp-rise"><span class="vtag">No babysitting</span><span class="vtag">Billing</span><h2>Simplify billing reconciliation</h2><p class="sub">Match each vendor service once, and quantities update automatically in your PSA.</p></div>
+      <div class="msp-rise lag msp-bill"><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Your stack</span></div><div class="ub">
+        <div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">Acme Security bills on your peak count each month.</div>
+        <table class="bt"><tr><th>Customer</th><th>Service</th><th>Current</th><th>Peak so far</th><th>Next update</th></tr>
+        <tr class="dev"><td>Northwind Logistics</td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">48</span><span class="qty-n" data-n="48">48</span></span> <span class="u">devices</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">52</span><span class="qty-n" data-n="52">52</span></span> <span class="u">devices</span></span></td><td>Oct 20</td></tr>
+        <tr class="usr"><td>Northwind Logistics</td><td><span class="svc">Acme Identity</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">123</span><span class="qty-n" data-n="123">123</span></span> <span class="u">users</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">127</span><span class="qty-n" data-n="127">127</span></span> <span class="u">users</span></span></td><td>Oct 20</td></tr>
+        <tr class="dev"><td>Harbor Clinic <span class="mini">Trial</span></td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">54</span><span class="qty-n" data-n="54">54</span></span> <span class="u">devices</span></td><td class="pk">-</td><td>Not billed</td></tr>
+        <tr class="dev"><td>Bluepeak Tech</td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">60</span><span class="qty-n" data-n="60">60</span></span> <span class="u">devices</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">64</span><span class="qty-n" data-n="64">64</span></span> <span class="u">devices</span></span></td><td>Oct 20</td></tr>
+        <tr class="usr"><td>Pine Ridge Schools</td><td><span class="svc">Acme Identity</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">135</span><span class="qty-n" data-n="135">135</span></span> <span class="u">users</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">141</span><span class="qty-n" data-n="141">141</span></span> <span class="u">users</span></span></td><td>Oct 20</td></tr></table>
+        <div style="font-size:12px;color:var(--mute);margin-top:10px">Example data only.</div>
+      </div></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v4">
+    <div class="wrap"><div class="vsplit">
+      <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Alerts and tickets</span><h2>You decide where vendor messages go.</h2><p class="sub">A critical alert can open a ticket, a billing or subscription notice can go to email, the rest can wait for your monthly digest, or any mix you want. Renewal and trial notices go where you route them.</p></div>
+      <div class="msp-rise lag msp-ticket"><div class="ui"><div class="uh"><span>Send Acme Security alerts to your stack</span><span class="msp-saved" style="color:var(--ok)">Saved ✓</span></div><div class="ub">
+        <div class="rrow" style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-transform:uppercase"><span>Alert</span><span>Severity</span><span>Send to</span></div>
+        <div class="rrow"><span>Critical product alert</span><span class="sev"><i></i>Critical</span><span><span class="chip on msp-route" data-from="Email" data-to="Ticket">Ticket</span></span></div>
+        <div class="rrow"><span>Subscription renewal</span><span class="sev l"><i></i>Low</span><span><span class="chip on">Email</span></span></div>
+        <div class="rrow"><span>Policy updated</span><span class="sev l"><i></i>Info</span><span><span class="chip on">Monthly digest</span></span></div>
+        <div class="rrow"><span>Trial ending <small style="color:var(--mute)">7 days before</small></span><span class="sev m"><i></i>Medium</span><span><span class="chip on">Ticket</span> <span class="chip on">Email</span></span></div>
+        <div class="picker"><div style="font-size:11.5px;color:var(--mute);margin-bottom:4px">Tickets go to · ConnectWise</div>
+          <div class="f"><span>Board</span><span class="sel">Alerts</span></div>
+          <div class="f"><span>Type</span><span class="sel">Vendor alert</span></div>
+          <div class="f"><span>Subtype</span><span class="sel">None</span></div>
+          <div class="saved">✓ Saved</div>
+        </div>
+        <div style="font-size:12px;color:var(--mute);margin-top:10px">Send to options: Ticket · Email · Daily digest · Monthly digest · Off</div>
+      </div></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v1">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
+      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_vendor_vault_activity.png?v=3" alt="Connected vendors and Activity change log"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v7">
+    <div class="wrap"><div class="vsplit">
+      <div class="scopy msp-rise"><span class="vtag">Proof of value</span><span class="vtag">Monthly digest</span><h2>See what each vendor did for you this month.</h2><p class="sub">One monthly email with product alerts, trial expirations, upcoming renewals and pricing and packaging changes for your customers.</p></div>
+      <div class="msp-fade lag msp-shot"><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band" id="v2">
+    <div class="wrap"><div class="vsplit rev">
+      <div class="scopy msp-rise"><span class="vtag">Save time</span><h2>Your customers, matched and imported for you.</h2><p class="sub">Bitlync matches the vendor's customers to the companies in your stack, so you review a list instead of mapping by hand.</p></div>
+      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
+    </div></div>
+  </section>
+  <section class="pad band">
     <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Our data posture</p>
-        <h2>Plainly stated</h2>
+      <div class="center msp-rise" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, taken care of.</h2></div>
+      <div class="grid g3 msp-rise lag">
+        <div class="card small"><h3>Send a test ticket. Close it from Bitlync.</h3><p class="quiet" style="margin:0;font-size:14px">Creates a low-priority “[Bitlync test]” ticket where you routed it, so you can check it before real alerts arrive.</p><div class="ui"><div class="uh"><span>Tickets go to</span></div><div class="ub">
+          <div style="font-size:12px">Board: Alerts · Type: Vendor alert</div>
+          <div class="saved">Created #1234 ✓ · Priority: Low</div>
+          <div style="margin-top:8px;font-size:12px"><b>[Bitlync test]</b> ticket</div>
+          <div style="margin-top:8px"><span class="chip">Close test ticket</span></div>
+        </div></div></div>
+        <div class="card small"><h3>Vendor info on each company record.</h3><p class="quiet" style="margin:0;font-size:14px">A vendor can write a field, like a contract link, onto each company in your stack, and Bitlync adds the field if it isn't there yet.</p><div class="ui"><div class="uh"><span>Company</span><span>Your stack</span></div><div class="ub">
+          <div style="font-weight:600;font-size:14px;margin-bottom:8px">Northwind Logistics</div>
+          <div style="font-size:11.5px;color:var(--mute);margin-bottom:2px">Contract Link</div>
+          <div style="font-size:12.5px;color:#2F5FC4;text-decoration:underline;white-space:nowrap">https://acme.example/contracts/NW-1042</div>
+          <div style="font-size:11.5px;color:var(--mute);margin-top:8px">Added by Acme Security via Bitlync</div>
+          <div style="font-size:11px;color:var(--mute);margin-top:6px">Example data only</div>
+        </div></div></div>
+        <div class="card small"><h3>Branded as your vendor.</h3><p class="quiet" style="margin:0;font-size:14px">The Connect flow, tickets and emails carry your vendor's brand, with a “Powered by bitlync” footer.</p><div class="ui"><div class="cn"><b>ACME SECURITY</b>Connect your stack to Acme Security</div>
+          <div class="steps"><span>Choose</span><span>Connect</span><span>Configure</span><span>Map companies</span><span>Done</span></div>
+          <div class="pf">Powered by bitlync</div>
+        </div></div>
       </div>
-      <div class="posture">
-        <div class="pos"><b>Synced once per tenant</b><p>One sync serves every vendor you granted.</p></div>
-        <div class="pos"><b>Encrypted per-tenant</b><p>Per-tenant keys. Isolated from every other tenant.</p></div>
-        <div class="pos"><b>Owned by you</b><p>Revoke a grant in one click. Delete your data on request.</p></div>
-        <div class="pos"><b>Audited, append-only</b><p>Every read and write lands in a log you can see. It cannot be edited.</p></div>
-        <div class="pos"><b>Support that can't touch your data</b><p>Support is read-only. It can diagnose. It cannot change your setup.</p></div>
-        <div class="pos"><b>Never resold</b><p>Your operational data is not sold. Not aggregated.</p></div>
-      </div>
-      <p class="disclaim">SOC 2 Type II — in preparation.</p>
     </div>
   </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:24px">
-        <p class="kicker">Your portal</p>
-        <h2>See it. Scope it. Revoke it.</h2>
-        <p class="sub" style="margin-left:auto;margin-right:auto">A permissions page. Not another app to manage.</p>
-      </div>
-      <div class="portal-mock" aria-label="Mockup of the MSP connection portal">
-        <p class="disclaim">Mockup. Simulated data.</p>
-        <div class="pm-head">your connections</div>
-        <div class="pm-row">
-          <i>CW</i>
-          <div class="meta"><b>ConnectWise PSA</b><small>1 vendor granted · read + scoped write</small></div>
-          <span class="health"><i></i>healthy · synced 4 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-        <div class="pm-row">
-          <i>NJ</i>
-          <div class="meta"><b>NinjaOne RMM</b><small>1 vendor granted · read only</small></div>
-          <span class="health"><i></i>healthy · synced 11 min ago</span>
-          <button class="revoke" type="button">Revoke</button>
-        </div>
-      </div>
-      </div>
-  </section>
-  <section class="pad" style="padding-top:0">
-    <div class="wrap center">
-      <p class="sub">You paste keys in the connect flow. We stamp when they land in the vault. Skip the connect step and we do not store keys.</p>
-    </div>
+  <section class="pad">
+    <div class="wrap"><div class="cta-band msp-rise">
+      <h2>Want this for your other vendors?</h2>
+      <p class="sub">Introduce us.</p>
+      <a class="btn" href="mailto:hello@bitlync.com?subject=Vendor%20recommendation&amp;body=Vendor%3A%0D%0AYour%20contact%20there%20%28name%29%3A%0D%0ATheir%20email%3A%0D%0AYour%20company%3A%0D%0AOK%20to%20mention%20you%20when%20we%20reach%20out%3F%20%28yes%2Fno%29%3A">Recommend a vendor</a>
+    </div></div>
   </section>
 </div>
 
+<div class="page" id="page-product">
+<section class="pad msp-hero"><div class="msp-hero-stage"><div class="wrap center"><div class="msp-rise">
+<h1>Your integration, your way.</h1><p class="sub">Bitlync runs the connection, alerts, billing and health checks around your product, under your brand.</p>
+<div class="btn-row" style="justify-content:center"><a class="btn" href="#partners">Talk to us</a></div></div></div>
+<div class="msp-collage hx-stage"><div class="hx-glow" aria-hidden="true"></div><div class="grid g3"><div class="msp-tile msp-rise"><div class="tilt"><div class="hx-card hx-c1"><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#3FB8AF">Connect</span></div><div class="hx-body"><p class="hx-h">Choose a tool</p><div class="hx-tools"><div class="hx-tool on"><i class="hx-tick">&#10003;</i><img src="logos/connectwise.png?v=3" alt="ConnectWise logo"><b>ConnectWise</b><span class="hx-ok">&#10003; Connected</span></div><div class="hx-tool"><img src="logos/halopsa.png?v=3" alt="Halo logo"><b>Halo</b><small>PSA</small></div><div class="hx-tool"><img src="logos/superops.png?v=3" alt="SuperOps logo"><b>SuperOps</b><small>PSA &middot; RMM</small></div></div></div></div></div></div><div class="msp-tile msp-rise"><div class="tilt"><div class="hx-card hx-c2"><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#F2994A">Alerts</span></div><div class="hx-body"><p class="hx-h">Alert types</p><div class="hx-row"><span>Malware detected</span><span class="hx-sev crit">Critical</span></div><div class="hx-row"><span>Connection problem</span><span class="hx-sev high">High</span></div><div class="hx-row"><span>Renewal notice</span><span class="hx-sev low">Low</span></div><p class="hx-route">Routed to: Ticket &middot; Email &middot; Digest</p></div></div></div></div><div class="msp-tile msp-rise"><div class="tilt"><div class="hx-card hx-c3"><div class="hx-band"><span class="hx-a">A</span><b>Acme Security</b><span class="hx-tag" style="--acc:#7C6CF2">Billing</span></div><div class="hx-body"><p class="hx-h">Billing quantities</p><div class="hx-bill"><span>Northwind Clinic</span><span class="hx-q"><s>48 users</s><i>&rarr;</i><b>60 users</b></span></div><div class="hx-bill"><span>Cedar Health</span><span class="hx-q"><s>60 users</s><i>&rarr;</i><b>64 users</b></span></div><p class="hx-route"><span class="hx-dot"></span>Updated in the MSP's PSA</p></div></div></div></div></div><div class="hx-note">Example data</div></div></div>
+<a class="msp-cue" href="#s1" aria-label="Scroll down"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M5.5 8.5l5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></section>
+<section class="pad band" id="s1"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Branding</span><h2>Your brand throughout.</h2><p class="sub">The screens your MSPs see use your logo, colors and theme. Check the preview, then save and publish.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui brand-stack"><picture><source media="(max-width:640px)" srcset="assets/prod_branding_back.png?v=2 1x, assets/prod_branding_back@2x.png?v=2 2x"><img src="assets/prod_branding.png?v=2" srcset="assets/prod_branding.png?v=2 1x, assets/prod_branding@2x.png?v=2 2x" alt="Branding settings in the ISV console, with the Connect screen your MSPs see in your brand"></picture><img class="brand-front" src="assets/prod_branding_msp.png?v=2" srcset="assets/prod_branding_msp.png?v=2 1x, assets/prod_branding_msp@2x.png?v=2 2x" alt="" aria-hidden="true"></div></div></div></div></section><section class="pad band" id="s2"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Connect</span><h2>One Connect flow.</h2><p class="sub">Your MSPs connect their stack in a few steps, with instructions showing exactly where to find each value. You don't build or maintain setup docs for those integrations.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_connect_keys.png?v=3" srcset="assets/prod_connect_keys.png?v=3 1x, assets/prod_connect_keys@2x.png?v=3 2x" alt="Connect step: stack keys"></div></div></div></div></section><section class="pad band" id="s3"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Least privilege</span><h2>Permissions checked before they connect.</h2><p class="sub">Bitlync checks the MSP's keys against the permissions you require before they can finish connecting. If something is missing, it shows exactly where to fix it in their stack, so setup mistakes don't become tickets for your support team.</p><ul class="mlist"><li>Ask only for what you need. Riskier writes start off, and Bitlync refuses deletes.</li><li>Step-by-step instructions show MSPs where to set the right permissions.</li><li>If a permission is lost later, the MSP gets a connection problem alert.</li></ul></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_permission_check.png" srcset="assets/prod_permission_check.png 1x, assets/prod_permission_check@2x.png 2x" alt="Permission check at Connect with one missing permission and its fix"></div></div></div></div></section><section class="pad band" id="s4"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Configuration</span><h2>MSPs see what you'll use before they connect.</h2><p class="sub">Turn features on, mark what's required, and request permissions by category. Disabled features are hidden from MSPs at Connect.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_configure.png" srcset="assets/prod_configure.png 1x, assets/prod_configure@2x.png 2x" alt="Features and access by category"></div></div></div></div></section><section class="pad band" id="s5"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Alerts</span><h2>Alerts your MSPs act on.</h2><p class="sub">Define your own alert types with severities and defaults. Each MSP routes them to a ticket, email or digest in their stack.</p><ul class="mlist"><li>Product alerts: the alerts your product sends.</li><li>Renewal notice, 30, 60 or 90 days before renewal.</li><li>Pricing and packaging changes.</li><li>Integration health: connection, sync and data problems.</li></ul></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_alert_types.png" srcset="assets/prod_alert_types.png 1x, assets/prod_alert_types@2x.png 2x" alt="Alert types in the ISV console"></div></div></div></div></section><section class="pad band" id="s6"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Billing</span><h2>Billing quantities that stay current.</h2><p class="sub">Quantities update automatically in the MSP's PSA on the agreements they matched. Your MSPs use those quantities to keep customer agreements current, so they bill customers for what they actually use.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_billing.png" srcset="assets/prod_billing.png 1x, assets/prod_billing@2x.png 2x" alt="Billing activity with current and peak counts"></div></div></div></div></section><section class="pad band" id="s7"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Customer matching</span><h2>Customers matched for you.</h2><p class="sub">Bitlync suggests matches between your customers and the MSP's companies, so onboarding takes less of your team's time. MSPs can also import companies that aren't matched yet as new customers in your product.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_map_companies.png" srcset="assets/prod_map_companies.png 1x, assets/prod_map_companies@2x.png 2x" alt="Map companies step with suggested matches"></div></div></div></div></section><section class="pad band" id="s8"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Health and activity</span><h2>Know when a connection breaks.</h2><p class="sub">Integration health and an activity log show you and the MSP what happened and when.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_activity.png" srcset="assets/prod_activity.png 1x, assets/prod_activity@2x.png 2x" alt="Activity log with alert delivery"></div></div></div></div></section>
+<section class="pad band"><div class="wrap"><div class="center msp-rise" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, handled.</h2></div>
+<div class="grid g3 msp-rise lag"><div class="card small"><h3>Send a test ticket.</h3><p class="quiet" style="margin:0;font-size:14px">The MSP sends a low-priority test ticket from setup, then closes it from Bitlync.</p><div class="ui"><div class="uh"><span>Tickets go to</span><span>Your stack</span></div><div class="ub"><div style="font-size:12px">Board: Alerts · Type: Vendor alert</div><div class="saved">Created #1234 ✓ · Priority: Low</div><div style="margin-top:8px;font-size:12px"><b>[Bitlync test] Acme Security: no action required, safe to close</b></div><div style="margin-top:8px"><span class="chip">Close test ticket</span></div><div style="font-size:11px;color:var(--mute);margin-top:8px">Example data</div></div></div></div><div class="card small"><h3>A monthly digest for each MSP.</h3><p class="quiet" style="margin:0;font-size:14px">One email a month with your alerts, trials and renewals for their customers.</p><div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub"><div class="dig-row"><span class="dig-k">Product alert</span><span>Acme Endpoint update</span></div><div class="dig-row"><span class="dig-k">Trial ending</span><span>Harbor Clinic, Oct 28</span></div><div class="dig-row"><span class="dig-k">Renewal</span><span>Northwind Logistics, Nov 15</span></div><div class="dig-note">Example data</div></div></div></div><div class="card small"><h3>Integration changes, flagged.</h3><p class="quiet" style="margin:0;font-size:14px">When you add, remove or change a service, each MSP gets an integration changes alert.</p><div class="ui"><div class="uh"><span>Integration health</span><span>Acme Security</span></div><div class="ub"><div class="rrow" style="grid-template-columns:1fr auto"><span>Integration changes</span><span class="sev m"><i></i>Medium</span></div><div class="rrow" style="grid-template-columns:1fr auto"><span>Connection problem</span><span class="sev"><i></i>High</span></div><div style="font-size:11px;color:var(--mute);margin-top:8px">Example data</div></div></div></div></div></div></section>
+<section class="pad"><div class="wrap"><div class="cta-band msp-rise"><h2>See your product connected.</h2><p class="sub">Works with the tools your MSPs already use.</p><a class="btn" href="#partners">Talk to us</a></div></div></section>
+</div>
 <div class="page" id="page-partners">
   <section class="pad">
     <div class="wrap">
@@ -1917,8 +2220,8 @@ Retry-After: 30
   "idempotency_key": "ticket-check-1"
 }</pre>
   </div>
-  <p class="note">Halo ticket create, update, close, reopen, notes, and time commit when dry_run is false. ConnectWise ticket create, update, close, notes, and time commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo write line items on an existing agreement: add, rewrite, end, replace. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
-  <p class="note">The MSP can approve or dismiss a mapped line item. Approve writes the line on an existing agreement. Dismiss does not change the agreement. ConnectWise only.</p>
+  <p class="note">Halo, ConnectWise, and SuperOps ticket create, update, close, reopen, and notes commit when dry_run is false. ConnectWise and Halo time entries commit when dry_run is false. Halo pulls agreements and line items, the same objects as ConnectWise. ConnectWise and Halo update the quantity on a line item the MSP matched on an existing agreement. We never create agreements or line items. SuperOps reads companies, tickets, and agreements. Billing quantity updates are not available for SuperOps. ConnectWise and Halo pull the project container and write on an existing project. We do not mint a project header. Some connectors cannot take that write. ConnectWise and Halo list ticket statuses, boards, and priorities live and enrich ticket display; ticket create and update accept those list ids (unknown id returns 422). ConnectWise and Halo list members for the time picker. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Pax8 matches a company it already has, then creates the rest.</p>
+  <p class="note">The MSP can approve or dismiss a mapped line item. Approve updates the quantity on the matched line of an existing agreement. Dismiss does not change the agreement. ConnectWise and Halo.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the locks and refusals.</p>
   <p class="lbl">Validation</p>
   <p class="note">The payload is checked against that vendor’s rules before it leaves Bitlync.</p>
@@ -1977,7 +2280,7 @@ Retry-After: 30
 <article class="concept" id="docs-concepts-msp-permissions">
   <h2>MSP permissions</h2>
   <p class="note">A missing write permission can still connect as partial. Reads work. The parked write is refused distinctly. That is not a generic 500.</p>
-  <p class="note">ConnectWise and Halo connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. Company create is off unless the MSP turns it on for your grant. Company custom-field write (grant <code class="inline">psa.company.update</code>) is off by default; on when the MSP enables it. We always match first. If two records match, we refuse. Create an agreement is off unless the MSP turns it on for your grant.</p>
+  <p class="note">ConnectWise, Halo, and SuperOps connect are numbered click paths in the flow. Halo pastes a client ID, client secret, and the two server URLs. If a permission is missing, we name it in English. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write (grant <code class="inline">psa.company.update</code>) is off by default; on when the MSP enables it. We always match first. If two records match, we refuse.</p>
   <p class="lbl">Mechanism</p>
   <p class="note">The MSP pastes keys in the guided flow. The probe names the permission to fix. The ISV does not paste MSP creds.</p>
   <p class="lbl">What the caller sees</p>
@@ -2103,7 +2406,7 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">.raw</code> is extra vendor fields on a read. It is read-only. <code class="inline">vendor.native</code> is the same payload. Ticket writes accept optional <code class="inline">vendor_native</code>.</p>
   <p class="note">Order: inventory, coverage, reads, writes. Webhooks only if we already have them. Reads first. Keep the old vendor clients until Bitlync matches in their environment. <code class="inline">dry_run</code> is the shadow pass on writes.</p>
   <p class="note">Never: mint an agreement header; auto-create an unmatched company.</p>
-  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: on an existing agreement only. Public word Agreement. Time: hours the caller states, on a linked ticket. Company create is a separate grant. Company create is off unless the MSP turns it on for your grant. Company custom-field write ships with grant <code class="inline">psa.company.update</code> off by default; on when the MSP enables it. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
+  <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>. You can close a ticket once they accept the connection. Auto-close when a finding is fixed is a separate switch. Line items: quantity updates only, on lines the MSP matched on an existing agreement. Ending a line is refused. To stop billing, send quantity 0. Public word Agreement. Time: hours the caller states, on a linked ticket. We never create companies or agreements in the PSA; the MSP creates them. Company custom-field write ships with grant <code class="inline">psa.company.update</code> off by default; on when the MSP enables it. We always match first. If two records match, we refuse. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.</p>
   <p class="note"><a href="#docs-what-we-write" data-docs="docs-what-we-write">What we write</a> lists the refuse codes.</p>
   <div class="skill-card">
     <p class="kicker">Migrating?</p>
@@ -2119,8 +2422,8 @@ dry_run ticket create is REST-only.</pre>
   </div>
   <div class="cov-wrap">
     <table class="cov">
-      <thead><tr><th scope="col"></th><th scope="col">ConnectWise</th><th scope="col">HaloPSA</th><th scope="col">SuperOps</th><th scope="col">NinjaOne</th><th scope="col">Datto RMM</th><th scope="col">ScalePad</th><th scope="col">Pax8</th><th scope="col">IT Glue</th><th scope="col">Hudu</th></tr></thead>
-      <tbody><tr><th scope="row">Ticket</th><td>Pull and push</td><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Line item</th><td>Pull and push</td><td>Pull and push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Project</th><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Agreement</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Company</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>Pull</td><td>Pull</td></tr><tr><th scope="row">Company custom fields</th><td>Push</td><td>Push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Time</th><td>Push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Device</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Software</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Action item</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Initiative</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Product</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Subscription</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Invoice</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td></tr><tr><th scope="row">Order</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Push</td><td>—</td><td>—</td></tr><tr><th scope="row">Document</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>Pull and push</td></tr><tr><th scope="row">Configuration</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td></tr><tr><th scope="row">Asset</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>Pull</td></tr></tbody>
+      <thead><tr><th scope="col"></th><th scope="col">ConnectWise</th><th scope="col">HaloPSA</th><th scope="col">SuperOps</th><th scope="col">NinjaOne</th><th scope="col">ScalePad</th><th scope="col">Pax8</th><th scope="col">Hudu</th></tr></thead>
+      <tbody><tr><th scope="row">Ticket</th><td>Pull and push</td><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Line item</th><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Project</th><td>Pull and push</td><td>Pull and push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Agreement</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Company</th><td>Pull</td><td>Pull</td><td>Pull</td><td>—</td><td>—</td><td>Pull and push</td><td>Pull</td></tr><tr><th scope="row">Company custom fields</th><td>Push</td><td>Push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Time</th><td>Push</td><td>Push</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Device</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Software</th><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Action item</th><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td></tr><tr><th scope="row">Initiative</th><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td><td>—</td><td>—</td></tr><tr><th scope="row">Product</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td></tr><tr><th scope="row">Subscription</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td></tr><tr><th scope="row">Invoice</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td><td>—</td></tr><tr><th scope="row">Order</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Push</td><td>—</td></tr><tr><th scope="row">Document</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull and push</td></tr><tr><th scope="row">Configuration</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th scope="row">Asset</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pull</td></tr></tbody>
     </table>
   </div>
   <p class="note">Every connector here is Sandbox.</p>
@@ -2130,7 +2433,7 @@ dry_run ticket create is REST-only.</pre>
     <p class="kicker">Reference</p>
     <h1>Routes that exist today.</h1>
     <p class="lede">Auth is the <code class="inline">X-API-Key</code> header. Writes take <code class="inline">dry_run</code> (default false; writes are real). Import the OpenAPI file. This page is not the spec.</p>
-    <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a></p>
+    <p class="note"><a href="openapi.json">OpenAPI 0.90.0</a> is the file on this site. The running spec is 0.94.0.</p>
   </div>
   <div class="two" id="ref-tickets">
     <article>
@@ -2153,6 +2456,7 @@ dry_run ticket create is REST-only.</pre>
     <thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead>
     <tbody>
       <tr id="ref-agreements"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/agreements</code></td><td>Store-served. 501 when the connector does not support agreements. We do not mint a header.</td></tr>
+      <tr id="ref-billing-quantities"><td><code>POST</code></td><td><code>/tenants/{tenant_id}/billing/quantities</code></td><td>Absolute quantities on lines the MSP matched. Quantity 0 stops billing. Ending a line is refused. A change over the MSP's threshold (default 25%, or off) waits for the MSP.</td></tr>
       <tr id="ref-devices"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/devices</code></td><td>Store-served device list.</td></tr>
       <tr><td><code>GET</code></td><td><code>/tenants/{tenant_id}/applications</code></td><td></td></tr>
       <tr id="ref-audit"><td><code>GET</code></td><td><code>/tenants/{tenant_id}/audit</code></td><td></td></tr>
@@ -2185,7 +2489,7 @@ dry_run ticket create is REST-only.</pre>
   </article>
   <article class="obj" id="docs-company">
     <h3>Company</h3>
-    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Company custom-field write ships on POST /tenants/{tenant_id}/companies/write via <code class="inline">vendor_native</code> (ConnectWise customFields, Halo customfields/cf*). Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Never creates a company.</p>
+    <p class="note">POST /tenants/{tenant_id}/companies. Pax8 matches a company it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. PSA company create is not supported: companies are created by the MSP, and a PSA create returns 403 <code class="inline">company_create_not_supported</code>. Match to an existing company. When company import from PSA is available, Import creates a leftover in the ISV after preview (bulk Import unmatched uses the same path). When that write is unavailable, Import returns 501. We never create the company in the PSA. Company custom-field write ships on POST /tenants/{tenant_id}/companies/write via <code class="inline">vendor_native</code> (ConnectWise customFields, Halo customfields/cf*). Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Never creates a company.</p>
     <div class="fields">
       <button type="button" data-goto="ref-companies" data-copy="curl -s -X POST &quot;$BITLYNC_BASE/tenants/sandbox-mainstreet/companies&quot; -H &quot;X-API-Key: $BITLYNC_KEY&quot; -d '{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}'">source</button>
       <button type="button" data-goto="ref-companies" data-copy="{&quot;name&quot;:&quot;Brightside Pediatrics&quot;,&quot;dry_run&quot;:true}">name</button>
@@ -2221,14 +2525,15 @@ dry_run ticket create is REST-only.</pre>
   <div class="docs-hero">
     <p class="kicker">What we write</p>
     <h1>What we write.</h1>
-    <p class="lede">Line items on an existing agreement. Locks and refusals.</p>
+    <p class="lede">Quantity on lines the MSP matched on an existing agreement. Locks and refusals.</p>
   </div>
-  <p class="note">ConnectWise and Halo write line items on an existing agreement. Verbs: add, rewrite, end, replace. Writes are real by default. <code class="inline">dry_run</code> true returns the same payload without creating a record. Halo and ConnectWise agreement-line apply commit when dry_run is false. We do not mint an agreement header.</p>
+  <p class="note">ConnectWise and Halo: the MSP matches each service to a line item they already have. You send an absolute quantity with <code class="inline">POST /tenants/{tenant_id}/billing/quantities</code>. Bitlync updates that line. You do not create the line, and you do not send the match yourself. Ending a line is refused. To stop billing, send quantity 0. How often you send quantities: daily or monthly. The MSP sets the threshold (default 25%, or off) and Advanced review (off by default) on the Billing tab. A change over their threshold, or Advanced review, waits for the MSP to review it first. The same quantity as last time comes back unchanged, and nothing new is written. You cannot bypass that review by writing the agreement line yourself. Writes are real by default. <code class="inline">dry_run</code> true returns the same statuses and writes nothing. We never create agreements or line items.</p>
+  <p class="note">Billing quantity updates are not available for SuperOps. SuperOps reads agreements and does not create, change, or end contracts or billing lines.</p>
   <p class="note">You need an active agreement so we can write the line.</p>
   <p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA.</p>
-  <p class="note">Company create is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
+  <p class="note">PSA company create is not supported: companies are created by the MSP. A PSA create returns 403 <code class="inline">company_create_not_supported</code> with no PSA call. Match to an existing company.</p>
   <p class="note">Company custom-field write ships on an existing company via <code class="inline">vendor_native</code> (ConnectWise, Halo). On Halo and ConnectWise the field works live. It is created once in your stack under the MSP's standing <code class="inline">psa.company.field.create</code> grant, and an existing field with the same label is reused. The field label shows on Configure. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. Missing grant is <code class="inline">grant_missing</code>. Leftover <code class="inline">psa_company_update_refused</code> means the grant is on and the connection still refuses the live write. This path never creates a company.</p>
-  <p class="note">Device write is off unless the MSP turns it on for your grant. We never auto-create an unmatched company. <code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>.</p>
+  <p class="note">Device write is off unless the MSP turns it on for your grant. We never create a company in the PSA. A missing grant is <code class="inline">grant_missing</code>.</p>
   <p class="note">If they try anyway: a stable <code class="inline">code</code>, one English sentence, and <code class="inline">doc_url</code>. details is optional.</p>
   <p class="note"><code class="inline">agreement_header_not_supported</code> — they tried to mint a header. Bitlync refuses. That is policy.</p>
   <p class="note"><code class="inline">agreement_requires_existing</code> — missing or unknown agreement.</p>
@@ -2237,8 +2542,8 @@ dry_run ticket create is REST-only.</pre>
   <p class="note"><code class="inline">project_header_not_supported</code> — they tried to mint a Project header. Bitlync still refuses. That is policy.</p>
   <p class="note"><code class="inline">project_not_writable</code> — Some connectors cannot take that write.</p>
   <p class="note"><code class="inline">project_company_cannot_update</code> — the project’s company cannot be updated.</p>
-  <p class="note">Pax8 matches companies it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. Company create in a PSA is off unless the MSP turns it on for your grant. We always match first. If two records match, we refuse.</p>
-  <p class="note"><code class="inline">psa_company_create_refused</code> is leftover only when the grant is on; missing grant is <code class="inline">grant_missing</code>. When the grant is on we still match first; two matches refuse.</p>
+  <p class="note">Pax8 matches companies it already has, then creates the rest. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create. PSA company create is not supported; companies are created by the MSP.</p>
+  <p class="note"><code class="inline">company_create_not_supported</code> — a PSA company create; companies are created by the MSP.</p>
   <p class="note"><code class="inline">company_match_ambiguous</code> — more than one match. We do not create.</p>
   <p class="note"><code class="inline">distributor_required</code> — no connected distributor for this write.</p>
 </div>
@@ -2251,10 +2556,10 @@ dry_run ticket create is REST-only.</pre>
   <article class="uc"><h3>1. Alert to ticket</h3><p class="note">A finding becomes a ticket we created. We keep the link. You can update, append a note, or close with evidence on that ticket.</p></article>
   <article class="uc"><h3>2. Two-way tickets</h3><p class="note">Tickets are two-way when the MSP grants it. You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. Grants: <code class="inline">psa.ticket.create</code>, <code class="inline">psa.ticket.update</code>, <code class="inline">psa.ticket.events</code>. Ticket, device, and company events: list with <code class="inline">GET /tenants/{id}/connections/events</code> or a signed webhook. Grants <code class="inline">psa.ticket.events</code>, <code class="inline">rmm.device.events</code>, <code class="inline">psa.company.events</code>. Missing is <code class="inline">grant_missing</code>.</p></article>
   <article class="uc"><h3>3. Map customers</h3><p class="note">Map customers to companies that already exist. Exact-name auto-Match fills Match only (never auto-import). A leftover is Match, company import from PSA, Skip, or Needs match.</p></article>
-  <article class="uc"><h3>4. Create a company</h3><p class="note">Creating a company is a separate grant. Grant <code class="inline">psa.company.create</code>, <code class="inline">dry_run</code>, match-first.</p></article>
+  <article class="uc"><h3>4. Match a company</h3><p class="note">Companies are created by the MSP in their PSA. We never let apps create companies there: a PSA create returns 403 <code class="inline">company_create_not_supported</code>. Match to the existing company instead.</p></article>
   <article class="uc"><h3>5. Company custom fields</h3><p class="note">Write custom fields on an existing PSA company via <code class="inline">POST /tenants/{id}/companies/write</code> and <code class="inline">vendor_native</code>. Grant <code class="inline">psa.company.update</code> is off by default; on when the MSP enables it. ConnectWise and Halo. Never creates a company.</p></article>
   <article class="uc"><h3>6. Time on the ticket</h3><p class="note">Hours on a ticket Bitlync already linked. Hours, stated billable, member from GET /tenants/{id}/members on ConnectWise and Halo.</p></article>
-  <article class="uc"><h3>7. Billing reconciliation</h3><p class="note">Read agreements and lines. Write lines on an existing agreement.</p></article>
+  <article class="uc"><h3>7. Billing reconciliation</h3><p class="note">Read agreements and lines. The MSP matches your product to an existing line. You send an absolute quantity with <code class="inline">POST /tenants/{tenant_id}/billing/quantities</code>. Ending a line is refused. To stop billing, send quantity 0. How often you send quantities: daily or monthly. A change over the MSP's threshold (default 25%, or off), or Advanced review, waits for the MSP. We never create agreements or lines.</p></article>
   <article class="uc"><h3>8. Create action items</h3><p class="note">Create the follow-up the MSP already tracks.</p></article>
   <article class="uc"><h3>9. Create initiatives</h3><p class="note">Create the workstream those items sit on.</p></article>
   <article class="uc"><h3>10. Add to an existing project</h3><p class="note">Add notes or items on a project that already exists.</p></article>
@@ -2270,11 +2575,11 @@ dry_run ticket create is REST-only.</pre>
 <p class="note">Backup — failed job to ticket, close when it succeeds. Optional usage on agreement lines.</p>
 <p class="note">Documentation — PSA companies are the source of truth. Document write. No company create.</p>
 <p class="note">vCIO / QBR — map companies, findings to tickets, add to an existing project.</p>
-<p class="note">Commerce / distributor — map, plus company-create grant, orders, lines on existing agreements.</p>
-<p class="note">Quoting — map, company create for a new logo.</p>
+<p class="note">Commerce / distributor: map, orders, quantity updates on lines the MSP matched on existing agreements.</p>
+<p class="note">Quoting — map to the company the MSP created for a new logo.</p>
 <p class="note">Time / scheduling — ticket update (status, notes), time write. Hours on a linked ticket, not a full timesheet product.</p>
 <p class="note">Identity / comms — full two-way tickets plus time.</p>
-<p class="note">Onboarding / import — company create is the product. Grant plus match-first.</p>
+<p class="note">Onboarding / import — match first; the MSP creates new companies in the PSA.</p>
 <p class="note">AI copilot — read plus ticket write plus events. Do not lead with creating companies or agreements.</p>
 <div class="btn-row" style="margin:36px 0 0">
         <a class="btn" href="#docs-quickstart" data-docs="docs-quickstart">Quickstart</a>
@@ -2291,8 +2596,10 @@ dry_run ticket create is REST-only.</pre>
       <p class="kicker">Changelog</p>
       <h1>Changelog</h1>
       <p>What shipped. Newest first.</p>
+      <h2>2026-10-15</h2>
+      <p>SuperOps billing-line writes were removed. Bitlync never creates companies, agreements, or billing lines in an MSP’s PSA. Billing writes only update the quantity on a line the MSP matched on an existing agreement. Ending a line is refused. To stop billing, vendors send quantity 0.</p>
       <h2>2026-10-12</h2>
-      <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, a company custom field created once in your stack, and billing lines as new draft contracts.</p>
+      <p>SuperOps joins the list as one connection that covers both PSA and RMM. Tickets read and write, companies and agreements read, and a company custom field created once in your stack.</p>
       <p>MSP Connect is branded as your product, with a background pattern, solid color, or image. Five steps: Choose, Connect, Configure, Map companies, Done. One “Powered by Bitlync” footer on every step.</p>
       <h2>2026-10-12</h2>
       <p>SDK 2.0.0 (breaking): the generated Python and TypeScript clients now return typed response models where the spec declares one (for example TicketList) instead of plain dicts. Read attributes (listed.sandbox) or call .to_dict().</p>
@@ -2326,7 +2633,7 @@ dry_run ticket create is REST-only.</pre>
       <p>Customer Terms, Privacy Notice, and MSP Connect Terms. Contact us requires the terms box.</p>
       <p>Docs Use cases: twelve cards. Import, map, and create customers (we do not create the customer in a PSA).</p>
       <h2>2026-08-26</h2>
-      <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0. Current spec is 0.65.0.</p>
+      <p>GET /tenants/{id}/agreements. OpenAPI 0.64.0. Current spec is 0.94.0.</p>
       <p>Public ScalePad category is Customer Success.</p>
       <p>Roadmap votes are <a href="https://github.com/BitLync-Inc/bitlync-site/issues?q=is%3Aissue+label%3Aroadmap">GitHub issues labeled roadmap</a> on BitLync-Inc/bitlync-site.</p>
     </div>
@@ -2372,14 +2679,13 @@ dry_run ticket create is REST-only.</pre>
 
 <footer>
   <div class="wrap foot">
-    <span>© 2026 Bitlync · stealth · private beta · SOC 2 Type II — in preparation</span>
+    <span id="footNote">© 2026 Bitlync · stealth · private beta · SOC 2 Type II — in preparation</span>
     <span><a href="https://docs.bitlync.com/">API docs</a> · <a href="#changelog" data-nav="changelog">Changelog</a> · <a href="#about" data-nav="about">About</a> · <a href="mailto:hello@bitlync.com" style="font-family:var(--mono);font-size:12px">hello@bitlync.com</a></span>
-    <span style="flex-basis:100%"><a href="/legal/msp-terms/">MSP Terms</a> · <a href="/legal/isv-terms/">ISV Terms</a> · <a href="/legal/dpa/">DPA</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/subprocessors/">Subprocessors</a> · <a href="/legal/security/">Security</a></span>
   </div>
 </footer>
 <script>
 (function(){
-  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','changelog','about'];
+  var pages=['home','use-cases','integrations','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','product','partners','docs','changelog','about'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
@@ -2390,7 +2696,7 @@ dry_run ticket create is REST-only.</pre>
   var nav=document.getElementById('mainNav');
   var menuBtn=document.getElementById('menuBtn');
 
-  var connectors=['connectwise','halo','superops','ninjaone','datto','scalepad','pax8','itglue','hudu'];
+  var connectors=['connectwise','halo','superops','ninjaone','scalepad','pax8','hudu'];
 
   function parse(h){
     h=(h||'').replace('#','');
@@ -2409,13 +2715,36 @@ dry_run ticket create is REST-only.</pre>
       return {page:'home',docs:'docs',anchor:null,connector:null};
     }
     if(h==='pricing'||h==='contact') return {page:'partners',docs:'docs',anchor:null,connector:null};
-    if(h==='product') return {page:'solutions-product',docs:'docs',anchor:null,connector:null};
-    if(h==='solutions') return {page:'solutions',docs:'docs',anchor:null,connector:null};
+    if(h==='product'||h==='products') return {page:'product',docs:'docs',anchor:null,connector:null};
+    if(h==='solutions'){ try{history.replaceState(null,'','#solutions/product');}catch(_){} return {page:'solutions-product',docs:'docs',anchor:null,connector:null}; }
     if(h.indexOf('solutions/')===0){
       var slug=h.slice(10);
-      var smap={product:'solutions-product',developer:'solutions-developer',engineering:'solutions-developer',sales:'solutions-sales','customer-success':'solutions-customer-success'};
+      // Canonical hashes + legacy aliases (emailed links must keep working).
+      var smap={
+        product:'solutions-product',
+        engineering:'solutions-developer',
+        developer:'solutions-developer',
+        'go-to-market':'solutions-sales',
+        sales:'solutions-sales',
+        gtm:'solutions-sales',
+        'tech-and-platform-support':'solutions-customer-success',
+        'customer-success':'solutions-customer-success',
+        support:'solutions-customer-success'
+      };
+      var canon={
+        product:'product',
+        engineering:'engineering',
+        developer:'engineering',
+        'go-to-market':'go-to-market',
+        sales:'go-to-market',
+        gtm:'go-to-market',
+        'tech-and-platform-support':'tech-and-platform-support',
+        'customer-success':'tech-and-platform-support',
+        support:'tech-and-platform-support'
+      };
       var sp=smap[slug]||'solutions-product';
-      return {page:sp,docs:'docs',anchor:null,connector:null};
+      var cslug=canon[slug]||(smap[slug]?slug:'product');
+      return {page:sp,docs:'docs',anchor:null,connector:null,personaSlug:slug,personaCanon:cslug};
     }
     if(pages.indexOf(h)>=0) return {page:h,docs:'docs',anchor:null,connector:null};
     return {page:'home',docs:'docs',anchor:null,connector:null};
@@ -2438,14 +2767,140 @@ dry_run ticket create is REST-only.</pre>
     }
   }
 
+
+  var prodMotionArmed=false;
+  function armProductsMotion(){
+    if(prodMotionArmed) return;
+    var page=document.getElementById('page-product');
+    if(!page) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(!('IntersectionObserver' in window)) return;
+    prodMotionArmed=true;
+    page.classList.add('msp-arm');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);});},{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+    var tiles=page.querySelectorAll('.msp-collage .msp-tile'),hero=page.querySelector('.msp-hero'),tick=false;
+    function para(){tick=false;if(!page.classList.contains('on'))return;var y=hero.getBoundingClientRect().top;var s=Math.max(-22,Math.min(22,(64-y)*0.07));var a=[0.45,1,0.2];
+      tiles.forEach(function(el,i){el.style.setProperty('--py',((a[i]-0.55)*s).toFixed(2)+'px');});}
+    function on(){if(tick)return;tick=true;requestAnimationFrame(para);}
+    window.addEventListener('scroll',on,{passive:true});window.addEventListener('resize',on,{passive:true});para();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){page.querySelectorAll('.msp-rise,.msp-fade').forEach(function(el){io.observe(el);});});});
+  }
+  var mspMotionArmed=false;
+  function armMspMotion(){
+    if(mspMotionArmed) return;
+    var page=document.getElementById('page-msps');
+    if(!page) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(!('IntersectionObserver' in window)) return;
+    mspMotionArmed=true;
+    var route=page.querySelector('.msp-route');
+    if(route) route.textContent=route.getAttribute('data-from')||'Email';
+    page.classList.add('msp-arm');
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    },{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+    function inFocus(el){
+      var r=el.getBoundingClientRect();
+      var vh=window.innerHeight||800;
+      if(r.height<8) return false;
+      if(r.bottom<vh*0.3 || r.top>vh*0.72) return false;
+      var visible=Math.min(r.bottom, vh*0.85)-Math.max(r.top, vh*0.12);
+      return visible>140;
+    }
+    function focusDemos(){
+      var bill=page.querySelector('.msp-bill');
+      var ticket=page.querySelector('.msp-ticket');
+      if(bill && !bill.dataset.played && inFocus(bill)){
+        bill.dataset.played='1';
+        runBillCount(page);
+      }
+      if(ticket && !ticket.dataset.played && inFocus(ticket)){
+        ticket.dataset.played='1';
+        runTicket(page);
+      }
+    }
+    var settle;
+    var tiles=page.querySelectorAll('.msp-collage .msp-tile');
+    var hero=page.querySelector('.msp-hero');
+    var paraTick=false;
+    function heroParallax(){
+      paraTick=false;
+      if(!hero || !page.classList.contains('on')) return;
+      var y=hero.getBoundingClientRect().top;
+      var shift=Math.max(-22, Math.min(22, (64-y)*0.07));
+      var amps=[0.45,1,0.2];
+      tiles.forEach(function(el,i){
+        var amp=amps[i]!==undefined?amps[i]:0.5;
+        el.style.setProperty('--py', ((amp-0.55)*shift).toFixed(2)+'px');
+      });
+    }
+    function onMspScroll(){
+      clearTimeout(settle);
+      settle=setTimeout(focusDemos, 140);
+      if(paraTick) return;
+      paraTick=true;
+      requestAnimationFrame(heroParallax);
+    }
+    window.addEventListener('scroll', onMspScroll, {passive:true});
+    window.addEventListener('resize', function(){
+      if(paraTick) return;
+      paraTick=true;
+      requestAnimationFrame(heroParallax);
+    }, {passive:true});
+    heroParallax();
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        page.querySelectorAll('.msp-rise,.msp-fade').forEach(function(el){ io.observe(el); });
+        focusDemos();
+      });
+    });
+  }
+  function runBillCount(page){
+    page.querySelectorAll('#v3 .qty-n').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-n'),10);
+      if(!isFinite(target)) return;
+      var t0=performance.now();
+      var dur=560;
+      function tick(now){
+        var p=Math.min(1,(now-t0)/dur);
+        var eased=1-Math.pow(1-p,3);
+        el.textContent=String(Math.round(eased*target));
+        if(p<1) requestAnimationFrame(tick);
+        else el.textContent=String(target);
+      }
+      el.textContent='0';
+      requestAnimationFrame(tick);
+    });
+  }
+  function runTicket(page){
+    var chip=page.querySelector('.msp-route');
+    var saved=page.querySelector('.msp-saved');
+    if(!chip) return;
+    setTimeout(function(){
+      chip.style.opacity='0';
+      setTimeout(function(){
+        chip.textContent=chip.getAttribute('data-to')||'Ticket';
+        chip.style.opacity='1';
+        setTimeout(function(){ if(saved) saved.classList.add('show'); }, 220);
+      }, 200);
+    }, 160);
+  }
   function show(hash){
-    if((hash||'').replace('#','')==='product'){ history.replaceState(null,'','#solutions/product'); hash='#solutions/product'; }
     var st=parse(hash);
+    if(st.personaSlug && st.personaCanon && st.personaSlug!==st.personaCanon){
+      history.replaceState(null,'','#solutions/'+st.personaCanon);
+    }
     var cur=document.querySelector('.page.on');
     pages.forEach(function(p){
       var el=document.getElementById('page-'+p);
       if(el) el.classList.toggle('on',p===st.page);
     });
+    if(st.page==='msps') armMspMotion();
+    if(st.page==='product') armProductsMotion();
     document.body.classList.toggle('docs', st.page==='docs' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
@@ -2481,11 +2936,12 @@ dry_run ticket create is REST-only.</pre>
       home:[homeTitle,homeDesc],
       integrations:['Connectors \u00b7 Bitlync','Coverage by vendor. What we pull and write today.'],
       solutions:['Solutions \u00b7 Bitlync','Who Bitlync is for.'],
-      'solutions-product':['Product \u00b7 Bitlync','Ship without parking the roadmap on each PSA.'],
+      'solutions-product':['Product teams \u00b7 Bitlync','Ship without parking the roadmap on each PSA.'],
       'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
-      'solutions-sales':['Go-to-market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
-      'solutions-customer-success':['Support \u00b7 Bitlync','Name the missing permission in the flow.'],
-      msps:['For MSPs \u00b7 Bitlync','You own the connection.'],
+      'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
+      'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
+      product:['Product \u00b7 Bitlync','Bitlync runs the connection, alerts, billing and health checks around your product, under your brand.'],
+      msps:['For MSPs \u00b7 Bitlync','Billing that stays current and vendor alerts routed your way, in a stack you control.'],
       partners:['Contact us \u00b7 Bitlync','Paid design partners: engineering access, roadmap input, founding pricing.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
       about:['About \u00b7 Bitlync','Our origin story.'],
@@ -2506,6 +2962,13 @@ dry_run ticket create is REST-only.</pre>
     document.title=pair[0];
     var descEl=document.querySelector('meta[name="description"]');
     if(descEl) descEl.setAttribute('content', pair[1]);
+    var footNote=document.getElementById('footNote');
+    if(footNote){
+      if(!footNote.hasAttribute('data-default')) footNote.setAttribute('data-default', footNote.textContent);
+      footNote.textContent = (st.page==='msps'||st.page==='product')
+        ? '\u00a9 2026 Bitlync \u00b7 Powered by bitlync'
+        : footNote.getAttribute('data-default');
+    }
     fillDocsRail(st);
     openDocsFolderFor(st);
     if(st.connector){
@@ -2655,6 +3118,8 @@ dry_run ticket create is REST-only.</pre>
     return window.matchMedia('(max-width:840px)').matches || (nav && nav.classList.contains('open'));
   }
   if(solDrop){
+    var solT=solDrop.querySelector('[data-sol-toggle]');
+    solT.addEventListener('click',function(ev){ ev.preventDefault(); ev.stopPropagation(); var on=!(solDrop.classList.contains('open')||solDrop.classList.contains('hot')); solDrop.classList.toggle(isMobileNav()?'open':'hot',on); solT.setAttribute('aria-expanded',on?'true':'false'); });
     solDrop.addEventListener('mouseenter',function(){
       if(!isMobileNav()) solDrop.classList.add('hot');
     });
@@ -2663,6 +3128,8 @@ dry_run ticket create is REST-only.</pre>
       solDrop.classList.remove('open');
     });
   }
+
+
 
   (function(){
     var root=document.getElementById('page-solutions-customer-success');
@@ -2715,7 +3182,7 @@ dry_run ticket create is REST-only.</pre>
   (function(){
     if(!('IntersectionObserver' in window)) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-msps','page-docs'];
+    var ids=['page-solutions-product','page-solutions-developer','page-solutions-sales','page-solutions-customer-success','page-docs'];
     var io=new IntersectionObserver(function(ents){
       ents.forEach(function(e){
         if(!e.isIntersecting) return;
@@ -2767,7 +3234,8 @@ dry_run ticket create is REST-only.</pre>
     form.querySelectorAll('input[name="intent"]').forEach(function(r){ r.addEventListener('change', sync); });
     sync();
   })();
-(function(){
+
+  (function(){
     var root=document.getElementById('page-use-cases');
     if(!root) return;
     var cards=[].slice.call(root.querySelectorAll('[data-uc-card]'));
@@ -2782,7 +3250,6 @@ dry_run ticket create is REST-only.</pre>
       if(e.key==='Escape') cards.forEach(function(c){ setFlip(c,false); });
     });
   })();
-
 
   show(location.hash||'#home');
 

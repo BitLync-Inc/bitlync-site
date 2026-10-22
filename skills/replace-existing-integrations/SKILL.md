@@ -1,7 +1,7 @@
 ---
 name: Replace existing integrations
 description: >-
-  Use when an ISV already has ConnectWise, Autotask, Halo, or other vendor
+  Use when an ISV already has ConnectWise, Halo, or other vendor
   clients and is replacing those with Bitlync. Not for first-day Quickstart,
   company-map import, or moving an MSP from one PSA to another.
 ---
@@ -18,7 +18,7 @@ The job: they already wrote vendor clients. They change those calls to Bitlync. 
 - Keep the old vendor clients until Bitlync matches in their environment.
 - Use `dry_run` as the shadow pass on writes. Compare shape, do not cut over on a preview.
 - Never mint an agreement header. Never auto-create an unmatched company.
-- Write a line on an existing agreement only. Public word is Agreement, not Contract. Site word for the line is Line item.
+- Update the quantity on an existing line the MSP matched on an existing agreement. Ending a line is refused. To stop billing, send quantity 0 with POST /tenants/{tenant_id}/billing/quantities. Bitlync never creates agreements or lines. Public word is Agreement, not Contract. Site word for the line is Line item.
 - MSP pastes their own keys. Name a missing permission in the connect flow. Do not claim OAuth unless that vendor actually publishes a partner app.
 - No Rewst (or other vendor) screenshots in anything that ships.
 - Do not add `pass_through`, Proxy, or vault token-import. Those are a different product.
@@ -26,7 +26,7 @@ The job: they already wrote vendor clients. They change those calls to Bitlync. 
 
 ## Phase 1 — Inventory
 
-1. List the vendor APIs they call today (PSA first: ConnectWise, Autotask, Halo).
+1. List the vendor APIs they call today (PSA first: ConnectWise, Halo).
 2. For each, list the operations they use (list/get/create/update/close) and the fields they depend on.
 3. Map each to a Bitlync word: Ticket, Company, Contact, Device, Agreement, Line item, Project.
 4. Mark gaps honestly. A gap is not a bug. Later or Never stays named.
@@ -43,7 +43,7 @@ Replace list/get first. Same Bitlync call for every vendor. Reads come from the 
 
 Typical left-to-right:
 
-- ConnectWise `service/tickets` / Autotask `Tickets` / Halo `Tickets` → Ticket
+- ConnectWise `service/tickets` / Halo `Tickets` → Ticket
 - Company / Account / Client → Company
 - Configuration / Asset (documented device) → Device
 - Agreement / Contract → Agreement
@@ -56,9 +56,9 @@ Keep `.raw` for vendor-only fields they still need. Do not log it. Do not put Hu
 Replace create/update only after reads match.
 
 - Tickets: two-way when the MSP grants it (`psa.ticket.create`, `psa.ticket.update`, `psa.ticket.events`). You can create, update, and close. You can subscribe to events when the MSP changes the ticket in their PSA. When a ticket is created, updated, noted, closed, or reopened, you can list those events or get a signed webhook. After a tenant sync, `GET /tenants/{id}/connections/events?kind=ticket.closed` (also created, updated, noted, reopened). Optional signed webhook. Grant is the connection (`psa.ticket.events`). Missing is `grant_missing`.
-- Line items: on an existing agreement only.
+- Line items: quantity updates only, on lines the MSP matched. Ending a line is refused. To stop billing, send quantity 0.
 - Time on a ticket: hours the caller states, on a linked ticket.
-- Company create is a separate grant (`psa.company.create`). Off unless the MSP turns it on. We always match first. If two records match, we refuse. `dry_run`. A company create at a distributor, when that write exists and the MSP granted it, is not a PSA create.
+- PSA company create is not supported (403 `company_create_not_supported`); the MSP creates companies. A distributor create is the distributor write.
 - Device write is off unless the MSP turns it on for your grant.
 
 Every write: `dry_run` first, then apply. Same payload in sandbox. If they hit a Never, the 422 is a stable code, one English sentence, and a docs URL.
