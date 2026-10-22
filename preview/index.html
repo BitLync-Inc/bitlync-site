@@ -737,24 +737,82 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-msps .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
 #page-msps .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
 #page-msps .msp-collage .grid{text-align:left;gap:16px}
+#page-msps .msp-hero-stage{width:100%}
+#page-msps .msp-tile{height:100%}
+#page-msps .msp-cue{
+  display:flex;align-items:center;justify-content:center;
+  width:42px;height:42px;margin:22px auto 0;color:var(--mute);
+  border:1px solid var(--hair);border-radius:999px;background:rgba(247,244,236,.8)
+}
+#page-msps .msp-cue:hover{color:var(--ink);border-color:#B7B2A6}
+#page-msps .msp-cue:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#page-msps #v1 .wrap{max-width:1560px}
+@media(min-width:861px){
+  #page-msps #v1 .vsplit{grid-template-columns:minmax(0,1.7fr) minmax(300px,.78fr);gap:32px 44px}
+}
+#page-msps section[id]{scroll-margin-top:76px}
 @media(max-width:720px){
   #page-msps .dig-row{grid-template-columns:1fr;gap:2px;padding:10px 0}
   #page-msps .msp-collage{width:min(1520px, calc(100vw - 20px))}
+}
+@media(min-width:900px){
+  #page-msps .msp-hero{
+    box-sizing:border-box;
+    min-height:calc(100vh - 64px);
+    min-height:calc(100svh - 64px);
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:20px 0 76px
+  }
+  #page-msps .msp-cue{
+    position:absolute;left:50%;bottom:18px;margin:0;
+    transform:translateX(-50%)
+  }
 }
 #page-msps .qty{display:inline-grid;font-variant-numeric:tabular-nums}
 #page-msps .qty-hold,#page-msps .qty-n{grid-area:1 / 1}
 #page-msps .qty-hold{visibility:hidden}
 #page-msps .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
-#page-msps .card.small{transition:transform 220ms ease,box-shadow 220ms ease,border-color 220ms ease}
+#page-msps .card.small,#page-msps .msp-tile .ui,#page-msps .vsplit .ui{transition:transform 240ms ease,box-shadow 240ms ease,border-color 240ms ease}
 @media (prefers-reduced-motion: no-preference){
   #page-msps.msp-arm .msp-rise:not(.in){opacity:0;transform:translateY(16px)}
   #page-msps.msp-arm .msp-fade:not(.in){opacity:0}
+  #page-msps.msp-arm .msp-tile.msp-rise:not(.in){opacity:0;transform:translateY(24px)}
+  #page-msps.msp-arm .msp-shot:not(.in){opacity:0;transform:translateY(36px)}
   #page-msps.msp-arm .msp-rise.in,#page-msps.msp-arm .msp-fade.in{opacity:1;transform:none;transition:opacity 420ms ease,transform 420ms ease}
   #page-msps.msp-arm .msp-fade.in{transition:opacity 420ms ease}
+  #page-msps.msp-arm .msp-shot.in{opacity:1;transform:none;transition:opacity 740ms ease,transform 740ms cubic-bezier(.16,.84,.32,1)}
   #page-msps.msp-arm .lag.in{transition-delay:160ms}
+  #page-msps.msp-arm .msp-shot.lag.in{transition-delay:200ms}
+  #page-msps.msp-arm .msp-tile.in{
+    opacity:1;transform:none;
+    animation:mspFloat 12s ease-in-out infinite;
+    animation-delay:720ms
+  }
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(1).in{transition-delay:70ms;animation-delay:680ms;animation-duration:11s}
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(2).in{transition-delay:190ms;animation-delay:860ms;animation-duration:13.5s}
+  #page-msps.msp-arm .msp-collage .msp-tile:nth-child(3).in{transition-delay:310ms;animation-delay:1020ms;animation-duration:10s}
   #page-msps.msp-arm .msp-saved{opacity:0}
   #page-msps.msp-arm .msp-saved.show{opacity:1;transition:opacity 320ms ease}
-  #page-msps .card.small:hover{transform:translateY(-3px);box-shadow:0 10px 24px -16px rgba(23,24,28,.5)}
+  #page-msps .card.small:hover,#page-msps .msp-tile .ui:hover,#page-msps .vsplit .ui:hover{transform:translateY(-5px);box-shadow:0 18px 36px -18px rgba(23,24,28,.48)}
+  #page-msps .msp-cue{animation:mspCueFlow 1.9s ease-in-out infinite}
+  @keyframes mspFloat{
+    0%,100%{transform:translate3d(0,var(--py,0px),0)}
+    50%{transform:translate3d(0,calc(var(--py,0px) - 7px),0)}
+  }
+  @keyframes mspCueFlow{
+    0%,100%{transform:translateY(0);opacity:.62}
+    50%{transform:translateY(7px);opacity:1}
+  }
+  @keyframes mspCueDock{
+    0%,100%{transform:translate(-50%,0);opacity:.62}
+    50%{transform:translate(-50%,7px);opacity:1}
+  }
+}
+@media(min-width:900px) and (prefers-reduced-motion:no-preference){
+  #page-msps .msp-cue{animation-name:mspCueDock}
+}
+@media(prefers-reduced-motion:reduce){
+  #page-msps .msp-cue,#page-msps .msp-tile,#page-msps .card.small,#page-msps .vsplit .ui{animation:none;transition:none}
 }
 @media(max-width:860px){
   #page-msps .vsplit{grid-template-columns:1fr}
@@ -1592,33 +1650,36 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 </div>
 <div class="page" id="page-msps">
   <section class="pad msp-hero">
+    <div class="msp-hero-stage">
     <div class="wrap center">
       <div class="msp-rise">
         <h1>Your vendors,<br>connected on your terms.</h1>
         <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
       </div>
     </div>
-    <div class="msp-collage msp-rise lag">
+    <div class="msp-collage">
       <div class="grid g3">
-        <div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
           <div class="rrow" style="grid-template-columns:1fr 128px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
           <div class="rrow" style="grid-template-columns:1fr 128px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
           <div class="rrow" style="grid-template-columns:1fr 128px"><span>Low and info alerts</span><span class="chip on">Monthly digest</span></div>
-        </div></div>
-        <div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub">
+        </div></div></div>
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub">
           <div class="dig-row"><span class="dig-k">Product alert</span><span>Acme Endpoint critical update</span></div>
           <div class="dig-row"><span class="dig-k">Trial ending</span><span>Harbor Clinic, Oct 28</span></div>
           <div class="dig-row"><span class="dig-k">Renewal</span><span>Northwind Logistics, Nov 15</span></div>
           <div class="dig-row"><span class="dig-k">Price change</span><span>Acme Mail Defense $3.00 to $3.50</span></div>
           <div class="dig-note">Example data</div>
-        </div></div>
-        <div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
+        </div></div></div>
+        <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
           <table class="bt"><tr><th>Customer</th><th>Count</th><th>Next update</th></tr>
           <tr><td>Northwind Logistics</td><td>48</td><td>Oct 20</td></tr>
           <tr><td>Harbor Clinic</td><td>123</td><td>Oct 20</td></tr></table>
-        </div></div>
+        </div></div></div>
       </div>
     </div>
+    </div>
+    <a class="msp-cue" href="#v3" aria-label="Scroll down"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M5.5 8.5l5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </section>
   <section class="pad band" id="v3">
     <div class="wrap"><div class="vsplit rev">
@@ -1657,19 +1718,19 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad band" id="v1">
     <div class="wrap"><div class="vsplit rev">
       <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
-      <div class="msp-rise lag"><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
+      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v7">
     <div class="wrap"><div class="vsplit">
       <div class="scopy msp-rise"><span class="vtag">Proof of value</span><span class="vtag">Monthly digest</span><h2>See what each vendor did for you this month.</h2><p class="sub">One monthly email with product alerts, trial expirations, upcoming renewals and pricing and packaging changes for your customers.</p></div>
-      <div class="msp-fade lag"><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
+      <div class="msp-fade lag msp-shot"><div class="ui"><img src="assets/msp_monthly_digest_email.png" alt="Monthly digest email"></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v2">
     <div class="wrap"><div class="vsplit rev">
       <div class="scopy msp-rise"><span class="vtag">Save time</span><h2>Your customers, matched and imported for you.</h2><p class="sub">Bitlync matches the vendor's customers to the companies in your stack, so you review a list instead of mapping by hand.</p></div>
-      <div class="msp-rise lag"><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
+      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_map_companies_import.png" alt="Map companies and import"></div></div>
     </div></div>
   </section>
   <section class="pad band">
@@ -2607,10 +2668,34 @@ dry_run ticket create is REST-only.</pre>
       }
     }
     var settle;
-    window.addEventListener('scroll', function(){
+    var tiles=page.querySelectorAll('.msp-collage .msp-tile');
+    var hero=page.querySelector('.msp-hero');
+    var paraTick=false;
+    function heroParallax(){
+      paraTick=false;
+      if(!hero || !page.classList.contains('on')) return;
+      var y=hero.getBoundingClientRect().top;
+      var shift=Math.max(-22, Math.min(22, (64-y)*0.07));
+      var amps=[0.45,1,0.2];
+      tiles.forEach(function(el,i){
+        var amp=amps[i]!==undefined?amps[i]:0.5;
+        el.style.setProperty('--py', ((amp-0.55)*shift).toFixed(2)+'px');
+      });
+    }
+    function onMspScroll(){
       clearTimeout(settle);
       settle=setTimeout(focusDemos, 140);
+      if(paraTick) return;
+      paraTick=true;
+      requestAnimationFrame(heroParallax);
+    }
+    window.addEventListener('scroll', onMspScroll, {passive:true});
+    window.addEventListener('resize', function(){
+      if(paraTick) return;
+      paraTick=true;
+      requestAnimationFrame(heroParallax);
     }, {passive:true});
+    heroParallax();
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         page.querySelectorAll('.msp-rise,.msp-fade').forEach(function(el){ io.observe(el); });
