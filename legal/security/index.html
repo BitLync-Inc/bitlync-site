@@ -44,7 +44,7 @@ footer a{margin-right:14px}
 <nav class="top" aria-label="Legal"><a href="/">Bitlync home</a><span><a href="/legal/msp-terms/">MSP Terms</a> · <a href="/legal/isv-terms/">ISV Terms</a> · <a href="/legal/dpa/">DPA</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/subprocessors/">Subprocessors</a> · <a href="/legal/security/">Security</a></span></nav>
 <p class="kicker">Legal</p>
 <h1>Security Measures</h1>
-<p class="ver">Version 1.0 · Effective date: <span class="legal-effective">TODO</span></p>
+<p class="ver">Version 1.1 · Effective date: <span class="legal-effective">October 22, 2026</span></p>
 <main class="legal">
 <p class="ver">From Schedule 4 of the <a href="/legal/dpa/">Data Processing Addendum</a>.</p>
 <p><strong>SCHEDULE 4</strong></p>
@@ -56,7 +56,7 @@ footer a{margin-right:14px}
 <tr><td>Tenant isolation</td><td>Structural tenant isolation: at authorization time, another organization's tenant is indistinguishable from a non-existent one. Machine (API key) access and human console sessions are never merged.</td></tr>
 <tr><td>Access control and least privilege</td><td>ISVs receive scoped, revocable Grants rather than possession of Credentials; each permission is tested before a Grant goes live; the MSP may narrow or revoke at any time. Bitlync support access is read-only.</td></tr>
 <tr><td>Logging and audit</td><td>Append-only Audit Log of API calls, writes, logins, acceptances and Grant changes, visible to the MSP in the MSP Portal.</td></tr>
-<tr><td>Write safety</td><td>Preview (dry_run) then commit; idempotency keys where supported; deletion of records in a Connected System and synchronization or disclosure of documentation passwords or credential objects refused by policy; close-with-resolution disabled by default; creation or updating of companies, contacts, agreements, projects and custom fields, and device and documentation changes, disabled unless enabled by the MSP.</td></tr>
+<tr><td>Write safety</td><td>Preview (dry_run) then commit; idempotency keys where supported; deletion of records in a Connected System and synchronization or disclosure of documentation passwords or credential objects refused by policy; close-with-resolution disabled by default; updating of companies and agreements, creation or updating of contacts, projects and custom fields, and device and documentation changes, disabled unless enabled by the MSP; billing writes limited to updating the quantity on a billing record which the MSP has matched to the ISV. The Service currently does not create companies or customers, agreements or contracts, or billing records in the MSP's professional services automation system. Any additional write types will be available only with the MSP's explicit authorization.</td></tr>
 <tr><td>Data minimization</td><td>Documentation passwords and credential objects held in Connected Systems are never synchronized. Only objects within an approved Grant are served to an ISV.</td></tr>
 <tr><td>Rate governance</td><td>Bitlync paces its calls to each Connected System to a fraction of the vendor's published per-tenant limit to avoid service disruption to the MSP.</td></tr>
 <tr><td>AI Assistant</td><td>Where enabled: structurally read-only (no write tool), tenant-pinned, grounded-or-escalate, spend-capped; MSP Data is not used to train generally available models.</td></tr>
