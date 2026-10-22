@@ -684,9 +684,21 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-solutions-sales .gtm-deal.is-lost{border-color:#E8CFCF}
 
 /* MSP value page (preview). Scoped so other routes keep their styles. */
-#page-msps .msp-hero{padding-bottom:40px}
+#page-msps .msp-hero{padding-bottom:48px}
 #page-msps .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
-#page-msps .msp-hero .pby{margin:2px 0 0}
+#page-msps .msp-collage{width:min(1520px, calc(100vw - 28px));margin:6px auto 0}
+#page-msps .msp-collage .ui{height:100%;display:flex;flex-direction:column;font-size:15px}
+#page-msps .msp-collage .ui .uh{font-size:12.5px;padding:13px 18px}
+#page-msps .msp-collage .ui .ub{flex:1;padding:16px 18px 18px}
+#page-msps .msp-collage .rrow{padding:13px 0;font-size:15px}
+#page-msps .msp-collage .chip{font-size:14px;padding:6px 12px}
+#page-msps .msp-collage table.bt{font-size:14.5px}
+#page-msps .msp-collage table.bt th{padding:8px 8px}
+#page-msps .msp-collage table.bt td{padding:11px 8px}
+#page-msps .dig-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px;line-height:1.35}
+#page-msps .dig-row:last-of-type{border-bottom:none}
+#page-msps .dig-k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+#page-msps .dig-note{font-size:12px;color:var(--mute);margin:12px 0 0}
 #page-msps .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
 #page-msps .vsplit.rev .scopy{order:2}
 #page-msps .band{border-top:1px solid var(--hair)}
@@ -724,7 +736,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-msps .steps{display:flex;gap:6px;justify-content:center;padding:10px;font-size:10.5px;color:var(--mute);flex-wrap:wrap}
 #page-msps .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
 #page-msps .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
-#page-msps .msp-hero .grid{margin-top:34px;text-align:left}
+#page-msps .msp-collage .grid{text-align:left;gap:16px}
+@media(max-width:720px){
+  #page-msps .dig-row{grid-template-columns:1fr;gap:2px;padding:10px 0}
+  #page-msps .msp-collage{width:min(1520px, calc(100vw - 20px))}
+}
 #page-msps .qty{display:inline-grid;font-variant-numeric:tabular-nums}
 #page-msps .qty-hold,#page-msps .qty-n{grid-area:1 / 1}
 #page-msps .qty-hold{visibility:hidden}
@@ -1578,20 +1594,23 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad msp-hero">
     <div class="wrap center">
       <div class="msp-rise">
-        <p class="kicker">For MSPs</p>
-        <h1>Your vendor connections,<br>in one place you control.</h1>
+        <h1>Your vendors,<br>connected on your terms.</h1>
         <p class="sub">Billing that stays current and vendor alerts that land as tickets, in a stack you control.</p>
-        <span class="pby">Powered by bitlync</span>
       </div>
-      <div class="grid g3 msp-rise lag">
+    </div>
+    <div class="msp-collage msp-rise lag">
+      <div class="grid g3">
         <div class="ui"><div class="uh"><span>Send to</span><span>autosaved ✓</span></div><div class="ub">
-          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
-          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
-          <div class="rrow" style="grid-template-columns:1fr 110px"><span>Low and info alerts</span><span class="chip on">Monthly digest</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Critical alert</span><span class="chip on">Ticket</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Subscription renewal</span><span class="chip on">Email</span></div>
+          <div class="rrow" style="grid-template-columns:1fr 128px"><span>Low and info alerts</span><span class="chip on">Monthly digest</span></div>
         </div></div>
         <div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub">
-          <div style="font-size:17px;font-weight:600;line-height:1.3">October summary for 9 customers.</div>
-          <div class="s" style="font-size:12px;color:var(--mute);margin-top:10px">Example data only</div>
+          <div class="dig-row"><span class="dig-k">Product alert</span><span>Acme Endpoint critical update</span></div>
+          <div class="dig-row"><span class="dig-k">Trial ending</span><span>Harbor Clinic, Oct 28</span></div>
+          <div class="dig-row"><span class="dig-k">Renewal</span><span>Northwind Logistics, Nov 15</span></div>
+          <div class="dig-row"><span class="dig-k">Price change</span><span>Acme Mail Defense $3.00 to $3.50</span></div>
+          <div class="dig-note">Example data</div>
         </div></div>
         <div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
           <table class="bt"><tr><th>Customer</th><th>Count</th><th>Next update</th></tr>
