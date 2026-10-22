@@ -37,9 +37,34 @@ th,td{border:1px solid var(--hair);padding:8px 10px;text-align:left;vertical-ali
 th{font-weight:600}
 footer{margin-top:48px;font-family:var(--mono);font-size:12px;color:var(--mute)}
 footer a{margin-right:14px}
+
+/* polish v1: site chrome and reading layout (styling only) */
+header.site{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--hair)}
+header.site .bar{max-width:1180px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:24px}
+header.site .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;font-style:italic;color:var(--ink);text-decoration:none;flex:none}
+header.site nav.main{display:flex;gap:20px;flex:1;justify-content:center;font-size:14px;color:var(--mute);flex-wrap:wrap}
+header.site nav.main a,header.site .nav-signin{text-decoration:none;color:var(--mute)}header.site nav.main a:hover{color:var(--ink)}
+header.site .nav-signin{font-size:14px;flex:none}
+header.site .btn{display:inline-block;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;text-decoration:none;flex:none}
+header.site .btn:hover{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.wrap{padding-top:36px}
+.top{font-family:var(--sans);font-size:13px;color:var(--mute)}
+.legal{max-width:640px}
+.legal h2{font-size:19px;font-weight:600;line-height:1.3;margin:44px 0 12px}
+.legal h2:first-child{margin-top:8px}
+.legal .ver{font-family:var(--sans);font-size:15px;color:var(--mute)}
+.legal table{font-family:var(--sans)}
+.tw{background:linear-gradient(90deg,var(--paper) 30%,rgba(247,244,236,0)) left center/28px 100% no-repeat local,linear-gradient(270deg,var(--paper) 30%,rgba(247,244,236,0)) right center/28px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,rgba(23,24,28,.18),transparent) left center/12px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,rgba(23,24,28,.18),transparent) right center/12px 100% no-repeat scroll}
+.btt{margin:40px 0 0;font-size:14px}.btt a{color:var(--mute)}
+footer.site{border-top:1px solid var(--hair);padding:28px 0;margin-top:56px;color:var(--mute);font-size:13px;font-family:var(--sans)}
+footer.site .foot{max-width:1180px;margin:0 auto;padding:0 22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.site a{text-decoration:none;margin:0}footer.site .mail{font-family:var(--mono);font-size:12px}
+@media(max-width:820px){header.site nav.main{display:none}header.site .bar{justify-content:space-between}header.site .nav-signin{margin-left:auto}}
+@media(max-width:640px){.tw table{min-width:560px;font-size:14px}.tw th,.tw td{padding:8px}.legal h2{font-size:18px;margin-top:36px}}
 </style>
 </head>
-<body>
+<body id="top">
+<header class="site"><div class="bar"><a class="brand" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"><path d="M4.5 7.2C12 7.2 15.2 16 22.4 16"/><path d="M4.5 11.6C11.2 11.6 15 16 22.4 16"/><path d="M4.5 16C12 16 16 16 22.4 16"/><path d="M4.5 20.4C11.2 20.4 15 16 22.4 16"/><path d="M4.5 24.8C12 24.8 15.2 16 22.4 16"/></g><circle cx="24.3" cy="16" r="1.25" fill="currentColor"/></svg> bitlync</a><nav class="main" aria-label="Site"><a href="/#product">Product</a><a href="/#solutions/product">Solutions</a><a href="/#use-cases">Use cases</a><a href="/#integrations">Connectors</a><a href="/#about">About</a><a href="/#partners">Contact us</a></nav><a class="nav-signin" href="https://app.bitlync.com/console/login">Sign in</a><a class="btn nav-cta" href="/#partners">Request early access</a></div></header>
 <div class="wrap">
 <nav class="top" aria-label="Legal"><a href="/">Bitlync home</a><span><a href="/legal/msp-terms/">MSP Terms</a> · <a href="/legal/isv-terms/">ISV Terms</a> · <a href="/legal/dpa/">DPA</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/subprocessors/">Subprocessors</a> · <a href="/legal/security/">Security</a></span></nav>
 <p class="kicker">Legal</p>
@@ -190,7 +215,9 @@ footer a{margin-right:14px}
 <p>24.2	The Parties irrevocably agree that the state and federal courts located in the State of Delaware (including, where applicable, the Court of Chancery) shall have exclusive jurisdiction to settle any dispute or claim that arises out of or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims), save that either Party may seek injunctive or other equitable relief in any court of competent jurisdiction to protect its intellectual property rights or Confidential Information.</p>
 <p>24.3	To the fullest extent permitted by Applicable Laws, each Party agrees that any claim shall be brought only in its individual capacity and not as a plaintiff or class member in any purported class, collective or representative proceeding.</p>
 </main>
-<footer><a href="/">Back to bitlync.com</a></footer>
+<p class="btt"><a href="#top">Back to top</a></p>
 </div>
+<footer class="site"><div class="foot"><span>&copy; 2026 Bitlync &middot; Powered by bitlync</span><span><a href="https://docs.bitlync.com/">API docs</a> &middot; <a href="/#changelog">Changelog</a> &middot; <a href="/#about">About</a> &middot; <a class="mail" href="mailto:hello@bitlync.com">hello@bitlync.com</a></span></div></footer>
+
 </body>
 </html>
