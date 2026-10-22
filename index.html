@@ -14,7 +14,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400..700&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --paper:#F7F4EC; --card:#FBFBF8; --ink:#17181C; --mute:#6B6A64; --hair:#E4DFD4;
@@ -770,6 +770,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 #page-msps .qty{display:inline-grid;font-variant-numeric:tabular-nums}
 #page-msps .qty-hold,#page-msps .qty-n{grid-area:1 / 1}
 #page-msps .qty-hold{visibility:hidden}
+#page-msps td:has(> .qty){white-space:nowrap}
 #page-msps .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
 #page-msps .card.small,#page-msps .msp-tile .ui,#page-msps .vsplit .ui{transition:transform 240ms ease,box-shadow 240ms ease,border-color 240ms ease}
 @media (prefers-reduced-motion: no-preference){
@@ -1306,6 +1307,30 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
 
 @media(max-width:840px){.drop .panel{position:static!important;box-shadow:none!important;width:auto!important}}.sx-caret{font-size:.7em;margin-left:2px;opacity:.6}.sx-dd-sep{display:block;height:1px;background:var(--hair,#E5E0D4);margin:6px 0}
 </style>
+<style id="product-glow">
+#page-product .vsplit .msp-shot{position:relative;isolation:isolate}
+#page-product .vsplit .msp-shot:before{content:"";position:absolute;inset:-48px -36px;z-index:-1;pointer-events:none;filter:blur(14px);background:radial-gradient(45% 55% at 70% 35%,rgba(242,153,74,0.38),transparent 70%),radial-gradient(40% 50% at 25% 70%,rgba(227,109,156,0.29),transparent 70%)}
+#page-product .vsplit.rev .msp-shot:before{background:radial-gradient(45% 55% at 30% 40%,rgba(63,184,175,0.42),transparent 70%),radial-gradient(40% 50% at 75% 70%,rgba(90,169,230,0.32),transparent 70%)}
+#page-product #s3 .vsplit .msp-shot:before,#page-product #s7 .vsplit .msp-shot:before{background:radial-gradient(45% 55% at 30% 60%,rgba(63,184,175,0.38),transparent 70%),radial-gradient(40% 50% at 72% 30%,rgba(124,108,242,0.29),transparent 70%)}
+#page-product #s4 .vsplit .msp-shot:before,#page-product #s8 .vsplit .msp-shot:before{background:radial-gradient(45% 55% at 68% 62%,rgba(242,153,74,0.35),transparent 70%),radial-gradient(40% 50% at 28% 30%,rgba(124,108,242,0.26),transparent 70%)}
+</style>
+<style id="msp-recon">
+#v3 .ui{font-family:Inter,system-ui,sans-serif}
+#v3 .ui .uh{background:linear-gradient(120deg,#0C6B70 0%,#0C6B70 64%,#0A3F43 100%);color:#fff;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:12.5px;border-bottom:0}
+#v3 .ui .uh span:last-child{opacity:.8;font-weight:400}
+#v3 table.bt{font-family:Inter,system-ui,sans-serif}
+#v3 table.bt th{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#6B6E75}
+#v3 table.bt td{color:#3A3D44}
+#v3 table.bt td:first-child{font-weight:650;color:#17191C}
+#v3 .svc{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+#v3 tr.dev .svc{background:#E4F2F0;color:#0C6B70}#v3 tr.usr .svc{background:#EEEBFE;color:#4B3CC4}
+#v3 td.cur{font-weight:650;color:#17191C}
+#v3 td.cur .u,#v3 td.pk .u{font-weight:500;color:#6B6E75}
+#v3 td.pk>span.pkv{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:650}
+#v3 tr.dev td.pk>span.pkv{background:#E4F2F0;color:#0C6B70}#v3 tr.usr td.pk>span.pkv{background:#EEEBFE;color:#4B3CC4}
+v3 tr.dev td.pk .u,#v3 tr.usr td.pk .u{color:inherit;font-weight:500}
+#v3 td.pk,#v3 td.cur{white-space:nowrap}#v3 td.pk>span.pkv{padding:1px 7px}#v3 table.bt td:first-child{max-width:130px}
+</style>
 </head>
 <body>
 <a class="skip" href="#page-home">Skip to content</a>
@@ -1759,8 +1784,8 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
         </div></div></div>
         <div class="msp-tile msp-rise"><div class="ui"><div class="uh"><span>Billing</span><span>Acme Security</span></div><div class="ub">
           <table class="bt"><tr><th>Customer</th><th>Count</th><th>Next update</th></tr>
-          <tr><td>Northwind Logistics</td><td>48</td><td>Oct 20</td></tr>
-          <tr><td>Harbor Clinic</td><td>123</td><td>Oct 20</td></tr></table>
+          <tr><td>Northwind Logistics</td><td>48 devices</td><td>Oct 20</td></tr>
+          <tr><td>Harbor Clinic</td><td>123 users</td><td>Oct 20</td></tr></table>
         </div></div></div>
       </div>
     </div>
@@ -1773,11 +1798,11 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
       <div class="msp-rise lag msp-bill"><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Your stack</span></div><div class="ub">
         <div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">Acme Security bills on your peak count each month.</div>
         <table class="bt"><tr><th>Customer</th><th>Service</th><th>Current</th><th>Peak so far</th><th>Next update</th></tr>
-        <tr><td>Northwind Logistics</td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">48</span><span class="qty-n" data-n="48">48</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">52</span><span class="qty-n" data-n="52">52</span></span></td><td>Oct 20</td></tr>
-        <tr><td>Northwind Logistics</td><td>Acme Identity</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">123</span><span class="qty-n" data-n="123">123</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">127</span><span class="qty-n" data-n="127">127</span></span></td><td>Oct 20</td></tr>
-        <tr><td>Harbor Clinic <span class="mini">Trial</span></td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">54</span><span class="qty-n" data-n="54">54</span></span></td><td>-</td><td>Not billed</td></tr>
-        <tr><td>Bluepeak Tech</td><td>Acme Endpoint</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">60</span><span class="qty-n" data-n="60">60</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">64</span><span class="qty-n" data-n="64">64</span></span></td><td>Oct 20</td></tr>
-        <tr><td>Pine Ridge Schools</td><td>Acme Identity</td><td><span class="qty"><span class="qty-hold" aria-hidden="true">135</span><span class="qty-n" data-n="135">135</span></span></td><td><span class="qty"><span class="qty-hold" aria-hidden="true">141</span><span class="qty-n" data-n="141">141</span></span></td><td>Oct 20</td></tr></table>
+        <tr class="dev"><td>Northwind Logistics</td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">48</span><span class="qty-n" data-n="48">48</span></span> <span class="u">devices</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">52</span><span class="qty-n" data-n="52">52</span></span> <span class="u">devices</span></span></td><td>Oct 20</td></tr>
+        <tr class="usr"><td>Northwind Logistics</td><td><span class="svc">Acme Identity</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">123</span><span class="qty-n" data-n="123">123</span></span> <span class="u">users</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">127</span><span class="qty-n" data-n="127">127</span></span> <span class="u">users</span></span></td><td>Oct 20</td></tr>
+        <tr class="dev"><td>Harbor Clinic <span class="mini">Trial</span></td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">54</span><span class="qty-n" data-n="54">54</span></span> <span class="u">devices</span></td><td class="pk">-</td><td>Not billed</td></tr>
+        <tr class="dev"><td>Bluepeak Tech</td><td><span class="svc">Acme Endpoint</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">60</span><span class="qty-n" data-n="60">60</span></span> <span class="u">devices</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">64</span><span class="qty-n" data-n="64">64</span></span> <span class="u">devices</span></span></td><td>Oct 20</td></tr>
+        <tr class="usr"><td>Pine Ridge Schools</td><td><span class="svc">Acme Identity</span></td><td class="cur"><span class="qty"><span class="qty-hold" aria-hidden="true">135</span><span class="qty-n" data-n="135">135</span></span> <span class="u">users</span></td><td class="pk"><span class="pkv"><span class="qty"><span class="qty-hold" aria-hidden="true">141</span><span class="qty-n" data-n="141">141</span></span> <span class="u">users</span></span></td><td>Oct 20</td></tr></table>
         <div style="font-size:12px;color:var(--mute);margin-top:10px">Example data only.</div>
       </div></div></div>
     </div></div>
@@ -1804,7 +1829,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   <section class="pad band" id="v1">
     <div class="wrap"><div class="vsplit rev">
       <div class="scopy msp-rise"><span class="vtag">Control</span><span class="vtag">Vault</span><span class="vtag">Activity</span><h2>See and control what each vendor can reach.</h2><p class="sub">See which vendor can reach what in your stack and revoke a vendor's access. Actions, alerts and changes are logged in Activity.</p></div>
-      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_vendor_vault_activity.png" alt="Connected vendors and Activity change log"></div></div>
+      <div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/msp_vendor_vault_activity.png?v=3" alt="Connected vendors and Activity change log"></div></div>
     </div></div>
   </section>
   <section class="pad band" id="v7">
