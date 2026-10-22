@@ -821,6 +821,158 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   #page-msps .rrow .sev{justify-self:start}
 }
 
+
+/* Products page (ISV audience, preview). Mirrors the MSP page styles. */
+/* MSP value page (preview). Scoped so other routes keep their styles. */
+#page-products .msp-hero{padding-bottom:48px}
+#page-products .msp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+#page-products .msp-collage{width:min(1520px, calc(100vw - 28px));margin:6px auto 0}
+#page-products .msp-collage .ui{height:100%;display:flex;flex-direction:column;font-size:15px}
+#page-products .msp-collage .ui .uh{font-size:12.5px;padding:13px 18px}
+#page-products .msp-collage .ui .ub{flex:1;padding:16px 18px 18px}
+#page-products .msp-collage .rrow{padding:13px 0;font-size:15px}
+#page-products .msp-collage .chip{font-size:14px;padding:6px 12px}
+#page-products .msp-collage table.bt{font-size:14.5px}
+#page-products .msp-collage table.bt th{padding:8px 8px}
+#page-products .msp-collage table.bt td{padding:11px 8px}
+#page-products .dig-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px;line-height:1.35}
+#page-products .dig-row:last-of-type{border-bottom:none}
+#page-products .dig-k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+#page-products .dig-note{font-size:12px;color:var(--mute);margin:12px 0 0}
+#page-products .vsplit{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1.15fr}
+#page-products .vsplit.rev .scopy{order:2}
+#page-products .band{border-top:1px solid var(--hair)}
+#page-products .vtag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--mute);border:1px solid var(--hair);border-radius:999px;padding:2px 9px;margin:0 6px 10px 0}
+#page-products .ui{background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 18px 40px -28px rgba(23,24,28,.35);overflow:hidden;font-size:13.5px;text-align:left}
+#page-products .ui .uh{font-family:var(--mono);font-size:11.5px;color:var(--mute);padding:10px 16px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+#page-products .ui .ub{padding:14px 16px;overflow-x:auto}
+#page-products .ui img{display:block;width:100%;height:auto}
+#page-products .rrow{display:grid;grid-template-columns:1fr 90px 150px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair)}
+#page-products .rrow:last-child{border-bottom:none}
+#page-products .sev{font-size:12.5px;color:var(--mute)}
+#page-products .sev i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:#B24A4A}
+#page-products .sev.m i{background:#A9702C}
+#page-products .sev.l i{background:#8B8E84}
+#page-products .chip{display:inline-block;border:1px solid var(--hair);background:#fff;border-radius:6px;padding:4px 10px;font-size:12.5px}
+#page-products .chip.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+#page-products .picker{margin-top:12px;border:1px solid var(--hair);border-radius:10px;padding:12px 14px;background:#fff}
+#page-products .picker .f{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:12.5px;color:var(--mute)}
+#page-products .picker .sel{border:1px solid var(--hair);border-radius:6px;padding:5px 9px;color:var(--ink);background:var(--card)}
+#page-products .saved{color:var(--ok);font-size:12.5px;margin-top:8px}
+#page-products table.bt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:280px}
+#page-products table.bt th{font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:left;font-weight:500;padding:6px 6px;border-bottom:1px solid var(--hair);text-transform:uppercase}
+#page-products table.bt td{padding:8px 6px;border-bottom:1px solid var(--hair);vertical-align:top}
+#page-products .mini{font-family:var(--mono);font-size:10px;background:#EFEADF;border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute)}
+#page-products .small h3{font-size:20px}
+#page-products .small .ui{margin-top:14px;font-size:12px}
+#page-products .cta-band{background:var(--ink);color:var(--paper);border-radius:22px;padding:48px 28px 44px;text-align:center}
+#page-products .cta-band h2{color:var(--paper);margin:0}
+#page-products .cta-band .sub{color:#B9B8B0;margin:12px auto 22px;max-width:36rem}
+#page-products .cta-band .btn{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+#page-products .cta-band .btn:hover{color:var(--ink);background:#B8E045;border-color:#B8E045}
+#page-products .pby{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;margin-top:6px}
+#page-products .cn{background:#1F2A44;color:#fff;text-align:center;padding:16px 10px;font-size:13px}
+#page-products .cn b{display:block;font-family:var(--mono);letter-spacing:.12em;font-size:12px;margin-bottom:4px;color:#BFD0F5}
+#page-products .steps{display:flex;gap:6px;justify-content:center;padding:10px;font-size:10.5px;color:var(--mute);flex-wrap:wrap}
+#page-products .steps span{border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
+#page-products .pf{font-size:11px;color:var(--mute);text-align:center;padding:8px;border-top:1px solid var(--hair)}
+#page-products .msp-collage .grid{text-align:left;gap:16px}
+#page-products .msp-hero-stage{width:100%}
+#page-products .msp-tile{height:100%}
+#page-products .msp-cue{
+  display:flex;align-items:center;justify-content:center;
+  width:42px;height:42px;margin:22px auto 0;color:var(--mute);
+  border:1px solid var(--hair);border-radius:999px;background:rgba(247,244,236,.8)
+}
+#page-products .msp-cue:hover{color:var(--ink);border-color:#B7B2A6}
+#page-products .msp-cue:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#page-products #v1 .wrap{max-width:1560px}
+@media(min-width:861px){
+  #page-products #v1 .vsplit{grid-template-columns:minmax(0,1.7fr) minmax(300px,.78fr);gap:32px 44px}
+}
+#page-products section[id]{scroll-margin-top:76px}
+@media(max-width:720px){
+  #page-products .dig-row{grid-template-columns:1fr;gap:2px;padding:10px 0}
+  #page-products .msp-collage{width:min(1520px, calc(100vw - 20px))}
+}
+@media(min-width:900px){
+  #page-products .msp-hero{
+    box-sizing:border-box;
+    min-height:calc(100vh - 64px);
+    min-height:calc(100svh - 64px);
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:20px 0 76px
+  }
+  #page-products .msp-cue{
+    position:absolute;left:50%;bottom:18px;margin:0;
+    transform:translateX(-50%)
+  }
+}
+#page-products .qty{display:inline-grid;font-variant-numeric:tabular-nums}
+#page-products .qty-hold,#page-products .qty-n{grid-area:1 / 1}
+#page-products .qty-hold{visibility:hidden}
+#page-products .msp-route{display:inline-block;min-width:72px;text-align:center;transition:opacity 200ms ease}
+#page-products .card.small,#page-products .msp-tile .ui,#page-products .vsplit .ui{transition:transform 240ms ease,box-shadow 240ms ease,border-color 240ms ease}
+@media (prefers-reduced-motion: no-preference){
+  #page-products.msp-arm .msp-rise:not(.in){opacity:0;transform:translateY(16px)}
+  #page-products.msp-arm .msp-fade:not(.in){opacity:0}
+  #page-products.msp-arm .msp-tile.msp-rise:not(.in){opacity:0;transform:translateY(24px)}
+  #page-products.msp-arm .msp-shot:not(.in){opacity:0;transform:translateY(36px)}
+  #page-products.msp-arm .msp-rise.in,#page-products.msp-arm .msp-fade.in{opacity:1;transform:none;transition:opacity 420ms ease,transform 420ms ease}
+  #page-products.msp-arm .msp-fade.in{transition:opacity 420ms ease}
+  #page-products.msp-arm .msp-shot.in{opacity:1;transform:none;transition:opacity 740ms ease,transform 740ms cubic-bezier(.16,.84,.32,1)}
+  #page-products.msp-arm .lag.in{transition-delay:160ms}
+  #page-products.msp-arm .msp-shot.lag.in{transition-delay:200ms}
+  #page-products.msp-arm .msp-tile.in{
+    opacity:1;transform:none;
+    animation:mspFloat 12s ease-in-out infinite;
+    animation-delay:720ms
+  }
+  #page-products.msp-arm .msp-collage .msp-tile:nth-child(1).in{transition-delay:70ms;animation-delay:680ms;animation-duration:11s}
+  #page-products.msp-arm .msp-collage .msp-tile:nth-child(2).in{transition-delay:190ms;animation-delay:860ms;animation-duration:13.5s}
+  #page-products.msp-arm .msp-collage .msp-tile:nth-child(3).in{transition-delay:310ms;animation-delay:1020ms;animation-duration:10s}
+  #page-products.msp-arm .msp-saved{opacity:0}
+  #page-products.msp-arm .msp-saved.show{opacity:1;transition:opacity 320ms ease}
+  #page-products .card.small:hover,#page-products .msp-tile .ui:hover,#page-products .vsplit .ui:hover{transform:translateY(-5px);box-shadow:0 18px 36px -18px rgba(23,24,28,.48)}
+  #page-products .msp-cue{animation:mspCueFlow 1.9s ease-in-out infinite}
+  @keyframes mspFloat{
+    0%,100%{transform:translate3d(0,var(--py,0px),0)}
+    50%{transform:translate3d(0,calc(var(--py,0px) - 7px),0)}
+  }
+  @keyframes mspCueFlow{
+    0%,100%{transform:translateY(0);opacity:.62}
+    50%{transform:translateY(7px);opacity:1}
+  }
+  @keyframes mspCueDock{
+    0%,100%{transform:translate(-50%,0);opacity:.62}
+    50%{transform:translate(-50%,7px);opacity:1}
+  }
+}
+@media(min-width:900px) and (prefers-reduced-motion:no-preference){
+  #page-products .msp-cue{animation-name:mspCueDock}
+}
+@media(prefers-reduced-motion:reduce){
+  #page-products .msp-cue,#page-products .msp-tile,#page-products .card.small,#page-products .vsplit .ui{animation:none;transition:none}
+}
+@media(max-width:860px){
+  #page-products .vsplit{grid-template-columns:1fr}
+  #page-products .vsplit.rev .scopy{order:0}
+  #page-products .rrow{grid-template-columns:1fr}
+  #page-products .rrow .sev{justify-self:start}}
+
+#page-products .msp-tile .tilt{transform:rotate(var(--rot,0deg));transform-origin:50% 60%;height:100%}
+#page-products .msp-collage .msp-tile:nth-child(1){--rot:-2.2deg}
+#page-products .msp-collage .msp-tile:nth-child(2){--rot:.8deg}
+#page-products .msp-collage .msp-tile:nth-child(3){--rot:2.4deg}
+#page-products .msp-collage{margin-top:30px}
+#page-products .mstrip{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--card);border:1px solid var(--hair);border-radius:18px;padding:26px 28px}
+#page-products .mstrip h3{font-size:26px;margin:0;max-width:36rem}
+#page-products .mlist{margin:0 0 4px;padding:0 0 0 1.1em;color:var(--mute);font-size:15px}#page-products .mlist li{margin:4px 0}
+#page-products .wide .ui{max-width:1100px;margin:0 auto}
+#page-products .draftbar{background:#17181C;color:#C6F04D;font-family:'JetBrains Mono',monospace;font-size:11.5px;text-align:center;padding:6px 10px}
+@media(max-width:820px){#page-products .msp-collage .msp-tile{--rot:0deg!important;margin-top:0!important}}
+@media(prefers-reduced-motion:reduce){#page-products .msp-tile .tilt{transition:none}}
+
 </style>
 </head>
 <body>
@@ -841,6 +993,7 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
               <a href="#solutions/tech-and-platform-support" data-nav="solutions">Tech and platform support</a>
               <a href="#solutions/go-to-market" data-nav="solutions">Go to market</a>
               <a href="#msps" data-nav="msps">MSPs</a>
+              <a href="#products" data-nav="products">Products</a>
             </div>
           </div>
         </div>
@@ -1766,6 +1919,33 @@ body.docs footer{border-top-color:var(--dline);color:var(--dmute)}
   </section>
 </div>
 
+<div class="page" id="page-products">
+<section class="pad msp-hero"><div class="msp-hero-stage"><div class="wrap center"><div class="msp-rise">
+<h1>Your integration, your way.</h1><p class="sub">Bitlync runs the connection, alerts, billing and health checks around your product, under your brand.</p>
+<div class="btn-row" style="justify-content:center"><a class="btn" href="#partners">Talk to us</a></div></div></div>
+<div class="msp-collage"><div class="grid g3"><div class="msp-tile msp-rise"><div class="tilt"><div class="ui"><div class="uh"><span>Connect your stack</span><span>Acme Security</span></div><div class="ub"><div class="dig-row"><span class="dig-k">Site</span><span>Stack address ✓</span></div><div class="dig-row"><span class="dig-k">Company ID</span><span>summitpeak ✓</span></div><div class="dig-row"><span class="dig-k">Keys</span><span>Public and private ✓</span></div><div class="dig-note">Example data</div></div></div></div></div><div class="msp-tile msp-rise"><div class="tilt"><div class="ui"><div class="uh"><span>Alert types</span><span>Acme Security</span></div><div class="ub"><div class="rrow" style="grid-template-columns:1fr auto"><span>Malware detected</span><span class="sev"><i></i>Critical</span></div><div class="rrow" style="grid-template-columns:1fr auto"><span>Renewal notice</span><span class="sev l"><i></i>Low</span></div><div class="rrow" style="grid-template-columns:1fr auto"><span>Connection problem</span><span class="sev m"><i></i>High</span></div></div></div></div></div><div class="msp-tile msp-rise"><div class="tilt"><div class="ui"><div class="uh"><span>Activity · Billing</span><span>Acme Security</span></div><div class="ub"><table class="bt"><tr><th>Customer</th><th>Current</th><th>Next update</th></tr><tr><td>Northwind Clinic</td><td>48</td><td>Oct 20</td></tr><tr><td>Cedar Health</td><td>60</td><td>Oct 20</td></tr></table><div class="dig-note">Example data</div></div></div></div></div></div></div></div>
+<a class="msp-cue" href="#s1" aria-label="Scroll down"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M5.5 8.5l5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></section>
+<section class="pad band" id="s1"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Connect</span><h2>One Connect flow.</h2><p class="sub">Your MSPs connect their stack in a few steps, with a Where do I find this? link on each field. You don't build or maintain those integrations yourself.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_connect_keys.png" srcset="assets/prod_connect_keys.png 1x, assets/prod_connect_keys@2x.png 2x" alt="Connect step: stack keys"></div></div></div></div></section><section class="pad band" id="s2"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Branding</span><h2>Your brand throughout.</h2><p class="sub">The screens your MSPs see use your logo, colors and theme. Check the preview, then save and publish.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_branding.png" srcset="assets/prod_branding.png 1x, assets/prod_branding@2x.png 2x" alt="Branding settings in the ISV console"></div></div></div></div></section><section class="pad band" id="s3"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Configuration</span><h2>MSPs see what you'll use before they connect.</h2><p class="sub">Turn features on, mark what's required, and request permissions by category. Disabled features are hidden from MSPs at Connect.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_configure.png" srcset="assets/prod_configure.png 1x, assets/prod_configure@2x.png 2x" alt="Features and access by category"></div></div></div></div></section><section class="pad band" id="s4"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Alerts</span><h2>Alerts your MSPs act on.</h2><p class="sub">Define your own alert types with severities and defaults. Each MSP routes them to a ticket, email or digest in their stack.</p><ul class="mlist"><li>Product alerts: the alerts your product sends, like Ransomware blocked or Vulnerability found, go to the MSP as a ticket, email or digest in their stack.</li><li>Renewal notice, 30, 60 or 90 days before renewal.</li><li>Pricing and packaging changes.</li><li>Integration health: connection, sync and data problems.</li></ul></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_alert_types.png" srcset="assets/prod_alert_types.png 1x, assets/prod_alert_types@2x.png 2x" alt="Alert types in the ISV console"></div></div></div></div></section><section class="pad band" id="s5"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Billing</span><h2>Billing quantities that stay current.</h2><p class="sub">Quantities update automatically in the MSP's PSA on the agreements they matched.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_billing.png" srcset="assets/prod_billing.png 1x, assets/prod_billing@2x.png 2x" alt="Billing activity with current and peak counts"></div></div></div></div></section><section class="pad band" id="s6"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Customer matching</span><h2>Customers matched for you.</h2><p class="sub">Bitlync suggests matches between your customers and the MSP's companies, so onboarding takes less of your team's time.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_map_companies.png" srcset="assets/prod_map_companies.png 1x, assets/prod_map_companies@2x.png 2x" alt="Map companies step with suggested matches"></div></div></div></div></section><section class="pad band" id="s7"><div class="wrap"><div class="vsplit rev">
+<div class="scopy msp-rise"><span class="vtag">Custom fields</span><h2>A field on each company record.</h2><p class="sub">Write a value like a contract link onto each company record in the MSP's stack. Bitlync creates the field once.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_custom_fields.png" srcset="assets/prod_custom_fields.png 1x, assets/prod_custom_fields@2x.png 2x" alt="Custom fields in the ISV console"></div></div></div></div></section><section class="pad band" id="s8"><div class="wrap"><div class="vsplit">
+<div class="scopy msp-rise"><span class="vtag">Health and activity</span><h2>Know when a connection breaks.</h2><p class="sub">Integration health and an activity log show you and the MSP what happened and when.</p></div>
+<div class="msp-rise lag msp-shot"><div class="ui"><img src="assets/prod_activity.png" srcset="assets/prod_activity.png 1x, assets/prod_activity@2x.png 2x" alt="Activity log with alert delivery"></div></div></div></div></section>
+<section class="pad band"><div class="wrap"><div class="center msp-rise" style="margin-bottom:26px"><p class="kicker">More in the box</p><h2>The details, handled.</h2></div>
+<div class="grid g3 msp-rise lag"><div class="card small"><h3>Send a test ticket.</h3><p class="quiet" style="margin:0;font-size:14px">The MSP sends a low-priority test ticket from setup, then closes it from Bitlync.</p><div class="ui"><div class="uh"><span>Tickets go to</span><span>Your stack</span></div><div class="ub"><div style="font-size:12px">Board: Alerts · Type: Vendor alert</div><div class="saved">Created #1234 ✓ · Priority: Low</div><div style="margin-top:8px;font-size:12px"><b>[Bitlync test] Acme Security: no action required, safe to close</b></div><div style="margin-top:8px"><span class="chip">Close test ticket</span></div><div style="font-size:11px;color:var(--mute);margin-top:8px">Example data</div></div></div></div><div class="card small"><h3>A monthly digest for each MSP.</h3><p class="quiet" style="margin:0;font-size:14px">One email a month with your alerts, trials and renewals for their customers.</p><div class="ui"><div class="uh"><span>Monthly digest · October</span><span>Acme Security</span></div><div class="ub"><div class="dig-row"><span class="dig-k">Product alert</span><span>Acme Endpoint update</span></div><div class="dig-row"><span class="dig-k">Trial ending</span><span>Harbor Clinic, Oct 28</span></div><div class="dig-row"><span class="dig-k">Renewal</span><span>Northwind Logistics, Nov 15</span></div><div class="dig-note">Example data</div></div></div></div><div class="card small"><h3>Integration changes, flagged.</h3><p class="quiet" style="margin:0;font-size:14px">When you add, remove or change a service, each MSP gets an integration changes alert.</p><div class="ui"><div class="uh"><span>Integration health</span><span>Acme Security</span></div><div class="ub"><div class="rrow" style="grid-template-columns:1fr auto"><span>Integration changes</span><span class="sev m"><i></i>Medium</span></div><div class="rrow" style="grid-template-columns:1fr auto"><span>Connection problem</span><span class="sev"><i></i>High</span></div><div style="font-size:11px;color:var(--mute);margin-top:8px">Example data</div></div></div></div></div></div></section>
+<section class="pad"><div class="wrap"><div class="cta-band msp-rise"><h2>See your product connected.</h2><p class="sub">Works with the tools your MSPs already use.</p><a class="btn" href="#partners">Talk to us</a></div></div></section>
+</div>
 <div class="page" id="page-partners">
   <section class="pad">
     <div class="wrap">
@@ -2547,7 +2727,7 @@ dry_run ticket create is REST-only.</pre>
 </footer>
 <script>
 (function(){
-  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','partners','docs','changelog','about'];
+  var pages=['home','use-cases','integrations','solutions','solutions-product','solutions-developer','solutions-sales','solutions-customer-success','msps','products','partners','docs','changelog','about'];
   var docsIds=['docs','docs-concepts','docs-quickstart','docs-replace-existing','docs-coverage','docs-reference','docs-what-we-write','docs-use-cases'];
   var conceptAlias={'docs-concepts-caching':'docs-concepts-store-served-reads','docs-concepts-escape-hatch':'docs-concepts-store-served-reads','docs-concepts-retries':'docs-concepts-delivery','docs-concepts-honest-delivery':'docs-concepts-delivery','docs-concepts-dedup':'docs-concepts-delivery','docs-concepts-validation':'docs-concepts-writes','docs-concepts-customer-map':'docs-concepts-credential-vault','docs-concepts-identity-hold':'docs-concepts-credential-vault','docs-concepts-health':'docs-concepts-errors','docs-concepts-sandbox':'docs-concepts','docs-concepts-routing':'docs-concepts','docs-concepts-permissions':'docs-concepts-msp-permissions'};
   var objHash={
@@ -2629,6 +2809,24 @@ dry_run ticket create is REST-only.</pre>
     }
   }
 
+
+  var prodMotionArmed=false;
+  function armProductsMotion(){
+    if(prodMotionArmed) return;
+    var page=document.getElementById('page-products');
+    if(!page) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(!('IntersectionObserver' in window)) return;
+    prodMotionArmed=true;
+    page.classList.add('msp-arm');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);});},{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+    var tiles=page.querySelectorAll('.msp-collage .msp-tile'),hero=page.querySelector('.msp-hero'),tick=false;
+    function para(){tick=false;if(!page.classList.contains('on'))return;var y=hero.getBoundingClientRect().top;var s=Math.max(-22,Math.min(22,(64-y)*0.07));var a=[0.45,1,0.2];
+      tiles.forEach(function(el,i){el.style.setProperty('--py',((a[i]-0.55)*s).toFixed(2)+'px');});}
+    function on(){if(tick)return;tick=true;requestAnimationFrame(para);}
+    window.addEventListener('scroll',on,{passive:true});window.addEventListener('resize',on,{passive:true});para();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){page.querySelectorAll('.msp-rise,.msp-fade').forEach(function(el){io.observe(el);});});});
+  }
   var mspMotionArmed=false;
   function armMspMotion(){
     if(mspMotionArmed) return;
@@ -2745,10 +2943,11 @@ dry_run ticket create is REST-only.</pre>
       if(el) el.classList.toggle('on',p===st.page);
     });
     if(st.page==='msps') armMspMotion();
+    if(st.page==='products') armProductsMotion();
     document.body.classList.toggle('docs', st.page==='docs' || st.page==='changelog');
     document.querySelectorAll('nav.main a').forEach(function(a){
       var n=a.getAttribute('data-nav');
-      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps')));
+      a.classList.toggle('on', n===st.page || (n==='docs' && st.page==='docs') || (n==='solutions' && (st.page==='solutions' || st.page.indexOf('solutions-')===0 || st.page==='msps' || st.page==='products')));
     });
     docsIds.forEach(function(id){
       var el=document.getElementById('d-'+id);
@@ -2784,6 +2983,7 @@ dry_run ticket create is REST-only.</pre>
       'solutions-developer':['Engineering \u00b7 Bitlync','One call, same shape every time.'],
       'solutions-sales':['Go to market \u00b7 Bitlync','The first thing they ask is if you integrate.'],
       'solutions-customer-success':['Tech and platform support \u00b7 Bitlync','Name the missing permission in the flow.'],
+      products:['Products \u00b7 Bitlync','Bitlync runs the connection, alerts, billing and health checks around your product, under your brand.'],
       msps:['For MSPs \u00b7 Bitlync','Billing that stays current and vendor alerts routed your way, in a stack you control.'],
       partners:['Contact us \u00b7 Bitlync','Paid design partners: engineering access, roadmap input, founding pricing.'],
       docs:['Docs \u00b7 Bitlync','Hold a key. Call a seeded tenant. Then the MSP pastes their own keys.'],
@@ -2808,7 +3008,7 @@ dry_run ticket create is REST-only.</pre>
     var footNote=document.getElementById('footNote');
     if(footNote){
       if(!footNote.hasAttribute('data-default')) footNote.setAttribute('data-default', footNote.textContent);
-      footNote.textContent = st.page==='msps'
+      footNote.textContent = (st.page==='msps'||st.page==='products')
         ? '\u00a9 2026 Bitlync \u00b7 Powered by bitlync'
         : footNote.getAttribute('data-default');
     }
